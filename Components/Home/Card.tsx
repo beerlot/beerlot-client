@@ -8,8 +8,8 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ title }) => {
   return (
-    <>
-      <p>{title}</p>
+    <Container>
+      <Title>{title}</Title>
       <CardContainer>
         {MOCK_CARD_LIST.map((item) => {
           return (
@@ -23,12 +23,21 @@ const Card: React.FC<CardProps> = ({ title }) => {
           );
         })}
       </CardContainer>
-    </>
+    </Container>
   );
 };
 
 const CardContainer = styled.div`
   display: flex;
+  gap: 10px;
+`;
+
+export const Container = styled.div`
+  margin-top: 35px;
+`;
+
+export const Title = styled.p`
+  margin-bottom: 10px;
 `;
 
 export default Card;

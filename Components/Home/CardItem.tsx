@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 interface CardItemProps {
   beerName: string;
@@ -14,13 +15,37 @@ const CardItem: React.FC<CardItemProps> = ({
   country,
 }) => {
   return (
-    <div>
-      <img src={img_src} alt={beerName} />
-      <p>{beerName}</p>
-      <p>{sort}</p>
-      <p>{country}</p>
-    </div>
+    <CardContainer>
+      <CardImage src={img_src} alt={beerName} />
+      <CardTextContainer>
+        <p>{beerName}</p>
+      </CardTextContainer>
+      <CardTextContainer>
+        <p>{sort}</p>
+        <p>{country}</p>
+      </CardTextContainer>
+    </CardContainer>
   );
 };
 
 export default CardItem;
+
+//TODO: 색상 지정
+export const CardContainer = styled.div`
+  padding: 8px;
+  border: 1px solid #ff6b00;
+  border-radius: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+
+export const CardImage = styled.img`
+  border-radius: 7px;
+  width: 125px;
+  height: 125px;
+`;
+
+export const CardTextContainer = styled.div`
+  display: flex;
+`;
