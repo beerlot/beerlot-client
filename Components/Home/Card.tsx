@@ -1,4 +1,4 @@
-import { MOCK_CARD_LIST, POPULAR_BEER_TITLE } from "../../Static";
+import { MOCK_CARD_LIST } from "../../Static";
 import CardItem from "./CardItem";
 import styled from "styled-components";
 
