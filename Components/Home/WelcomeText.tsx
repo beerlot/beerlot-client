@@ -35,5 +35,5 @@ const Nickname = styled.p`
 `;
 
 const WelcomeTextContainer = styled.div`
-  margin: 12vh 21px;
+  margin: 12vh 0px;
 `;
