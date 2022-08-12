@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const WelcomeText = () => {
   return (
-    <div>
+    <WelcomeTextContainer>
       <TextContainer>
         <p>{WELCOME_MESSAGE_FIRST}</p>
         <Nickname>닉네임</Nickname>
@@ -14,7 +14,7 @@ const WelcomeText = () => {
       <TextContainer>
         <p>{WELCOME_MESSAGE_SECOND}</p>
       </TextContainer>
-    </div>
+    </WelcomeTextContainer>
   );
 };
 
@@ -32,4 +32,8 @@ const TextContainer = styled.div`
 
 const Nickname = styled.p`
   text-color: #fea801;
+`;
+
+const WelcomeTextContainer = styled.div`
+  margin: 12vh 21px;
 `;
