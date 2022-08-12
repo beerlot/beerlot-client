@@ -46,6 +46,7 @@ export const CardImage = styled.img`
   height: 125px;
 `;
 
+// 상세 내용 스타일링 추가 하기
 export const CardTextContainer = styled.div`
   display: flex;
 `;

@@ -5,7 +5,6 @@ import WelcomeText from "./WelcomeText";
 import styled from "styled-components";
 
 const HomeComponent = () => {
-  <p>{POPULAR_BEER_TITLE}</p>;
   return (
     <Container>
       <WelcomeText />

@@ -22,16 +22,16 @@ export default WelcomeText;
 
 const TextContainer = styled.div`
   font-family: "Roboto";
-  font-style: normal;
   font-weight: 700;
+  margin: 10px 0px;
   font-size: 22px;
-  line-height: 24px;
+
   opacity: 0.8;
   display: flex;
 `;
 
 const Nickname = styled.p`
-  text-color: #fea801;
+  color: #fea801;
 `;
 
 const WelcomeTextContainer = styled.div`
