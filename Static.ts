@@ -11,6 +11,11 @@ export const getVh = (px: number) => {
   return Math.floor(765 / px);
 };
 
+export const enum CardType {
+  POPULAR = "popular",
+  RECOMMEND = "recommend",
+}
+
 export const MOCK_CARD_LIST = [
   {
     id: 0,

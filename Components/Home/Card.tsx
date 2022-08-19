@@ -1,4 +1,4 @@
-import { MOCK_CARD_LIST } from "../../Static";
+import { MOCK_CARD_LIST, POPULAR_BEER_TITLE, CardType } from "../../Static";
 import CardItem from "./CardItem";
 import styled from "styled-components";
 
@@ -7,6 +7,9 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ title }) => {
+  const cardType =
+    title === POPULAR_BEER_TITLE ? CardType.POPULAR : CardType.RECOMMEND;
+
   return (
     <Container>
       <Title>{title}</Title>
@@ -14,6 +17,7 @@ const Card: React.FC<CardProps> = ({ title }) => {
         {MOCK_CARD_LIST.map((item) => {
           return (
             <CardItem
+              cardType={cardType}
               key={item.id}
               beerName={item.beerName}
               img_src={item.img_src}
@@ -39,6 +43,11 @@ export const Container = styled.div`
 
 export const Title = styled.p`
   margin-bottom: 10px;
+
+  font-family: "Roboto";
+  font-weight: 700;
+
+  color: rgba(0, 0, 0, 0.8);
 `;
 
 export default Card;

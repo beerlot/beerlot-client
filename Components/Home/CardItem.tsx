@@ -1,4 +1,6 @@
 import React from "react";
+import { CardType } from "../../Static";
+
 import styled from "styled-components";
 
 interface CardItemProps {
@@ -6,6 +8,7 @@ interface CardItemProps {
   img_src: string;
   sort: string;
   country: string;
+  cardType: CardType;
 }
 
 const CardItem: React.FC<CardItemProps> = ({
@@ -13,16 +16,21 @@ const CardItem: React.FC<CardItemProps> = ({
   img_src,
   sort,
   country,
+  cardType,
 }) => {
+  const color = cardType === CardType.POPULAR ? "#ff6b00" : "#FEA801";
+
   return (
-    <CardContainer>
+    <CardContainer color={color}>
       <CardImage src={img_src} alt={beerName} />
       <CardTextContainer>
         <p>{beerName}</p>
       </CardTextContainer>
       <CardTextContainer>
-        <p>{sort}</p>
         <p>{country}</p>
+        <SortContainer color={color}>
+          <SortP>{sort}</SortP>
+        </SortContainer>
       </CardTextContainer>
     </CardContainer>
   );
@@ -30,10 +38,27 @@ const CardItem: React.FC<CardItemProps> = ({
 
 export default CardItem;
 
+export const SortContainer = styled.div<{ color: string }>`
+  padding: 0px 5px;
+  background: ${({ color }) => color};
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+`;
+
+export const SortP = styled.p`
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 12px;
+
+  color: #fdf9ea;
+`;
+
 //TODO: 색상 지정
-export const CardContainer = styled.div`
+export const CardContainer = styled.div<{ color: string }>`
   padding: 8px;
   border: 1px solid #ff6b00;
+  border: ${({ color }) => `${color} solid 1px`};
   border-radius: 11px;
   display: flex;
   flex-direction: column;
