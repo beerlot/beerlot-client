@@ -9,6 +9,11 @@ import { useState } from "react";
 const HomeComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userNickname, setuserNickname] = useState("");
+
+  const handleKeypress = (e: React.KeyboardEvent) => {
+    setIsLoggedIn(!isLoggedIn);
+  };
+
   return (
     <Container>
       {isLoggedIn ? (
@@ -17,13 +22,14 @@ const HomeComponent = () => {
           <button
             onClick={() => {
               setIsLoggedIn(!isLoggedIn);
+              setuserNickname("");
             }}
           >
             로그아웃 하기
           </button>
         </>
       ) : (
-        <>
+        <form>
           <input
             onChange={(e) => {
               setuserNickname(e.target.value);
@@ -31,13 +37,14 @@ const HomeComponent = () => {
             value={userNickname}
           />
           <button
+            onKeyPress={handleKeypress}
             onClick={() => {
               setIsLoggedIn(!isLoggedIn);
             }}
           >
             로그인하기
           </button>
-        </>
+        </form>
       )}
 
       <WelcomeText nickname={userNickname} isLoggedIn={isLoggedIn} />

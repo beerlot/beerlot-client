@@ -1,4 +1,4 @@
-export const WELCOME_MESSAGE_FIRST = "👋 어서와요";
+export const WELCOME_MESSAGE_FIRST = "👋 어서와요 ";
 export const WELCOME_MESSAGE_SECOND = "오늘은 어떤 맥주를 마셔볼까요?";
 export const POPULAR_BEER_TITLE = "🔥 인기맥주 TOP10 🔥 ";
 export const RECOMMENDED_BEER_TITLE_1 = "🍻 ";
