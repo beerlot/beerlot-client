@@ -3,14 +3,27 @@ import Card from "./Card";
 import SearchBar from "./SearchBar";
 import WelcomeText from "./WelcomeText";
 import styled from "styled-components";
+import TwoByTwoCard from "./TwoByTwoCard";
+import { useState } from "react";
 
 const HomeComponent = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <Container>
+      <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
+        {isLoggedIn ? "로그인 됨" : "로그아웃 됨"}
+      </button>
       <WelcomeText />
       <SearchBar />
-      <Card title={POPULAR_BEER_TITLE} />
-      <Card title={RECOMMENDED_BEER_TITLE} />
+      {isLoggedIn ? (
+        <>
+          <Card title={POPULAR_BEER_TITLE} />
+          <Card title={RECOMMENDED_BEER_TITLE} />
+        </>
+      ) : (
+        <TwoByTwoCard />
+      )}
     </Container>
   );
 };

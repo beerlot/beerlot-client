@@ -42,8 +42,8 @@ export const CardContainer = styled.div`
 
 export const CardImage = styled.img`
   border-radius: 7px;
-  width: 125px;
-  height: 125px;
+  width: 33vw;
+  height: 33vw;
 `;
 
 // 상세 내용 스타일링 추가 하기

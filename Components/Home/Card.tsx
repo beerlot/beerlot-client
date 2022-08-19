@@ -30,6 +30,7 @@ const Card: React.FC<CardProps> = ({ title }) => {
 const CardContainer = styled.div`
   display: flex;
   gap: 10px;
+  overflow-x: auto;
 `;
 
 export const Container = styled.div`
