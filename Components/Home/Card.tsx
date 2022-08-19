@@ -1,4 +1,10 @@
-import { MOCK_CARD_LIST, POPULAR_BEER_TITLE, CardType } from "../../Static";
+import {
+  MOCK_CARD_LIST,
+  POPULAR_BEER_TITLE,
+  CardType,
+  RECOMMENDED_BEER_TITLE_1,
+  RECOMMENDED_BEER_TITLE_2,
+} from "../../Static";
 import CardItem from "./CardItem";
 import styled from "styled-components";
 
@@ -15,7 +21,11 @@ const Card: React.FC<CardProps> = ({ title }) => {
       {cardType === CardType.POPULAR ? (
         <PopularTitle>{title}</PopularTitle>
       ) : (
-        <RecommendTitle>{title}</RecommendTitle>
+        <TitleContainer>
+          <PopularTitle>{RECOMMENDED_BEER_TITLE_1}</PopularTitle>
+          <RecommendTitle>{title}</RecommendTitle>
+          <PopularTitle>{RECOMMENDED_BEER_TITLE_2}</PopularTitle>
+        </TitleContainer>
       )}
       <CardContainer>
         {MOCK_CARD_LIST.map((item) => {
@@ -34,6 +44,10 @@ const Card: React.FC<CardProps> = ({ title }) => {
     </Container>
   );
 };
+
+export const TitleContainer = styled.div`
+  display: flex;
+`;
 
 const CardContainer = styled.div`
   display: flex;
@@ -58,7 +72,8 @@ export const RecommendTitle = styled.p`
 
   font-family: "Roboto";
   font-weight: 700;
-  color: pink;
+
+  color: #fea801;
 `;
 
 export default Card;

@@ -1,4 +1,4 @@
-import { POPULAR_BEER_TITLE, RECOMMENDED_BEER_TITLE } from "../../Static";
+import { POPULAR_BEER_TITLE } from "../../Static";
 import Card from "./Card";
 import SearchBar from "./SearchBar";
 import WelcomeText from "./WelcomeText";
@@ -8,18 +8,44 @@ import { useState } from "react";
 
 const HomeComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [userNickname, setuserNickname] = useState("");
   return (
     <Container>
-      <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
-        {isLoggedIn ? "로그인 됨" : "로그아웃 됨"}
-      </button>
-      <WelcomeText />
+      {isLoggedIn ? (
+        <>
+          <span>{`${userNickname}님 로그인 됨`}</span>
+          <button
+            onClick={() => {
+              setIsLoggedIn(!isLoggedIn);
+            }}
+          >
+            로그아웃 하기
+          </button>
+        </>
+      ) : (
+        <>
+          <input
+            onChange={(e) => {
+              setuserNickname(e.target.value);
+            }}
+            value={userNickname}
+          />
+          <button
+            onClick={() => {
+              setIsLoggedIn(!isLoggedIn);
+            }}
+          >
+            로그인하기
+          </button>
+        </>
+      )}
+
+      <WelcomeText nickname={userNickname} isLoggedIn={isLoggedIn} />
       <SearchBar />
       {isLoggedIn ? (
         <>
           <Card title={POPULAR_BEER_TITLE} />
-          <Card title={RECOMMENDED_BEER_TITLE} />
+          <Card title={userNickname} />
         </>
       ) : (
         <TwoByTwoCard />
