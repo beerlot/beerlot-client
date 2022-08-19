@@ -2,7 +2,7 @@ export const WELCOME_MESSAGE_FIRST = "👋 어서와요 ";
 export const WELCOME_MESSAGE_SECOND = "오늘은 어떤 맥주를 마셔볼까요?";
 export const POPULAR_BEER_TITLE = "🔥 인기맥주 TOP10 🔥 ";
 export const RECOMMENDED_BEER_TITLE_1 = "🍻 ";
-export const RECOMMENDED_BEER_TITLE_2 = "님께 추천해요 🍻";
+export const RECOMMENDED_BEER_TITLE_2 = " 님께 추천해요 🍻";
 
 export const orangeBright = "#FEA801";
 
