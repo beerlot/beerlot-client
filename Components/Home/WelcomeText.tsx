@@ -35,8 +35,9 @@ const TextContainer = styled.div`
   margin: 10px 0px;
   font-size: 22px;
 
-  opacity: 0.8;
+  color: rgba(0, 0, 0, 0.8);
   display: flex;
+  padding: 2px 0px;
 `;
 
 const Nickname = styled.p`
