@@ -24,31 +24,31 @@ const SearchBar = () => {
       name: "Java",
     },
   ];
-  const handleOnSearch = (string, results) => {
-    // onSearch will have as the first callback parameter
-    // the string searched and for the second the results.
-    console.log(string, results);
-  };
+  // const handleOnSearch = (string, results) => {
+  //    onSearch will have as the first callback parameter
+  //    the string searched and for the second the results.
+  //   console.log(string, results);
+  // };
 
-  const handleOnHover = (result) => {
-    // the item hovered
-    console.log(result);
-  };
+  // const handleOnHover = (result) => {
+  //    the item hovered
+  //   console.log(result);
+  // };
 
-  const handleOnSelect = (item) => {
-    // the item selected
-    console.log(item);
-  };
+  // const handleOnSelect = (item) => {
+  //  the item selected
+  //   console.log(item);
+  // };
 
-  const handleOnFocus = () => {
-    console.log("Focused");
-  };
+  // const handleOnFocus = () => {
+  //   console.log("Focused");
+  // };
 
-  const formatResult = (item) => {
-    return (
-      <span style={{ display: "block", textAlign: "left" }}>{item.name}</span>
-    );
-  };
+  // const formatResult = (item) => {
+  //   return (
+  //     <span style={{ display: "block", textAlign: "left" }}>{item.name}</span>
+  //   );
+  // };
 
   return (
     <div className="App">
@@ -56,12 +56,12 @@ const SearchBar = () => {
         <div>
           <ReactSearchAutocomplete
             items={items}
-            onSearch={handleOnSearch}
-            onHover={handleOnHover}
-            onSelect={handleOnSelect}
-            onFocus={handleOnFocus}
+            // onSearch={handleOnSearch}
+            // onHover={handleOnHover}
+            // onSelect={handleOnSelect}
+            // onFocus={handleOnFocus}
             autoFocus
-            formatResult={formatResult}
+            // formatResult={formatResult}
           />
         </div>
       </header>
