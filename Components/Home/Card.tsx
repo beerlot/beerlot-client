@@ -12,7 +12,11 @@ const Card: React.FC<CardProps> = ({ title }) => {
 
   return (
     <Container>
-      <Title>{title}</Title>
+      {cardType === CardType.POPULAR ? (
+        <PopularTitle>{title}</PopularTitle>
+      ) : (
+        <RecommendTitle>{title}</RecommendTitle>
+      )}
       <CardContainer>
         {MOCK_CARD_LIST.map((item) => {
           return (
@@ -41,13 +45,20 @@ export const Container = styled.div`
   margin-top: 35px;
 `;
 
-export const Title = styled.p`
+export const PopularTitle = styled.p`
   margin-bottom: 10px;
 
   font-family: "Roboto";
   font-weight: 700;
 
   color: rgba(0, 0, 0, 0.8);
+`;
+export const RecommendTitle = styled.p`
+  margin-bottom: 10px;
+
+  font-family: "Roboto";
+  font-weight: 700;
+  color: pink;
 `;
 
 export default Card;

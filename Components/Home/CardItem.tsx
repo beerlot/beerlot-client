@@ -24,7 +24,7 @@ const CardItem: React.FC<CardItemProps> = ({
     <CardContainer color={color}>
       <CardImage src={img_src} alt={beerName} />
       <CardTextContainer>
-        <p>{beerName}</p>
+        <NameP>{beerName}</NameP>
       </CardTextContainer>
       <CardTextContainer>
         <p>{country}</p>
@@ -46,18 +46,21 @@ export const SortContainer = styled.div<{ color: string }>`
   align-items: center;
 `;
 
+export const NameP = styled.p`
+  font-family: "Roboto";
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.8);
+`;
+
 export const SortP = styled.p`
   font-family: "Roboto";
-  font-weight: 500;
   font-size: 12px;
-
   color: #fdf9ea;
 `;
 
 //TODO: 색상 지정
 export const CardContainer = styled.div<{ color: string }>`
   padding: 8px;
-  border: 1px solid #ff6b00;
   border: ${({ color }) => `${color} solid 1px`};
   border-radius: 11px;
   display: flex;
@@ -74,4 +77,5 @@ export const CardImage = styled.img`
 // 상세 내용 스타일링 추가 하기
 export const CardTextContainer = styled.div`
   display: flex;
+  align-items: center;
 `;
