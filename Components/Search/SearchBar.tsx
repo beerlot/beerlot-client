@@ -61,7 +61,6 @@ const SearchBar = () => {
           autoFocus
         />
       </SearchBarContainer>
-      <Keyboard />
     </>
   );
 };
