@@ -32,7 +32,10 @@ const SearchBarContainer = styled.div`
   }
 
   input::placeholder {
-    color: #fdf9ea;
+    font-family: "Roboto";
+    font-weight: 700;
+    font-size: 12px;
+    color: rgba(253, 249, 234, 0.9);
   }
 `;
 

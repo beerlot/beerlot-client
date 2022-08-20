@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import Keyboard from "react-simple-keyboard";
+import "react-simple-keyboard/build/css/index.css";
 
 const SearchBar = () => {
-  const router = useRouter();
   const items = [
     {
       id: 0,
@@ -42,9 +43,7 @@ const SearchBar = () => {
   //   <Link href="/search" />;
   // };
 
-  const handleOnFocus = () => {
-    router.push("/search");
-  };
+  const handleOnFocus = () => {};
 
   // const formatResult = (item) => {
   //   return (
@@ -53,18 +52,23 @@ const SearchBar = () => {
   // };
 
   return (
-    <SearchBarContainer>
-      <ReactSearchAutocomplete
-        placeholder="맥주 이름, 종류, 향 등을 검색해보세요!"
-        items={items}
-        onFocus={handleOnFocus}
-        autoFocus
-      />
-    </SearchBarContainer>
+    <>
+      <SearchBarContainer>
+        <ReactSearchAutocomplete
+          placeholder="맥주 이름, 종류, 향 등을 검색해보세요!"
+          items={items}
+          onFocus={handleOnFocus}
+          autoFocus
+        />
+      </SearchBarContainer>
+      <Keyboard />
+    </>
   );
 };
 
 const SearchBarContainer = styled.div`
+  margin-top: 10px;
+
   .wrapper {
     background: #52d5f2;
   }
@@ -73,7 +77,10 @@ const SearchBarContainer = styled.div`
   }
 
   input::placeholder {
-    color: #fdf9ea;
+    font-family: "Roboto";
+    font-weight: 700;
+    font-size: 12px;
+    color: rgba(253, 249, 234, 0.9);
   }
 `;
 
