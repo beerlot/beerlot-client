@@ -1,0 +1,39 @@
+import { useRouter } from "next/router";
+import styled from "styled-components";
+
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
+
+const SearchBarHome = () => {
+  const items = [{}];
+  const router = useRouter();
+
+  const handleOnFocus = () => {
+    router.push("/search");
+  };
+
+  return (
+    <SearchBarContainer>
+      <ReactSearchAutocomplete
+        placeholder="맥주 이름, 종류, 향 등을 검색해보세요!"
+        items={items}
+        onFocus={handleOnFocus}
+        autoFocus
+      />
+    </SearchBarContainer>
+  );
+};
+
+const SearchBarContainer = styled.div`
+  .wrapper {
+    background: #52d5f2;
+  }
+  svg {
+    fill: #fdf9ea;
+  }
+
+  input::placeholder {
+    color: #fdf9ea;
+  }
+`;
+
+export default SearchBarHome;
