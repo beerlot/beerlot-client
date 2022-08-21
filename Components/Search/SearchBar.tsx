@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import styled from "styled-components";
 import { SEARCH_BAR_PLACEHOLDER } from "../../Static";
 
 const SearchBar = () => {

@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { SEARCH_BAR_PLACEHOLDER } from "../../Static";
 
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
