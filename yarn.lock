@@ -3174,11 +3174,6 @@ react-search-autocomplete@^7.2.2:
     fuse.js "^6.5.3"
     styled-components "^5.3.3"
 
-react-simple-keyboard@^3.4.189:
-  version "3.4.189"
-  resolved "https://registry.yarnpkg.com/react-simple-keyboard/-/react-simple-keyboard-3.4.189.tgz#e0cb4586ff582e9e428540295bb97def558b0f09"
-  integrity sha512-cDf5JagXYM3aIJAVsxDa74eASJcM5SW/079Wetu7rCclpRNJHBRF4E7W+n5YC/Phb2gMVXuESFCmZFvd3YADRw==
-
 react@18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"

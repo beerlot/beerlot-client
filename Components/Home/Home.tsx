@@ -1,11 +1,10 @@
+import { useState } from "react";
+import styled from "styled-components";
 import { POPULAR_BEER_TITLE } from "../../Static";
 import Card from "./Card";
-import SearchBar from "../Search/SearchBar";
-import WelcomeText from "./WelcomeText";
-import styled from "styled-components";
-import TwoByTwoCard from "./TwoByTwoCard";
-import { useState } from "react";
 import SearchBarHome from "./SearchBarHome";
+import TwoByTwoCard from "./TwoByTwoCard";
+import WelcomeText from "./WelcomeText";
 
 const HomeComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

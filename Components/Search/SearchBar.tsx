@@ -1,8 +1,6 @@
-import { useRouter } from "next/router";
 import styled from "styled-components";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import Keyboard from "react-simple-keyboard";
-import "react-simple-keyboard/build/css/index.css";
+import { SEARCH_BAR_PLACEHOLDER } from "../../Static";
 
 const SearchBar = () => {
   const items = [
@@ -55,7 +53,7 @@ const SearchBar = () => {
     <>
       <SearchBarContainer>
         <ReactSearchAutocomplete
-          placeholder="맥주 이름, 종류, 향 등을 검색해보세요!"
+          placeholder={SEARCH_BAR_PLACEHOLDER}
           items={items}
           onFocus={handleOnFocus}
           autoFocus
