@@ -14,7 +14,7 @@ const SearchBarHome = () => {
   return (
     <SearchBarContainer>
       <ReactSearchAutocomplete
-        placeholder="맥주 이름, 종류, 향 등을 검색해보세요!"
+        placeholder={SEARCH_BAR_PLACEHOLDER}
         items={items}
         onFocus={handleOnFocus}
         autoFocus
