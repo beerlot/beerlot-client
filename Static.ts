@@ -55,3 +55,11 @@ export const MOCK_CARD_LIST = [
     country: "🌎",
   },
 ];
+
+export interface beerItemType {
+  id: number;
+  beerName: string;
+  img_src: string;
+  sort: string;
+  country: string;
+}
