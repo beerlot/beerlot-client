@@ -31,11 +31,10 @@ const SearchBar = () => {
       id: 4,
       name: "오예스 미니",
     },
+    { id: 5, name: "제로" },
   ];
 
   // const handleOnSearch = (string, results) => {
-  //    onSearch will have as the first callback parameter
-  //    the string searched and for the second the results.
   //   console.log(string, results);
   // };
 
@@ -46,7 +45,7 @@ const SearchBar = () => {
 
   //TODO: url을 id로 하는 게 라우팅 하는 게 최선일 지 생각해보기
   const handleOnSelect = (selectedItem: itemType) => {
-    router.push(`/result/${selectedItem.id}`);
+    router.push(`/result/${selectedItem.name}`);
   };
 
   // const formatResult = (item) => {
