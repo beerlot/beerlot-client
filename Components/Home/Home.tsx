@@ -2,9 +2,9 @@ import { useState } from "react";
 import styled from "styled-components";
 import { MOCK_CARD_LIST, POPULAR_BEER_TITLE } from "../../Static";
 import TempLogin from "../Auth/TempLogin";
-import CardList from "./CardList";
+import CarouselCardList from "../Card/CardList/CardList";
 import SearchBarHome from "./SearchBarHome";
-import TwoByTwoCard from "./TwoByTwoCard";
+import TwoByTwoCardList from "../Card/CardList/TwoByTwoCard";
 import WelcomeText from "./WelcomeText";
 
 const HomeComponent = () => {
@@ -31,11 +31,14 @@ const HomeComponent = () => {
       <SearchBarHome />
       {isLoggedIn ? (
         <>
-          <CardList title={POPULAR_BEER_TITLE} />
-          <CardList title={userNickname} />
+          <CarouselCardList title={POPULAR_BEER_TITLE} />
+          <CarouselCardList title={userNickname} />
         </>
       ) : (
-        <TwoByTwoCard title={POPULAR_BEER_TITLE} itemList={MOCK_CARD_LIST} />
+        <TwoByTwoCardList
+          title={POPULAR_BEER_TITLE}
+          itemList={MOCK_CARD_LIST}
+        />
       )}
     </Container>
   );
