@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import TwoByTwoCardList from "../../Components/Card/CardList/TwoByTwoCard";
+import TwoByTwoCardList from "../../Components/Card/CardList/TwoByTwoCardList";
 import { beerItemType, MOCK_CARD_LIST, POPULAR_BEER_TITLE } from "../../Static";
 import styled from "styled-components";
 

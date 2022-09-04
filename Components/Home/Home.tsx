@@ -2,9 +2,9 @@ import { useState } from "react";
 import styled from "styled-components";
 import { MOCK_CARD_LIST, POPULAR_BEER_TITLE } from "../../Static";
 import TempLogin from "../Auth/TempLogin";
-import CarouselCardList from "../Card/CardList/CardList";
+import CarouselCardList from "../Card/CardList/CarouselCardList";
 import SearchBarHome from "./SearchBarHome";
-import TwoByTwoCardList from "../Card/CardList/TwoByTwoCard";
+import TwoByTwoCardList from "../Card/CardList/TwoByTwoCardList";
 import WelcomeText from "./WelcomeText";
 
 const HomeComponent = () => {
