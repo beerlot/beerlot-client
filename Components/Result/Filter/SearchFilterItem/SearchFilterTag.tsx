@@ -3,16 +3,32 @@ import styled from "styled-components";
 
 interface SearchFilterTagProps {
   tag: string;
+  isOrderCategory: boolean;
+  isSelectedOrder: boolean;
+  //TODO: any 타입 삭제
+  handleSelectOrder: (e: any) => void;
 }
 
-const SearchFilterTag: React.FC<SearchFilterTagProps> = ({ tag }) => {
+const SearchFilterTag: React.FC<SearchFilterTagProps> = ({
+  tag,
+  isOrderCategory,
+  isSelectedOrder,
+  handleSelectOrder,
+}) => {
   const [isSelected, setIsSelected] = useState(false);
+
   const handleSelect = () => {
     setIsSelected(!isSelected);
   };
+
   return (
     <>
-      <Container isSelected={isSelected} onClick={handleSelect}>
+      <Container
+        isSelected={
+          isOrderCategory ? isOrderCategory && isSelectedOrder : isSelected
+        }
+        onClick={isOrderCategory ? handleSelectOrder : handleSelect}
+      >
         {tag}
       </Container>
     </>

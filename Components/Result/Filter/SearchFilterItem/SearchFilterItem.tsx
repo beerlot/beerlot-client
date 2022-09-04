@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchFilterCategory from "./SearchFilterCategory";
 import SearchFilterTag from "./SearchFilterTag";
 import styled from "styled-components";
@@ -12,10 +12,17 @@ interface SearchFilterItemProps {
 
 const SearchFilterItem: React.FC<SearchFilterItemProps> = ({ category }) => {
   const { title, tagList } = category;
+  const [selectedOrder, setSelectedOrder] = useState("좋아요순");
   const [isSelected, setIsSelected] = useState(false);
   const handleSelect = () => {
     setIsSelected(!isSelected);
   };
+
+  //TODO: any 타입 삭제
+  const handleSelectOrder = (e: any) => {
+    setSelectedOrder(e.target.innerText);
+  };
+
   return (
     <Container>
       <SearchFilterCategory
@@ -25,7 +32,15 @@ const SearchFilterItem: React.FC<SearchFilterItemProps> = ({ category }) => {
       />
       <TagContainer>
         {tagList.map((tag) => {
-          return <SearchFilterTag tag={tag} key={tag} />;
+          return (
+            <SearchFilterTag
+              key={tag}
+              tag={tag}
+              isOrderCategory={title === "좋아요순"}
+              isSelectedOrder={tag === selectedOrder}
+              handleSelectOrder={handleSelectOrder}
+            />
+          );
         })}
       </TagContainer>
     </Container>

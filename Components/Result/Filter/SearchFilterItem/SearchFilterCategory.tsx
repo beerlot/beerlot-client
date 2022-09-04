@@ -25,6 +25,7 @@ export const TagContainer = styled.button<{ isSelected: boolean }>`
   display: flex;
   align-items: center;
   border: none;
+
   height: 22px;
 
   background: ${({ isSelected }) =>
