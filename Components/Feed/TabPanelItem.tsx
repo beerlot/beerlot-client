@@ -48,6 +48,7 @@ const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
               |
             </Text>
             <Text textStyle="h3" color="Gray.200">
+              {/* TODO: time 분기 처리 */}
               {postingTime}
             </Text>
           </Box>
