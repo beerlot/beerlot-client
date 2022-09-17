@@ -12,10 +12,14 @@ import AllTabPanel from "./AllTabPanel";
 
 const FeedTabList = () => {
   return (
-    <Tabs h={"30px"} align="center">
-      <TabList>
-        <Tab>팔로잉</Tab>
-        <Tab>전체보기</Tab>
+    <Tabs colorScheme="orange">
+      <TabList px={"18px"}>
+        <Tab flexGrow="1" color="Orange.300">
+          팔로잉
+        </Tab>
+        <Tab flexGrow="1" color="Orange.300">
+          전체보기
+        </Tab>
       </TabList>
       <Divider />
 
