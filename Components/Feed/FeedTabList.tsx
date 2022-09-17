@@ -23,7 +23,7 @@ const FeedTabList = () => {
       </TabList>
       <Divider />
 
-      <TabPanels bg={"#FFE580"}>
+      <TabPanels bg="Yellow.50">
         <TabPanel>
           <FollowingTabPanel />
         </TabPanel>
