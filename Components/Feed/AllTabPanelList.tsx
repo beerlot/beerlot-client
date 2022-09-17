@@ -2,7 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 import FollowingTabPanelItem from "./TabPanelItem";
 
-const AllTabPanel = () => {
+const AllTabPanelList = () => {
   const ALL_FEED_MOCK = [
     {
       id: uuidv4(),
@@ -69,4 +69,4 @@ const AllTabPanel = () => {
   );
 };
 
-export default AllTabPanel;
+export default AllTabPanelList;
