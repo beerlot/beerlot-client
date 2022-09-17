@@ -4,16 +4,18 @@ import StarRating from "../Utils/StarRating";
 import ThumbsUpButton from "../Utils/ThumbsUpButton";
 
 interface FollowingTabPanelItemProps {
+  isRow: boolean;
   nickname: string;
   postingTime: string;
   beerName: string;
   ratingNumber: number;
-  imageSrc: string;
+  imageSrc?: string;
   postText: string;
   thumbsUpNumber: number;
 }
 
 const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
+  isRow,
   nickname,
   postingTime,
   beerName,
@@ -25,32 +27,66 @@ const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
   return (
     <Box p={"12px"} bg="white">
       <Box
-        gap={"4px"}
-        display={"flex"}
-        flexDirection="row"
-        alignItems="end"
-        my={"2px"}
+        display="flex"
+        flexDirection={isRow ? "row" : "column"}
+        justifyContent={isRow ? "space-between" : "flex-start"}
+        gap={isRow ? "4px" : "0px"}
       >
-        <Avatar w={"26px"} h={"26px"} />
-        <Text textStyle="h2_bold">{nickname}</Text>
-        <Text textStyle="h3" color="Gray.200">
-          |
-        </Text>
-        <Text textStyle="h3" color="Gray.200">
-          {postingTime}
-        </Text>
+        <Box>
+          <Box
+            flexGrow={1}
+            className="userInfo"
+            gap={"4px"}
+            display={"flex"}
+            flexDirection="row"
+            alignItems="end"
+            my={"2px"}
+          >
+            <Avatar w={"26px"} h={"26px"} />
+            <Text textStyle="h2_bold">{nickname}</Text>
+            <Text textStyle="h3" color="Gray.200">
+              |
+            </Text>
+            <Text textStyle="h3" color="Gray.200">
+              {postingTime}
+            </Text>
+          </Box>
+          <Box className="beerInfo" my={"2px"}>
+            <Text textStyle="h3_bold">{beerName}</Text>
+          </Box>
+          <Box className="ratingInfo" my={"2px"}>
+            <Text fontSize={"17px"}>{ratingNumber}점</Text>
+          </Box>
+          {isRow && (
+            <Box display="flex" my={"2px"} flexDirection="row">
+              <Text textStyle="h3" as="span">
+                {postText.slice(0, 35)}
+                <Text as="span">{postText.length > 35 && "..."}</Text>
+                <Text as="span" color="Gray.50">
+                  {postText.length > 35 && "더 보기"}
+                </Text>
+              </Text>
+            </Box>
+          )}
+        </Box>
+        <Box flexShrink={0} borderRadius={"6px"}>
+          {imageSrc && (
+            <Image
+              width={isRow ? 100 : 330}
+              height={isRow ? 100 : 330}
+              alt="beer photo"
+              src={`/image/${imageSrc}`}
+            />
+          )}
+        </Box>
+
+        {!isRow && (
+          <Box display="flex" alignItems="baseline" my={"2px"}>
+            <Text textStyle="h3">{postText}</Text>
+          </Box>
+        )}
       </Box>
-      <Box my={"2px"}>
-        <Text textStyle="h3_bold">{beerName}</Text>
-      </Box>
-      <Box my={"2px"}>
-        <StarRating />
-        <Text>{ratingNumber}점</Text>
-      </Box>
-      {/* <Image width={330} height={330} alt="beer photo" src={imageSrc} /> */}
-      <Box display="flex" alignItems="baseline" my={"2px"}>
-        <Text textStyle="h3">{postText}</Text>
-      </Box>
+
       <Flex justifyContent="end">
         <ThumbsUpButton thumbsUpNumber={thumbsUpNumber} />
       </Flex>
