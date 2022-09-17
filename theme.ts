@@ -31,5 +31,42 @@ export const theme = extendTheme({
       200: "#61646B",
     },
   },
-  textStyles: {},
+  textStyles: {
+    h1: {
+      fontFmily: "Roboto",
+      fontWeight: "700",
+      fontSize: "22px",
+      letterSpacing: "0.01px",
+    },
+    h2: {
+      fontFmily: "Roboto",
+      fontWeight: "500",
+      fontSize: "16x",
+      letterSpacing: "0.01px",
+    },
+    h2_bold: {
+      fontFmily: "Roboto",
+      fontWeight: "700",
+      fontSize: "16x",
+      letterSpacing: "0.01px",
+    },
+    h3: {
+      fontFmily: "Roboto",
+      fontWeight: "500",
+      fontSize: "12x",
+      letterSpacing: "0.01px",
+    },
+    h3_bold: {
+      fontFmily: "Roboto",
+      fontWeight: "700",
+      fontSize: "12x",
+      letterSpacing: "0.01px",
+    },
+    body: {
+      fontFmily: "Roboto",
+      fontWeight: "400",
+      fontSize: "15x",
+      letterSpacing: "0.01px",
+    },
+  },
 });
