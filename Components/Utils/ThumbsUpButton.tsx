@@ -1,4 +1,4 @@
-import { Button, Text } from "@chakra-ui/react";
+import { Button, Icon, Text } from "@chakra-ui/react";
 import React from "react";
 import { ThumbsUpIcon } from "../../public/svg";
 
@@ -9,6 +9,11 @@ interface ThumbsUpButtonProps {
 const ThumbsUpButton: React.FC<ThumbsUpButtonProps> = ({ thumbsUpNumber }) => {
   return (
     <Button
+      _focus={{
+        color: "Orange.100",
+        bg: "white",
+        borderColor: "Orange.100",
+      }}
       h={"auto"}
       w={"auto"}
       bg={"white"}
@@ -16,8 +21,11 @@ const ThumbsUpButton: React.FC<ThumbsUpButtonProps> = ({ thumbsUpNumber }) => {
       px={"8px"}
       border={"1px solid rgba(97, 100, 107, 0.5)"}
       borderRadius="30px"
+      _hover={{ bg: "white" }}
     >
-      <ThumbsUpIcon />
+      {/* TODO : selected 될 때 orange 처리, gray (hover?) 없애기 */}
+      <ThumbsUpIcon color="Orange.100" />
+
       <Text textStyle="h3" ml={"4px"}>
         {thumbsUpNumber}
       </Text>
