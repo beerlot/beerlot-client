@@ -8,12 +8,16 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { SEARCH_BAR_PLACEHOLDER } from "../../Static";
 
 const SearchBarAutocomplete = () => {
   const [value, setValue] = useState("");
   const router = useRouter();
   const handleChange = (e) => setValue(e.target.value);
-
+  const handleClick = (e) => {
+    const selectedName = e.currentTarget.textContent;
+    router.push(`/result/${selectedName}`);
+  };
   const items = [
     {
       id: 0,
@@ -41,20 +45,22 @@ const SearchBarAutocomplete = () => {
   return (
     <Flex pt="48" justify="center" align="center" w="full" direction="column">
       <FormControl id="email" w="60">
-        <FormLabel>Olympics Soccer Winner</FormLabel>
         <Input
-          placeholder="placeholder"
+          placeholder={SEARCH_BAR_PLACEHOLDER}
           size="sm"
           value={value}
           onChange={handleChange}
           autoFocus
         />
-        <FormHelperText>Who do you support.</FormHelperText>
       </FormControl>
       <Flex flexDirection="column">
-        {items.map((item) => {
-          if (item.name.includes(value)) {
-            return <Text key={item.id}>{item.name}</Text>;
+        {items.map((beerInfo) => {
+          if (beerInfo.name.includes(value)) {
+            return (
+              <Text key={beerInfo.id} onClick={handleClick}>
+                {beerInfo.name}
+              </Text>
+            );
           }
           return;
         })}
