@@ -13,8 +13,9 @@ import { SEARCH_BAR_PLACEHOLDER } from "../../Static";
 const SearchBarAutocomplete = () => {
   const [value, setValue] = useState("");
   const router = useRouter();
-  const handleChange = (e) => setValue(e.target.value);
-  const handleClick = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setValue(e.target.value);
+  const handleClick = (e: React.MouseEvent) => {
     const selectedName = e.currentTarget.textContent;
     router.push(`/result/${selectedName}`);
   };
