@@ -13,7 +13,7 @@ const SearchResultList = () => {
     if (!id) {
       return [];
     }
-    // return item.beerName.includes(id[0]);
+    return item.beerName.includes(id[0]);
   });
 
   return (
