@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { SearchGlass, WhiteCross } from "../../public/svg";
 import { SEARCH_BAR_PLACEHOLDER } from "../../Static";
+import SearchInput from "./SearchInput";
 
 const SearchBarAutocomplete = () => {
   const [value, setValue] = useState("");
@@ -56,30 +57,11 @@ const SearchBarAutocomplete = () => {
 
   return (
     <Flex w="full" direction="column" borderRadius="20px" gap="10px" mt="14px">
-      <InputGroup display="flex" alignItems="center" justifyContent="center">
-        <Input
-          py="20px"
-          px="20px"
-          bg="Blue.100"
-          placeholder={SEARCH_BAR_PLACEHOLDER}
-          size="sm"
-          value={value}
-          onChange={handleChange}
-          autoFocus
-          borderRadius="20px"
-          textColor="white"
-          _placeholder={{ color: "inherit" }}
-          focusBorderColor="inherit"
-        />
-        <InputLeftElement h="full">
-          <SearchGlass />
-        </InputLeftElement>
-        <InputRightElement h="full" as="circle" bg="Blue.200">
-          <Circle size="17px" bg="Blue.200" onClick={clearInput} id="circle">
-            <WhiteCross />
-          </Circle>
-        </InputRightElement>
-      </InputGroup>
+      <SearchInput
+        value={value}
+        handleChange={handleChange}
+        clearInput={clearInput}
+      />
 
       <Flex flexDirection="column">
         {items.map((beerInfo) => {
