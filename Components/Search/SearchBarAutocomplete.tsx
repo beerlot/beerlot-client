@@ -42,7 +42,8 @@ const SearchBarAutocomplete = () => {
             selectedItems.map((beerItems) => {
               return (
                 <Box
-                  borderBottom="1px solid #DDDDDD"
+                  borderBottom="1px solid"
+                  borderColor="Gray.50"
                   py="20px"
                   px="15px"
                   key={beerItems.id}
