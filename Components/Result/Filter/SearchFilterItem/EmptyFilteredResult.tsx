@@ -8,7 +8,7 @@ const EmptyFilteredResult = () => {
       alignItems="center"
       mt="118px"
       textStyle="h2_bold"
-      gap="10px"
+      gap="16px"
       flexDirection="column"
     >
       <Box flexDirection="row">
@@ -17,7 +17,7 @@ const EmptyFilteredResult = () => {
           textStyle="h2_bold"
         >{`아쉽게도 일치하는 맥주가 없어요😢`}</Text>
       </Box>
-      <Center>
+      <Center flexDirection="column" gap="4px">
         <Text textStyle="h3" textColor="Gray.300">
           다른 키워드로 검색해보세요!
         </Text>
@@ -25,33 +25,38 @@ const EmptyFilteredResult = () => {
           {`ex) OB라거 > 오비라거`}
         </Text>
       </Center>
-      {/* WIP */}
-      {/* <Box
+      <Center
+        flexDirection="column"
         borderRadius="10px"
         bg="Gray.101"
         py="10px"
-        px="20px"
-        color="white"
-        gap="8px"
-        w="100%"
+        px="16px"
+        color="black"
         border="1px solid"
         borderColor="Gray.50"
-        display="flex"
-        flexDirection="column"
       >
-        <Text textStyle="h3" textColor="Gray.300" textAlign="center">
-          💡검색 Tip💡
+        <Box>
+          <Text
+            as="span"
+            textStyle="h3"
+            textColor="Orange.200"
+            textAlign="center"
+          >
+            찾는 맥주
+          </Text>
+          <Text as="span" textStyle="h3">
+            가 없나요?
+          </Text>
+        </Box>
+
+        <Text
+          textStyle="h3_bold"
+          textColor="Orange.200"
+          style={{ textIndent: 12 }}
+        >
+          👉 맥주 제보하기 👈
         </Text>
-        <Text textStyle="h3" textColor="Gray.300">
-          1. 오타가 있는지 확인해보세요!
-        </Text>
-        <Text textStyle="h3" textColor="Gray.300">
-          2. 영어로 입력했다면 한국어로 바꿔보세요!
-        </Text>
-        <Text textStyle="h3" textColor="Gray.300" style={{ textIndent: 12 }}>
-          {`ex) OB라거 > 오비라거`}
-        </Text>
-      </Box> */}
+      </Center>
     </Flex>
   );
 };
