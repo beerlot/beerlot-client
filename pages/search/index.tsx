@@ -1,6 +1,5 @@
 import { Box } from "@chakra-ui/react";
 import styled from "styled-components";
-import SearchBar from "../../Components/Search/SearchBar";
 import SearchBarAutocomplete from "../../Components/Search/SearchBarAutocomplete";
 import Title from "../../Components/Search/Title";
 
@@ -16,7 +15,6 @@ const search = () => {
     >
       <Container>
         <Title />
-        <SearchBar />
         <SearchBarAutocomplete />
       </Container>
     </Box>
