@@ -1,3 +1,4 @@
+import { Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import CardItem from "../../Components/Card/CardItem";
@@ -20,19 +21,23 @@ const SearchResultList = () => {
       <p>현재 검색된 맥주는 {id} </p>
       <SearchFilterList />
       <CardContainer>
-        {filteredItemList.map((item) => {
-          return (
-            <CardItem
-              isTwoByTwo
-              cardType={CardType.POPULAR}
-              key={item.id}
-              beerName={item.beerName}
-              img_src={item.img_src}
-              sort={item.sort}
-              country={item.country}
-            />
-          );
-        })}
+        {filteredItemList.length > 0 ? (
+          filteredItemList.map((item) => {
+            return (
+              <CardItem
+                isTwoByTwo
+                cardType={CardType.POPULAR}
+                key={item.id}
+                beerName={item.beerName}
+                img_src={item.img_src}
+                sort={item.sort}
+                country={item.country}
+              />
+            );
+          })
+        ) : (
+          <Text>Nothing exist</Text>
+        )}
       </CardContainer>
     </Container>
   );

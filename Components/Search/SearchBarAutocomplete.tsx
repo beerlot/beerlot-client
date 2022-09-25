@@ -38,7 +38,7 @@ const SearchBarAutocomplete = () => {
 
       <Flex flexDirection="column">
         <>
-          {selectedItems.length !== 0 ? (
+          {selectedItems.length > 0 ? (
             selectedItems.map((beerItems) => {
               return (
                 <Box
