@@ -1,7 +1,8 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { beerItemType, MOCK_CARD_LIST } from "../../Static";
+import EmptySearchResult from "./EmptySearchResult";
 import SearchInput from "./SearchInput";
 
 const SearchBarAutocomplete = () => {
@@ -53,7 +54,7 @@ const SearchBarAutocomplete = () => {
               );
             })
           ) : (
-            <Text>Nothing exists</Text>
+            <EmptySearchResult inputValue={value} />
           )}
         </>
       </Flex>
