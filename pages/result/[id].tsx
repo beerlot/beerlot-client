@@ -1,10 +1,10 @@
-import { Text } from "@chakra-ui/react";
+import { Text, Button, Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
 import CardItem from "../../Components/Card/CardItem";
 import { CardContainer } from "../../Components/Card/CardList/TwoByTwoCardList";
-import EmptyFilteredResult from "../../Components/Result/Filter/SearchFilterItem/EmptyFilteredResult";
+import EmptyFilteredResult from "../../Components/Result/EmptyFilteredResult";
 import SearchFilterList from "../../Components/Result/Filter/SearchFilterList/SearchFilterList";
 import { CardType, MOCK_CARD_LIST } from "../../Static";
 
@@ -18,16 +18,20 @@ const SearchResultList = () => {
     return item.beerName.includes(id[0]);
   });
   const [isFilterListOpen, setIsFilterListOpen] = useState<boolean>(true);
-  const handeIsFilterListOpen = (isExpanded: boolean) => {
-    setIsFilterListOpen(isExpanded);
+  const handleClick = () => {
+    setIsFilterListOpen(!isFilterListOpen);
   };
 
   return (
     <Container>
-      <p>현재 검색된 맥주는 {id} </p>
-      <Text>is : {isFilterListOpen}</Text>
+      <Box>
+        <p>현재 검색된 맥주는 {id}</p>
+        <p>{isFilterListOpen.toString()}</p>
+        <Button onClick={handleClick}>버튼</Button>
+      </Box>
+
       <SearchFilterList
-        handeIsFilterListOpen={handeIsFilterListOpen}
+        onClick={handleClick}
         isFilterListOpen={isFilterListOpen}
       />
 
