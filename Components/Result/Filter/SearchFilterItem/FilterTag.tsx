@@ -2,12 +2,12 @@ import { Button, Text } from "@chakra-ui/react";
 import React from "react";
 import { BottomArrow, RightArrow } from "../../../../public/svg";
 
-interface filterTagProps {
+interface FilterTagProps {
   title: string;
   arrowDirection: "down" | "right";
 }
 
-const FilterTag: React.FC<filterTagProps> = ({ title, arrowDirection }) => {
+const FilterTag: React.FC<FilterTagProps> = ({ title, arrowDirection }) => {
   return (
     <Button
       h="auto"

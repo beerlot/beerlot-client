@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import FilterTag from "./filterTag";
+import FilterTag from "./FilterTag";
+
 import SearchFilterTag from "./SearchFilterTag";
 
 interface SearchFilterItemProps {
