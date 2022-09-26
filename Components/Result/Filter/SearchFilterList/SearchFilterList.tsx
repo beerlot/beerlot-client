@@ -22,7 +22,7 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
   return (
     <Box>
       {isFilterListOpen ? (
-        <Box px="0px" border="1px solid black">
+        <Box px="0px">
           {categoryList.map(({ title, tagList }) => {
             return (
               <SearchFilterItem
@@ -34,7 +34,7 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
           })}
         </Box>
       ) : (
-        <Button px={0} border="1px solid black" onClick={onClick}>
+        <Button px={0} onClick={onClick}>
           <Flex
             gap="10px"
             p={0}
