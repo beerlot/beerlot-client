@@ -9,3 +9,5 @@ export { default as SearchGlass } from "./search-glass.svg";
 export { default as WhiteCross } from "./white-cross.svg";
 export { default as BottomArrow } from "./bottom-arrow.svg";
 export { default as RightArrow } from "./right-arrow.svg";
+export { default as WhiteFilter } from "./white-filter.svg";
+export { default as EmptyFilter } from "./empty-filter.svg";

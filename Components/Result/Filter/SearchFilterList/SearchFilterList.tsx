@@ -34,7 +34,7 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
           })}
         </Box>
       ) : (
-        <Button px={0} onClick={onClick}>
+        <Button px={0} onClick={onClick} bg="white">
           <Flex
             gap="10px"
             p={0}
