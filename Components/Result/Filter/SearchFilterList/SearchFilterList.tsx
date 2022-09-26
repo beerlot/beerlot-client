@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionPanel,
   Flex,
+  Text,
 } from "@chakra-ui/react";
 import React from "react";
 import FilterTag from "../SearchFilterItem/filterTag";
@@ -33,23 +34,27 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
             return (
               <>
                 <AccordionButton>
-                  <Flex
-                    flex="1"
-                    justifyContent="space-between"
-                    alignItems="center"
-                  >
-                    {categoryList.map(({ title, tagList }) => {
-                      return (
-                        <FilterTag
-                          key={`${title}-${tagList.length}`}
-                          title={title}
-                          tagList={tagList}
-                        />
-                      );
-                    })}
-                  </Flex>
+                  {isExpanded ? (
+                    <Text></Text>
+                  ) : (
+                    <Flex
+                      flex="1"
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
+                      {categoryList.map(({ title, tagList }) => {
+                        return (
+                          <FilterTag
+                            key={`${title}-${tagList.length}`}
+                            title={title}
+                            arrowDirection="down"
+                          />
+                        );
+                      })}
+                    </Flex>
+                  )}
                 </AccordionButton>
-                <AccordionPanel pb={4}>
+                <AccordionPanel p={0}>
                   {categoryList.map(({ title, tagList }) => {
                     return (
                       <SearchFilterItem
@@ -65,16 +70,6 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
           }}
         </AccordionItem>
       </Accordion>
-
-      {categoryList.map(({ title, tagList }) => {
-        return (
-          <SearchFilterItem
-            key={`${title}-${tagList.length}`}
-            title={title}
-            tagList={tagList}
-          />
-        );
-      })}
     </>
   );
 };

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import SearchFilterCategory from "./SearchFilterCategory";
-import SearchFilterTag from "./SearchFilterTag";
+import React, { useState } from "react";
 import styled from "styled-components";
+import FilterTag from "./filterTag";
+import SearchFilterTag from "./SearchFilterTag";
 
 interface SearchFilterItemProps {
   title: string;
@@ -25,11 +25,7 @@ const SearchFilterItem: React.FC<SearchFilterItemProps> = ({
 
   return (
     <Container>
-      <SearchFilterCategory
-        title={title}
-        isSelected={isSelected}
-        handleSelect={handleSelect}
-      />
+      <FilterTag title={title} arrowDirection="right" />
       <TagContainer>
         {tagList.map((tag) => {
           return (
