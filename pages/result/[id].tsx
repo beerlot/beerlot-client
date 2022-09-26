@@ -1,4 +1,6 @@
+import { Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import styled from "styled-components";
 import CardItem from "../../Components/Card/CardItem";
 import { CardContainer } from "../../Components/Card/CardList/TwoByTwoCardList";
@@ -15,11 +17,19 @@ const SearchResultList = () => {
     }
     return item.beerName.includes(id[0]);
   });
+  const [isFilterListOpen, setIsFilterListOpen] = useState<boolean>(true);
+  const handeIsFilterListOpen = (isExpanded: boolean) => {
+    setIsFilterListOpen(isExpanded);
+  };
 
   return (
     <Container>
       <p>현재 검색된 맥주는 {id} </p>
-      <SearchFilterList />
+      <Text>is : {isFilterListOpen}</Text>
+      <SearchFilterList
+        handeIsFilterListOpen={handeIsFilterListOpen}
+        isFilterListOpen={isFilterListOpen}
+      />
 
       {filteredItemList.length > 0 ? (
         filteredItemList.map((item) => {
