@@ -25,6 +25,7 @@ const SearchFilterItem: React.FC<SearchFilterItemProps> = ({
 
   return (
     <Container>
+      {/* color값을 넘겨야 함 */}
       <FilterTag title={title} arrowDirection="right" />
       <TagContainer>
         {tagList.map((tag) => {
