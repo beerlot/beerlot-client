@@ -50,10 +50,15 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
                   </Flex>
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
+                  {categoryList.map(({ title, tagList }) => {
+                    return (
+                      <SearchFilterItem
+                        key={`${title}-${tagList.length}`}
+                        title={title}
+                        tagList={tagList}
+                      />
+                    );
+                  })}
                 </AccordionPanel>
               </>
             );
@@ -61,8 +66,14 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
         </AccordionItem>
       </Accordion>
 
-      {categoryList.map((category) => {
-        return <SearchFilterItem key={category.title} category={category} />;
+      {categoryList.map(({ title, tagList }) => {
+        return (
+          <SearchFilterItem
+            key={`${title}-${tagList.length}`}
+            title={title}
+            tagList={tagList}
+          />
+        );
       })}
     </>
   );

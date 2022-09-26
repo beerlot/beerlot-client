@@ -4,14 +4,14 @@ import SearchFilterTag from "./SearchFilterTag";
 import styled from "styled-components";
 
 interface SearchFilterItemProps {
-  category: {
-    title: string;
-    tagList: string[];
-  };
+  title: string;
+  tagList: string[];
 }
 
-const SearchFilterItem: React.FC<SearchFilterItemProps> = ({ category }) => {
-  const { title, tagList } = category;
+const SearchFilterItem: React.FC<SearchFilterItemProps> = ({
+  title,
+  tagList,
+}) => {
   const [selectedOrder, setSelectedOrder] = useState("좋아요순");
   const [isSelected, setIsSelected] = useState(false);
   const handleSelect = () => {
