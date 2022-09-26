@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
 import {
   Accordion,
-  AccordionItem,
   AccordionButton,
+  AccordionItem,
   AccordionPanel,
-  AccordionIcon,
-  Box,
-  Text,
+  Flex,
 } from "@chakra-ui/react";
+import React from "react";
+import FilterTag from "../SearchFilterItem/filterTag";
 import SearchFilterItem from "../SearchFilterItem/SearchFilterItem";
 
 interface SearchFilterListProps {
@@ -30,24 +29,35 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
     <>
       <Accordion allowToggle>
         <AccordionItem>
-          {({ isExpanded }) => (
-            <>
-              <h2>
+          {({ isExpanded }) => {
+            return (
+              <>
                 <AccordionButton>
-                  <Box flex="1" textAlign="left">
-                    Section 2 title
-                  </Box>
-                  {isExpanded ? <Text>minus</Text> : <Text>Add</Text>}
+                  <Flex
+                    flex="1"
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
+                    {categoryList.map(({ title, tagList }) => {
+                      return (
+                        <FilterTag
+                          key={`${title}-${tagList.length}`}
+                          title={title}
+                          tagList={tagList}
+                        />
+                      );
+                    })}
+                  </Flex>
                 </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </AccordionPanel>
-            </>
-          )}
+                <AccordionPanel pb={4}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </AccordionPanel>
+              </>
+            );
+          }}
         </AccordionItem>
       </Accordion>
 

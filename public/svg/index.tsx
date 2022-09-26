@@ -7,3 +7,4 @@ export { default as None } from "./none.svg";
 export { default as X } from "./x.svg";
 export { default as SearchGlass } from "./search-glass.svg";
 export { default as WhiteCross } from "./white-cross.svg";
+export { default as BottomArrow } from "./bottom-arrow.svg";
