@@ -1,8 +1,7 @@
-import { Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getAllBeers } from "../../server/api";
-import { MOCK_CARD_LIST, POPULAR_BEER_TITLE } from "../../Static";
+import { POPULAR_BEER_TITLE } from "../../Static";
 import { BeerResultType } from "../../types";
 import TempLogin from "../Auth/TempLogin";
 import CarouselCardList from "../Card/CardList/CarouselCardList";
@@ -43,8 +42,6 @@ const HomeComponent = () => {
     handleSetAllBeers();
   }, []);
 
-  console.log({ allBeers });
-
   return (
     <Container>
       <TempLogin
@@ -63,7 +60,7 @@ const HomeComponent = () => {
       ) : (
         <TwoByTwoCardList
           title={POPULAR_BEER_TITLE}
-          itemList={MOCK_CARD_LIST}
+          itemList={allBeers} // list단에 전부 내리는 게 맞다고 생각하지 않음.
         />
       )}
     </Container>
