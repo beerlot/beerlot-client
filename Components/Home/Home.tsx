@@ -1,17 +1,19 @@
-import { useState } from "react";
 import { Button } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { getAllBeers } from "../../server/api";
 import { MOCK_CARD_LIST, POPULAR_BEER_TITLE } from "../../Static";
+import { BeerResultType } from "../../types";
 import TempLogin from "../Auth/TempLogin";
 import CarouselCardList from "../Card/CardList/CarouselCardList";
 import TwoByTwoCardList from "../Card/CardList/TwoByTwoCardList";
 import SearchInputHome from "./SearchInputHome";
 import WelcomeText from "./WelcomeText";
-import { axiosTest, axiosTest2 } from "../../server/api";
 
 const HomeComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userNickname, setUserNickname] = useState("");
+  const [allBeers, setAllBeers] = useState<BeerResultType[]>([]);
 
   const handleLogin = () => {
     setIsLoggedIn(!isLoggedIn);
@@ -21,6 +23,28 @@ const HomeComponent = () => {
     setUserNickname(newUserName);
   };
 
+  const handleInfo = async (index: number) => {
+    const beers = await getAllBeers(index);
+    return beers;
+  };
+
+  const handleSetAllBeers = async () => {
+    const allBeers = await Promise.all(
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map((index) => {
+        return handleInfo(index + 1);
+      })
+    );
+    if (allBeers) {
+      setAllBeers(allBeers);
+    }
+  };
+
+  useEffect(() => {
+    handleSetAllBeers();
+  }, []);
+
+  console.log({ allBeers });
+
   return (
     <Container>
       <TempLogin
@@ -29,7 +53,6 @@ const HomeComponent = () => {
         isLoggedIn={isLoggedIn}
         userNickname={userNickname}
       />
-      <Button onClick={axiosTest}>버튼</Button>
       <WelcomeText nickname={userNickname} isLoggedIn={isLoggedIn} />
       <SearchInputHome />
       {isLoggedIn ? (

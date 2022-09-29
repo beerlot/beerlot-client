@@ -1,23 +1,11 @@
 import axios from "axios";
+import { BeerResultType } from "../types";
 
-export const axiosTest = () => {
-  axios
-    .get("/api/v1/beers/1")
+export const getAllBeers = async (index: number) => {
+  const result: BeerResultType = await axios
+    .get(`/api/v1/beers/${index}`)
     .then((res) => {
-      console.log(res.data);
-    })
-    .catch((error) => {
-      console.log(error);
+      return res.data;
     });
-};
-
-export const axiosTest2 = () => {
-  axios
-    .get("/")
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  return result;
 };
