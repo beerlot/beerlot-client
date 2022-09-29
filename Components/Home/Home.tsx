@@ -30,7 +30,6 @@ const HomeComponent = () => {
         userNickname={userNickname}
       />
       <Button onClick={axiosTest}>버튼</Button>
-      <Button onClick={axiosTest2}>버튼2</Button>
       <WelcomeText nickname={userNickname} isLoggedIn={isLoggedIn} />
       <SearchInputHome />
       {isLoggedIn ? (
