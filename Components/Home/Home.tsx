@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from "@chakra-ui/react";
 import styled from "styled-components";
 import { MOCK_CARD_LIST, POPULAR_BEER_TITLE } from "../../Static";
 import TempLogin from "../Auth/TempLogin";
@@ -6,6 +7,7 @@ import CarouselCardList from "../Card/CardList/CarouselCardList";
 import TwoByTwoCardList from "../Card/CardList/TwoByTwoCardList";
 import SearchInputHome from "./SearchInputHome";
 import WelcomeText from "./WelcomeText";
+import { axiosTest } from "../../server/api";
 
 const HomeComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,6 +29,7 @@ const HomeComponent = () => {
         isLoggedIn={isLoggedIn}
         userNickname={userNickname}
       />
+      <Button onClick={axiosTest}>버튼</Button>
       <WelcomeText nickname={userNickname} isLoggedIn={isLoggedIn} />
       <SearchInputHome />
       {isLoggedIn ? (

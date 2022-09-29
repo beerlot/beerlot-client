@@ -2,8 +2,8 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: "/:path*",
-        destination: "https://beerlot-core-obtg3qwuhq-an.a.run.app",
+        source: "/api/:path*",
+        destination: "https://beerlot-core-obtg3qwuhq-an.a.run.app/:path*",
       },
     ];
   },
