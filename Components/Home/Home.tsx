@@ -7,7 +7,7 @@ import CarouselCardList from "../Card/CardList/CarouselCardList";
 import TwoByTwoCardList from "../Card/CardList/TwoByTwoCardList";
 import SearchInputHome from "./SearchInputHome";
 import WelcomeText from "./WelcomeText";
-import { axiosTest } from "../../server/api";
+import { axiosTest, axiosTest2 } from "../../server/api";
 
 const HomeComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,6 +30,7 @@ const HomeComponent = () => {
         userNickname={userNickname}
       />
       <Button onClick={axiosTest}>버튼</Button>
+      <Button onClick={axiosTest2}>버튼2</Button>
       <WelcomeText nickname={userNickname} isLoggedIn={isLoggedIn} />
       <SearchInputHome />
       {isLoggedIn ? (
