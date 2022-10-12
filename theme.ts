@@ -86,4 +86,7 @@ export const theme = extendTheme({
       letterSpacing: "0.01px",
     },
   },
+  fonts: {
+    Roboto: `'Roboto', cursive`,
+  },
 });
