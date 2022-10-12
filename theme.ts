@@ -22,9 +22,10 @@ export const theme = extendTheme({
       200: "#FDF9EA",
     },
     Black: "#000000",
+    // 색깔 확인할 것
     Orange: {
-      100: "#FEA801",
-      200: "#FF6B00",
+      100: "#FF6B00",
+      200: "#FEA801",
       300: "rgba(255, 107, 0, 0.3)",
     },
     orange: {
@@ -39,10 +40,9 @@ export const theme = extendTheme({
       200: "#FAD12B",
     },
     Gray: {
-      50: "#DDDDDD",
       100: "rgba(97, 100, 107, 0.5)",
       101: "#F6F6F6",
-      200: "#61646B",
+      200: "#DDDDDD",
       300: "#61646B",
     },
   },
