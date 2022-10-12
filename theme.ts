@@ -48,7 +48,7 @@ export const theme = extendTheme({
   },
   textStyles: {
     h1: {
-      fontFmily: "Roboto",
+      fontFmily: "roboto",
       fontWeight: "700",
       fontSize: "22px",
       letterSpacing: "0.01px",
@@ -56,37 +56,37 @@ export const theme = extendTheme({
       color: "Black",
     },
     h2: {
-      fontFmily: "Roboto",
+      fontFmily: "roboto",
       fontWeight: "500",
       fontSize: "16px",
       letterSpacing: "0.01px",
     },
     h2_bold: {
-      fontFmily: "Roboto",
+      fontFmily: "roboto",
       fontWeight: "700",
       fontSize: "16px",
       letterSpacing: "0.01px",
     },
     h3: {
-      fontFmily: "Roboto",
+      fontFmily: "roboto",
       fontWeight: "500",
       fontSize: "12px",
       letterSpacing: "0.01px",
     },
     h3_bold: {
-      fontFmily: "Roboto",
+      fontFmily: "roboto",
       fontWeight: "700",
       fontSize: "12px",
       letterSpacing: "0.01px",
     },
     body: {
-      fontFmily: "Roboto",
+      fontFmily: "roboto",
       fontWeight: "400",
       fontSize: "15px",
       letterSpacing: "0.01px",
     },
   },
   fonts: {
-    Roboto: `'Roboto', cursive`,
+    roboto: `'Roboto', cursive`,
   },
 });
