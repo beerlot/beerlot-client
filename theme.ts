@@ -52,6 +52,8 @@ export const theme = extendTheme({
       fontWeight: "700",
       fontSize: "22px",
       letterSpacing: "0.01px",
+      lineHeight: "24px",
+      color: "Black",
     },
     h2: {
       fontFmily: "Roboto",
