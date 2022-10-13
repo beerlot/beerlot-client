@@ -40,8 +40,7 @@ export const theme = extendTheme({
       200: "#FAD12B",
     },
     Gray: {
-      100: "rgba(97, 100, 107, 0.5)",
-      101: "#F6F6F6",
+      100: "#F6F6F6",
       200: "#DDDDDD",
       300: "#61646B",
     },
@@ -60,6 +59,7 @@ export const theme = extendTheme({
       fontWeight: "500",
       fontSize: "16px",
       letterSpacing: "0.01px",
+      lineHeight: "24px",
     },
     h2_bold: {
       fontFmily: "roboto",
@@ -70,13 +70,15 @@ export const theme = extendTheme({
     h3: {
       fontFmily: "roboto",
       fontWeight: "500",
-      fontSize: "12px",
+      fontSize: "14px",
+      lineHeight: "24px",
       letterSpacing: "0.01px",
     },
     h3_bold: {
       fontFmily: "roboto",
       fontWeight: "700",
-      fontSize: "12px",
+      lineHeight: "24px",
+      fontSize: "14px",
       letterSpacing: "0.01px",
     },
     body: {
