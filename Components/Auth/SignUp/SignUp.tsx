@@ -1,7 +1,15 @@
-import { Circle, Flex } from "@chakra-ui/react";
+import { Box, Center, Circle, Flex } from "@chakra-ui/react";
 import React, { useState } from "react";
-import Beers from "./Beers";
+import {
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Divider,
+} from "@chakra-ui/react";
 import Nickname from "./Nickname";
+import Beers from "./Beers";
 
 const SignUp = () => {
   const [isNicknameDone, setIsNickNameDone] = useState(true); // 초깃값 false
