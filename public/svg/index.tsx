@@ -13,5 +13,5 @@ export { default as WhiteFilter } from "./white-filter.svg";
 export { default as EmptyFilter } from "./empty-filter.svg";
 export { default as LeftArrow } from "./left-arrow.svg";
 export { default as UncheckedBox } from "./unchecked-box.svg";
-export { default as CheckedBox } from "./checked-box.svg";
+export { default as CheckedBox } from "./Checked-box.svg";
 export { default as CheckedOrange } from "./checked-orange.svg";
