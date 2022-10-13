@@ -13,7 +13,6 @@ const SignUp = () => {
         <Circle size="8px" bg={isBeersDone ? "Orange.200" : "Gray.200"} />
       </Flex>
       <Nickname />
-      <Beers />
     </Flex>
   );
 };
