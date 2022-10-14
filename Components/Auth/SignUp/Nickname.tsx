@@ -2,12 +2,20 @@ import { Box, Checkbox, Input, Stack, Text, VStack } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { CheckedBox, CheckedOrange, UncheckedBox } from "../../../public/svg";
 
-const Nickname = () => {
+interface NicknameProps {
+  checkFullfilled: (isFullfilled: boolean) => void;
+}
+
+const Nickname: React.FC<NicknameProps> = ({ checkFullfilled }) => {
   const [checkedItems, setCheckedItems] = useState([false, false]);
   const [curNickname, setCurNickName] = useState("");
   const [isInvalid, setIsInvalid] = useState<boolean | null>(null);
   const [guideText, setGuideText] = useState("");
   const allChecked = checkedItems.every(Boolean);
+
+  useEffect(() => {
+    checkFullfilled(allChecked && !isInvalid);
+  }, [allChecked, checkFullfilled, isInvalid]);
 
   const checkValidation = () => {
     // too long
@@ -16,6 +24,7 @@ const Nickname = () => {
       setIsInvalid(true);
       return;
     }
+    // zero length
     if (curNickname.length === 0) {
       setGuideText("비어 있으면 안됩니다");
       setIsInvalid(true);

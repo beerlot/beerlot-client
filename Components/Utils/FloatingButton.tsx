@@ -3,22 +3,30 @@ import React from "react";
 
 interface FloatingButtonProps {
   text?: string;
-  styles?: any; //typing 모르겠음
+  bg?: string;
+  textColor?: string;
+  boxShadow?: string | undefined;
 }
 
-const FloatingButton: React.FC<FloatingButtonProps> = ({ text, styles }) => {
-  const { ...rest } = styles;
+const FloatingButton: React.FC<FloatingButtonProps> = ({
+  text,
+  bg,
+  textColor,
+  boxShadow,
+}) => {
   return (
     <Button
+      boxShadow={boxShadow}
       pos="absolute"
       bottom="35px"
       left="38px"
       right="35px"
-      bg="Gray.200"
+      bg={bg}
       borderRadius="10px"
-      {...rest}
     >
-      <Text textStyle="h3">{text}</Text>
+      <Text textStyle="h3" textColor={textColor}>
+        {text}
+      </Text>
     </Button>
   );
 };

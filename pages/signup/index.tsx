@@ -11,7 +11,6 @@ const index = () => {
     <>
       <BackButton />
       <SignUp />
-      <FloatingButton text="다음으로" />
     </>
   );
 };
