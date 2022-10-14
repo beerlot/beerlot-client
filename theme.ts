@@ -44,6 +44,9 @@ export const theme = extendTheme({
       200: "#DDDDDD",
       300: "#61646B",
     },
+    Red: {
+      100: "#FF2C2C",
+    },
   },
   textStyles: {
     h1: {

@@ -1,22 +1,100 @@
-import { Box, Checkbox, Stack, Text, VStack } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { Box, Checkbox, Input, Stack, Text, VStack } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 import { CheckedBox, CheckedOrange, UncheckedBox } from "../../../public/svg";
 
 const Nickname = () => {
   const [checkedItems, setCheckedItems] = useState([false, false]);
+  const [curNickname, setCurNickName] = useState("");
+  const [isInvalid, setIsInvalid] = useState<boolean | null>(null);
+  const [guideText, setGuideText] = useState("");
   const allChecked = checkedItems.every(Boolean);
+
+  const checkValidation = () => {
+    // too long
+    if (curNickname.length > 9) {
+      setGuideText("닉네임은 9자 이내로 만들 수 있어요!");
+      setIsInvalid(true);
+      return;
+    }
+    if (curNickname.length === 0) {
+      setGuideText("비어 있으면 안됩니다");
+      setIsInvalid(true);
+      return;
+    } // 추후 리팩토링
+    // duplicated
+    // right
+    setGuideText(`사용할 수 있는 닉네임이에요 :)`);
+    setIsInvalid(false);
+  };
+
+  const onBlur = () => {
+    checkValidation();
+  };
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurNickName(e.target.value);
+  };
+
   return (
     <VStack alignItems="start" gap="60px" w="100%">
       <Box pl="2.5px" mt="62px">
         <Text textStyle="h1">닉네임을 정해볼까요?</Text>
       </Box>
       <Box w="100%">
-        <Text textStyle="h3" textColor="Gray.300">
+        <Text
+          textStyle="h3"
+          textColor={
+            isInvalid === null
+              ? "Gray.300"
+              : isInvalid
+              ? "Red.100"
+              : "Orange.200"
+          }
+        >
           닉네임
         </Text>
-        <Box w="100%" p="2px" borderBottom="1px" borderBottomColor="Gray.200">
-          <Text textColor="Gray.200">닉네임은 9자 이내로 만들 수 있어요!</Text>
-        </Box>
+        <Input
+          onChange={onChange}
+          onBlur={onBlur}
+          w="100%"
+          p={0}
+          borderRadius={0}
+          borderBottom="1px"
+          errorBorderColor="none"
+          borderBottomColor={
+            isInvalid === null
+              ? "Gray.200"
+              : isInvalid
+              ? "Red.100"
+              : "Orange.200"
+          }
+          border="none"
+          focusBorderColor="none"
+          isInvalid={isInvalid ?? false}
+          placeholder={
+            isInvalid === null ? "닉네임은 9자 이내로 만들 수 있어요!" : ""
+          }
+          _placeholder={{
+            color:
+              isInvalid === null
+                ? "Gray.300"
+                : isInvalid
+                ? "Red.100"
+                : "Orange.200",
+          }}
+        />
+        <Text
+          textStyle="h3"
+          textColor={
+            isInvalid === null
+              ? "Gray.300"
+              : isInvalid
+              ? "Red.100"
+              : "Orange.200"
+          }
+        >
+          {guideText}
+        </Text>
       </Box>
       <Box px="8px" w="100%">
         <Checkbox
