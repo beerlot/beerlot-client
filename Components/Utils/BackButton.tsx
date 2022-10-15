@@ -3,7 +3,7 @@ import React from "react";
 import { LeftArrow } from "../../public/svg";
 
 interface BackButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const BackButton: React.FC<BackButtonProps> = ({ onClick }) => {
