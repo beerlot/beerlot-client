@@ -9,13 +9,14 @@ interface InfoContainerProps {
 const InfoContainer: React.FC<InfoContainerProps> = ({ imageSrc }) => {
   return (
     <HStack
-      width="100%"
+      w="100%"
+      align="stretch"
+      alignItems="center"
       textStyle="h2"
       justifyContent="space-between"
       gap="30px"
     >
       <ProfileAvatar alt="user profile photo" src={imageSrc} boxSize="76px" />
-
       <VStack>
         <Text>10</Text>
         <Text>리뷰</Text>
