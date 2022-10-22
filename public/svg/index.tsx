@@ -15,3 +15,4 @@ export { default as LeftArrow } from "./left-arrow.svg";
 export { default as UncheckedBox } from "./unchecked-box.svg";
 export { default as CheckedBox } from "./Checked-box.svg";
 export { default as CheckedOrange } from "./checked-orange.svg";
+export { default as HeartButton } from "./heart-button.svg";

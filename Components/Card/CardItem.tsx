@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { CardType } from "../../Static";
 
 import styled from "styled-components";
+import LikeButton from "../Utils/OrangeLikeButton";
 
 interface CardItemProps {
   isTwoByTwo: boolean;
@@ -21,9 +22,13 @@ const CardItem: React.FC<CardItemProps> = ({
   isTwoByTwo,
 }) => {
   const color = cardType === CardType.POPULAR ? "#ff6b00" : "#FEA801";
-
+  const [isClicked, setIsClicked] = useState(false);
+  const handleClick = (state: boolean) => {
+    setIsClicked(state);
+  };
   return (
     <CardContainer color={color}>
+      <LikeButton isClicked={isClicked} onClick={handleClick} />
       <CardImage src={img_src} alt={beerName} isTwoByTwo={isTwoByTwo} />
       <CardTextContainer>
         <NameP>{beerName}</NameP>
