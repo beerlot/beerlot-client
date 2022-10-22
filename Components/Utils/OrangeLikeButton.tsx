@@ -1,29 +1,21 @@
 import React from "react";
-import { HeartButton } from "../../public/svg";
+import { HeartButton, OrangeHeart } from ".././Utils/custom-icons/customIcons";
 
 interface LikeButtonProps {
   isClicked: boolean;
   onClick: (state: boolean) => void;
+  iconProps: any; // 수정해야 함.
 }
-
-/*
-1. 선택 여부에 따라 색깔 바꾸기 (createIcon 사용 예정)
-2. 위치 props 전달하기 (absolute, top, right)
- */
 
 const OrangeLikeButton: React.FC<LikeButtonProps> = ({
   isClicked,
   onClick,
+  iconProps,
 }) => {
-  return (
-    <HeartButton
-      width="27px"
-      height="29px"
-      onClick={() => onClick(!isClicked)}
-      filter={
-        isClicked ? "none" : "drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5))"
-      }
-    />
+  return isClicked ? (
+    <OrangeHeart {...iconProps} onClick={() => onClick(!isClicked)} />
+  ) : (
+    <HeartButton {...iconProps} onClick={() => onClick(!isClicked)} />
   );
 };
 
