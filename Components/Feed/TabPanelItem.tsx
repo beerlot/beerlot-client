@@ -1,4 +1,4 @@
-import { Avatar, Box, Center, Flex, Text } from "@chakra-ui/react";
+import { Avatar, Box, Center, Flex, IconButton, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { EditNote, TrashBin } from "../../public/svg";
 import StarRating from "../Utils/StarRating";
@@ -55,9 +55,12 @@ const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
               {postingTime}
             </Text>
           </Box>
-          <Box className="beerInfo" my={"2px"}>
-            <Text textStyle="h3_bold">{beerName}</Text>
-          </Box>
+          {!isEditable && (
+            <Box className="beerInfo" my={"2px"}>
+              <Text textStyle="h3_bold">{beerName}</Text>
+            </Box>
+          )}
+
           <Box className="ratingInfo" my={"2px"}>
             <Text fontSize={"17px"}>{ratingNumber}점</Text>
           </Box>
@@ -93,9 +96,17 @@ const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
 
       {isEditable ? (
         <Flex justifyContent="space-between" alignItems="center">
-          <Center gap="6px" height="16px">
-            <TrashBin />
-            <EditNote />
+          <Center gap="6px">
+            <IconButton
+              aria-label="Delete Icon"
+              size="16px"
+              icon={<TrashBin />}
+            />
+            <IconButton
+              aria-label="Edit Icon"
+              size="16px"
+              icon={<EditNote />}
+            />
           </Center>
           <ThumbsUpButton thumbsUpNumber={thumbsUpNumber} />
         </Flex>
