@@ -1,5 +1,6 @@
-import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
+import { Avatar, Box, Center, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
+import { EditNote, TrashBin } from "../../public/svg";
 import StarRating from "../Utils/StarRating";
 import ThumbsUpButton from "../Utils/ThumbsUpButton";
 
@@ -12,6 +13,7 @@ interface FollowingTabPanelItemProps {
   imageSrc?: string;
   postText: string;
   thumbsUpNumber: number;
+  isEditable: boolean;
 }
 
 const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
@@ -23,6 +25,7 @@ const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
   imageSrc,
   postText,
   thumbsUpNumber,
+  isEditable,
 }) => {
   return (
     <Box p={"12px"} bg="white">
@@ -88,9 +91,19 @@ const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
         )}
       </Box>
 
-      <Flex justifyContent="end">
-        <ThumbsUpButton thumbsUpNumber={thumbsUpNumber} />
-      </Flex>
+      {isEditable ? (
+        <Flex justifyContent="space-between" alignItems="center">
+          <Center gap="6px" height="16px">
+            <TrashBin />
+            <EditNote />
+          </Center>
+          <ThumbsUpButton thumbsUpNumber={thumbsUpNumber} />
+        </Flex>
+      ) : (
+        <Flex justifyContent="end">
+          <ThumbsUpButton thumbsUpNumber={thumbsUpNumber} />
+        </Flex>
+      )}
     </Box>
   );
 };
