@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import {
   Tabs,
   TabList,
@@ -29,7 +29,9 @@ const BeerInfo = () => {
           <BeerReviews />
         </TabPanel>
         <TabPanel>
-          <LikedBeers />
+          <Suspense>
+            <LikedBeers />
+          </Suspense>
         </TabPanel>
       </TabPanels>
     </Tabs>
