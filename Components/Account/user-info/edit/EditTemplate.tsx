@@ -92,7 +92,7 @@ const EditTemplate = () => {
             onBlur={onBioBlur}
             guideText={bioGuideText}
             placeholder={
-              isBioValid === null ? "" : "소개는 25자까지 입력이 가능해요!"
+              isBioValid === null ? "소개는 25자까지 입력이 가능해요!" : ""
             }
           />
         </VStack>
