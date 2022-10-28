@@ -29,9 +29,7 @@ const BeerInfo = () => {
           <BeerReviews />
         </TabPanel>
         <TabPanel>
-          <Suspense>
-            <LikedBeers />
-          </Suspense>
+          <LikedBeers />
         </TabPanel>
       </TabPanels>
     </Tabs>
