@@ -5,6 +5,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { theme } from "../theme";
 import { Suspense, useState } from "react";
 import { RecoilRoot } from "recoil";
+import { ErrorBoundary } from "react-error-boundary";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const toast = useToast();
@@ -34,7 +35,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <RecoilRoot>
           <Suspense fallback={<div>loading...</div>}>
             <ChakraProvider theme={theme}>
-              <Component {...pageProps} />
+              <ErrorBoundary fallback={<div>error</div>}>
+                <Component {...pageProps} />
+              </ErrorBoundary>
             </ChakraProvider>
           </Suspense>
         </RecoilRoot>

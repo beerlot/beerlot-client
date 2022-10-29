@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { getAllBeers } from "../../server/api";
+import { popularBeerStateReadOnly } from "../../src/store/beers/popular-beers/atom";
 import { POPULAR_BEER_TITLE } from "../../Static";
 import { BeerResultType } from "../../types";
 import TempLogin from "../Auth/Login/TempLogin";
@@ -12,8 +14,7 @@ import WelcomeText from "./WelcomeText";
 const HomeComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userNickname, setUserNickname] = useState("");
-  const [allBeers, setAllBeers] = useState<BeerResultType[]>([]);
-
+  const allBeers = useRecoilValue<BeerResultType[]>(popularBeerStateReadOnly);
   const handleLogin = () => {
     setIsLoggedIn(!isLoggedIn);
   };
@@ -22,48 +23,36 @@ const HomeComponent = () => {
     setUserNickname(newUserName);
   };
 
-  const handleInfo = async (index: number) => {
-    const beers = await getAllBeers(index);
-    return beers;
-  };
-
-  const handleSetAllBeers = async () => {
-    const allBeers = await Promise.all(
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map((index) => {
-        return handleInfo(index + 1);
-      })
-    );
-    if (allBeers) {
-      setAllBeers(allBeers);
-    }
-  };
-
   useEffect(() => {
-    handleSetAllBeers();
-  }, []);
+    console.log(allBeers, "allBeers");
+  });
 
   return (
-    <Container>
-      <TempLogin
-        handleLogin={handleLogin}
-        handleUserName={handleUserName}
-        isLoggedIn={isLoggedIn}
-        userNickname={userNickname}
-      />
-      <WelcomeText nickname={userNickname} isLoggedIn={isLoggedIn} />
-      <SearchInputHome />
-      {isLoggedIn ? (
-        <>
-          <CarouselCardList title={POPULAR_BEER_TITLE} />
-          <CarouselCardList title={userNickname} />
-        </>
-      ) : (
-        <TwoByTwoCardList
-          title={POPULAR_BEER_TITLE}
-          itemList={allBeers} // list단에 전부 내리는 게 맞다고 생각하지 않음.
+    <React.Suspense>
+      <Container>
+        <TempLogin
+          handleLogin={handleLogin}
+          handleUserName={handleUserName}
+          isLoggedIn={isLoggedIn}
+          userNickname={userNickname}
         />
-      )}
-    </Container>
+        <WelcomeText nickname={userNickname} isLoggedIn={isLoggedIn} />
+        <SearchInputHome />
+        {isLoggedIn ? (
+          <>
+            <CarouselCardList title={POPULAR_BEER_TITLE} />
+            <CarouselCardList title={userNickname} />
+          </>
+        ) : (
+          allBeers.length > 0 && (
+            <TwoByTwoCardList
+              title={POPULAR_BEER_TITLE}
+              itemList={allBeers} // list단에 전부 내리는 게 맞다고 생각하지 않음.
+            />
+          )
+        )}
+      </Container>
+    </React.Suspense>
   );
 };
 
