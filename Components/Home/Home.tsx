@@ -11,7 +11,7 @@ import SearchInputHome from "./SearchInputHome";
 import WelcomeText from "./WelcomeText";
 
 const HomeComponent = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userNickname, setUserNickname] = useState("");
   const allBeers = useRecoilValue<BeerResultType[]>(popularBeerState);
 
@@ -81,12 +81,13 @@ const HomeComponent = () => {
           <CarouselCardList title={userNickname} />
         </>
       ) : (
-        allBeers.length > 0 && (
-          <TwoByTwoCardList
-            title={POPULAR_BEER_TITLE}
-            itemList={allBeers} // list단에 전부 내리는 게 맞다고 생각하지 않음.
-          />
-        )
+        <></>
+        // allBeers.length > 0 && (
+        //   <TwoByTwoCardList
+        //     title={POPULAR_BEER_TITLE}
+        //     itemList={allBeers} // list단에 전부 내리는 게 맞다고 생각하지 않음.
+        //   />
+        // )
       )}
     </Container>
   );
