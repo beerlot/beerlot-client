@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilValue, useRecoilValueLoadable } from "recoil";
+import { Loadable, useRecoilValue, useRecoilValueLoadable } from "recoil";
 import styled from "styled-components";
 import { popularBeerState } from "../../src/store/beers/popular-beers/atom";
 import { POPULAR_BEER_TITLE } from "../../Static";
-import { BeerResultType } from "../../types";
+import { BeerResultType, RecoilState } from "../../types";
 import TempLogin from "../Auth/Login/TempLogin";
 import CarouselCardList from "../Card/CardList/CarouselCardList";
 import TwoByTwoCardList from "../Card/CardList/TwoByTwoCardList";
@@ -13,8 +13,9 @@ import WelcomeText from "./WelcomeText";
 const HomeComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userNickname, setUserNickname] = useState("");
-  const allBeers = useRecoilValue<BeerResultType[]>(popularBeerState);
-
+  const allBeers: Loadable<BeerResultType> =
+    useRecoilValueLoadable(popularBeerState);
+  const { contents, state }: { contents: any; state: RecoilState } = allBeers;
   const handleLogin = () => {
     setIsLoggedIn(!isLoggedIn);
   };
@@ -61,10 +62,6 @@ const HomeComponent = () => {
     setUserNickname(newUserName);
   };
 
-  useEffect(() => {
-    console.log(allBeers, "allBeers");
-  });
-
   return (
     <Container>
       <TempLogin
@@ -81,13 +78,12 @@ const HomeComponent = () => {
           <CarouselCardList title={userNickname} />
         </>
       ) : (
-        <></>
-        // allBeers.length > 0 && (
-        //   <TwoByTwoCardList
-        //     title={POPULAR_BEER_TITLE}
-        //     itemList={allBeers} // list단에 전부 내리는 게 맞다고 생각하지 않음.
-        //   />
-        // )
+        state === "hasValue" && (
+          <TwoByTwoCardList
+            title={POPULAR_BEER_TITLE}
+            itemList={[contents]} // list단에 전부 내리는 게 맞다고 생각하지 않음.
+          />
+        )
       )}
     </Container>
   );

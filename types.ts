@@ -31,3 +31,5 @@ interface CountryType {
   name_ko: string;
   name_en: string;
 }
+
+export type RecoilState = "hasValue" | "loading" | "hasError";
