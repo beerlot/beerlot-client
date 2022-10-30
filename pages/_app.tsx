@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <RecoilRoot>
-          <Suspense fallback={<div>loading...</div>}>
+          <Suspense>
             <ChakraProvider theme={theme}>
               <ErrorBoundary fallback={<div>error</div>}>
                 <Component {...pageProps} />
