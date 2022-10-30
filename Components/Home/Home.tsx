@@ -15,6 +15,7 @@ const HomeComponent = () => {
   const [userNickname, setUserNickname] = useState("");
   const allBeers: Loadable<BeerResultType> =
     useRecoilValueLoadable(popularBeerState);
+  // TODO: any 타입 없애야 함.
   const { contents, state }: { contents: any; state: RecoilState } = allBeers;
   const handleLogin = () => {
     setIsLoggedIn(!isLoggedIn);
