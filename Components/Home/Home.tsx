@@ -66,31 +66,29 @@ const HomeComponent = () => {
   });
 
   return (
-    <React.Suspense fallback={<>loading...</>}>
-      <Container>
-        <TempLogin
-          handleLogin={handleLogin}
-          handleUserName={handleUserName}
-          isLoggedIn={isLoggedIn}
-          userNickname={userNickname}
-        />
-        <WelcomeText nickname={userNickname} isLoggedIn={isLoggedIn} />
-        <SearchInputHome />
-        {isLoggedIn ? (
-          <>
-            <CarouselCardList title={POPULAR_BEER_TITLE} />
-            <CarouselCardList title={userNickname} />
-          </>
-        ) : (
-          allBeers.length > 0 && (
-            <TwoByTwoCardList
-              title={POPULAR_BEER_TITLE}
-              itemList={allBeers} // list단에 전부 내리는 게 맞다고 생각하지 않음.
-            />
-          )
-        )}
-      </Container>
-    </React.Suspense>
+    <Container>
+      <TempLogin
+        handleLogin={handleLogin}
+        handleUserName={handleUserName}
+        isLoggedIn={isLoggedIn}
+        userNickname={userNickname}
+      />
+      <WelcomeText nickname={userNickname} isLoggedIn={isLoggedIn} />
+      <SearchInputHome />
+      {isLoggedIn ? (
+        <>
+          <CarouselCardList title={POPULAR_BEER_TITLE} />
+          <CarouselCardList title={userNickname} />
+        </>
+      ) : (
+        allBeers.length > 0 && (
+          <TwoByTwoCardList
+            title={POPULAR_BEER_TITLE}
+            itemList={allBeers} // list단에 전부 내리는 게 맞다고 생각하지 않음.
+          />
+        )
+      )}
+    </Container>
   );
 };
 
