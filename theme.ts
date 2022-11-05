@@ -58,7 +58,6 @@ export const theme = extendTheme({
   },
   textStyles: {
     h1: {
-      fontFmily: "roboto",
       fontWeight: "700",
       fontSize: "22px",
       letterSpacing: "0.01px",
@@ -66,34 +65,29 @@ export const theme = extendTheme({
       color: "Black",
     },
     h2: {
-      fontFmily: "roboto",
       fontWeight: "500",
       fontSize: "16px",
       letterSpacing: "0.01px",
       lineHeight: "24px",
     },
     h2_bold: {
-      fontFmily: "roboto",
       fontWeight: "700",
       fontSize: "16px",
       letterSpacing: "0.01px",
     },
     h3: {
-      fontFmily: "roboto",
       fontWeight: "500",
       fontSize: "14px",
       lineHeight: "24px",
       letterSpacing: "0.01px",
     },
     h3_bold: {
-      fontFmily: "roboto",
       fontWeight: "700",
       lineHeight: "24px",
       fontSize: "14px",
       letterSpacing: "0.01px",
     },
     body: {
-      fontFmily: "roboto",
       fontWeight: "400",
       fontSize: "15px",
       letterSpacing: "0.01px",
