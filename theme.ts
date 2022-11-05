@@ -15,11 +15,13 @@ export const theme = extendTheme({
         mt: "0px !important",
       },
       body: {
+        pb: "65px",
+        h: "calc(100vh)",
         bg: "#ffffff",
         font: "roboto",
       },
       "#__next": {
-        h: "calc(100vh)",
+        h: "100%",
       },
     },
   },
