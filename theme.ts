@@ -92,6 +92,6 @@ export const theme = extendTheme({
     },
   },
   fonts: {
-    roboto: `'Roboto', cursive`,
+    body: `'roboto', sans-serif`,
   },
 });
