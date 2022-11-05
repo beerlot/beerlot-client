@@ -12,11 +12,14 @@ export const theme = extendTheme({
   styles: {
     global: {
       p: {
-        mt: "0px",
+        mt: "0px !important",
       },
       body: {
         bg: "#ffffff",
         font: "roboto",
+      },
+      "#__next": {
+        h: "calc(100vh)",
       },
     },
   },

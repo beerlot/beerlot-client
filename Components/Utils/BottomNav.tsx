@@ -50,7 +50,10 @@ export const BottomNav = () => {
             onClick={() => handleClick(url)}
           >
             <Icon as={icon} />
-            <Text color={router.pathname === url ? "orange.300" : "gray.300"}>
+            <Text
+              textStyle="h4"
+              color={router.pathname === url ? "orange.300" : "gray.300"}
+            >
               {displayName}
             </Text>
           </VStack>
