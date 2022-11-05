@@ -1,8 +1,32 @@
-import { HStack, VStack, Text } from "@chakra-ui/react";
+import { HStack, VStack, Text, Icon } from "@chakra-ui/react";
+import {
+  NavAccount,
+  NavFeed,
+  NavSearch,
+  NavHome,
+} from "./custom-icons/customIcons";
 import React from "react";
+import { useRouter } from "next/router";
 
 export const BottomNav = () => {
-  const navMenu = ["home", "feed", "search", "info"];
+  const router = useRouter();
+
+  const navMenu = [
+    { title: "home", displayName: "홈", icon: NavHome, url: "/" },
+    { title: "feed", displayName: "피드", icon: NavFeed, url: "/feed" },
+    { title: "search", displayName: "검색", icon: NavSearch, url: "/search" },
+    {
+      title: "account",
+      displayName: "마이",
+      icon: NavAccount,
+      url: "/accounts",
+    },
+  ];
+
+  const handleClick = (url: string) => {
+    router.push(url);
+  };
+
   return (
     <HStack
       py="10px"
@@ -17,10 +41,18 @@ export const BottomNav = () => {
       right="0px"
     >
       {navMenu.map((item, idx) => {
+        const { title, displayName, icon, url } = item;
         return (
-          <VStack key={idx}>
-            <Text>{item}</Text>
-            <Text>{idx}</Text>
+          <VStack
+            key={title}
+            flexGrow={1}
+            gap="1.5px"
+            onClick={() => handleClick(url)}
+          >
+            <Icon as={icon} />
+            <Text color={router.pathname === url ? "orange.300" : "gray.300"}>
+              {displayName}
+            </Text>
           </VStack>
         );
       })}

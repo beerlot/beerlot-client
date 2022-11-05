@@ -11,6 +11,9 @@ export const theme = extendTheme({
   },
   styles: {
     global: {
+      p: {
+        mt: "0px",
+      },
       body: {
         bg: "#ffffff",
         font: "roboto",
