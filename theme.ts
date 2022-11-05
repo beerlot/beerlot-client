@@ -13,6 +13,7 @@ export const theme = extendTheme({
     global: {
       body: {
         bg: "#ffffff",
+        font: "roboto",
       },
     },
   },
