@@ -49,7 +49,7 @@ const Nickname = () => {
         disabled={!isFullfilled}
         text="다음으로"
         href={`/signup/beers`}
-        bgColor={isFullfilled ? "orange.200" : "Gray.200"}
+        bgColor={isFullfilled ? "orange.200" : "gray.200"}
         textColor={isFullfilled ? "white.100" : "black.100"}
         boxShadow={isFullfilled ? "0px 8px 16px rgba(0, 0, 0, 0.3)" : "none"}
       />
@@ -72,7 +72,7 @@ const Nickname = () => {
           <Checkbox
             icon={allChecked ? <CheckedBox /> : <UncheckedBox />}
             w="100%"
-            bg="Gray.100"
+            bg="gray.100"
             borderRadius="5px"
             py="8px"
             px="6px"
