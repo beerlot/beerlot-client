@@ -25,7 +25,7 @@ const BeerCards: React.FC<BeerCardsProps> = ({ nickName }) => {
         text="완료!"
         href="/"
         bgColor={isFullfilled ? "Orange.200" : "Gray.200"}
-        textColor={isFullfilled ? "White.100" : "Black"}
+        textColor={isFullfilled ? "white.100" : "Black"}
         boxShadow={isFullfilled ? "0px 8px 16px rgba(0, 0, 0, 0.3)" : "none"}
       />
       <VStack gap={"25px"} p={0} pb={"25px"} alignItems="start">

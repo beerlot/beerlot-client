@@ -50,7 +50,7 @@ const Nickname = () => {
         text="다음으로"
         href={`/signup/beers`}
         bgColor={isFullfilled ? "Orange.200" : "Gray.200"}
-        textColor={isFullfilled ? "White.100" : "Black"}
+        textColor={isFullfilled ? "white.100" : "Black"}
         boxShadow={isFullfilled ? "0px 8px 16px rgba(0, 0, 0, 0.3)" : "none"}
       />
 
