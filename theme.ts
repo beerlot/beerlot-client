@@ -62,7 +62,6 @@ export const theme = extendTheme({
       fontSize: "22px",
       letterSpacing: "0.01px",
       lineHeight: "24px",
-      color: "Black",
     },
     h2: {
       fontWeight: "500",

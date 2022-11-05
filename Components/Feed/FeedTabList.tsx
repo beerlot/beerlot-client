@@ -14,10 +14,10 @@ const FeedTabList = () => {
   return (
     <Tabs colorScheme="orange">
       <TabList px={"18px"}>
-        <Tab flexGrow="1" color="Orange.300">
+        <Tab flexGrow="1" color="orange.300">
           팔로잉
         </Tab>
-        <Tab flexGrow="1" color="Orange.300">
+        <Tab flexGrow="1" color="orange.300">
           전체보기
         </Tab>
       </TabList>

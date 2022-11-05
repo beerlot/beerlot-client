@@ -12,7 +12,7 @@ const EditProfileButton = () => {
     <Button
       w="100%"
       p="4px"
-      bg="Orange.200"
+      bg="orange.200"
       borderRadius="5px"
       textColor="white.100"
       onClick={handleClick}

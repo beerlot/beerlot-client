@@ -31,7 +31,7 @@ const EmptyFilteredResult = () => {
         bg="Gray.101"
         py="10px"
         px="16px"
-        color="black"
+        color="black.100"
         border="1px solid"
         borderColor="Gray.50"
       >
@@ -39,7 +39,7 @@ const EmptyFilteredResult = () => {
           <Text
             as="span"
             textStyle="h3"
-            textColor="Orange.200"
+            textColor="orange.300"
             textAlign="center"
           >
             찾는 맥주
@@ -51,7 +51,7 @@ const EmptyFilteredResult = () => {
 
         <Text
           textStyle="h3_bold"
-          textColor="Orange.200"
+          textColor="orange.300"
           style={{ textIndent: 12 }}
         >
           👉 맥주 제보하기 👈
