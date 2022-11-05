@@ -45,13 +45,13 @@ const NicknameInput: React.FC<NicknameInputProps> = ({
         placeholder={placeholder}
         _placeholder={{
           color:
-            isValid === null ? "Gray.300" : isValid ? "orange.200" : "Red.100",
+            isValid === null ? "Gray.300" : isValid ? "orange.200" : "red.100",
         }}
       />
       <Text
         textStyle="h3"
         textColor={
-          isValid === null ? "Gray.300" : isValid ? "orange.200" : "Red.100"
+          isValid === null ? "Gray.300" : isValid ? "orange.200" : "red.100"
         }
       >
         {guideText}
