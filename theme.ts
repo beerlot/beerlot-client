@@ -18,6 +18,7 @@ export const theme = extendTheme({
         pb: "65px",
         h: "calc(100vh)",
         bg: "#ffffff",
+        height: "100vh",
         font: "roboto",
       },
       "#__next": {
@@ -74,7 +75,7 @@ export const theme = extendTheme({
       fontWeight: "500",
       fontSize: "16px",
       letterSpacing: "0.01px",
-      lineHeight: "24px",
+      lineHeight: "19px",
     },
     h2_bold: {
       fontWeight: "700",
@@ -93,13 +94,26 @@ export const theme = extendTheme({
       fontSize: "14px",
       letterSpacing: "0.01px",
     },
+    h4: {
+      fontWeight: "500",
+      lineHeight: "19px",
+      fontSize: "12px",
+      letterSpacing: "0.01px",
+    },
+    h4_bold: {
+      fontWeight: "700",
+      lineHeight: "19px",
+      fontSize: "12px",
+      letterSpacing: "0.01px",
+    },
     body: {
       fontWeight: "400",
+      lineHeight: "13px",
       fontSize: "15px",
       letterSpacing: "0.01px",
     },
   },
   fonts: {
-    roboto: `'Roboto', cursive`,
+    body: `'roboto', sans-serif`,
   },
 });
