@@ -49,7 +49,10 @@ export const BottomNav = () => {
             gap="1.5px"
             onClick={() => handleClick(url)}
           >
-            <Icon as={icon} />
+            <Icon
+              as={icon}
+              color={router.pathname === url ? "orange.300" : "gray.300"}
+            />
             <Text
               textStyle="h4"
               color={router.pathname === url ? "orange.300" : "gray.300"}
