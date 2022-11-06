@@ -7,18 +7,29 @@ import {
 } from "./custom-icons/customIcons";
 import React from "react";
 import { useRouter } from "next/router";
+import {
+  NavAccountsPath,
+  NavFeedPath,
+  NavHomePath,
+  NavSearchPath,
+} from "./custom-icons/customPath";
 
 export const BottomNav = () => {
   const router = useRouter();
 
   const navMenu = [
-    { title: "home", displayName: "홈", icon: NavHome, url: "/" },
-    { title: "feed", displayName: "피드", icon: NavFeed, url: "/feed" },
-    { title: "search", displayName: "검색", icon: NavSearch, url: "/search" },
+    { title: "home", displayName: "홈", icon: NavHomePath, url: "/" },
+    {
+      title: "search",
+      displayName: "검색",
+      icon: NavSearchPath,
+      url: "/search",
+    },
+    { title: "feed", displayName: "피드", icon: NavFeedPath, url: "/feed" },
     {
       title: "account",
       displayName: "마이",
-      icon: NavAccount,
+      icon: NavAccountsPath,
       url: "/accounts",
     },
   ];
@@ -40,8 +51,9 @@ export const BottomNav = () => {
       left="0px"
       right="0px"
     >
-      {navMenu.map((item, idx) => {
+      {navMenu.map((item) => {
         const { title, displayName, icon, url } = item;
+        const curColor = router.pathname === url ? "orange.300" : "gray.300";
         return (
           <VStack
             key={title}
@@ -49,14 +61,8 @@ export const BottomNav = () => {
             gap="1.5px"
             onClick={() => handleClick(url)}
           >
-            <Icon
-              as={icon}
-              color={router.pathname === url ? "orange.300" : "gray.300"}
-            />
-            <Text
-              textStyle="h4"
-              color={router.pathname === url ? "orange.300" : "gray.300"}
-            >
+            {icon(curColor)}
+            <Text textStyle="h4" color={curColor}>
               {displayName}
             </Text>
           </VStack>
