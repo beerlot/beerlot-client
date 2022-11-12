@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Loadable, useRecoilValue, useRecoilValueLoadable } from "recoil";
 import styled from "styled-components";
 import { popularBeerState } from "../../src/store/beers/popular-beers/atom";
-import { POPULAR_BEER_TITLE } from "../../Static";
+import { POPULAR_BEER_TITLE } from "../../static";
 import { BeerResultType, RecoilState } from "../../types";
 import TempLogin from "../Auth/Login/TempLogin";
 import CarouselCardList from "../Card/CardList/CarouselCardList";

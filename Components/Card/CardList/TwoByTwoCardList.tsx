@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { beerItemType, CardType, POPULAR_BEER_TITLE } from "../../../Static";
+import { beerItemType, CardType, POPULAR_BEER_TITLE } from "../../../static";
 import { BeerResultType } from "../../../types";
 import CardItem from "../CardItem";
 import CardTitle from "../CardTitle";

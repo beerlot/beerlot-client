@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CardType } from "../../Static";
+import { CardType } from "../../static";
 
 import styled from "styled-components";
 import LikeButton from "../Utils/OrangeLikeButton";

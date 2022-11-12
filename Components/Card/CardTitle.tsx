@@ -4,7 +4,7 @@ import {
   RECOMMENDED_BEER_TITLE_1,
   RECOMMENDED_BEER_TITLE_2,
   POPULAR_BEER_TITLE,
-} from "../../Static";
+} from "../../static";
 
 interface CardProps {
   title: string;

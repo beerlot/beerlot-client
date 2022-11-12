@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
-import { BEERLOT_TITLE } from "../../Static";
+import { BEERLOT_TITLE } from "../../static";
 
 const Title = () => {
   const router = useRouter();

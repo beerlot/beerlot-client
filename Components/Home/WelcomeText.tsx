@@ -1,6 +1,6 @@
 import React from "react";
-import { WELCOME_MESSAGE_FIRST } from "../../Static";
-import { WELCOME_MESSAGE_SECOND } from "../../Static";
+import { WELCOME_MESSAGE_FIRST } from "../../static";
+import { WELCOME_MESSAGE_SECOND } from "../../static";
 import styled from "styled-components";
 
 interface WelcomeTextProps {
