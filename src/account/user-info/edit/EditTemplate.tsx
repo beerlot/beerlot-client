@@ -1,8 +1,8 @@
 import { Text, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
-import NavHeader from "../../../Utils/NavHeader";
-import NicknameInput from "../../../Utils/NicknameInput";
-import ProfileAvatar from "../../../Utils/ProfileAvatar";
+import NavHeader from "../../../../common/NavHeader";
+import NicknameInput from "../../../../common/NicknameInput";
+import ProfileAvatar from "../../../../common/ProfileAvatar";
 
 const EditTemplate = () => {
   const MOCK_IMAGE_SRC = "https://picsum.photos/seed/picsum/200/300";

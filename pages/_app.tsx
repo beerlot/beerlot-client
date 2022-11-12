@@ -9,7 +9,7 @@ import { useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
-import { BottomNav } from "../Components/Utils/BottomNav";
+import { BottomNav } from "../common/BottomNav";
 import "../styles/globals.css";
 import { theme } from "../theme";
 

@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 import React from "react";
-import FollowingTabPanelItem from "../../Feed/TabPanelItem";
+import FollowingTabPanelItem from "../../feed/TabPanelItem";
 
 const BeerReviews = () => {
   const FOLLOWING_FEED_MOCK = [

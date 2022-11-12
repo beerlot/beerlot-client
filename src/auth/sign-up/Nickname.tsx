@@ -1,8 +1,8 @@
 import { Box, Checkbox, Text, VStack } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { CheckedBox, CheckedOrange, UncheckedBox } from "../../../public/svg";
-import FloatingButton from "../../Utils/FloatingButton";
-import NicknameInput from "../../Utils/NicknameInput";
+import FloatingButton from "../../../common/FloatingButton";
+import NicknameInput from "../../../common/NicknameInput";
 
 const Nickname = () => {
   const [checkedItems, setCheckedItems] = useState([false, false]);

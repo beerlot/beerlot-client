@@ -1,6 +1,6 @@
 import { Box, Text, VStack, Flex, SimpleGrid } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import FloatingButton from "../../Utils/FloatingButton";
+import FloatingButton from "../../../common/FloatingButton";
 
 interface BeerCardsProps {
   nickName: string;

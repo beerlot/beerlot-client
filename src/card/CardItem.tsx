@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { CardType } from "../../static";
 
 import styled from "styled-components";
-import LikeButton from "../Utils/OrangeLikeButton";
+import LikeButton from "../../common/OrangeLikeButton";
 
 interface CardItemProps {
   isTwoByTwo: boolean;

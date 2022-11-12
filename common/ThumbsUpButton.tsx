@@ -1,6 +1,6 @@
 import { Button, Icon, Text } from "@chakra-ui/react";
 import React from "react";
-import { ThumbsUpIcon } from "../../public/svg";
+import { ThumbsUpIcon } from "../public/svg";
 
 interface ThumbsUpButtonProps {
   thumbsUpNumber: number;

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Loadable, useRecoilValue, useRecoilValueLoadable } from "recoil";
 import styled from "styled-components";
-import { popularBeerState } from "../../src/store/beers/popular-beers/atom";
+import { popularBeerState } from "../store/beers/popular-beers/atom";
 import { POPULAR_BEER_TITLE } from "../../static";
 import { BeerResultType, RecoilState } from "../../types";
-import TempLogin from "../Auth/Login/TempLogin";
-import CarouselCardList from "../Card/CardList/CarouselCardList";
-import TwoByTwoCardList from "../Card/CardList/TwoByTwoCardList";
+import TempLogin from "../auth/sign-in/TempLogin";
+import CarouselCardList from "../card/card-list/CarouselCardList";
+import TwoByTwoCardList from "../card/card-list/TwoByTwoCardList";
 import SearchInputHome from "./SearchInputHome";
 import WelcomeText from "./WelcomeText";
 

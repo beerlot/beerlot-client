@@ -1,8 +1,8 @@
 import { Avatar, Box, Center, Flex, IconButton, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { EditNote, TrashBin } from "../../public/svg";
-import StarRating from "../Utils/StarRating";
-import ThumbsUpButton from "../Utils/ThumbsUpButton";
+import StarRating from "../../common/StarRating";
+import ThumbsUpButton from "../../common/ThumbsUpButton";
 
 interface FollowingTabPanelItemProps {
   isRow: boolean;

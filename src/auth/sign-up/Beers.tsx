@@ -1,8 +1,8 @@
 import { Flex } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import BackButton from "../../Utils/BackButton";
-import CompleteCircles from "../../Utils/CompleteCircles";
+import BackButton from "../../../common/BackButton";
+import CompleteCircles from "../../../common/CompleteCircles";
 import BeerCards from "./BeerCards";
 
 const Beers = () => {
