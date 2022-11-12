@@ -1,8 +1,8 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import styled from "styled-components";
-import SearchBarAutocomplete from "../../Components/Search/SearchBarAutocomplete";
-import Title from "../../Components/Search/Title";
+import Title from "./Title";
+import SearchBarAutocomplete from "./SearchBarAutocomplete";
 
 const Search = () => {
   return (
