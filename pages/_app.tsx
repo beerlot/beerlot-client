@@ -14,19 +14,6 @@ import "../styles/globals.css";
 import { theme } from "../src/styles/theme";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const toast = useToast();
-  const handleToast = (options: UseToastOptions) => {
-    const defaultOptions: UseToastOptions = {
-      status: "info",
-      duration: 5000,
-      isClosable: true,
-    };
-
-    toast({
-      ...defaultOptions,
-      ...options,
-    });
-  };
   const [queryClient] = useState(
     () =>
       new QueryClient({
