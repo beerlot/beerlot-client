@@ -8,7 +8,7 @@ import SearchInputHome from "../../src/home/SearchInputHome";
 import EmptyFilteredResult from "../../src/result/EmptyFilteredResult";
 import SearchFilterList from "../../src/result/Filter/SearchFilterList/SearchFilterList";
 import { EmptyFilter, WhiteFilter } from "../../public/svg";
-import { CardType, MOCK_CARD_LIST } from "../../static";
+import { CardType, MOCK_CARD_LIST } from "../../src/interface/static";
 
 const SearchResultList = () => {
   const router = useRouter();

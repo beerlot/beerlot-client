@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import { CardType, MOCK_CARD_LIST, POPULAR_BEER_TITLE } from "../../../static";
+import {
+  CardType,
+  MOCK_CARD_LIST,
+  POPULAR_BEER_TITLE,
+} from "../../interface/static";
 import CardItem from "../CardItem";
 import CardTitle from "../CardTitle";
 

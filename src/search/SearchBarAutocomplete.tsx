@@ -1,7 +1,7 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { beerItemType, MOCK_CARD_LIST } from "../../static";
+import { beerItemType, MOCK_CARD_LIST } from "../interface/static";
 import EmptySearchResult from "./EmptySearchResult";
 import SearchInput from "./SearchInput";
 

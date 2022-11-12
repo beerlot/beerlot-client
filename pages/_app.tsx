@@ -11,7 +11,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
 import { BottomNav } from "../common/BottomNav";
 import "../styles/globals.css";
-import { theme } from "../theme";
+import { theme } from "../src/styles/theme";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const toast = useToast();

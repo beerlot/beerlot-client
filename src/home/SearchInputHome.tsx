@@ -8,7 +8,7 @@ import {
 import { useRouter } from "next/router";
 import React from "react";
 import { SearchGlass, WhiteCross } from "../../public/svg";
-import { SEARCH_BAR_PLACEHOLDER } from "../../static";
+import { SEARCH_BAR_PLACEHOLDER } from "../interface/static";
 
 interface SearchInputHomeProps {
   placeholder?: string;
