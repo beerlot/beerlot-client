@@ -6,7 +6,7 @@ import CardItem from "../../src/card/CardItem";
 import { CardContainer } from "../../src/card/card-list/TwoByTwoCardList";
 import SearchInputHome from "../../src/home/SearchInputHome";
 import EmptyFilteredResult from "../../src/result/EmptyFilteredResult";
-import SearchFilterList from "../../src/result/Filter/SearchFilterList/SearchFilterList";
+import SearchFilterList from "../../src/result/filter/search-filter-list/SearchFilterList";
 import { EmptyFilter, WhiteFilter } from "../../public/svg";
 import { CardType, MOCK_CARD_LIST } from "../../src/interface/static";
 

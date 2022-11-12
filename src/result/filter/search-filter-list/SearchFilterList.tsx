@@ -1,7 +1,7 @@
 import { Box, Button, Flex } from "@chakra-ui/react";
 import React from "react";
-import FilterTag from "../SearchFilterItem/FilterTag";
-import SearchFilterItem from "../SearchFilterItem/SearchFilterItem";
+import FilterTag from "../search-filter-item/FilterTag";
+import SearchFilterItem from "../search-filter-item/SearchFilterItem";
 
 interface SearchFilterListProps {
   onClick: () => void;
