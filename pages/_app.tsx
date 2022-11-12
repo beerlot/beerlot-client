@@ -11,7 +11,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
 import { BottomNav } from "../common/BottomNav";
 import "../styles/globals.css";
-import { theme } from "../src/styles/theme";
+import { theme } from "../styles/theme";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(

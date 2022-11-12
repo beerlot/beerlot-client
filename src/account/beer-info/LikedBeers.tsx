@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { getAllBeers } from "../../../server/api";
 import { likedBeerState } from "../../store";
-import { CardType } from "../../interface/static";
-import { BeerResultType } from "../../interface/types";
+import { CardType } from "../../../interface/static";
+import { BeerResultType } from "../../../interface/types";
 import CardItem from "../../card/CardItem";
 import TwoByTwoCardList from "../../card/card-list/TwoByTwoCardList";
 

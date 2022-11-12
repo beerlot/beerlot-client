@@ -3,7 +3,7 @@ import {
   CardType,
   MOCK_CARD_LIST,
   POPULAR_BEER_TITLE,
-} from "../../interface/static";
+} from "../../../interface/static";
 import CardItem from "../CardItem";
 import CardTitle from "../CardTitle";
 

@@ -4,8 +4,8 @@ import {
   beerItemType,
   CardType,
   POPULAR_BEER_TITLE,
-} from "../../interface/static";
-import { BeerResultType } from "../../interface/types";
+} from "../../../interface/static";
+import { BeerResultType } from "../../../interface/types";
 import CardItem from "../CardItem";
 import CardTitle from "../CardTitle";
 

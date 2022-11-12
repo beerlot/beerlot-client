@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { SearchGlass, WhiteCross } from "../../public/svg";
-import { SEARCH_BAR_PLACEHOLDER } from "../interface/static";
+import { SEARCH_BAR_PLACEHOLDER } from "../../interface/static";
 
 interface SearchInputProps {
   value: string;
