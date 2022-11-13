@@ -33,7 +33,7 @@ const TwoByTwoCardList: React.FC<TwoByTwoCardListProps> = ({
               borderColor={
                 cardType === CardType.POPULAR ? "orange.300" : "orange.200"
               }
-              key={idx} // 수정해야함.
+              key={idx}
               beerName={item.name_ko}
               img_src={item.image_url}
               sort={item.category.name_ko}
