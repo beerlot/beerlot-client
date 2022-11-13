@@ -7,6 +7,7 @@ import {
 } from "../../../interface/static";
 import { BeerResultType } from "../../../interface/types";
 import CardItem from "../CardItem";
+import CardItemChakra from "../CardItemChakra";
 import CardTitle from "../CardTitle";
 
 interface TwoByTwoCardListProps {
@@ -27,9 +28,11 @@ const TwoByTwoCardList: React.FC<TwoByTwoCardListProps> = ({
       <CardContainer>
         {itemList.map((item, idx) => {
           return (
-            <CardItem
+            <CardItemChakra
               isTwoByTwo
-              cardType={cardType}
+              borderColor={
+                cardType === CardType.POPULAR ? "orange.300" : "orange.200"
+              }
               key={idx} // 수정해야함.
               beerName={item.name_ko}
               img_src={item.image_url}
