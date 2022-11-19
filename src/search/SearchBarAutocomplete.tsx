@@ -6,15 +6,24 @@ import EmptySearchResult from "./EmptySearchResult";
 import SearchInput from "./SearchInput";
 
 const SearchBarAutocomplete = () => {
+  const router = useRouter();
   const [value, setValue] = useState("");
   const [selectedItems, setSelectedItems] = useState<beerItemType[]>([]);
-  const router = useRouter();
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-  const handleClick = (e: React.MouseEvent) => {
+  };
+
+  const handleClickItem = (e: React.MouseEvent) => {
     const selectedName = e.currentTarget.textContent;
     router.push(`/result/${selectedName}`);
   };
+
+  const clearInput = () => {
+    setValue("");
+  };
+
+  // https://beerlot-core-obtg3qwuhq-an.a.run.app/api/v1/beers?keyword=포터&page=1&size=10&sort=MOST_LIKES
 
   // MOCK_BEER_ITEM useMemo처리 안하면, VALUE한번 바꿀 때마다 mock_beer_info가 다시 RENDER됨.
   useEffect(() => {
@@ -24,15 +33,11 @@ const SearchBarAutocomplete = () => {
     setSelectedItems(newSelectedItems);
   }, [value]);
 
-  const clearInput = () => {
-    setValue("");
-  };
-
   return (
     <Flex w="full" direction="column" borderRadius="20px" gap="10px" mt="14px">
       <SearchInput
         value={value}
-        handleChange={handleChange}
+        handleChange={handleChangeInput}
         clearInput={clearInput}
       />
 
@@ -48,7 +53,11 @@ const SearchBarAutocomplete = () => {
                   px="15px"
                   key={beerItems.id}
                 >
-                  <Text textStyle="h2" key={beerItems.id} onClick={handleClick}>
+                  <Text
+                    textStyle="h2"
+                    key={beerItems.id}
+                    onClick={handleClickItem}
+                  >
                     {beerItems.beerName}
                   </Text>
                 </Box>
