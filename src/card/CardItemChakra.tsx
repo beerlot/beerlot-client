@@ -1,5 +1,5 @@
 import { Flex, Text, VStack } from "@chakra-ui/react";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import styled from "styled-components";
@@ -27,15 +27,11 @@ const CardItemChakra: React.FC<CardItemProps> = ({
   const [isLiked, setIsLiked] = useState(false);
 
   const likeBeer = useMutation((beerId: number) =>
-    axios.post(`/api/v1/beers/${beerId}/likes`, {
-      beerId: beerId,
-    })
+    axios.post(`/api/v1/beers/${beerId}/likes`)
   );
 
   const dislikeBeer = useMutation((beerId: number) =>
-    axios.delete(`/api/v1/beers/${beerId}/likes`, {
-      beerId,
-    })
+    axios.delete(`/api/v1/beers/${beerId}/likes`)
   );
 
   const handleClick = (state: boolean) => {
