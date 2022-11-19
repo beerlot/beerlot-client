@@ -93,7 +93,7 @@ export const NavAccountsPath = (color: string) => {
 
 export const AlertBellPath = () => {
   return (
-    <Icon viewBox="0 0 16 20" id="alert-bell-right">
+    <Icon boxSize="24px" viewBox="0 0 16 20" id="alert-bell-right">
       <path
         fillRule="evenodd"
         clipRule="evenodd"

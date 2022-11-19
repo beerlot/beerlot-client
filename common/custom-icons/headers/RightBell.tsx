@@ -9,8 +9,9 @@ export const RightBellHeader = () => {
       top="0px"
       right="0px"
       left="0px"
-      py="10px"
-      px="10px"
+      pt="30px"
+      pb="30px"
+      px="20px"
       justifyContent="flex-end"
       dropShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
     >
