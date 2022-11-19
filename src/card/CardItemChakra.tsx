@@ -26,21 +26,21 @@ const CardItemChakra: React.FC<CardItemProps> = ({
 }) => {
   const [isLiked, setIsLiked] = useState(false);
 
-  const savePerson = useMutation((beerId: number) =>
+  const likeBeer = useMutation((beerId: number) =>
     axios.post(`/api/v1/beers/${beerId}/likes`, {
       beerId: beerId,
     })
-  ); // useMutate 정의
+  );
 
-  useEffect(() => {
-    console.log(savePerson.data);
-    console.log(savePerson.status);
-    console.log(beerId);
-  }, [beerId, savePerson.data, savePerson.status]);
+  const dislikeBeer = useMutation((beerId: number) =>
+    axios.delete(`/api/v1/beers/${beerId}/likes`, {
+      beerId,
+    })
+  );
 
   const handleClick = (state: boolean) => {
     setIsLiked(state);
-    savePerson.mutate(beerId); // 데이터 저장
+    isLiked ? dislikeBeer.mutate(beerId) : likeBeer.mutate(beerId); // 데이터 저장
   };
 
   const iconProps = {
