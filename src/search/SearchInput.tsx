@@ -11,26 +11,29 @@ import { SearchGlass, WhiteCross } from "../../public/svg";
 import { SEARCH_BAR_PLACEHOLDER } from "../../interface/static";
 
 interface SearchInputProps {
-  value: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   clearInput: () => void;
+  value: string;
 }
 
 const SearchInput: React.FC<SearchInputProps> = ({
   value,
-  handleChange,
+  onChange,
   clearInput,
+  onKeyPress,
 }) => {
   return (
     <InputGroup display="flex" alignItems="center" justifyContent="center">
       <Input
+        onKeyPress={onKeyPress}
         py="20px"
         px="20px"
         bg="blue.100"
         placeholder={SEARCH_BAR_PLACEHOLDER}
         size="sm"
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
         autoFocus
         borderRadius="20px"
         textColor="white"
