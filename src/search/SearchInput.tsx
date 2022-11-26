@@ -21,9 +21,9 @@ const SearchInput: React.FC<SearchInputProps> = ({
   onKeyPress,
   clearValue,
 }) => {
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const clearInput = () => {
-    if (inputRef.current.value) {
+    if (inputRef.current) {
       inputRef.current.value = "";
       clearValue();
     }
