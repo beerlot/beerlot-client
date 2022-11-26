@@ -2,7 +2,7 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 import axios from "axios";
 import _, { debounce } from "lodash";
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useMutation } from "react-query";
 import useKeyboard from "../../hooks/useKeyboard";
 import { useSearch } from "../../hooks/useSearch";
@@ -38,7 +38,7 @@ const SearchBarAutocomplete = () => {
     router.push(`/result/${selectedName}`);
   };
 
-  const clearInput = () => {
+  const clearValue = () => {
     setValue("");
   };
 
@@ -57,9 +57,8 @@ const SearchBarAutocomplete = () => {
     <Flex w="full" direction="column" borderRadius="20px" gap="10px" mt="14px">
       <SearchInput
         onKeyPress={handleKeyPress}
-        value={value}
         onChange={handleChange}
-        clearInput={clearInput}
+        clearValue={clearValue}
       />
       {isInputEmpty ? (
         <MarketingScreen />
