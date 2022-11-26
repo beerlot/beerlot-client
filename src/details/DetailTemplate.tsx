@@ -9,9 +9,9 @@ export const DetailTemplate = () => {
   return (
     <>
       {didPassStar ? (
-        <LeftBackTItle />
-      ) : (
         <LeftBackBeerNameRightHeart beerName={beerName} />
+      ) : (
+        <LeftBackTItle />
       )}
     </>
   );
