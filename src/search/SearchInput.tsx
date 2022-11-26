@@ -32,7 +32,6 @@ const SearchInput: React.FC<SearchInputProps> = ({
         bg="blue.100"
         placeholder={SEARCH_BAR_PLACEHOLDER}
         size="sm"
-        value={value}
         onChange={onChange}
         autoFocus
         borderRadius="20px"
