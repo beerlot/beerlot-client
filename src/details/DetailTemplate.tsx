@@ -11,6 +11,7 @@ import {
 import React, { useState } from "react";
 import { LeftBackBeerNameRightHeart } from "../../common/headers/LeftBackBeerNameRightHeart";
 import { LeftBackTItle } from "../../common/headers/LeftBackTitle";
+import { Rating } from "../../common/Rating";
 
 export const DetailTemplate = () => {
   const [didPassStar, setDidPassStar] = useState(false);
@@ -55,6 +56,13 @@ export const DetailTemplate = () => {
             {volume} | {category} | {country}
           </Text>
         </HStack>
+        <Center w="full">
+          <Rating
+            styleProps={{
+              gap: "20px",
+            }}
+          />
+        </Center>
       </VStack>
     </>
   );
