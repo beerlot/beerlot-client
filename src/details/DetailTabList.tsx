@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import {
   Tabs,
   TabList,
@@ -9,8 +9,8 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
-import { BasicPanelList } from "./tab-panel/BasicPanelList";
-import { ReviewPanelList } from "./tab-panel/ReviewPanelList";
+import {BasicPanelList} from "./tab-panel/BasicPanelList";
+import {ReviewPanelList} from "./tab-panel/ReviewPanelList";
 
 export const DetailTabList = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -20,21 +20,6 @@ export const DetailTabList = () => {
 
   return (
     <>
-      <Button
-        onClick={() => {
-          setTabIndex(0);
-        }}
-      >
-        0
-      </Button>
-      <Button
-        onClick={() => {
-          setTabIndex(1);
-        }}
-      >
-        1
-      </Button>
-
       <Tabs
         colorScheme="orange"
         w="full"
@@ -52,10 +37,11 @@ export const DetailTabList = () => {
         <Divider />
 
         <TabPanels>
-          <TabPanel>
+          <TabPanel p={0}>
             <BasicPanelList />
+            <ReviewPanelList />
           </TabPanel>
-          <TabPanel>
+          <TabPanel p={0}>
             <ReviewPanelList />
           </TabPanel>
         </TabPanels>

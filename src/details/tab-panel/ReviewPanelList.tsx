@@ -1,5 +1,5 @@
-import React from "react";
+import {Box} from "@chakra-ui/react";
 
 export const ReviewPanelList = () => {
-  return <div>ReviewPanelList</div>;
+  return <Box bg="yellow.100">ReviewPanelList</Box>;
 };
