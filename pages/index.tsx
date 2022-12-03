@@ -1,7 +1,7 @@
 import {Box, Center} from "@chakra-ui/react";
 import type {NextPage} from "next";
 import Head from "next/head";
-import HomeTemplate from "../src/home/Home";
+import HomeTemplate from "../src/home/HomeTemplate";
 
 const Home: NextPage = () => {
   return (
