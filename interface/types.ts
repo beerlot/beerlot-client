@@ -41,3 +41,10 @@ export type SignUpType = {
   email: string;
   username: string;
 };
+
+export type ErrorResponse = {
+  error: string;
+  path: string;
+  status: number;
+  timestamp: string;
+};
