@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import {ChangeEvent, useState} from "react";
 import {ReviewStatic} from "../interface/static";
-import {EditPencil} from "../public/svg";
+import {EditPencil, OrangeCamera, RightArrow} from "../public/svg";
 import {LeftCloseRandom} from "./headers/LeftCloseRandom";
 import {Rating} from "./Rating";
 
@@ -50,18 +50,22 @@ export const ReviewModal = () => {
         <EditPencil />
       </Button>
       <Modal onClose={onClose} size={"full"} isOpen={isOpen}>
-        <ModalContent px="20px" border="1px solid blue" pb="40px">
-          <ModalHeader pt="36px">
+        <ModalContent px="20px" pb="40px">
+          <ModalHeader pt="46px">
             <LeftCloseRandom onClose={onClose} title="글쓰기" />
           </ModalHeader>
-          <ModalBody>
-            <VStack gap="20px">
+          <ModalBody p={0} pt="10px">
+            <VStack
+              gap="20px"
+              justifyContent="flex-start"
+              alignItems={"flex-start"}
+            >
               {/* beer name */}
-              <Flex>
+              <Flex justifyContent="space-between" alignItems="center" w="full">
                 <Text textStyle="h2" textColor="black.100">
                   맥주 이름을 골라주세요!
                 </Text>
-                <Icon />
+                <RightArrow />
               </Flex>
               {/* rating */}
               <Flex flexDir="column">
@@ -96,7 +100,7 @@ export const ReviewModal = () => {
                 </HStack>
               </Box>
               {/* review */}
-              <VStack p="10px" gap="10px">
+              <VStack py="10px" gap="10px" w="full" alignItems={"flex-start"}>
                 <Box>
                   <Text as="span" textStyle="h2" textColor="black.100">
                     더 자세한 후기가 궁금해요!
@@ -112,10 +116,15 @@ export const ReviewModal = () => {
                   borderRadius="10px"
                   value={inputValue}
                   onChange={handleInputChange}
-                  placeholder="Here is a sample placeholder"
-                  size="sm"
+                  placeholder="이 맥주가 맘에 드는/ 안 드는 자세한 이유를 들려주세요! 아님 맥주에 관한 추억이나.. 꿀조합 안주를 공유해볼까요~?"
+                  h="200px"
+                  maxLength={2000}
                 />
-                <IconButton
+                <Button
+                  w="full"
+                  bg="inherit"
+                  _hover={{}}
+                  _after={{}}
                   border="1px solid"
                   borderColor="orange.200"
                   borderRadius="10px"
@@ -123,12 +132,12 @@ export const ReviewModal = () => {
                   aria-label="attach-photo"
                   gap="10px"
                 >
-                  <Icon />
-                  <Text>
+                  <OrangeCamera />
+                  <Text textStyle="h3" textColor="orange.200">
                     사진 첨부하기 ({numberOfAttachedFile}/
                     {ReviewStatic.numberOfMaxAttachedFile})
                   </Text>
-                </IconButton>
+                </Button>
               </VStack>
             </VStack>
           </ModalBody>
