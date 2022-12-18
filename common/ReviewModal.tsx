@@ -15,20 +15,20 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-import {ChangeEvent} from "react";
-import {ReviewStatic} from "../interface/static";
-import {BeerResultType, CategoryType} from "../interface/types";
-import {EditPencil, OrangeCamera, RightArrow} from "../public/svg";
+import { ChangeEvent } from "react";
+import { ReviewStatic } from "../interface/static";
+import { BeerResultType, CategoryType } from "../interface/types";
+import { EditPencil, OrangeCamera, RightArrow } from "../public/svg";
 import SearchInput from "../src/search/SearchInput";
-import {LeftBackRandom} from "./headers/LeftBackRandom";
-import {LeftCloseRandom} from "./headers/LeftCloseRandom";
-import {Rating} from "./Rating";
+import { LeftBackRandom } from "./headers/LeftBackRandom";
+import { LeftCloseRandom } from "./headers/LeftCloseRandom";
+import { Rating } from "./Rating";
 
 export const ReviewModal = () => {
   const [isCompleted, setIsCompleted] = useState(false);
-  const {isOpen, onOpen, onClose} = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [step, setStep] = useState(0);
   const handleSizeClick = () => {
     onOpen();
@@ -195,7 +195,7 @@ export const ReviewModal = () => {
                     aria-label="attach-photo"
                     gap="10px"
                     mt="0px"
-                    _notFirst={{marginInlineStart: "0px", marginTop: "0px"}}
+                    _notFirst={{ marginInlineStart: "0px", marginTop: "0px" }}
                   >
                     <OrangeCamera />
                     <Text textStyle="h3" textColor="orange.200">
@@ -263,26 +263,18 @@ const BeerSearchContent: React.FC<BeerSearchContentProps> = ({
       description: "This is Lagar",
     },
   ];
-  const [selectedItems, setSelectedItems] =
-    useState<CategoryType[]>(MOCK_CATEGORY);
-
-  const filterSearchResult = (value: string) => {
-    if (allBeers === null) return [];
-    return allBeers.filter((item: CategoryType) => {
-      return item.name_ko.includes(value);
-    });
-  };
+  const [selectedItems, setSelectedItems] = useState<any[]>(MOCK_CATEGORY);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-    setSelectedItems(filterSearchResult(e.target.value));
+    // setSelectedItems(filterSearchResult(e.target.value));
   };
 
   const clearValue = () => {
     setValue("");
   };
 
-  const handleClick = (e) => {
+  const handleClick = (e: any) => {
     const value = e.target.innerHTML;
     onClickBack();
     onChangeBeerName(value);
