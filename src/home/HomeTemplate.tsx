@@ -1,15 +1,16 @@
-import {AxiosError} from "axios";
-import {useEffect} from "react";
-import {useQuery} from "react-query";
-import {useRecoilState} from "recoil";
+import { Box } from "@chakra-ui/react";
+import { AxiosError } from "axios";
+import { useEffect } from "react";
+import { useQuery } from "react-query";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import {RightBellHeader} from "../../common/headers/RightBell";
-import {POPULAR_BEER_TITLE} from "../../interface/static";
-import {BeerResultType, ErrorResponse} from "../../interface/types";
-import {getTop10BeersApi} from "../../server/api";
+import { RightBellHeader } from "../../common/headers/RightBell";
+import { POPULAR_BEER_TITLE } from "../../interface/static";
+import { BeerResultType, ErrorResponse } from "../../interface/types";
+import { getTop10BeersApi } from "../../server/api";
 import CarouselCardList from "../card/card-list/CarouselCardList";
 import TwoByTwoCardList from "../card/card-list/TwoByTwoCardList";
-import {userInfoState, top10BeersState} from "../store/atom";
+import { userInfoState, top10BeersState } from "../store/atom";
 import SearchInputHome from "./SearchInputHome";
 import WelcomeText from "./WelcomeText";
 
@@ -35,11 +36,21 @@ const HomeTemplate = () => {
 
   return (
     <Container>
-      <RightBellHeader />
-
+      <Box
+        position="absolute"
+        top="0px"
+        right="0px"
+        left="0px"
+        pt="30px"
+        pb="30px"
+        px="20px"
+      />
+      {/* TODO: v2 alarm feature */}
+      {/* <RightBellHeader /> */}
       <WelcomeText nickname={userInfo?.username} />
-
-      <SearchInputHome />
+      <Box py={"34px"}>
+        <SearchInputHome />
+      </Box>
       {userInfo ? (
         <>
           <CarouselCardList title={POPULAR_BEER_TITLE} />
