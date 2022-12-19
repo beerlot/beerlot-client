@@ -16,7 +16,7 @@
   },
   "login": {
     "title": "3초만에 로그인하고",
-    "subTitle": "비어랏과 함께해요!",
+    "subtitle": "비어랏과 함께해요!",
     "continue_without_login": "로그인 없이 계속하기",
     "social_logins": {
       "kakao": "카카오",
@@ -26,7 +26,7 @@
       "login_with": "로 계속하기"
     },
     "close_modal": {
-      "subTitle": "딱 3초면 더 다양한 기능들을 사용할 수 있어요!"
+      "subtitle": "딱 3초면 더 다양한 기능들을 사용할 수 있어요!"
     }
   },
   "home": {
@@ -40,7 +40,7 @@
           "full": "👋 어서와요!"
         }
       },
-      "subTitle": "오늘은 어떤 맥주를 마셔볼까요?",
+      "subtitle": "오늘은 어떤 맥주를 마셔볼까요?",
       "beerCard": {
         "popular": "🔥 인기맥주 TOP10 🔥 ",
         "recommendation": {
@@ -56,7 +56,7 @@
         "before": "‘",
         "after": "’에 대한 검색 결과가 없어요🤔"
       },
-      "subTitle": "다른 키워드로 검색해보세요!",
+      "subtitle": "다른 키워드로 검색해보세요!",
       "guideline": {
         "title": "💡검색 Tip💡",
         "first": "오타가 있는지 확인해보세요!",
@@ -83,7 +83,7 @@
       },
       "empty_result": {
         "title": "아쉽게도 일치하는 맥주가 없어요😢",
-        "subTitle": "다른 키워드로 검색해보세요! \n\n ex) OB라거 > 오비라거",
+        "subtitle": "다른 키워드로 검색해보세요! \n\n ex) OB라거 > 오비라거",
         "report": "찾는 맥주가 없나요? \n\n 👉 맥주 제보하기 👈"
       }
     }
@@ -99,7 +99,7 @@
       "title": "팔로잉",
       "coming_soon": {
         "title": "아직 준비 중인 기능이에요 🛠",
-        "subTitle": "버전 2에서 사용하실 수 있도록 준비 중이니, \n\n 조금만 기다려주세요! 🙏"
+        "subtitle": "버전 2에서 사용하실 수 있도록 준비 중이니, \n\n 조금만 기다려주세요! 🙏"
       },
       "filter": {
         "criteria": {
@@ -146,7 +146,7 @@
       },
       "complete": "작성 완료",
       "close_modal": {
-        "subTitle": "입력하신 글은 저장되지 않아요 :("
+        "subtitle": "입력하신 글은 저장되지 않아요 :("
       }
     }
   }
