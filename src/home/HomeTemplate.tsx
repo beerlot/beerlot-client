@@ -1,15 +1,17 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { AxiosError } from "axios";
 import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { BlankHeader } from "../../common/headers/BlankHeader";
 import { RightBellHeader } from "../../common/headers/RightBell";
 import { POPULAR_BEER_TITLE } from "../../interface/static";
 import { BeerResultType, ErrorResponse } from "../../interface/types";
 import { getTop10BeersApi } from "../../server/api";
-import CarouselCardList from "../card/card-list/CarouselCardList";
-import TwoByTwoCardList from "../card/card-list/TwoByTwoCardList";
+import CardItemChakra from "../card/CardItemChakra";
+import CarouselCardList from "../card/CardList/CarouselCardList";
+import TwoByTwoCardList from "../card/CardList/TwoByTwoCardList";
 import { userInfoState, top10BeersState } from "../store/atom";
 import SearchInputHome from "./SearchInputHome";
 import WelcomeText from "./WelcomeText";
@@ -36,15 +38,7 @@ const HomeTemplate = () => {
 
   return (
     <Container>
-      <Box
-        position="absolute"
-        top="0px"
-        right="0px"
-        left="0px"
-        pt="30px"
-        pb="30px"
-        px="20px"
-      />
+      <BlankHeader />
       {/* TODO: v2 alarm feature */}
       {/* <RightBellHeader /> */}
       <WelcomeText nickname={userInfo?.username} />
@@ -57,12 +51,28 @@ const HomeTemplate = () => {
           <CarouselCardList title={userInfo.username} />
         </>
       ) : (
-        top10Beers && (
-          <TwoByTwoCardList
-            title={POPULAR_BEER_TITLE}
-            itemList={top10Beers} // list단에 전부 내리는 게 맞다고 생각하지 않음.
-          />
-        )
+        <>
+          {/* title */}
+          <Text textColor="black.100">🔥 인기맥주 TOP10 🔥 </Text>
+          {top10Beers && (
+            <>
+              {top10Beers.map((item, idx) => {
+                return (
+                  <CardItemChakra
+                    key={idx}
+                    beerId={item.id}
+                    isTwoByTwo
+                    borderColor={"orange.300"}
+                    beerName={item.name_ko}
+                    img_src={item.image_url}
+                    sort={item.category.name_ko}
+                    country={item.country.code}
+                  />
+                );
+              })}
+            </>
+          )}
+        </>
       )}
     </Container>
   );
