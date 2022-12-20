@@ -1,29 +1,25 @@
 import { Box, Text } from "@chakra-ui/react";
-import { AxiosError } from "axios";
-import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { BlankHeader } from "../../common/headers/BlankHeader";
-import { RightBellHeader } from "../../common/headers/RightBell";
 import { POPULAR_BEER_TITLE } from "../../interface/static";
 import { BeerResultType, ErrorResponse } from "../../interface/types";
 import { getTop10BeersApi } from "../../server/api";
 import CardItemChakra from "../card/CardItemChakra";
 import CarouselCardList from "../card/CardList/CarouselCardList";
-import TwoByTwoCardList from "../card/CardList/TwoByTwoCardList";
-import { userInfoState, top10BeersState } from "../store/atom";
+import { top10BeersState, userInfoState } from "../store/atom";
 import SearchInputHome from "./SearchInputHome";
 import WelcomeText from "./WelcomeText";
 
 const HomeTemplate = () => {
   const [userInfo] = useRecoilState(userInfoState);
   const [top10Beers, setTop10Beers] = useRecoilState(top10BeersState);
+
   const popularBeers = useQuery<BeerResultType[], ErrorResponse>(
     "top10Beers",
     getTop10BeersApi,
     {
-      enabled: !userInfo,
       refetchOnWindowFocus: false,
       retry: 1,
       onSuccess: (data: BeerResultType[]) => {
@@ -35,7 +31,6 @@ const HomeTemplate = () => {
       },
     }
   );
-
   return (
     <Container>
       <BlankHeader />
