@@ -1,6 +1,4 @@
 import { Flex } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import React from "react";
 import BackButton from "../../../common/BackButton";
 import CompleteCircles from "../../../common/CompleteCircles";
 import Nickname from "./Nickname";

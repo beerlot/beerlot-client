@@ -1,29 +1,45 @@
 import { Box, Text, VStack, Flex, SimpleGrid } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import FloatingButton from "../../../common/FloatingButton";
+import { MOCK_BEERS_SUGGESTION } from "../../../interface/static";
+import CardItemChakra from "../../card/CardItemChakra";
+import { chosenBeerIdsState } from "../../store/atom";
 
 interface BeerCardsProps {
   nickName: string;
 }
 
 const BeerCards: React.FC<BeerCardsProps> = ({ nickName }) => {
-  const [isFullfilled, setIsFullfilled] = useState<boolean>(false);
-  const [selectedBeers, setSelectedBeers] = useState([]);
+  const [chosenBeerIds, setChosenBeerIds] = useRecoilState(chosenBeerIdsState);
+  const isFullfilled = chosenBeerIds && chosenBeerIds.length > 0;
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/");
+  };
 
   useEffect(() => {
-    setIsFullfilled(selectedBeers.length > 0);
-  }, [selectedBeers.length]);
+    console.log("chosenBeerIds", chosenBeerIds);
+  });
 
-  // temp 함수
-  const onClick = () => {
-    setIsFullfilled(true);
+  const handleClickBeer = (newBeerId: number) => {
+    let newChosenBeers = [...chosenBeerIds];
+    if (newBeerId in chosenBeerIds) {
+      newChosenBeers = newChosenBeers.filter((id) => id !== newBeerId);
+    } else {
+      newChosenBeers.push(newBeerId);
+    }
+    setChosenBeerIds(newChosenBeers);
   };
+
   return (
-    <>
+    <VStack w="full" h="full" border="1px solid black">
       <FloatingButton
         disabled={!isFullfilled}
         text="완료!"
-        href="/"
+        onClick={handleClick}
         bgColor={isFullfilled ? "orange.200" : "gray.200"}
         textColor={isFullfilled ? "white.100" : "black.100"}
         boxShadow={isFullfilled ? "0px 8px 16px rgba(0, 0, 0, 0.3)" : "none"}
@@ -45,33 +61,37 @@ const BeerCards: React.FC<BeerCardsProps> = ({ nickName }) => {
             </Text>
           </Box>
         </VStack>
-        <SimpleGrid columns={3} spacingX="10px" spacingY="25px">
-          <Box bg="tomato" height="80px" width="100px" onClick={onClick}></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
-          <Box bg="tomato" height="80px" width="100px"></Box>
+        <SimpleGrid
+          columns={3}
+          spacingX="10px"
+          spacingY="25px"
+          border="1px solid black"
+        >
+          {[
+            MOCK_BEERS_SUGGESTION,
+            MOCK_BEERS_SUGGESTION,
+            MOCK_BEERS_SUGGESTION,
+            MOCK_BEERS_SUGGESTION,
+            MOCK_BEERS_SUGGESTION,
+            MOCK_BEERS_SUGGESTION,
+          ].map((item, idx) => {
+            return (
+              <Box key={idx} onClick={() => handleClickBeer(item.id)}>
+                <CardItemChakra
+                  beerId={item.id}
+                  isTwoByTwo
+                  borderColor={"orange.200"}
+                  beerName={item.name_ko}
+                  img_src={item.image_url}
+                  sort={item.category.name_ko}
+                  country={item.country}
+                />
+              </Box>
+            );
+          })}
         </SimpleGrid>
       </VStack>
-    </>
+    </VStack>
   );
 };
 
