@@ -86,12 +86,9 @@ const SearchBarTemplate = () => {
                         py="10px"
                         px="15px"
                         key={beerItems.id}
+                        onClick={handleClickItem}
                       >
-                        <Text
-                          textStyle="h2"
-                          key={beerItems.id}
-                          onClick={handleClickItem}
-                        >
+                        <Text textStyle="h2" key={beerItems.id}>
                           {beerItems.name_ko}
                         </Text>
                       </Box>
