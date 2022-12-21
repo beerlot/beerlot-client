@@ -5,9 +5,7 @@ import BackButton from "../../../common/BackButton";
 import CompleteCircles from "../../../common/CompleteCircles";
 import Nickname from "./Nickname";
 
-const SignUp = () => {
-  const router = useRouter();
-
+const SignUpTemplate = () => {
   return (
     <Flex h="100vh" px="27.5px" pb="73px" pt="34px" flexDirection="column">
       <BackButton />
@@ -17,4 +15,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpTemplate;
