@@ -16,7 +16,6 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-
 import { ChangeEvent } from "react";
 import { ReviewStatic } from "../interface/static";
 import { BeerResultType, CategoryType, ReviewType } from "../interface/types";
@@ -27,26 +26,29 @@ import { LeftCloseRandom } from "./headers/LeftCloseRandom";
 import { Rating } from "./Rating";
 
 export const ReviewModal = () => {
-  const [reviewInfo, setReviewInfo] = useState<ReviewType>();
-  const [selectedBeerName, setSelectedBeerName] = useState("");
-  const isCompleted = !!selectedBeerName; // should contain rating stars as well
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [reviewInfo, setReviewInfo] = useState<ReviewType>({
+    beerName: null,
+    rate: null,
+  });
+  const isCompleted = !!reviewInfo.beerName; // should contain rating stars as well
   const [step, setStep] = useState(0);
-  const handleSizeClick = () => {
-    onOpen();
-  };
   const [inputValue, setInputValue] = useState("");
+  const [attachedFile, setAttachedPhoto] = useState([]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(e.target.value);
   };
-  const [attachedFile, setAttachedPhoto] = useState([]);
+  const handleSizeClick = () => {
+    onOpen();
+  };
   const handleClickBack = () => {
     setStep(step - 1);
   };
 
   const handleChangeBeerName = (name: string) => {
-    setSelectedBeerName(name);
+    const newBeerReview = { ...reviewInfo, beerName: name };
+    setReviewInfo(newBeerReview);
   };
 
   return (
@@ -89,9 +91,9 @@ export const ReviewModal = () => {
                     <Text textStyle="h2" textColor="black.100">
                       맥주 이름을 골라주세요!
                     </Text>
-                    {selectedBeerName && (
+                    {reviewInfo.beerName && (
                       <Text textStyle="h2_bold" textColor="orange.200">
-                        {selectedBeerName}
+                        {reviewInfo.beerName}
                       </Text>
                     )}
                   </VStack>

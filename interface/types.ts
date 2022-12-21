@@ -50,8 +50,8 @@ export type ErrorResponse = {
 };
 
 export interface ReviewType {
-  beerName: string;
-  rate: number;
+  beerName: string | null;
+  rate: number | null;
   place?: string;
   review?: string;
   imgUrl?: string[];
