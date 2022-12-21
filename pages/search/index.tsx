@@ -1,4 +1,4 @@
-import SearchTemplate from "../../src/search/Search";
+import SearchTemplate from "../../src/search/SearchTemplate";
 
 const index = () => {
   return <SearchTemplate />;
