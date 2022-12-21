@@ -19,7 +19,7 @@ import React, { useState } from "react";
 
 import { ChangeEvent } from "react";
 import { ReviewStatic } from "../interface/static";
-import { BeerResultType, CategoryType } from "../interface/types";
+import { BeerResultType, CategoryType, ReviewType } from "../interface/types";
 import { EditPencil, OrangeCamera, RightArrow } from "../public/svg";
 import SearchInput from "../src/search/SearchInput";
 import { LeftBackRandom } from "./headers/LeftBackRandom";
@@ -27,6 +27,7 @@ import { LeftCloseRandom } from "./headers/LeftCloseRandom";
 import { Rating } from "./Rating";
 
 export const ReviewModal = () => {
+  const [reviewInfo, setReviewInfo] = useState<ReviewType>();
   const [selectedBeerName, setSelectedBeerName] = useState("");
   const isCompleted = !!selectedBeerName; // should contain rating stars as well
   const { isOpen, onOpen, onClose } = useDisclosure();
