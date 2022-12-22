@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import FloatingButton from "../../../common/FloatingButton";
+import BeerCard from "../../../common/headers/BeerCard";
 import { MOCK_BEERS_SUGGESTION } from "../../../interface/static";
 import CardItemChakra from "../../card/CardItemChakra";
 import { chosenBeerIdsState } from "../../store/atom";
@@ -15,14 +16,9 @@ const BeerCards: React.FC<BeerCardsProps> = ({ nickName }) => {
   const [chosenBeerIds, setChosenBeerIds] = useRecoilState(chosenBeerIdsState);
   const isFullfilled = chosenBeerIds && chosenBeerIds.length > 0;
   const router = useRouter();
-
   const handleClick = () => {
     router.push("/");
   };
-
-  useEffect(() => {
-    console.log("chosenBeerIds", chosenBeerIds);
-  });
 
   const handleClickBeer = (newBeerId: number) => {
     let newChosenBeers = [...chosenBeerIds];
@@ -32,6 +28,23 @@ const BeerCards: React.FC<BeerCardsProps> = ({ nickName }) => {
       newChosenBeers.push(newBeerId);
     }
     setChosenBeerIds(newChosenBeers);
+  };
+
+  const styleProps = {
+    boxStyleProps: {
+      p: "6px",
+      border: "1px solid",
+      borderColor: "orange.200",
+      borderRadius: "10px",
+    },
+    nameProps: {},
+    countryProps: {},
+    sortProps: {},
+    imageProps: {
+      borderRadius: "6px",
+      w: "92px",
+      h: "110px",
+    },
   };
 
   return (
@@ -77,14 +90,13 @@ const BeerCards: React.FC<BeerCardsProps> = ({ nickName }) => {
           ].map((item, idx) => {
             return (
               <Box key={idx} onClick={() => handleClickBeer(item.id)}>
-                <CardItemChakra
-                  beerId={item.id}
-                  isTwoByTwo
-                  borderColor={"orange.200"}
+                <BeerCard
                   beerName={item.name_ko}
                   img_src={item.image_url}
-                  sort={item.category.name_ko}
                   country={item.country}
+                  sort={item.category.name_ko}
+                  beerId={item.id}
+                  styleProps={styleProps}
                 />
               </Box>
             );
