@@ -6,6 +6,7 @@ import { AlertBell, SettingGear } from "../../public/svg";
 const Tools = () => {
   const router = useRouter();
   const handleClickSettings = () => {
+    console.log("handleClickSettings");
     router.push("/accounts/settings");
   };
 
