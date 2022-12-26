@@ -13,8 +13,6 @@ import { CardType, MOCK_CARD_LIST } from "../../interface/static";
 const SearchResultPage = () => {
   const [isFilterListOpen, setIsFilterListOpen] = useState<boolean>(true);
   const router = useRouter();
-  console.log("got in");
-  console.log(router.query.query);
   const { id } = router.query;
   const filteredItemList = MOCK_CARD_LIST.filter((item) => {
     if (!id) {
