@@ -10,9 +10,11 @@ import SearchFilterList from "../../src/result/filter/search-filter-list/SearchF
 import { EmptyFilter, WhiteFilter } from "../../public/svg";
 import { CardType, MOCK_CARD_LIST } from "../../interface/static";
 
-const SearchResultList = () => {
+const SearchResultPage = () => {
   const [isFilterListOpen, setIsFilterListOpen] = useState<boolean>(true);
   const router = useRouter();
+  console.log("got in");
+  console.log(router.query.query);
   const { id } = router.query;
   const filteredItemList = MOCK_CARD_LIST.filter((item) => {
     if (!id) {
@@ -20,26 +22,21 @@ const SearchResultList = () => {
     }
     return item.beerName.includes(id[0]);
   });
-
   const handleClick = () => {
     setIsFilterListOpen(!isFilterListOpen);
   };
-
   return (
     <Container>
       <Flex gap="10px" alignItems="center" onClick={handleClick} mb="24px">
         <SearchInputHome />
-
         <Circle size="31px" bg="blue.100">
           {isFilterListOpen ? <WhiteFilter /> : <EmptyFilter />}
         </Circle>
       </Flex>
-
       <SearchFilterList
         onClick={handleClick}
         isFilterListOpen={isFilterListOpen}
       />
-
       {filteredItemList.length > 0 ? (
         <Box mt="15px">
           {filteredItemList.map((item) => {
@@ -64,7 +61,7 @@ const SearchResultList = () => {
   );
 };
 
-export default SearchResultList;
+export default SearchResultPage;
 
 export const Container = styled.div`
   padding: 24px;
