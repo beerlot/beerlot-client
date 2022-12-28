@@ -1,9 +1,9 @@
-import { Box, Button, Flex, HStack, Text } from "@chakra-ui/react";
+import { Box, HStack, Text } from "@chakra-ui/react";
 import React from "react";
 import FilterTag from "../../../../common/Filters/FilterTag";
 import { CategoryFilterListType } from "../../../../interface/types";
 import { checkIsSelectedCategoryTitle } from "../../../../utils/array";
-import FilterTagTemp from "../search-filter-item/FilterTagTemp";
+import { BottomArrow, RightArrow } from "../../../../public/svg";
 
 interface SearchFilterListProps {
   isFilterListOpen: boolean;
@@ -32,7 +32,7 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
         textColor: "black.100",
         textStyle: "h4",
       },
-      // IconProp: {},
+      IconProp: {},
     };
   };
 
@@ -87,36 +87,19 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
           })}
         </>
       ) : (
-        // <Box px="0px">
-        //   {filterList.map(({ title, tagList }) => {
-        //     return (
-        //       <SearchFilterItem
-        //         key={`${title}-${tagList.length}`}
-        //         title={title}
-        //         tagList={tagList}
-        //       />
-        //     );
-        //   })}
-        // </Box>
-        <Button px={0} onClick={onClickToggle} bg="white">
-          <Flex
-            gap="10px"
-            p={0}
-            flex="1"
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            {filterList.map(({ title, tagList }) => {
-              return (
-                <FilterTagTemp
-                  key={`${title}-${tagList.length}`}
-                  title={title}
-                  arrowDirection="down"
-                />
-              );
-            })}
-          </Flex>
-        </Button>
+        <HStack>
+          {filterList.map((filterObj) => {
+            const { title } = filterObj;
+            return (
+              <FilterTag
+                onClick={onClickToggle}
+                key={title}
+                tagText={title}
+                filterTagStyles={getFilterTagStyles(title)}
+              />
+            );
+          })}
+        </HStack>
       )}
     </Box>
   );
