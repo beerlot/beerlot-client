@@ -1,13 +1,12 @@
 import { Box, Circle, Flex } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import styled from "styled-components";
 import {
   CardType,
   MOCK_CARD_LIST,
   MOCK_CATEGORY_FILTER_LIST,
 } from "../../interface/static";
-import { CategoryFilterListType, CategoryTitle } from "../../interface/types";
+import { CategoryFilterListType } from "../../interface/types";
 import { EmptyFilter, WhiteFilter } from "../../public/svg";
 import CardItem from "../../src/card/CardItem";
 import { CardContainer } from "../../src/card/CardList/TwoByTwoCardList";
@@ -44,7 +43,7 @@ const SearchResultPage = () => {
   };
 
   return (
-    <Container>
+    <Box p={"24px"}>
       <Flex gap="10px" alignItems="center" mb="24px">
         <SearchInput clearValue={clearValue} />
         <Circle size="31px" bg="blue.100" onClick={handleClickToggle}>
@@ -62,7 +61,12 @@ const SearchResultPage = () => {
         <Box mt="15px">
           {filteredItemList.map((item) => {
             return (
-              <CardContainer key={item.id}>
+              <CardContainer
+                key={item.id}
+                onClick={() => {
+                  router.push(`/result/details?query=${item.beerName}`);
+                }}
+              >
                 <CardItem
                   isTwoByTwo
                   cardType={CardType.POPULAR}
@@ -78,12 +82,8 @@ const SearchResultPage = () => {
       ) : (
         <EmptyFilteredResult />
       )}
-    </Container>
+    </Box>
   );
 };
 
 export default SearchResultPage;
-
-export const Container = styled.div`
-  padding: 24px;
-`;
