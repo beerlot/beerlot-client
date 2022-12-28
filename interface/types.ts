@@ -1,5 +1,15 @@
 export type AllKeyboardEvent = React.KeyboardEvent | KeyboardEvent;
 
+// fix any
+export type CategoryFilterListType = any;
+
+export type CategoryTitle = {
+  CRITERIA: "정렬 기준";
+  SORT: "맥주 종류";
+  COUNTRY: "제조국";
+  ALCHOLE: "도수";
+};
+
 export interface BeerResultType {
   id: number;
   name_ko: string;

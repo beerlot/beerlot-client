@@ -7,7 +7,7 @@ interface FilterTagProps {
   arrowDirection: "down" | "right";
 }
 
-const FilterTag: React.FC<FilterTagProps> = ({ title, arrowDirection }) => {
+const FilterTagTemp: React.FC<FilterTagProps> = ({ title, arrowDirection }) => {
   return (
     <Button
       h="auto"
@@ -23,4 +23,4 @@ const FilterTag: React.FC<FilterTagProps> = ({ title, arrowDirection }) => {
   );
 };
 
-export default FilterTag;
+export default FilterTagTemp;

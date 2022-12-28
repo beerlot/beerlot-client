@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import FilterTag from "./FilterTag";
-
-import SearchFilterTag from "./SearchFilterTag";
+import FilterTag from "../../../../common/Filters/FilterTag";
 
 interface SearchFilterItemProps {
   title: string;
   tagList: string[];
 }
 
-const SearchFilterItem: React.FC<SearchFilterItemProps> = ({
+const SearchFilterItem: React.FCItemProps> = ({
   title,
   tagList,
 }) => {
+  const styleProps = {
+    tagStyle: {},
+    textStyle: {},
+  };
+
   const [selectedOrder, setSelectedOrder] = useState("좋아요순");
   const [isSelected, setIsSelected] = useState(false);
   const handleSelect = () => {
@@ -27,16 +30,14 @@ const SearchFilterItem: React.FC<SearchFilterItemProps> = ({
   return (
     <Container>
       {/* color값을 넘겨야 함 */}
-      <FilterTag title={title} arrowDirection="right" />
       <TagContainer>
         {tagList.map((tag) => {
           return (
-            <SearchFilterTag
+            <FilterTag
               key={tag}
-              tag={tag}
-              isOrderCategory={title === "좋아요순"}
-              isSelectedOrder={tag === selectedOrder}
-              handleSelectOrder={handleSelectOrder}
+              filterTagStyles={styleProps}
+              tagText={tag}
+              IconProp={}
             />
           );
         })}
