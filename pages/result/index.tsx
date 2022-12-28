@@ -1,12 +1,15 @@
 import { Box, Circle, Flex } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   CardType,
   MOCK_CARD_LIST,
   MOCK_CATEGORY_FILTER_LIST,
 } from "../../interface/static";
-import { CategoryFilterListType } from "../../interface/types";
+import {
+  CategoryFilterListType,
+  CategoryTitleStatic,
+} from "../../interface/types";
 import { EmptyFilter, WhiteFilter } from "../../public/svg";
 import CardItem from "../../src/card/CardItem";
 import { CardContainer } from "../../src/card/CardList/TwoByTwoCardList";
@@ -21,7 +24,7 @@ const SearchResultPage = () => {
   const [value, setValue] = useState<string>("");
   const [selectedFilters, setSelectedFilter] = useState<
     CategoryFilterListType[]
-  >([]);
+  >([{ title: "정렬 기준", tags: ["a", "b"] }]);
 
   const clearValue = () => {
     setValue("");
@@ -38,8 +41,39 @@ const SearchResultPage = () => {
     setIsFilterListOpen(!isFilterListOpen);
   };
 
+  // TODO: refactoring highly needed
   const handleClickTag = (targetTitle: string, targetTag: string) => {
-    console.log("targetTitle", targetTitle, "targetTag", targetTag);
+    const selectedObjList = selectedFilters.filter(
+      (item) => item.title === targetTitle
+    );
+    // new tag and title
+    if (selectedObjList.length === 0) {
+      const newSelectedFilters = [
+        ...selectedFilters,
+        { title: targetTitle, tags: [targetTag] },
+      ];
+      // TODO: fix problem
+      setSelectedFilter(newSelectedFilters);
+      return;
+    }
+
+    const selectedTags = selectedObjList[0].tags;
+
+    const newTags = selectedTags.includes(targetTag)
+      ? selectedTags.filter((tag) => tag !== targetTag)
+      : [...selectedTags, targetTag];
+    const newSelectedFilters2 = selectedFilters.map((itemObj) => {
+      if (itemObj.title === targetTitle) {
+        return { title: targetTitle, tags: newTags };
+      }
+      return itemObj;
+    });
+
+    const newSelectedFilters3 = newSelectedFilters2.filter(
+      (item) => item.tags.length > 0
+    );
+    // TODO: fix problem
+    setSelectedFilter(newSelectedFilters3);
   };
 
   return (

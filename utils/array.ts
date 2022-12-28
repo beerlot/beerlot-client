@@ -5,7 +5,7 @@ export const isSelected = (id: number, ids: number[]) => {
 };
 
 export const isSelectedString = (string: string, stringList: string[]) => {
-  return string in stringList;
+  return stringList.includes(string);
 };
 
 export const checkIsSelectedCategoryTitle = (
@@ -14,23 +14,4 @@ export const checkIsSelectedCategoryTitle = (
 ) => {
   const titleList = selectedFilters.map((item) => item.title);
   return isSelectedString(targetTitle, titleList);
-};
-
-export const checkIsSelectedCategoryTag = (
-  selectedFilters: CategoryFilterListType[],
-  targetTitle: string,
-  targetTag: string
-) => {
-  let isSelectedCategoryTag = false;
-  selectedFilters.forEach((itemObj) => {
-    if (itemObj.title === targetTitle) {
-      const selectedTagObj = itemObj;
-      selectedTagObj.tagList.forEach((tag) => {
-        if (tag === targetTag) {
-          isSelectedCategoryTag = true;
-        }
-      });
-    }
-  });
-  return isSelectedCategoryTag;
 };

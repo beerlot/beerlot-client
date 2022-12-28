@@ -7,7 +7,7 @@ interface SearchFilterItemProps {
   tagList: string[];
 }
 
-const SearchFilterItem: React.FCItemProps> = ({
+const SearchFilterItem: React.FC<SearchFilterItemProps> = ({
   title,
   tagList,
 }) => {
@@ -33,12 +33,7 @@ const SearchFilterItem: React.FCItemProps> = ({
       <TagContainer>
         {tagList.map((tag) => {
           return (
-            <FilterTag
-              key={tag}
-              filterTagStyles={styleProps}
-              tagText={tag}
-              IconProp={}
-            />
+            <FilterTag key={tag} filterTagStyles={styleProps} tagText={tag} />
           );
         })}
       </TagContainer>

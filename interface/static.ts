@@ -10,10 +10,10 @@ export const orangeBright = "#FEA801";
 export const SEARCH_BAR_PLACEHOLDER = "맥주 이름, 종류, 향 등을 검색해보세요!";
 
 export const MOCK_CATEGORY_FILTER_LIST: CategoryFilterListType[] = [
-  { 좋아요순: ["좋아요", "별점순", "리뷰많은 순"] },
-  { 맥주종류: ["IPA", "필스너"] },
-  { 제조국: ["독일", "미국", "일본"] },
-  { 도수: ["논알콜", "3%미만", "3%대"] },
+  { title: "정렬 기준", tags: ["좋아요", "별점순", "리뷰많은 순"] },
+  { title: "맥주 종류", tags: ["IPA", "필스너"] },
+  { title: "제조국", tags: ["독일", "미국", "일본"] },
+  { title: "도수", tags: ["논알콜", "3%미만", "3%대"] },
 ];
 
 export const textMain = "#000000";

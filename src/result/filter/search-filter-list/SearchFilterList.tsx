@@ -2,10 +2,7 @@ import { Box, Button, Flex, HStack, Text } from "@chakra-ui/react";
 import React from "react";
 import FilterTag from "../../../../common/Filters/FilterTag";
 import { CategoryFilterListType } from "../../../../interface/types";
-import {
-  checkIsSelectedCategoryTag,
-  checkIsSelectedCategoryTitle,
-} from "../../../../utils/array";
+import { checkIsSelectedCategoryTitle } from "../../../../utils/array";
 import FilterTagTemp from "../search-filter-item/FilterTagTemp";
 
 interface SearchFilterListProps {
@@ -40,13 +37,20 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
   };
 
   const getFilterRowStyles = (targetTitle: string, targetTag: string) => {
-    const isSelected = checkIsSelectedCategoryTag(
-      selectedFilters,
-      targetTitle,
-      targetTag
+    let isSelected = false;
+    const selectedObjList = selectedFilters.filter(
+      (item) => item.title === targetTitle
     );
+    if (
+      selectedObjList.length > 0 &&
+      selectedObjList[0].tags.includes(targetTag)
+    ) {
+      isSelected = true;
+    }
+    console.log("isSelected", isSelected);
     return {
       textStyle: {
+        bg: "none",
         textColor: isSelected ? "black.100" : "gray.200",
         textStyle: isSelected ? "h4_bold" : "h4",
       },
@@ -57,9 +61,8 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
     <Box>
       {isFilterListOpen ? (
         <>
-          {filterList.map((filter) => {
-            const title = Object.keys(filter)[0];
-            const tags = filter[title];
+          {filterList.map((filterObj) => {
+            const { title, tags } = filterObj;
             return (
               <HStack w="full" key={title}>
                 <FilterTag
@@ -69,9 +72,13 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
                 <HStack gap={"15px"} overflowX={"scroll"}>
                   {tags.map((tag: string) => {
                     return (
-                      <Button key={tag} onClick={() => onClickTag(title, tag)}>
-                        <Text {...getFilterRowStyles(title, tag)}>{tag}</Text>
-                      </Button>
+                      <Text
+                        key={tag}
+                        {...getFilterRowStyles(title, tag).textStyle}
+                        onClick={() => onClickTag(title, tag)}
+                      >
+                        {tag}
+                      </Text>
                     );
                   })}
                 </HStack>
