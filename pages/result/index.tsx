@@ -2,8 +2,12 @@ import { Box, Circle, Flex } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
-import { CardType, MOCK_CARD_LIST } from "../../interface/static";
-import { CategoryFilterListType } from "../../interface/types";
+import {
+  CardType,
+  MOCK_CARD_LIST,
+  MOCK_CATEGORY_FILTER_LIST,
+} from "../../interface/static";
+import { CategoryFilterListType, CategoryTitle } from "../../interface/types";
 import { EmptyFilter, WhiteFilter } from "../../public/svg";
 import CardItem from "../../src/card/CardItem";
 import { CardContainer } from "../../src/card/CardList/TwoByTwoCardList";
@@ -31,39 +35,28 @@ const SearchResultPage = () => {
     return item.beerName.includes(id[0]);
   });
 
-  const handleClick = () => {
+  const handleClickToggle = () => {
     setIsFilterListOpen(!isFilterListOpen);
   };
 
-  // const categoryFilterList = [
-  //   { title: "좋아요순", tagList: ["좋아요", "별점순", "리뷰많은 순"] },
-  //   { title: "맥주 종류", tagList: ["IPA", "필스너"] },
-  //   { title: "제조국", tagList: ["독일", "미국", "일본"] },
-  //   { title: "도수", tagList: ["논알콜", "3%미만", "3%대"] },
-  // ];
-
-  const categoryFilterList: CategoryFilterListType = [
-    { 좋아요순: ["좋아요", "별점순", "리뷰많은 순"] },
-    { 맥주종류: ["IPA", "필스너"] },
-    { 제조국: ["독일", "미국", "일본"] },
-    { 도수: ["논알콜", "3%미만", "3%대"] },
-  ];
-
-  const handleClickTag = (targetTitle: string, targetTag: string) => {};
+  const handleClickTag = (targetTitle: string, targetTag: string) => {
+    console.log("targetTitle", targetTitle, "targetTag", targetTag);
+  };
 
   return (
     <Container>
       <Flex gap="10px" alignItems="center" mb="24px">
         <SearchInput clearValue={clearValue} />
-        <Circle size="31px" bg="blue.100" onClick={handleClick}>
+        <Circle size="31px" bg="blue.100" onClick={handleClickToggle}>
           {isFilterListOpen ? <WhiteFilter /> : <EmptyFilter />}
         </Circle>
       </Flex>
       <SearchFilterList
         selectedFilters={selectedFilters}
-        filterList={categoryFilterList}
-        onClick={handleClick}
+        filterList={MOCK_CATEGORY_FILTER_LIST}
         isFilterListOpen={isFilterListOpen}
+        onClickToggle={handleClickToggle}
+        onClickTag={handleClickTag}
       />
       {filteredItemList.length > 0 ? (
         <Box mt="15px">

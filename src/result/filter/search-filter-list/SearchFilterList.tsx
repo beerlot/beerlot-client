@@ -12,14 +12,16 @@ interface SearchFilterListProps {
   isFilterListOpen: boolean;
   filterList: CategoryFilterListType[];
   selectedFilters: CategoryFilterListType[];
-  onClick: () => void;
+  onClickToggle: () => void;
+  onClickTag: (targetTitle: string, targetTag: string) => void;
 }
 
 const SearchFilterList: React.FC<SearchFilterListProps> = ({
   isFilterListOpen,
   filterList,
   selectedFilters,
-  onClick,
+  onClickToggle,
+  onClickTag,
 }) => {
   const getFilterTagStyles = (targetTitle: string) => {
     return {
@@ -56,20 +58,19 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
       {isFilterListOpen ? (
         <>
           {filterList.map((filter) => {
+            const title = Object.keys(filter)[0];
+            const tags = filter[title];
             return (
-              <HStack w="full" key={filter.title}>
+              <HStack w="full" key={title}>
                 <FilterTag
-                  tagText={filter.title}
-                  filterTagStyles={getFilterTagStyles(filter.title)}
+                  tagText={title}
+                  filterTagStyles={getFilterTagStyles(title)}
                 />
                 <HStack gap={"15px"} overflowX={"scroll"}>
-                  {/* TODO: fix any type */}
-                  {filter.tagList.map((tag: any) => {
+                  {tags.map((tag: string) => {
                     return (
-                      <Button key={tag}>
-                        <Text {...getFilterRowStyles(filter.title, tag)}>
-                          {tag}
-                        </Text>
+                      <Button key={tag} onClick={() => onClickTag(title, tag)}>
+                        <Text {...getFilterRowStyles(title, tag)}>{tag}</Text>
                       </Button>
                     );
                   })}
@@ -90,7 +91,7 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
         //     );
         //   })}
         // </Box>
-        <Button px={0} onClick={onClick} bg="white">
+        <Button px={0} onClick={onClickToggle} bg="white">
           <Flex
             gap="10px"
             p={0}
