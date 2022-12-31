@@ -1,6 +1,6 @@
-import { Box, Circle, Flex } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import {Box, Circle, Flex} from "@chakra-ui/react";
+import {useRouter} from "next/router";
+import {useEffect, useState} from "react";
 import {
   CardType,
   MOCK_CARD_LIST,
@@ -10,21 +10,21 @@ import {
   CategoryFilterListType,
   CategoryTitleStatic,
 } from "../../interface/types";
-import { EmptyFilter, WhiteFilter } from "../../public/svg";
+import {EmptyFilter, WhiteFilter} from "../../public/svg";
 import CardItem from "../../src/card/CardItem";
-import { CardContainer } from "../../src/card/CardList/TwoByTwoCardList";
+import {CardContainer} from "../../src/card/CardList/TwoByTwoCardList";
 import EmptyFilteredResult from "../../src/result/EmptyFilteredResult";
 import SearchFilterList from "../../src/result/filter/search-filter-list/SearchFilterList";
 import SearchInput from "../../src/search/SearchInput";
 
 const SearchResultPage = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const {id} = router.query;
   const [isFilterListOpen, setIsFilterListOpen] = useState<boolean>(true);
   const [value, setValue] = useState<string>("");
   const [selectedFilters, setSelectedFilter] = useState<
     CategoryFilterListType[]
-  >([{ title: "정렬 기준", tags: ["a", "b"] }]);
+  >([{title: "정렬 기준", tags: ["a", "b"]}]);
 
   const clearValue = () => {
     setValue("");
@@ -50,10 +50,10 @@ const SearchResultPage = () => {
     if (selectedObjList.length === 0) {
       const newSelectedFilters = [
         ...selectedFilters,
-        { title: targetTitle, tags: [targetTag] },
+        {title: targetTitle, tags: [targetTag]},
       ];
       // TODO: fix problem
-      setSelectedFilter(newSelectedFilters);
+      // setSelectedFilter(newSelectedFilters);
       return;
     }
 
@@ -64,7 +64,7 @@ const SearchResultPage = () => {
       : [...selectedTags, targetTag];
     const newSelectedFilters2 = selectedFilters.map((itemObj) => {
       if (itemObj.title === targetTitle) {
-        return { title: targetTitle, tags: newTags };
+        return {title: targetTitle, tags: newTags};
       }
       return itemObj;
     });

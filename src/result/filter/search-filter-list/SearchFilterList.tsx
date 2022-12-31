@@ -1,9 +1,8 @@
-import { Box, HStack, Text } from "@chakra-ui/react";
+import {Box, HStack, Text} from "@chakra-ui/react";
 import React from "react";
 import FilterTag from "../../../../common/Filters/FilterTag";
-import { CategoryFilterListType } from "../../../../interface/types";
-import { checkIsSelectedCategoryTitle } from "../../../../utils/array";
-import { BottomArrow, RightArrow } from "../../../../public/svg";
+import {CategoryFilterListType} from "../../../../interface/types";
+import {checkIsSelectedCategoryTitle} from "../../../../utils/array";
 
 interface SearchFilterListProps {
   isFilterListOpen: boolean;
@@ -47,7 +46,6 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
     ) {
       isSelected = true;
     }
-    console.log("isSelected", isSelected);
     return {
       textStyle: {
         bg: "none",
@@ -62,7 +60,7 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
       {isFilterListOpen ? (
         <>
           {filterList.map((filterObj) => {
-            const { title, tags } = filterObj;
+            const {title, tags} = filterObj;
             return (
               <HStack w="full" key={title}>
                 <FilterTag
@@ -89,7 +87,7 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
       ) : (
         <HStack>
           {filterList.map((filterObj) => {
-            const { title } = filterObj;
+            const {title} = filterObj;
             return (
               <FilterTag
                 onClick={onClickToggle}
