@@ -78,7 +78,7 @@ const SearchResultPage = () => {
 
   return (
     <Box p={"24px"}>
-      <Flex gap="10px" alignItems="center" mb="24px">
+      {/* <Flex gap="10px" alignItems="center" mb="24px">
         <SearchInput clearValue={clearValue} />
         <Circle size="31px" bg="blue.100" onClick={handleClickToggle}>
           {isFilterListOpen ? <WhiteFilter /> : <EmptyFilter />}
@@ -115,7 +115,7 @@ const SearchResultPage = () => {
         </Box>
       ) : (
         <EmptyFilteredResult />
-      )}
+      )} */}
     </Box>
   );
 };
