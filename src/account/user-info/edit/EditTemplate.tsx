@@ -12,6 +12,10 @@ const EditTemplate = () => {
   const [isBioValid, setIsBioValid] = useState<boolean | null>(null);
   const [bio, setBio] = useState("");
   const [bioGuideText, setBioGuideText] = useState("");
+  const rightTitleStyleProps = {
+    disabled: !isNicknameValid,
+    textColor: isNicknameValid ? "orange.200" : "gray.200",
+  };
 
   const onNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
@@ -58,9 +62,18 @@ const EditTemplate = () => {
     setIsBioValid(true);
   };
 
+  const handleClickComplete = () => {
+    console.log("handleClickComplete clicked");
+  };
+
   return (
     <>
-      <LeftXTitleRightComplete />
+      <LeftXTitleRightComplete
+        title={"프로필 편집"}
+        rightTitleStyleProps={rightTitleStyleProps}
+        rightTitle={"완료"}
+        onClickRight={handleClickComplete}
+      />
       <VStack px="30px" py="10px" gap="32px" pt="40px">
         <VStack gap="10px">
           <ProfileAvatar

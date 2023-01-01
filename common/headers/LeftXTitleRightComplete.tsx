@@ -1,15 +1,20 @@
-import {Flex} from "@chakra-ui/react";
+import {Button, ButtonProps, Flex, Text, TextProps} from "@chakra-ui/react";
 import React from "react";
 import CloseButton from "../CloseButton";
-import {AlertBellPath} from "../custom-icons/customPath";
 import BeerlotTitle from "./BeerlotTitle";
 
 interface LeftXTitleRightCompleteProps {
   title?: string;
+  rightTitle?: string;
+  rightTitleStyleProps?: ButtonProps;
+  onClickRight?: () => void;
 }
 
 const LeftXTitleRightComplete: React.FC<LeftXTitleRightCompleteProps> = ({
   title,
+  rightTitle,
+  rightTitleStyleProps,
+  onClickRight,
 }) => {
   return (
     <Flex
@@ -24,8 +29,24 @@ const LeftXTitleRightComplete: React.FC<LeftXTitleRightCompleteProps> = ({
       border="1px solid red"
     >
       <CloseButton />
-      {title ?? <BeerlotTitle />}
-      {AlertBellPath()}
+      {title ? (
+        <Text textColor={"black"} textStyle="h2_bold">
+          {title}
+        </Text>
+      ) : (
+        <BeerlotTitle />
+      )}
+      {rightTitle && (
+        <Button
+          onClick={onClickRight}
+          bg={"initial"}
+          _hover={{}}
+          _focus={{}}
+          {...rightTitleStyleProps}
+        >
+          <Text textStyle="h3_bold">{rightTitle}</Text>
+        </Button>
+      )}
     </Flex>
   );
 };
