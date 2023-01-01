@@ -1,16 +1,30 @@
 import {Text, VStack} from "@chakra-ui/react";
 import React, {useState} from "react";
+import {useRecoilState} from "recoil";
 import LeftXTitleRightComplete from "../../../../common/headers/LeftXTitleRightComplete";
 import NicknameInput from "../../../../common/NicknameInput";
 import ProfileAvatar from "../../../../common/ProfileAvatar";
+import {userInfoState} from "../../../store/atom";
 
 const EditTemplate = () => {
-  const MOCK_IMAGE_SRC = "https://picsum.photos/seed/picsum/200/300";
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+
+  // TODO: error handling should be added
+  if (userInfo === null) {
+    throw new Error("this shouldn't happen");
+  }
+
+  const {
+    image_url = `/image/default-profile.png`,
+    username,
+    statusMessage = "",
+  } = userInfo;
+
   const [isNicknameValid, setIsNicknameValid] = useState<boolean | null>(null);
-  const [nickname, setNickname] = useState("");
+  const [nickname, setNickname] = useState(username);
   const [nicknameGuideText, setNicknameGuideText] = useState("");
   const [isBioValid, setIsBioValid] = useState<boolean | null>(null);
-  const [bio, setBio] = useState("");
+  const [bio, setBio] = useState(statusMessage);
   const [bioGuideText, setBioGuideText] = useState("");
   const rightTitleStyleProps = {
     disabled: !isNicknameValid,
@@ -74,11 +88,11 @@ const EditTemplate = () => {
         rightTitle={"완료"}
         onClickRight={handleClickComplete}
       />
-      <VStack px="30px" py="10px" gap="32px" pt="40px">
+      <VStack px="30px" py="10px" gap="32px" pt="50px">
         <VStack gap="10px">
           <ProfileAvatar
             alt="user profile photo"
-            src={MOCK_IMAGE_SRC}
+            src={image_url}
             boxSize="100px"
           />
           <Text textStyle="h3_bold" textColor="orange.200">

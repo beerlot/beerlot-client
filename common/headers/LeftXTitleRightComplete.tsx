@@ -26,7 +26,8 @@ const LeftXTitleRightComplete: React.FC<LeftXTitleRightCompleteProps> = ({
       pr="24px"
       justifyContent="space-between"
       alignItems="center"
-      border="1px solid red"
+      borderBottom="1px solid"
+      borderBottomColor="gray.200"
     >
       <CloseButton />
       {title ? (

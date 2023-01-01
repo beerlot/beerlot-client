@@ -15,9 +15,12 @@ const CloseButton: React.FC<CloseButtonProps> = ({onClick}) => {
 
   return (
     <IconButton
+      colorScheme="black"
+      bg={"initial"}
       aria-label="x-button"
-      icon={CrossX}
+      icon={<CrossX />}
       onClick={onClick ? onClick : handleClick}
+      _hover={{}}
     />
   );
 };
