@@ -1,6 +1,6 @@
-import { Text, VStack } from "@chakra-ui/react";
-import React, { useState } from "react";
-import NavHeader from "../../../../common/NavHeader";
+import {Text, VStack} from "@chakra-ui/react";
+import React, {useState} from "react";
+import LeftXTitleRightComplete from "../../../../common/headers/LeftXTitleRightComplete";
 import NicknameInput from "../../../../common/NicknameInput";
 import ProfileAvatar from "../../../../common/ProfileAvatar";
 
@@ -60,8 +60,8 @@ const EditTemplate = () => {
 
   return (
     <>
-      <NavHeader />
-      <VStack px="30px" py="10px" gap="32px">
+      <LeftXTitleRightComplete />
+      <VStack px="30px" py="10px" gap="32px" pt="40px">
         <VStack gap="10px">
           <ProfileAvatar
             alt="user profile photo"

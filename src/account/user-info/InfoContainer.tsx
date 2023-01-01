@@ -1,4 +1,4 @@
-import { HStack, Text, VStack } from "@chakra-ui/react";
+import {HStack, Text, VStack} from "@chakra-ui/react";
 import React from "react";
 import ProfileAvatar from "../../../common/ProfileAvatar";
 
@@ -6,7 +6,7 @@ interface InfoContainerProps {
   imageSrc: string;
 }
 
-const InfoContainer: React.FC<InfoContainerProps> = ({ imageSrc }) => {
+const InfoContainer: React.FC<InfoContainerProps> = ({imageSrc}) => {
   return (
     <HStack
       w="100%"
@@ -17,7 +17,8 @@ const InfoContainer: React.FC<InfoContainerProps> = ({ imageSrc }) => {
       gap="30px"
     >
       <ProfileAvatar alt="user profile photo" src={imageSrc} boxSize="76px" />
-      <VStack>
+      {/* TODO: will be added in v2 */}
+      {/* <VStack>
         <Text>10</Text>
         <Text>리뷰</Text>
       </VStack>
@@ -28,7 +29,7 @@ const InfoContainer: React.FC<InfoContainerProps> = ({ imageSrc }) => {
       <VStack>
         <Text>72</Text>
         <Text>팔로잉</Text>
-      </VStack>
+      </VStack> */}
     </HStack>
   );
 };

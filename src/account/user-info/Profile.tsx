@@ -1,4 +1,4 @@
-import { VStack } from "@chakra-ui/react";
+import {VStack} from "@chakra-ui/react";
 import React from "react";
 import EditProfileButton from "./EditProfileButton";
 import InfoContainer from "./InfoContainer";
