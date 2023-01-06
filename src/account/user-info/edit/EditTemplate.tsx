@@ -1,20 +1,23 @@
-import {VStack} from "@chakra-ui/react";
-import {useRouter} from "next/router";
-import React, {useEffect, useRef, useState} from "react";
-import {useRecoilState} from "recoil";
+import { VStack } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import React, { useRef, useState } from "react";
+import { SetterOrUpdater } from "recoil";
 import LeftXTitleRightComplete from "../../../../common/headers/LeftXTitleRightComplete";
 import NicknameInput from "../../../../common/NicknameInput";
 import ProfileAvatar from "../../../../common/ProfileAvatar";
-import {userInfoState} from "../../../store/atom";
+import { SignUpType } from "../../../../interface/types";
 
-const EditTemplate = () => {
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+interface EditTemplateProps {
+  userInfo: SignUpType;
+  setUserInfo: SetterOrUpdater<SignUpType | null>;
+}
+
+const EditTemplate: React.FC<EditTemplateProps> = ({
+  userInfo,
+  setUserInfo,
+}) => {
   const router = useRouter();
   // TODO: error handling should be added
-  if (userInfo === null) {
-    throw new Error("this shouldn't happen");
-  }
-
   const {
     image_url = `/image/default-profile.png`,
     username,
@@ -81,7 +84,7 @@ const EditTemplate = () => {
 
   const handleClickComplete = () => {
     setUserInfo({
-      email: userInfo.email,
+      email: userInfo?.email,
       image_url: imgFile,
       username: nickname,
       statusMessage: bio,
@@ -138,7 +141,7 @@ const EditTemplate = () => {
               id="profileImg"
               onChange={handleChangeProfileImage}
               ref={imgRef}
-              style={{display: "none"}}
+              style={{ display: "none" }}
             />
           </form>
         </VStack>
