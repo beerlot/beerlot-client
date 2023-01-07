@@ -1,18 +1,18 @@
-import { Box, Flex } from "@chakra-ui/react";
+import {Box, Flex} from "@chakra-ui/react";
 import React from "react";
 import BackButton from "../BackButton";
 import BeerlotTitle from "./BeerlotTitle";
 
-export const LeftBackTitle = () => {
+export const LeftBackTitle = ({...props}) => {
   return (
     <Flex
+      {...props}
       position="absolute"
       top="0px"
       right="0px"
       left="0px"
-      pt="30px"
-      pb="30px"
-      px="35px"
+      py="16px"
+      px="20px"
       justifyContent="space-between"
       alignItems="center"
       dropShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
