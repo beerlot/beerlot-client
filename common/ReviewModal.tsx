@@ -21,6 +21,7 @@ import {ReviewStatic} from "../interface/static";
 import {BeerResultType, CategoryType, ReviewType} from "../interface/types";
 import {EditPencil, OrangeCamera, RightArrow} from "../public/svg";
 import SearchInput from "../src/search/SearchInput";
+import BottomDrawer from "./BottomDrawer";
 import {LeftBackRandom} from "./headers/LeftBackRandom";
 import {LeftCloseRandom} from "./headers/LeftCloseRandom";
 import {Rating} from "./Rating";
@@ -31,8 +32,7 @@ export const ReviewModal = () => {
     rate: 0,
   });
   const isCompleted = !!reviewInfo.beerName && !!reviewInfo.rate; // should contain rating stars as well
-  console.log({reviewInfo});
-  console.log({isCompleted});
+  const CloseReviewDrawer = useDisclosure();
   const [step, setStep] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [attachedFile, setAttachedPhoto] = useState([]);
@@ -59,7 +59,7 @@ export const ReviewModal = () => {
   };
 
   return (
-    <Box>
+    <Box position={"relative"}>
       <Button
         onClick={handleSizeClick}
         w="70px"
@@ -73,11 +73,53 @@ export const ReviewModal = () => {
         {/* TODO: should be replaced */}
         <EditPencil />
       </Button>
+      {/* LOGOUT drawer */}
+      <BottomDrawer
+        headerText={"정말로 나가실 건가요?"}
+        onClose={CloseReviewDrawer.onClose}
+        isOpen={CloseReviewDrawer.isOpen}
+        boxStyle={{
+          justifyContent: "center",
+          gap: "50px",
+          w: "full",
+          bg: "white",
+          p: "38px 20px 34px 21px",
+          borderRadius: "10px 10px 0px 0px",
+        }}
+        leftButtonText={"나가기"}
+        leftButtonStyle={{
+          w: "full",
+          py: "10px",
+          px: "39px",
+          onClick: () => {
+            // TODO: reset everything
+            setReviewInfo({
+              beerName: null,
+              rate: 0,
+            });
+            onClose();
+            CloseReviewDrawer.onClose();
+          },
+        }}
+        rightButtonText={"계속 작성하기"}
+        rightButtonStyle={{
+          w: "full",
+          bg: "blue.100",
+          py: "10px",
+          px: "22px",
+          onClick: () => {
+            CloseReviewDrawer.onClose();
+          },
+        }}
+      />
       <Modal onClose={onClose} size={"full"} isOpen={isOpen}>
         {step === 0 && (
           <ModalContent px="20px" pb="40px" maxW="452px">
             <ModalHeader pt="46px">
-              <LeftCloseRandom onClose={onClose} title="글쓰기" />
+              <LeftCloseRandom
+                onClose={CloseReviewDrawer.onOpen}
+                title="글쓰기"
+              />
             </ModalHeader>
             <ModalBody p={0} pt="10px">
               <VStack
