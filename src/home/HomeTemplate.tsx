@@ -1,7 +1,6 @@
 import {Box, Container, Text} from "@chakra-ui/react";
 import {useQuery} from "react-query";
 import {useRecoilState} from "recoil";
-import styled from "styled-components";
 import {BlankHeader} from "../../common/headers/BlankHeader";
 import {POPULAR_BEER_TITLE} from "../../interface/static";
 import {BeerResultType, ErrorResponse} from "../../interface/types";
