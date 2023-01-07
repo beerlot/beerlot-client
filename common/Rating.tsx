@@ -1,21 +1,20 @@
-import { HStack, IconButton } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { OrangeStar } from "./custom-icons/customIcons";
+import {HStack, IconButton} from "@chakra-ui/react";
+import React from "react";
+import {OrangeStar} from "./custom-icons/customIcons";
 
 interface RatingProps {
   starSize?: number;
   styleProps?: any;
+  onClick?: (rate: number) => void;
+  rate: number;
 }
 
 export const Rating: React.FC<RatingProps> = ({
   starSize = 40,
   styleProps,
+  rate,
+  onClick,
 }) => {
-  const [rating, setRating] = useState(0);
-  const handleClick = (idx: number) => {
-    setRating(idx);
-  };
-
   return (
     <HStack {...styleProps}>
       {[1, 2, 3, 4, 5].map((star) => {
@@ -25,9 +24,9 @@ export const Rating: React.FC<RatingProps> = ({
             aria-label="star"
             as={OrangeStar}
             fontSize={`${starSize}px`}
-            color={star <= rating ? "orange.200" : "white"}
+            color={star <= rate ? "orange.200" : "white"}
             size={`${starSize}px`}
-            onClick={() => handleClick(star)}
+            onClick={onClick ? () => onClick(star) : undefined}
           />
         );
       })}
