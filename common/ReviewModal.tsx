@@ -3,6 +3,7 @@ import {
   Button,
   Flex,
   HStack,
+  Icon,
   IconButton,
   Modal,
   ModalBody,
@@ -19,7 +20,13 @@ import {
 import React, {ChangeEvent, useState} from "react";
 import {ReviewStatic} from "../interface/static";
 import {BeerResultType, CategoryType, ReviewType} from "../interface/types";
-import {EditPencil, OrangeCamera, RightArrow} from "../public/svg";
+import {
+  EditPencil,
+  OrangeCamera,
+  RightArrow,
+  CrossX,
+  CrossXBlack,
+} from "../public/svg";
 import SearchInput from "../src/search/SearchInput";
 import BottomDrawer from "./BottomDrawer";
 import {LeftBackRandom} from "./headers/LeftBackRandom";
@@ -55,6 +62,11 @@ export const ReviewModal = () => {
 
   const handleChangeRate = (rate: number) => {
     const newBeerReview = {...reviewInfo, rate: rate};
+    setReviewInfo(newBeerReview);
+  };
+
+  const handleClickPlaceTag = (place: string) => {
+    const newBeerReview = {...reviewInfo, place: place};
     setReviewInfo(newBeerReview);
   };
 
@@ -167,7 +179,7 @@ export const ReviewModal = () => {
                   />
                 </Flex>
                 {/* purchase */}
-                <VStack p="10px" gap="10px" alignItems={"flex-start"}>
+                <VStack p="10px" gap="10px" w="full" alignItems={"flex-start"}>
                   <Box>
                     <Text as="span" textStyle="h2" textColor="black.100">
                       이 맥주 어디서 구매하셨나요?{" "}
@@ -176,24 +188,54 @@ export const ReviewModal = () => {
                       (선택)
                     </Text>
                   </Box>
-                  <HStack w="full" gap="10px">
-                    {purchasePlaces.map((place) => {
-                      return (
-                        <Tag
-                          borderRadius={"4px"}
-                          boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
-                          bg="gray.100"
-                          key={place}
-                          size="md"
-                          variant="solid"
-                          colorScheme="orange"
-                        >
-                          <Text textStyle={"h2"} textColor="gray.300">
-                            {place}
-                          </Text>
-                        </Tag>
-                      );
-                    })}
+                  <HStack
+                    w="full"
+                    gap="10px"
+                    justify={"space-between"}
+                    alignItems={"stretch"}
+                  >
+                    {reviewInfo.place ? (
+                      <Tag
+                        borderRadius={"4px"}
+                        bg="gray.100"
+                        size="md"
+                        cursor="pointer"
+                      >
+                        <Text textStyle={"h2"} textColor="gray.300">
+                          {reviewInfo.place}
+                        </Text>
+                      </Tag>
+                    ) : (
+                      <Flex gap="10px">
+                        {purchasePlaces.map((place) => {
+                          return (
+                            <Tag
+                              borderRadius={"4px"}
+                              bg="gray.100"
+                              key={place}
+                              size="md"
+                              cursor="pointer"
+                              onClick={() => handleClickPlaceTag()}
+                            >
+                              <Text textStyle={"h2"} textColor="gray.300">
+                                {place}
+                              </Text>
+                            </Tag>
+                          );
+                        })}
+                      </Flex>
+                    )}
+
+                    {reviewInfo.place && (
+                      <IconButton
+                        size={"24px"}
+                        px={"0px"}
+                        aria-label="delete-x-button"
+                        icon={<CrossXBlack />}
+                        _hover={{}}
+                        _active={{}}
+                      />
+                    )}
                   </HStack>
                 </VStack>
                 {/* review */}
