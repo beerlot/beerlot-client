@@ -1,10 +1,10 @@
-import {Box, Checkbox, Text, VStack} from "@chakra-ui/react";
+import {Box, Checkbox, Icon, Text, VStack} from "@chakra-ui/react";
 import {useRouter} from "next/router";
 import React, {useState} from "react";
 import {useRecoilState} from "recoil";
 import FloatingButton from "../../../common/FloatingButton";
 import NicknameInput from "../../../common/NicknameInput";
-import {CheckedBox, CheckedOrange, UncheckedBox} from "../../../public/svg";
+import {OrangeCheckBox, EmptyCheckBox} from "../../../public/svg";
 import {userInfoState} from "../../store/atom";
 
 const Nickname = () => {
@@ -79,7 +79,7 @@ const Nickname = () => {
         />
         <Box px="8px" w="100%">
           <Checkbox
-            icon={allChecked ? <CheckedBox /> : <UncheckedBox />}
+            colorScheme={"blue"}
             w="100%"
             bg="gray.100"
             borderRadius="5px"
@@ -95,12 +95,11 @@ const Nickname = () => {
             </Text>
           </Checkbox>
           <Checkbox
-            colorScheme="undefined"
             w="100%"
+            colorScheme={"blue"}
             borderRadius="5px"
             py="8px"
             px="6px"
-            icon={checkedItems[0] ? <CheckedBox /> : <UncheckedBox />}
             isChecked={checkedItems[0]}
             onChange={(e) =>
               setCheckedItems([e.target.checked, checkedItems[1]])
@@ -112,10 +111,10 @@ const Nickname = () => {
           </Checkbox>
           <Checkbox
             w="100%"
+            colorScheme={"blue"}
             borderRadius="5px"
             py="8px"
             px="6px"
-            icon={checkedItems[1] ? <CheckedOrange /> : <UncheckedBox />}
             isChecked={checkedItems[1]}
             onChange={(e) =>
               setCheckedItems([checkedItems[0], e.target.checked])
