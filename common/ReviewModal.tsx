@@ -65,7 +65,7 @@ export const ReviewModal = () => {
     setReviewInfo(newBeerReview);
   };
 
-  const handleClickPlaceTag = (place: string) => {
+  const handleClickPlaceTag = (place: string | null) => {
     const newBeerReview = {...reviewInfo, place: place};
     setReviewInfo(newBeerReview);
   };
@@ -197,11 +197,13 @@ export const ReviewModal = () => {
                     {reviewInfo.place ? (
                       <Tag
                         borderRadius={"4px"}
-                        bg="gray.100"
+                        bg="white"
+                        border="1px solid"
+                        borderColor={"orange.200"}
                         size="md"
                         cursor="pointer"
                       >
-                        <Text textStyle={"h2"} textColor="gray.300">
+                        <Text textStyle={"h2"} textColor="orange.200">
                           {reviewInfo.place}
                         </Text>
                       </Tag>
@@ -215,7 +217,7 @@ export const ReviewModal = () => {
                               key={place}
                               size="md"
                               cursor="pointer"
-                              onClick={() => handleClickPlaceTag()}
+                              onClick={() => handleClickPlaceTag(place)}
                             >
                               <Text textStyle={"h2"} textColor="gray.300">
                                 {place}
@@ -228,12 +230,14 @@ export const ReviewModal = () => {
 
                     {reviewInfo.place && (
                       <IconButton
+                        bg="initial"
                         size={"24px"}
                         px={"0px"}
                         aria-label="delete-x-button"
                         icon={<CrossXBlack />}
                         _hover={{}}
                         _active={{}}
+                        onClick={() => handleClickPlaceTag(null)}
                       />
                     )}
                   </HStack>
@@ -410,5 +414,26 @@ const BeerSearchContent: React.FC<BeerSearchContentProps> = ({
         </VStack>
       </ModalBody>
     </ModalContent>
+  );
+};
+
+interface PlaceTagProps {
+  place: string;
+}
+
+export const PlaceTag: React.FC<PlaceTagProps> = ({place}) => {
+  return (
+    <Tag
+      borderRadius={"4px"}
+      bg="white"
+      border="1px solid"
+      borderColor={"orange.200"}
+      size="md"
+      cursor="pointer"
+    >
+      <Text textStyle={"h2"} textColor="orange.200">
+        {place}
+      </Text>
+    </Tag>
   );
 };
