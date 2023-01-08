@@ -472,24 +472,3 @@ const BeerSearchContent: React.FC<BeerSearchContentProps> = ({
     </ModalContent>
   );
 };
-
-interface PlaceTagProps {
-  place: string;
-}
-
-export const PlaceTag: React.FC<PlaceTagProps> = ({place}) => {
-  return (
-    <Tag
-      borderRadius={"4px"}
-      bg="white"
-      border="1px solid"
-      borderColor={"orange.200"}
-      size="md"
-      cursor="pointer"
-    >
-      <Text textStyle={"h2"} textColor="orange.200">
-        {place}
-      </Text>
-    </Tag>
-  );
-};
