@@ -109,7 +109,7 @@ interface SearchFilterTagProps extends ButtonProps {
   onClick?: () => void;
 }
 
-const SearchFilterTag: React.FC<SearchFilterTagProps> = ({
+export const SearchFilterTag: React.FC<SearchFilterTagProps> = ({
   title,
   selectedFilters,
   isFilterListOpen,
