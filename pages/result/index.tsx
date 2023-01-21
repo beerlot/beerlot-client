@@ -27,7 +27,7 @@ const SearchResultPage = () => {
   const clearValue = () => {
     setValue("");
   };
-  console.log({isFilterListOpen});
+
   const filteredItemList = MOCK_CARD_LIST.filter((item) => {
     if (!id) {
       return [];
@@ -86,7 +86,7 @@ const SearchResultPage = () => {
       >
         <LeftBackTitle />
         <Box p={"68px 24px 24px"}>
-          <Flex gap="10px" alignItems="center" mb="10px">
+          <Flex gap="10px" alignItems="center" mb="10px" cursor={"pointer"}>
             <SearchInput clearValue={clearValue} />
             <Circle size="31px" bg="blue.100" onClick={handleClickToggle}>
               {isFilterListOpen ? <WhiteFilter /> : <EmptyFilter />}

@@ -31,7 +31,13 @@ export const SearchFilterList: React.FC<SearchFilterListProps> = ({
           {filterList.map((filterObj) => {
             const {title, tags} = filterObj;
             return (
-              <HStack w="full" key={title} py="5px">
+              <HStack
+                w="full"
+                key={title}
+                py="5px"
+                borderBottom={"1px solid"}
+                borderBottomColor="gray.200"
+              >
                 <SearchFilterTag
                   title={title}
                   selectedFilters={selectedFilters}
@@ -63,7 +69,9 @@ export const SearchFilterList: React.FC<SearchFilterListProps> = ({
                             ? "h4_bold"
                             : "h4"
                         }
-                        onClick={() => onClickTag(title, tag)}
+                        onClick={() => {
+                          onClickTag(title, tag);
+                        }}
                       >
                         {tag}
                       </Text>
