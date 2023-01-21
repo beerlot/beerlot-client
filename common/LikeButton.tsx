@@ -1,4 +1,4 @@
-import {Icon, IconButtonProps, IconProps} from "@chakra-ui/react";
+import {Icon, IconProps} from "@chakra-ui/react";
 import React from "react";
 import {HeartEmpty, HeartOrange} from "./custom-icons/customIcons";
 
@@ -19,6 +19,7 @@ export const LikeButton: React.FC<LikeButtonProps> = ({
       onClick={onClick}
       as={isClicked ? HeartOrange : HeartEmpty}
       color={isClicked ? "orange.200" : "gray.300"}
+      cursor="pointer"
     />
   );
 };
