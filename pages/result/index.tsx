@@ -86,7 +86,7 @@ const SearchResultPage = () => {
       >
         <LeftBackTitle />
         <Box p={"68px 24px 24px"}>
-          <Flex gap="10px" alignItems="center" mb="24px">
+          <Flex gap="10px" alignItems="center" mb="10px">
             <SearchInput clearValue={clearValue} />
             <Circle size="31px" bg="blue.100" onClick={handleClickToggle}>
               {isFilterListOpen ? <WhiteFilter /> : <EmptyFilter />}

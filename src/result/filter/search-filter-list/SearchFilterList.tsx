@@ -1,4 +1,4 @@
-import {Box, HStack, Icon, Text} from "@chakra-ui/react";
+import {Box, ButtonProps, HStack, Icon, Text} from "@chakra-ui/react";
 import React from "react";
 import {
   DownChevron,
@@ -31,18 +31,28 @@ export const SearchFilterList: React.FC<SearchFilterListProps> = ({
           {filterList.map((filterObj) => {
             const {title, tags} = filterObj;
             return (
-              <HStack w="full" key={title} border="1px solid green">
+              <HStack w="full" key={title} py="5px">
                 <SearchFilterTag
                   title={title}
                   selectedFilters={selectedFilters}
                   isFilterListOpen={isFilterListOpen}
+                  flexShrink={0}
                 />
-                <HStack gap={"15px"} overflowX={"scroll"} bg="yellow">
+                <HStack
+                  gap={"15px"}
+                  overflowX={"scroll"}
+                  sx={{
+                    "::-webkit-scrollbar": {
+                      display: "none",
+                    },
+                  }}
+                >
                   {tags.map((tag: string) => {
                     return (
                       <Text
+                        flexShrink={0}
                         key={tag}
-                        bg="none"
+                        cursor="pointer"
                         textColor={
                           checkSelectedFilter(selectedFilters, title, tag)
                             ? "black.100"
@@ -84,7 +94,7 @@ export const SearchFilterList: React.FC<SearchFilterListProps> = ({
   );
 };
 
-interface SearchFilterTagProps {
+interface SearchFilterTagProps extends ButtonProps {
   title: string;
   selectedFilters: CategoryFilterListType[];
   isFilterListOpen: boolean;
@@ -96,13 +106,19 @@ const SearchFilterTag: React.FC<SearchFilterTagProps> = ({
   selectedFilters,
   isFilterListOpen,
   onClick,
+  ...props
 }) => {
   return (
     <FilterTag
+      {...props}
       tagText={title}
       borderRadius="15px"
       pl="5px"
+      px={"0px"}
+      py="1.5px"
       h="full"
+      alignItems={"center"}
+      justifyContent={"center"}
       bg={
         checkIsSelectedCategoryTitle(selectedFilters, title)
           ? "yellow.300"
