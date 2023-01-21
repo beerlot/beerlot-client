@@ -52,7 +52,6 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
     duration: 3000,
     containerStyle: {
       margin: "8px",
-      maxWidth: "90%",
     },
     render: () => (
       <Box
