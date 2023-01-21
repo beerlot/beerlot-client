@@ -2,11 +2,11 @@ import {Box, Center, HStack, Image, Text, VStack} from "@chakra-ui/react";
 import {useState} from "react";
 import {LeftBackBeerNameRightHeart} from "../../common/headers/LeftBackBeerNameRightHeart";
 import {LeftBackTitle} from "../../common/headers/LeftBackTitle";
-import OrangeLikeButton from "../../common/OrangeLikeButton";
 import {Rating} from "../../common/Rating";
 import {useToast} from "@chakra-ui/react";
 import {useMutation} from "react-query";
 import axios from "axios";
+import {LikeButton} from "../../common/LikeButton";
 interface DetailInfoProps {
   beerName: string;
   volume: number;
@@ -27,11 +27,7 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
   const [didPassStar, setDidPassStar] = useState(false);
   const [rate, _] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
-  const iconProps = {
-    w: "40px",
-    h: "40px",
-    cursor: "pointer",
-  };
+
   const id = "test-toast";
   const toastTitle = isLiked
     ? "좋아요한 맥주에서 삭제했어요!"
@@ -69,8 +65,8 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
     ),
   });
 
-  const handleClickLike = (state: boolean) => {
-    setIsLiked(state);
+  const handleClickLike = () => {
+    setIsLiked(!isLiked);
     toast();
     isLiked ? dislikeBeer.mutate(beerId) : likeBeer.mutate(beerId); // 데이터 저장
   };
@@ -84,7 +80,7 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
         <LeftBackTitle />
       )}
       {/* image  */}
-      <Center pt="72px" w="full">
+      <Center pt="72px" w="full" px="24px">
         <Image
           boxSize="320px"
           src={beerImg}
@@ -100,12 +96,13 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
           <Text textStyle="h1">{beerName}</Text>
           <HStack gap="20px">
             {/* like button */}
-            <OrangeLikeButton
+            <LikeButton
               isClicked={isLiked}
               onClick={handleClickLike}
-              iconProps={iconProps}
+              w="40px"
+              h="40px"
+              cursor="pointer"
             />
-            <Box />
           </HStack>
         </HStack>
         {/* description */}
