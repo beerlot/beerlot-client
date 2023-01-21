@@ -21,16 +21,7 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
 }) => {
   const getFilterTagStyles = (targetTitle: string) => {
     return {
-      tagStyle: {
-        h: "full",
-        bg: checkIsSelectedCategoryTitle(selectedFilters, targetTitle)
-          ? "yellow.300"
-          : "yellow.200",
-      },
-      textStyle: {
-        textColor: "black.100",
-        textStyle: "h4",
-      },
+      tagStyle: {},
     };
   };
 
@@ -64,7 +55,14 @@ const SearchFilterList: React.FC<SearchFilterListProps> = ({
               <HStack w="full" key={title}>
                 <FilterTag
                   tagText={title}
-                  filterTagStyles={getFilterTagStyles(title)}
+                  borderRadius="15px"
+                  pl="5px"
+                  h="full"
+                  bg={
+                    checkIsSelectedCategoryTitle(selectedFilters, title)
+                      ? "yellow.300"
+                      : "yellow.200"
+                  }
                 />
                 <HStack gap={"15px"} overflowX={"scroll"}>
                   {tags.map((tag: string) => {
