@@ -5,12 +5,15 @@ import {LeftBackTitle} from "../../common/headers/LeftBackTitle";
 import OrangeLikeButton from "../../common/OrangeLikeButton";
 import {Rating} from "../../common/Rating";
 import {useToast} from "@chakra-ui/react";
+import {useMutation} from "react-query";
+import axios from "axios";
 interface DetailInfoProps {
   beerName: string;
   volume: number;
   category: string;
   country: string;
   beerImg: string;
+  beerId: number;
 }
 
 export const DetailInfo: React.FC<DetailInfoProps> = ({
@@ -19,9 +22,10 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
   category,
   country,
   beerImg,
+  beerId,
 }) => {
   const [didPassStar, setDidPassStar] = useState(false);
-  const [rate, setRate] = useState(0);
+  const [rate, _] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const iconProps = {
     w: "40px",
@@ -33,6 +37,13 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
     ? "좋아요한 맥주에서 삭제했어요!"
     : "좋아요한 맥주에 추가했어요!";
 
+  const likeBeer = useMutation((beerId: number) =>
+    axios.post(`/api/v1/beers/${beerId}/likes`)
+  );
+
+  const dislikeBeer = useMutation((beerId: number) =>
+    axios.delete(`/api/v1/beers/${beerId}/likes`)
+  );
   const toast = useToast({
     position: "bottom",
     title: toastTitle,
@@ -62,6 +73,7 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
   const handleClickLike = (state: boolean) => {
     setIsLiked(state);
     toast();
+    isLiked ? dislikeBeer.mutate(beerId) : likeBeer.mutate(beerId); // 데이터 저장
   };
 
   return (
