@@ -1,16 +1,13 @@
 import {Box, Circle, Container, Flex} from "@chakra-ui/react";
 import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {LeftBackTitle} from "../../common/headers/LeftBackTitle";
 import {
   CardType,
   MOCK_CARD_LIST,
   MOCK_CATEGORY_FILTER_LIST,
 } from "../../interface/static";
-import {
-  CategoryFilterListType,
-  CategoryTitleStatic,
-} from "../../interface/types";
+import {CategoryFilterListType} from "../../interface/types";
 import {EmptyFilter, WhiteFilter} from "../../public/svg";
 import CardItem from "../../src/card/CardItem";
 import {CardContainer} from "../../src/card/CardList/TwoByTwoCardList";
@@ -30,7 +27,7 @@ const SearchResultPage = () => {
   const clearValue = () => {
     setValue("");
   };
-
+  console.log({isFilterListOpen});
   const filteredItemList = MOCK_CARD_LIST.filter((item) => {
     if (!id) {
       return [];

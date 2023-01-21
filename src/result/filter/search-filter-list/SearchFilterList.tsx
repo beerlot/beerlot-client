@@ -1,9 +1,13 @@
 import {Box, HStack, Icon, Text} from "@chakra-ui/react";
 import React from "react";
-import {RightChevron} from "../../../../common/custom-icons/customIcons";
+import {
+  DownChevron,
+  RightChevron,
+} from "../../../../common/custom-icons/customIcons";
 import FilterTag from "../../../../common/Filters/FilterTag";
 import {CategoryFilterListType} from "../../../../interface/types";
 import {checkIsSelectedCategoryTitle} from "../../../../utils/array";
+import {checkSelectedFilter} from "../../../../service/filter";
 
 interface SearchFilterListProps {
   isFilterListOpen: boolean;
@@ -20,20 +24,6 @@ export const SearchFilterList: React.FC<SearchFilterListProps> = ({
   onClickToggle,
   onClickTag,
 }) => {
-  const checkSelectedFilter = (targetTitle: string, targetTag: string) => {
-    let isSelected = false;
-    const selectedObjList = selectedFilters.filter(
-      (item) => item.title === targetTitle
-    );
-    if (
-      selectedObjList.length > 0 &&
-      selectedObjList[0].tags.includes(targetTag)
-    ) {
-      isSelected = true;
-    }
-    return isSelected;
-  };
-
   return (
     <Box>
       {isFilterListOpen ? (
@@ -54,12 +44,14 @@ export const SearchFilterList: React.FC<SearchFilterListProps> = ({
                         key={tag}
                         bg="none"
                         textColor={
-                          checkSelectedFilter(title, tag)
+                          checkSelectedFilter(selectedFilters, title, tag)
                             ? "black.100"
                             : "gray.200"
                         }
                         textStyle={
-                          checkSelectedFilter(title, tag) ? "h4_bold" : "h4"
+                          checkSelectedFilter(selectedFilters, title, tag)
+                            ? "h4_bold"
+                            : "h4"
                         }
                         onClick={() => onClickTag(title, tag)}
                       >
@@ -119,7 +111,7 @@ const SearchFilterTag: React.FC<SearchFilterTagProps> = ({
       onClick={onClick}
     >
       <Icon
-        as={isFilterListOpen ? RightChevron : RightChevron}
+        as={isFilterListOpen ? RightChevron : DownChevron}
         w="19px"
         h="19px"
         color="black.100"
