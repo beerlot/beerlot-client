@@ -1,5 +1,5 @@
 import React from "react";
-import { HeartButton, OrangeHeart } from "./custom-icons/customIcons";
+import {HeartButton, OrangeHeart} from "./custom-icons/customIcons";
 
 interface LikeButtonProps {
   isClicked: boolean;
