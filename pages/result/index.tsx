@@ -15,7 +15,7 @@ import {EmptyFilter, WhiteFilter} from "../../public/svg";
 import CardItem from "../../src/card/CardItem";
 import {CardContainer} from "../../src/card/CardList/TwoByTwoCardList";
 import EmptyFilteredResult from "../../src/result/EmptyFilteredResult";
-import SearchFilterList from "../../src/result/filter/search-filter-list/SearchFilterList";
+import {SearchFilterList} from "../../src/result/filter/search-filter-list/SearchFilterList";
 import SearchInput from "../../src/search/SearchInput";
 
 const SearchResultPage = () => {
