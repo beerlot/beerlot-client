@@ -7,7 +7,7 @@ import {
   MOCK_CARD_LIST,
   MOCK_CATEGORY_FILTER_LIST,
 } from "../../interface/static";
-import {CategoryFilterListType} from "../../interface/types";
+import {CategoryFilterListType, CategoryTitle} from "../../interface/types";
 import {EmptyFilter, WhiteFilter} from "../../public/svg";
 import CardItem from "../../src/card/CardItem";
 import {CardContainer} from "../../src/card/CardList/TwoByTwoCardList";
@@ -22,7 +22,7 @@ const SearchResultPage = () => {
   const [value, setValue] = useState<string>("");
   const [selectedFilters, setSelectedFilter] = useState<
     CategoryFilterListType[]
-  >([{title: "정렬 기준", tags: ["a", "b"]}]);
+  >([]);
 
   const clearValue = () => {
     setValue("");
@@ -39,39 +39,30 @@ const SearchResultPage = () => {
     setIsFilterListOpen(!isFilterListOpen);
   };
 
-  // TODO: refactoring highly needed
-  const handleClickTag = (targetTitle: string, targetTag: string) => {
-    const selectedObjList = selectedFilters.filter(
+  const handleClickTag = (targetTitle: CategoryTitle, targetTag: string) => {
+    const isSingleMode = targetTitle === CategoryTitle.SORT_CRITERIA;
+
+    const selectedObjList = selectedFilters.find(
       (item) => item.title === targetTitle
     );
-    // new tag and title
-    if (selectedObjList.length === 0) {
-      const newSelectedFilters = [
+
+    if (selectedObjList === undefined || isSingleMode) {
+      setSelectedFilter([
         ...selectedFilters,
         {title: targetTitle, tags: [targetTag]},
-      ];
-      // TODO: fix problem
-      // setSelectedFilter(newSelectedFilters);
+      ]);
       return;
     }
 
-    const selectedTags = selectedObjList[0].tags;
+    const isSelectedTag = selectedObjList.tags.includes(targetTag);
 
-    const newTags = selectedTags.includes(targetTag)
-      ? selectedTags.filter((tag) => tag !== targetTag)
-      : [...selectedTags, targetTag];
-    const newSelectedFilters2 = selectedFilters.map((itemObj) => {
-      if (itemObj.title === targetTitle) {
-        return {title: targetTitle, tags: newTags};
-      }
-      return itemObj;
-    });
-
-    const newSelectedFilters3 = newSelectedFilters2.filter(
-      (item) => item.tags.length > 0
-    );
-    // TODO: fix problem
-    setSelectedFilter(newSelectedFilters3);
+    if (isSelectedTag) {
+      const newSelectedTagList = selectedObjList.tags.filter(
+        (tag) => tag !== targetTag
+      );
+      console.log("newSelectedTagList", newSelectedTagList);
+      return;
+    }
   };
 
   return (
