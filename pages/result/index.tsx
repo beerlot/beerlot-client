@@ -1,6 +1,6 @@
 import {Box, Circle, Container, Flex} from "@chakra-ui/react";
 import {useRouter} from "next/router";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {LeftBackTitle} from "../../common/headers/LeftBackTitle";
 import {
   CardType,
@@ -39,6 +39,10 @@ const SearchResultPage = () => {
     setIsFilterListOpen(!isFilterListOpen);
   };
 
+  useEffect(() => {
+    console.log("selectedFilters", selectedFilters);
+  }, [selectedFilters]);
+
   const handleClickTag = (targetTitle: CategoryTitle, targetTag: string) => {
     const isSingleMode = targetTitle === CategoryTitle.SORT_CRITERIA;
 
@@ -46,23 +50,51 @@ const SearchResultPage = () => {
       (item) => item.title === targetTitle
     );
 
-    if (selectedObjList === undefined || isSingleMode) {
+    if (selectedObjList === undefined) {
       setSelectedFilter([
         ...selectedFilters,
         {title: targetTitle, tags: [targetTag]},
       ]);
+
+      return;
+    }
+
+    if (isSingleMode) {
+      const newSelectedFilter = selectedFilters.map((obj) => {
+        if (obj.title === targetTitle) {
+          return {title: targetTitle, tags: [targetTag]};
+        }
+        return obj;
+      });
+
+      setSelectedFilter(newSelectedFilter);
+
       return;
     }
 
     const isSelectedTag = selectedObjList.tags.includes(targetTag);
-
     if (isSelectedTag) {
       const newSelectedTagList = selectedObjList.tags.filter(
         (tag) => tag !== targetTag
       );
-      console.log("newSelectedTagList", newSelectedTagList);
+      const newSelectedFilter = selectedFilters.map((obj) => {
+        if (obj.title === targetTitle) {
+          return {title: targetTitle, tags: [...newSelectedTagList]};
+        }
+        return obj;
+      });
+      setSelectedFilter(newSelectedFilter);
       return;
     }
+
+    const newSelectedTagList = [...selectedObjList.tags, targetTag];
+    const newSelectedFilter = selectedFilters.map((obj) => {
+      if (obj.title === targetTitle) {
+        return {title: targetTitle, tags: [...newSelectedTagList]};
+      }
+      return obj;
+    });
+    setSelectedFilter(newSelectedFilter);
   };
 
   return (
