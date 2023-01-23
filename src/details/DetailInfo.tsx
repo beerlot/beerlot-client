@@ -119,7 +119,6 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
             starSize={40}
             styleProps={{
               gap: "20px",
-              border: "1px solid red",
             }}
             onClick={handleClickRate}
           />
