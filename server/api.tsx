@@ -15,11 +15,9 @@ export const getAllBeersApi = async (index: number) => {
   return result;
 };
 
-export const getTop10BeersApi = async ({
-  language = LANGUAGE_TYPE.KR,
-}: {
-  language?: LANGUAGE_TYPE;
-}) => {
+export const getTop10BeersApi = async () => {
+  const language: LANGUAGE_TYPE = LANGUAGE_TYPE.KR;
+
   const result: BeerResultType[] = await axios
     .get(`/api/v1/beers/top?language=${language}`)
     .then((res) => {
