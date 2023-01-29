@@ -1,4 +1,5 @@
 import axios from "axios";
+import {SignUpRequestType} from "../interface/server/types/Auth";
 import {
   BeerResultType,
   CategoryType,
@@ -16,6 +17,11 @@ export const getAllBeersApi = async (index: number) => {
   return result;
 };
 
+/**
+ *
+ * AUTH
+ */
+
 // TODO: prod 모드 보고, Redirect URL 변경
 export const loginWithSocialLogin = async (provider: OAUTH_PROVIDER) => {
   try {
@@ -23,6 +29,15 @@ export const loginWithSocialLogin = async (provider: OAUTH_PROVIDER) => {
     const result = await axios.get(
       `/api/v1/authorize/${provider}?redirect-url=https://beerlot-client.vercel.app`
     );
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const signUpWithSocialLogin = async (request: SignUpRequestType) => {
+  try {
+    const result = await axios.patch(`/api/v1/auth/signup`, request);
     console.log(result);
   } catch (error) {
     console.log(error);
