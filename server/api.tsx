@@ -4,6 +4,7 @@ import {
   CategoryType,
   LANGUAGE_TYPE,
   ReviewSortEnum,
+  OAUTH_PROVIDER,
 } from "../interface/types";
 
 export const getAllBeersApi = async (index: number) => {
@@ -13,6 +14,19 @@ export const getAllBeersApi = async (index: number) => {
       return res.data;
     });
   return result;
+};
+
+// TODO: prod 모드 보고, Redirect URL 변경
+export const loginWithSocialLogin = async (provider: OAUTH_PROVIDER) => {
+  try {
+    console.log("provider", provider);
+    const result = await axios.get(
+      `/api/v1/authorize/${provider}?redirect-url=https://beerlot-client.vercel.app`
+    );
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getTop10BeersApi = async () => {
