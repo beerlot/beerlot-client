@@ -1,35 +1,38 @@
 import {
   RangeSlider,
   RangeSliderFilledTrack,
+  RangeSliderProps,
   RangeSliderThumb,
   RangeSliderTrack,
 } from "@chakra-ui/react";
 import React from "react";
 
-interface VolumeSliderProps {
+interface VolumeSliderProps extends RangeSliderProps {
   min: number;
   max: number;
   value: number[];
   onChange: (val: number[]) => void;
+  trackColor?: string;
 }
 
 export const VolumeSlider: React.FC<VolumeSliderProps> = ({
   min,
   max,
   value,
+  trackColor,
   onChange,
+  ...props
 }) => {
   return (
     <RangeSlider
-      colorScheme="pink"
+      min={min}
+      max={max}
       defaultValue={[min, max]}
-      onChange={(val) => {
-        console.log({val});
-        onChange(val);
-      }}
+      onChange={onChange}
       value={value}
+      {...props}
     >
-      <RangeSliderTrack>
+      <RangeSliderTrack bg={trackColor}>
         <RangeSliderFilledTrack />
       </RangeSliderTrack>
       <RangeSliderThumb index={0} />
