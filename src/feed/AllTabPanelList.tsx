@@ -35,7 +35,7 @@ export const AllTabPanelList = () => {
 
   const setNewReviews = useCallback(async () => {
     const res = await allReviewsAsync();
-    if (res !== undefined) handleSetSelectedReviews(res);
+    // if (res !== undefined) handleSetSelectedReviews(res);
   }, [allReviewsAsync, handleSetSelectedReviews]);
 
   const handleSelectTag = async (tag: ReviewSortEnum) => {

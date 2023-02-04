@@ -20,9 +20,9 @@ const LikedBeers = () => {
         return handleInfo(index + 1);
       })
     );
-    if (allBeers) {
-      setAllBeers(allBeers);
-    }
+    // if (allBeers) {
+    //   setAllBeers(allBeers);
+    // }
   };
 
   useEffect(() => {
