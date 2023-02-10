@@ -18,20 +18,22 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React, {ChangeEvent, useState} from "react";
-import {ReviewStatic} from "../interface/static";
-import {BeerResultType, CategoryType, ReviewType} from "../interface/types";
+import {ReviewStatic} from "../../interface/static";
+import {BeerResultType, CategoryType, ReviewType} from "../../interface/types";
 import {
   CrossXBlack,
   EditPencil,
   OrangeCamera,
   RightArrow,
   WhiteCross,
-} from "../public/svg";
-import SearchInput from "../src/search/SearchInput";
-import BottomDrawer from "./BottomDrawer";
-import {LeftBackRandom} from "./headers/LeftBackRandom";
-import {LeftCloseRandom} from "./headers/LeftCloseRandom";
-import {Rating} from "./Rating";
+} from "../../public/svg";
+import SearchInput from "../../src/search/SearchInput";
+import BottomDrawer from "../BottomDrawer";
+import {LeftBackRandom} from "../headers/LeftBackRandom";
+import {LeftCloseRandom} from "../headers/LeftCloseRandom";
+import {Rating} from "../Rating";
+import BeerName from "./BeerName";
+import {BeerSearchContent} from "./BeerSearchContent";
 
 export const ReviewModal = () => {
   const [reviewInfo, setReviewInfo] = useState<ReviewType>({
@@ -150,33 +152,8 @@ export const ReviewModal = () => {
                 alignItems={"flex-start"}
               >
                 {/* beer name */}
-                <Flex
-                  onClick={() => setStep(1)}
-                  p="10px"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  w="full"
-                  cursor={"pointer"}
-                >
-                  <VStack gap="10px" alignItems={"flex-start"}>
-                    <Text textStyle="h2" textColor="black.100">
-                      맥주 이름을 골라주세요!
-                    </Text>
-                    {reviewInfo.beerName && (
-                      <Text textStyle="h2_bold" textColor="orange.200">
-                        {reviewInfo.beerName}
-                      </Text>
-                    )}
-                  </VStack>
+                <BeerName reviewInfo={reviewInfo} onClick={() => setStep(1)} />
 
-                  <IconButton
-                    justifyContent="center"
-                    alignItems="center"
-                    size="20px"
-                    aria-label="right-arrow"
-                    as={RightArrow}
-                  />
-                </Flex>
                 {/* rating */}
                 <Flex flexDir="column" p="10px" gap="10px">
                   <Text textStyle="h2" textColor="black.100">
@@ -392,79 +369,3 @@ export const ReviewModal = () => {
 
 //TODO : should be replaced
 export const purchasePlaces = ["편의점", "펍", "대형마트", "기타"];
-
-interface BeerSearchContentProps extends ModalContentProps {
-  onClickBack: () => void;
-  onChangeBeerName: (name: string) => void;
-}
-
-const BeerSearchContent: React.FC<BeerSearchContentProps> = ({
-  onClickBack,
-  onChangeBeerName,
-  ...props
-}) => {
-  const [value, setValue] = useState<string>("");
-  // recoil state가 되어야 함.
-  const [allBeers, setAllBeers] = useState<BeerResultType[]>([]);
-  const MOCK_CATEGORY = [
-    {
-      id: 0,
-      name_ko: "에일",
-      name_en: "ale",
-      description: "This is ale",
-    },
-    {
-      id: 1,
-      name_ko: "라거",
-      name_en: "Lagar",
-      description: "This is Lagar",
-    },
-  ];
-  const [selectedItems, setSelectedItems] = useState<any[]>(MOCK_CATEGORY);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-    // setSelectedItems(filterSearchResult(e.target.value));
-  };
-
-  const clearValue = () => {
-    setValue("");
-  };
-
-  const handleClick = (e: any) => {
-    const value = e.target.innerHTML;
-    onClickBack();
-    onChangeBeerName(value);
-  };
-
-  return (
-    <ModalContent px="20px" {...props}>
-      <ModalHeader pt="46px">
-        <LeftBackRandom onClick={onClickBack} title="맥주 이름" />
-      </ModalHeader>
-      <ModalBody p="10px 20px" h="full">
-        <VStack
-          h="full"
-          gap="10px"
-          justifyContent="flex-start"
-          alignItems={"flex-start"}
-        >
-          {/* search bar  */}
-          <SearchInput onChange={handleChange} clearValue={clearValue} />
-          {/* search results */}
-          <VStack px="10px">
-            {selectedItems.map((item: CategoryType) => {
-              return (
-                <Box key={item.id} py="10px" onClick={handleClick}>
-                  <Text textStyle="h2" textColor={"black.100"}>
-                    {item.name_ko}
-                  </Text>
-                </Box>
-              );
-            })}
-          </VStack>
-        </VStack>
-      </ModalBody>
-    </ModalContent>
-  );
-};
