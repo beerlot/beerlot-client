@@ -1,26 +1,24 @@
 import {
   Box,
   Button,
-  Flex,
   Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
   Text,
-  Textarea,
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import React, {ChangeEvent, useState} from "react";
-import {ReviewStatic} from "../../interface/static";
+import React, {useState} from "react";
 import {ReviewType} from "../../interface/types";
-import {EditPencil, OrangeCamera} from "../../public/svg";
+import {EditPencil} from "../../public/svg";
 import BottomDrawer from "../BottomDrawer";
 import {LeftCloseRandom} from "../headers/LeftCloseRandom";
-import {Rating} from "../Rating";
-import BeerName from "./BeerName";
-import {BeerPurchase} from "./BeerPurchase";
+import BeerNameSection from "./BeerNameSection";
+import {BeerPurchaseSection} from "./BeerPurchaseSection";
+import {BeerRatingSection} from "./BeerRatingSection";
+import {BeerReviewTextSection} from "./BeerReviewTextSection";
 import {BeerSearchContent} from "./BeerSearchContent";
 
 export const ReviewModal = () => {
@@ -31,14 +29,11 @@ export const ReviewModal = () => {
   const isCompleted = !!reviewInfo.beerName && !!reviewInfo.rate; // should contain rating stars as well
   const CloseReviewDrawer = useDisclosure();
   const [step, setStep] = useState(0);
-  const [reviewInputValue, setReviewInputValue] = useState("");
+
   const [placeInputValue, setPlaceInputValue] = useState("");
-  const [attachedFile, setAttachedPhoto] = useState([]);
+
   const {isOpen, onOpen, onClose} = useDisclosure();
 
-  const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setReviewInputValue(e.target.value);
-  };
   const handleSizeClick = () => {
     onOpen();
   };
@@ -140,22 +135,19 @@ export const ReviewModal = () => {
                 alignItems={"flex-start"}
               >
                 {/* beer name */}
-                <BeerName reviewInfo={reviewInfo} onClick={() => setStep(1)} />
+                <BeerNameSection
+                  reviewInfo={reviewInfo}
+                  onClick={() => setStep(1)}
+                />
 
                 {/* rating */}
-                <Flex flexDir="column" p="10px" gap="10px">
-                  <Text textStyle="h2" textColor="black.100">
-                    얼마나 맛있었나요?
-                  </Text>
-                  <Rating
-                    starSize={24}
-                    onClick={handleChangeRate}
-                    rate={reviewInfo.rate}
-                  />
-                </Flex>
+                <BeerRatingSection
+                  handleChangeRate={handleChangeRate}
+                  rate={reviewInfo.rate}
+                />
 
                 {/* purchase */}
-                <BeerPurchase
+                <BeerPurchaseSection
                   reviewInfo={reviewInfo}
                   handleChangePlace={handleChangePlace}
                   clearInput={clearInput}
@@ -164,70 +156,7 @@ export const ReviewModal = () => {
                 />
 
                 {/* review */}
-                <VStack p="10px" w="full" alignItems={"flex-start"} gap="10px">
-                  <Box>
-                    <Text as="span" textStyle="h2" textColor="black.100">
-                      더 자세한 후기가 궁금해요!{" "}
-                    </Text>
-                    <Text as="span" textStyle="h2" textColor="gray.200">
-                      (선택)
-                    </Text>
-                  </Box>
-                  <VStack
-                    w="full"
-                    gap="10px"
-                    border="1px solid"
-                    borderColor="gray.200"
-                    borderRadius="10px"
-                    p="10px 10px 5px"
-                    h="200px"
-                  >
-                    {/* TODO: should remove border on focus
-               TODO: and resize icon */}
-                    <Textarea
-                      resize={"none"}
-                      focusBorderColor="none"
-                      w="full"
-                      border="none"
-                      h="full"
-                      p="0px"
-                      value={reviewInputValue}
-                      onChange={handleInputChange}
-                      _placeholder={{
-                        textStyle: "h3",
-                        textColor: "gray.200",
-                      }}
-                      placeholder="이 맥주가 맘에 드는/ 안 드는 자세한 이유를 들려주세요! 아님 맥주에 관한 추억이나.. 꿀조합 안주를 공유해볼까요~?"
-                      maxLength={2000}
-                    />
-                    <Flex justify="flex-end" w="full">
-                      <Text textStyle="h2" textColor="gray.200">
-                        {reviewInputValue.length} /{" "}
-                        {ReviewStatic.ReviewInputMaxLength}
-                      </Text>
-                    </Flex>
-                  </VStack>
-                  {/* sholud remove default marginTop */}
-                  <Button
-                    w="full"
-                    bg="inherit"
-                    _hover={{}}
-                    border="1px solid"
-                    borderColor="orange.200"
-                    borderRadius="10px"
-                    p="5px 10px"
-                    aria-label="attach-photo"
-                    gap="10px"
-                    mt="0px"
-                    _notFirst={{marginInlineStart: "0px", marginTop: "0px"}}
-                  >
-                    <OrangeCamera />
-                    <Text textStyle="h3" textColor="orange.200">
-                      사진 첨부하기 ({attachedFile.length}/
-                      {ReviewStatic.numberOfMaxAttachedFile})
-                    </Text>
-                  </Button>
-                </VStack>
+                <BeerReviewTextSection />
               </VStack>
             </ModalBody>
             <ModalFooter px={0}>

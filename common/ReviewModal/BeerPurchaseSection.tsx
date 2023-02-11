@@ -11,7 +11,7 @@ import {
 import {ReviewType} from "../../interface/types";
 import {CrossXBlack, WhiteCross} from "../../public/svg";
 
-interface BeerPurchaseProps {
+interface BeerPurchaseSectionProps {
   reviewInfo: ReviewType;
   handleChangePlace: (e: React.ChangeEvent<HTMLInputElement>) => void;
   clearInput: () => void;
@@ -19,7 +19,7 @@ interface BeerPurchaseProps {
   placeInputValue: string;
 }
 
-export const BeerPurchase: React.FC<BeerPurchaseProps> = ({
+export const BeerPurchaseSection: React.FC<BeerPurchaseSectionProps> = ({
   reviewInfo,
   handleChangePlace,
   clearInput,

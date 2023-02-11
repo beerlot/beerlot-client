@@ -2,11 +2,14 @@ import {Flex, FlexProps, IconButton, Text, VStack} from "@chakra-ui/react";
 import {ReviewType} from "../../interface/types";
 import {RightArrow} from "../../public/svg";
 
-interface BeerNameProps extends FlexProps {
+interface BeerNameSectionProps extends FlexProps {
   reviewInfo: ReviewType;
 }
 
-const BeerName: React.FC<BeerNameProps> = ({reviewInfo, ...props}) => {
+const BeerNameSection: React.FC<BeerNameSectionProps> = ({
+  reviewInfo,
+  ...props
+}) => {
   return (
     <Flex
       {...props}
@@ -38,4 +41,4 @@ const BeerName: React.FC<BeerNameProps> = ({reviewInfo, ...props}) => {
   );
 };
 
-export default BeerName;
+export default BeerNameSection;
