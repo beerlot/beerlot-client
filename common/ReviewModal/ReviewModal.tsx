@@ -155,7 +155,7 @@ export const ReviewModal = () => {
                   placeInputValue={placeInputValue}
                 />
 
-                {/* review text and images */}
+                {/* review */}
                 <BeerReviewTextSection />
               </VStack>
             </ModalBody>
