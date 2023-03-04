@@ -1,4 +1,11 @@
-import {Box, Circle, Container, Flex, HStack} from "@chakra-ui/react";
+import {
+  Box,
+  Circle,
+  Container,
+  Flex,
+  HStack,
+  SimpleGrid,
+} from "@chakra-ui/react";
 import Image from "next/image";
 import {useRouter} from "next/router";
 import {useCallback, useEffect, useState} from "react";
@@ -6,6 +13,7 @@ import {MOCK_CATEGORY_FILTER_LIST} from "../../interface/static";
 import {CategoryFilterListType, CategoryTitle} from "../../interface/types";
 import {EmptyFilter, WhiteFilter} from "../../public/svg";
 import {getBeersWithKeywordApi} from "../../src/api/beers/api";
+import {mockData} from "../../src/home/HomeTemplate";
 import {SearchFilterList} from "../../src/result/filter/search-filter-list/SearchFilterList";
 import SearchInput from "../../src/search/SearchInput";
 import {
@@ -126,38 +134,41 @@ const SearchResultPage = () => {
             onClickToggle={handleClickToggle}
             onClickTag={handleClickTag}
           />
-          {beers &&
-            beers.map((beerItems: any) => {
-              const {name, origin_country, image_url, category} = beerItems;
-              return (
-                <BeerCard key={beerItems.id} mt={1}>
-                  <BeerCardBody>
-                    <Box position="relative">
-                      {image_url && (
-                        <Image
-                          src={image_url}
-                          alt={name}
-                          width="124px"
-                          height="128px"
-                          objectFit="cover"
-                        />
-                      )}
-                    </Box>
-                  </BeerCardBody>
-                  <BeerCardFooter>
-                    <BeerNameText>{name}</BeerNameText>
-                    <HStack>
-                      <BeerNameText>{origin_country}</BeerNameText>
-                      <BeerCategoryTag>
-                        <BeerCategoryTagLabel>
-                          {category?.name}
-                        </BeerCategoryTagLabel>
-                      </BeerCategoryTag>
-                    </HStack>
-                  </BeerCardFooter>
-                </BeerCard>
-              );
-            })}
+          <SimpleGrid columns={2} spacing={"16px"} mt={"8px"}>
+            {beers &&
+              [mockData, mockData, mockData].map((beerItems: any) => {
+                const {name, origin_country, image_url, category} = beerItems;
+                return (
+                  <BeerCard key={beerItems.id} mt={1} w="full">
+                    <BeerCardBody w="full" h="full" position={"relative"}>
+                      <Box position="relative">
+                        {image_url && (
+                          <Image
+                            src={image_url}
+                            alt={name}
+                            width="175px"
+                            height="175px"
+                            objectFit="cover"
+                          />
+                        )}
+                      </Box>
+                    </BeerCardBody>
+                    <BeerCardFooter>
+                      <BeerNameText>{name}</BeerNameText>
+                      <HStack>
+                        <BeerNameText>{origin_country}</BeerNameText>
+                        <BeerCategoryTag>
+                          <BeerCategoryTagLabel>
+                            {category?.name}
+                          </BeerCategoryTagLabel>
+                        </BeerCategoryTag>
+                      </HStack>
+                    </BeerCardFooter>
+                  </BeerCard>
+                );
+              })}
+          </SimpleGrid>
+          <Box h="64px" />
         </Box>
       </Container>
     </Box>

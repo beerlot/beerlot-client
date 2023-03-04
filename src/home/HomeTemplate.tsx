@@ -26,16 +26,6 @@ const HomeTemplate = () => {
   const [userInfo] = useRecoilState(userInfoState);
   // const {top10Beers} = useGetPopularBeers();
 
-  const mockData: BeerResponseType = {
-    id: 1,
-    name: "Pale Ale",
-    origin_country: "USA",
-    image_url: "/images/preview-beer.png",
-    category: {
-      id: 1,
-      name: "아메리칸 에일",
-    },
-  };
   const top10Beers = [mockData, mockData, mockData, mockData, mockData];
 
   const {name, origin_country, image_url, category} = mockData;
@@ -186,3 +176,14 @@ const HomeTemplate = () => {
 };
 
 export default HomeTemplate;
+
+export const mockData: BeerResponseType = {
+  id: 1,
+  name: "Pale Ale",
+  origin_country: "USA",
+  image_url: "/images/preview-beer.png",
+  category: {
+    id: 1,
+    name: "아메리칸 에일",
+  },
+};
