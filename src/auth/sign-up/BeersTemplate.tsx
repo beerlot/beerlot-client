@@ -9,7 +9,7 @@ const BeersTemplate = () => {
   return (
     <Box w="full" h="full" bg="gray.100">
       <Container h="full" w="full" bg="white" position="relative" maxW="450px">
-        <Flex h="100vh" px="21px" pt="34px" flexDirection="column">
+        <Flex px="21px" pt="34px" flexDirection="column" w="full" h="full">
           <LeftBackCompleteCircles
             isFirstCircleDone={true}
             isSecondCircleDone={true}
