@@ -74,7 +74,6 @@ const BeerCards: React.FC<BeerCardsProps> = ({nickName, ...props}) => {
     signUpWithSocialLogin(MOCK_AUTH);
     router.push("/");
   };
-  // const isSelected = checkSelected(newBeerId, newChosenBeers);
 
   const handleClickBeer = (newBeerId: number | undefined) => {
     if (!newBeerId) return;
@@ -88,77 +87,86 @@ const BeerCards: React.FC<BeerCardsProps> = ({nickName, ...props}) => {
   };
 
   return (
-    <VStack w="full" h="full" {...props}>
-      <VStack
-        gap={"25px"}
-        p={0}
-        pb={"25px"}
-        alignItems="start"
-        w="full"
-        h="full"
-      >
-        <VStack
-          pt={"64px"}
-          textStyle="h1"
-          gap="5px"
-          alignItems="start"
-          w="full"
-          h="full"
-        >
-          <Box>
-            <Text as="span" textColor="orange.200">
-              {nickName}
-            </Text>
-            <Text as="span">님의 최애맥주</Text>
-          </Box>
-          <Box>
-            <Text> N개를 골라주세요!</Text>
-          </Box>
-          <Box>
-            <Text fontSize="12px" textColor="gray.300">
-              고른 맥주를 바탕으로 취향 분석 후, 맥주를 추천해드릴게요 :)
-            </Text>
-          </Box>
-        </VStack>
-        <SimpleGrid columns={3} spacingX="10px" spacingY="25px">
-          {top10Beers.map((item) => {
-            return (
-              <BeerCard
-                key={item.id}
-                mt={1}
+    <VStack
+      mt="48px"
+      pb={"25px"}
+      alignItems="start"
+      w="full"
+      h="full"
+      {...props}
+    >
+      <Box>
+        <Text display="inline" textStyle={"h1"} textColor="orange.200">
+          {nickName}
+        </Text>
+        <Text display="inline" textStyle={"h1"}>
+          님의 최애맥주
+        </Text>
+      </Box>
+
+      <Text textColor="black.100" textStyle={"h1"} style={{marginTop: 0}}>
+        N개를 골라주세요!
+      </Text>
+      <Text fontSize="12px" textColor="gray.300" textStyle={"h4"}>
+        고른 맥주를 바탕으로 취향 분석 후, 맥주를 추천해드릴게요 :)
+      </Text>
+
+      <SimpleGrid columns={3} spacingX="10px" spacingY="25px">
+        {top10Beers.map((item) => {
+          const isSelected = item.id ? chosenBeerIds.includes(item.id) : false;
+          return (
+            <BeerCard
+              key={item.id}
+              mt={1}
+              w="full"
+              borderColor={"orange.200"}
+              cursor="pointer"
+              onClick={() => handleClickBeer(item?.id)}
+              filter={
+                isSelected
+                  ? "drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.3))"
+                  : "none"
+              }
+              bg={isSelected ? "orange.200" : "white.100"}
+            >
+              <BeerCardBody
                 w="full"
-                cursor="pointer"
-                onClick={() => handleClickBeer(item?.id)}
+                h="full"
+                position={"relative"}
+                border="orange.200"
               >
-                <BeerCardBody w="full" h="full" position={"relative"}>
-                  <Box position="relative">
-                    {item.image_url && (
-                      <Image
-                        src={item.image_url}
-                        alt={item.name}
-                        width="175px"
-                        height="175px"
-                        objectFit="cover"
-                      />
-                    )}
-                  </Box>
-                </BeerCardBody>
-                <BeerCardFooter>
-                  <BeerNameText>{item.name}</BeerNameText>
-                  <HStack>
-                    <BeerNameText>{item.origin_country}</BeerNameText>
-                    <BeerCategoryTag>
-                      <BeerCategoryTagLabel>
-                        {item.category?.name}
-                      </BeerCategoryTagLabel>
-                    </BeerCategoryTag>
-                  </HStack>
-                </BeerCardFooter>
-              </BeerCard>
-            );
-          })}
-        </SimpleGrid>
-      </VStack>
+                <Box position="relative" borderRadius={6}>
+                  {item.image_url && (
+                    <Image
+                      src={item.image_url}
+                      alt={item.name}
+                      width="175px"
+                      height="175px"
+                      objectFit="cover"
+                      style={{borderRadius: "6px"}}
+                    />
+                  )}
+                </Box>
+              </BeerCardBody>
+              <BeerCardFooter>
+                <BeerNameText>{item.name}</BeerNameText>
+                <HStack>
+                  <BeerNameText borderRadius="full">
+                    {item.origin_country}
+                  </BeerNameText>
+                  <BeerCategoryTag bg={isSelected ? "white.100" : "orange.200"}>
+                    <BeerCategoryTagLabel
+                      textColor={isSelected ? "orange.200" : "white.100"}
+                    >
+                      {item.category?.name}
+                    </BeerCategoryTagLabel>
+                  </BeerCategoryTag>
+                </HStack>
+              </BeerCardFooter>
+            </BeerCard>
+          );
+        })}
+      </SimpleGrid>
       <FloatingButton
         disabled={!isFullfilled}
         text="완료!"
