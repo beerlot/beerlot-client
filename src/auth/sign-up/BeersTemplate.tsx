@@ -7,8 +7,8 @@ import BeerCards from "./BeerCards";
 const BeersTemplate = () => {
   const [userInfo] = useRecoilState(userInfoState);
   return (
-    <Box w="full" h="full" bg="gray.100">
-      <Container h="full" w="full" bg="white" position="relative" maxW="450px">
+    <Box w="full" h="full" bg="gray.100" overflowY={"scroll"}>
+      <Container bg="white" maxW="450px" pos="relative">
         <Flex px="21px" pt="34px" flexDirection="column" w="full" h="full">
           <LeftBackCompleteCircles
             isFirstCircleDone={true}

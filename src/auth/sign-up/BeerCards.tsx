@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import {useRouter} from "next/router";
-import React, {useCallback} from "react";
+import React from "react";
 import {useRecoilState} from "recoil";
 import {POLICY_LABEL} from "../../../interface/server/types/Auth";
 import {checkSelected} from "../../../utils/array";
@@ -168,6 +168,8 @@ const BeerCards: React.FC<BeerCardsProps> = ({nickName, ...props}) => {
         })}
       </SimpleGrid>
       <FloatingButton
+        pos="sticky"
+        w="full"
         disabled={!isFullfilled}
         text="완료!"
         onClick={handleClickComplete}
