@@ -9,15 +9,8 @@ const AccountPage = () => {
   }, []);
 
   return (
-    <Box w="full" h="full" bg="gray.100">
-      <Container
-        p={"0px"}
-        h="full"
-        w="full"
-        bg="white"
-        position="relative"
-        maxW="450px"
-      >
+    <Box w="full" h="full" overflowY={"scroll"} bg="gray.100">
+      <Container p={"0px"} w="full" bg="white" position="relative" maxW="450px">
         <AccountsTemplate />
       </Container>
     </Box>

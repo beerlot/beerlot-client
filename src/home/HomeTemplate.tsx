@@ -30,8 +30,8 @@ const HomeTemplate = () => {
 
   const {name, origin_country, image_url, category} = mockData;
   return (
-    <Box w="full" h="full" bg="gray.100" mb={"64px"}>
-      <Container p={"0px"} h="full" w="full" bg="white" maxW="450px">
+    <Box w="full" h="full" bg="gray.100" overflowY="scroll">
+      <Container p={"0px"} bg="white" maxW="450px">
         <Box p="64px 24px 24px" pt="64px">
           <BlankHeader />
           {/* TODO: v2 alarm feature */}
@@ -169,7 +169,6 @@ const HomeTemplate = () => {
             </>
           )}
         </Box>
-        <Box h="64px" />
       </Container>
     </Box>
   );
