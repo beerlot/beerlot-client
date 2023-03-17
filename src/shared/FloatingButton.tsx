@@ -24,7 +24,7 @@ const FloatingButton: React.FC<FloatingButtonProps> = ({
   return (
     <Button
       onClick={onClick}
-      disabled={disabled}
+      isDisabled={disabled}
       boxShadow={boxShadow}
       pos="absolute"
       bottom="16px"
