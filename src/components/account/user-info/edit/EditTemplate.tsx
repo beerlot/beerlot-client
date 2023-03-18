@@ -24,7 +24,7 @@ const EditTemplate: React.FC<EditTemplateProps> = ({userInfo, setUserInfo}) => {
   const router = useRouter();
   // TODO: error handling should be added
   const {
-    image_url = `/image/default-profile.png`,
+    image_url = `/images/default-profile.png`,
     username,
     statusMessage = "",
   } = userInfo;
