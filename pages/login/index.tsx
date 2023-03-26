@@ -1,5 +1,29 @@
 import {Box, Container} from "@chakra-ui/react";
 import {LoginTemplate} from "../../src/components/auth/login/LoginTemplate";
+import {getSession} from "next-auth/react";
+import {GetServerSideProps} from "next";
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+  const cookies = context.req.headers.cookie;
+  console.log({session});
+  console.log({cookies});
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      user: session.user,
+    },
+  };
+};
 
 const index = () => {
   return (
