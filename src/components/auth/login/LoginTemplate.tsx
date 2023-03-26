@@ -12,7 +12,6 @@ const LoginTemplate = () => {
     router.back();
   };
   const {data: session} = useSession();
-  console.log({session});
 
   return (
     <Box>
