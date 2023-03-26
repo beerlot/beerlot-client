@@ -1,5 +1,5 @@
 import {Box, useDisclosure, VStack} from "@chakra-ui/react";
-import {signOut} from "next-auth/react";
+import Cookies from "js-cookie";
 import {useRouter} from "next/router";
 import {useRecoilState} from "recoil";
 import {userInfoState} from "../../../store/atom";
@@ -22,13 +22,11 @@ export const SettingsTemplate = () => {
       title: "로그아웃",
       onClick: () => {
         LogoutDrawer.onOpen();
-        console.log("로그아웃");
       },
     },
     {
       title: "회원탈퇴",
       onClick: () => {
-        console.log("회원탈퇴");
         SignOut.onOpen();
       },
     },
@@ -67,8 +65,9 @@ export const SettingsTemplate = () => {
             py: "10px",
             px: "22px",
             onClick: () => {
+              console.log("logout clicked");
               router.push("/");
-              signOut();
+              Cookies.remove("beerlot-oauth-auth-request");
             },
           }}
         />
