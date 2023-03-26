@@ -1,5 +1,6 @@
 import {Box, Button, Container} from "@chakra-ui/react";
-import {signIn, signOut, useSession} from "next-auth/react";
+import {GetServerSideProps} from "next";
+import {getSession, signIn, signOut, useSession} from "next-auth/react";
 import {LoginTemplate} from "../../src/components/auth/login/LoginTemplate";
 
 const Login = () => {
@@ -23,13 +24,35 @@ const Login = () => {
         position="relative"
         maxW="450px"
       >
-        <Button mt={"40x"} onClick={() => signIn()}>
+        <LoginTemplate />
+        <Button pt={"40x"} onClick={() => signIn()}>
           google login
         </Button>
-        <LoginTemplate />
       </Container>
     </Box>
   );
 };
 
 export default Login;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+  const cookies = context.req.headers.cookie;
+  console.log("session from index", {session});
+  console.log("cookie from index", {cookies});
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/account",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
+};

@@ -10,16 +10,7 @@ import {SessionProvider} from "next-auth/react";
 
 function MyApp({Component, pageProps: {session, ...pageProps}}: AppProps) {
   const queryClient = new QueryClient();
-  console.log(
-    "MyApp",
-    "GOOGLE_CLIENT_ID",
-    process.env.GOOGLE_CLIENT_ID,
-    "GOOGLE_CLIENT_SECRET",
-    process.env.GOOGLE_CLIENT_SECRET,
-    "JWT_SECRET",
-    process.env.JWT_SECRET,
-    {session}
-  );
+
   return (
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
