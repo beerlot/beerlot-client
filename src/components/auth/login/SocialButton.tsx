@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import {OAUTH_PROVIDER} from "../../../../interface/types";
 import {GoogleLogo, KakaoLogo, NaverLogo} from "../../../../public/svg";
-import {redirectUrl} from "../../../api/auth/api";
+import {generateSocialLoginUrl, redirectUrl} from "../../../api/auth/api";
 
 const SocialButton = () => {
   return (
@@ -55,7 +55,7 @@ export const socialButton = [
     buttonColor: "yellow.400",
     textColor: "black",
     border: "none",
-    href: `/api/v1/auth/authorize/${OAUTH_PROVIDER.KAKAO}?redirect-url=${redirectUrl}`,
+    href: generateSocialLoginUrl(OAUTH_PROVIDER.KAKAO),
   },
   {
     provider: OAUTH_PROVIDER.NAVER,
@@ -66,7 +66,7 @@ export const socialButton = [
     buttonColor: "green.100",
     textColor: "white.100",
     border: "none",
-    href: `/api/v1/auth/authorize/${OAUTH_PROVIDER.NAVER}?redirect-url=${redirectUrl}`,
+    href: generateSocialLoginUrl(OAUTH_PROVIDER.NAVER),
   },
   // {
   //   ariaLabel: "facebook login",
@@ -86,7 +86,7 @@ export const socialButton = [
     buttonColor: "white.100",
     textColor: "black",
     border: "#dddddd 1px solid", // TODO: use Chakra theme
-    href: `/api/v1/auth/authorize/${OAUTH_PROVIDER.GOOGLE}?redirect-url=${redirectUrl}`,
+    href: generateSocialLoginUrl(OAUTH_PROVIDER.GOOGLE),
   },
 ];
 
