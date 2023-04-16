@@ -4,6 +4,8 @@ import {useRecoilState} from "recoil";
 import {userInfoState} from "../../../store/atom";
 import FloatingButton from "../../shared/FloatingButton";
 import {useRouter} from "next/router";
+import {OrangeCircleCheck} from "../../shared/CustomIcons/customIcons";
+import {OrangeCheckCircle} from "../../../../public/svg";
 
 const CompleteTemplate = () => {
   const [userInfo] = useRecoilState(userInfoState);
@@ -21,11 +23,7 @@ const CompleteTemplate = () => {
           />
 
           <Center h={"full"} flexDir="column">
-            <Icon
-              // as={OrangeCircleCheck}
-              w={"80px"}
-              h={"80px"}
-            />
+            <Icon as={OrangeCheckCircle} w={"80px"} h={"80px"} />
             <Text mt={"24px"} textStyle={"h1"} textColor="black">
               회원가입 완료!
             </Text>
