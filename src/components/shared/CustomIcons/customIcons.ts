@@ -83,3 +83,27 @@ export const DownChevron = createIcon({
   viewBox: "0 0 19 20",
   d: "M13.087 7.601a.594.594 0 010 .84L9.92 11.607a.594.594 0 01-.84 0L5.914 8.441a.594.594 0 01.84-.84L9.5 10.348 12.247 7.6a.594.594 0 01.84 0z",
 });
+
+export const OrangeCircleCheck = createIcon({
+  displayName: "Group_37",
+  viewBox: "0 0 80 80",
+  path: (
+    <>
+      <svg
+        width="80"
+        height="80"
+        viewBox="0 0 80 80"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="40" cy="40" r="40" fill="currentColor" />
+        <path
+          d="M17.6001 35.8938L34.2842 56L62.4001 24"
+          stroke="white"
+          stroke-width="6"
+          stroke-linecap="round"
+        />
+      </svg>
+    </>
+  ),
+});
