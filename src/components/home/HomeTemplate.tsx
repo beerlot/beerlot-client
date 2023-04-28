@@ -1,18 +1,11 @@
-import {Box, Container, HStack, SimpleGrid, Text} from "@chakra-ui/react";
-import Image from "next/image";
+import {Box, Container} from "@chakra-ui/react";
 import {SignUpType} from "../../../interface/types";
 import {BeerResponseType} from "../../../typedef/server/beer";
-import {
-  BeerCard,
-  BeerCardBody,
-  BeerCardFooter,
-  BeerCategoryTag,
-  BeerCategoryTagLabel,
-  BeerNameText,
-} from "../shared/Card/BeerCardItem";
 import {BlankHeader} from "../shared/Headers/BlankHeader";
 import SearchInputHome from "./SearchInputHome";
 import {WelcomeTextContent} from "./WelcomeText";
+import {LoggedInBeersList} from "./LoggedInBeersList/LoggedInBeersList";
+import {CommonBeersList} from "./CommonBeersList/CommonBeersList";
 
 interface HomeTemplateProps {
   userInfo?: SignUpType;
@@ -37,129 +30,12 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({
           </Box>
 
           {userInfo ? (
-            <>
-              <Text textColor="black.100" textStyle={"h2_bold"}>
-                🔥 인기맥주 TOP10 🔥
-              </Text>
-              <HStack overflowX={"auto"} w="full" gap={"12px"}>
-                {topBeersList &&
-                  topBeersList.map((item) => {
-                    return (
-                      <BeerCard key={item.id} mt={1}>
-                        <BeerCardBody>
-                          <Box position="relative">
-                            {item.image_url && (
-                              <Image
-                                src={item.image_url}
-                                alt={item.name}
-                                width="124px"
-                                height="128px"
-                                objectFit="cover"
-                              />
-                            )}
-                          </Box>
-                        </BeerCardBody>
-                        <BeerCardFooter>
-                          <BeerNameText>{item.name}</BeerNameText>
-                          <HStack>
-                            <BeerNameText>{item.origin_country}</BeerNameText>
-                            <BeerCategoryTag>
-                              <BeerCategoryTagLabel>
-                                {item.category?.name}
-                              </BeerCategoryTagLabel>
-                            </BeerCategoryTag>
-                          </HStack>
-                        </BeerCardFooter>
-                      </BeerCard>
-                    );
-                  })}
-              </HStack>
-
-              <Text textColor="black.100" textStyle={"h2_bold"} mt={8}>
-                🍻{" "}
-                <Text
-                  textColor="orange.200"
-                  textStyle={"h2_bold"}
-                  display="inline"
-                >
-                  {userInfo.username}
-                </Text>
-                님께 추천해요 🍻
-              </Text>
-              <HStack overflowX={"auto"} w="full" gap={"12px"}>
-                {topBeersList &&
-                  topBeersList.map((item) => {
-                    return (
-                      <BeerCard key={item.id} mt={1} borderColor={"orange.200"}>
-                        <BeerCardBody>
-                          <Box position="relative">
-                            {item.image_url && (
-                              <Image
-                                src={item.image_url}
-                                alt={item.name}
-                                width="124px"
-                                height="128px"
-                                objectFit="cover"
-                              />
-                            )}
-                          </Box>
-                        </BeerCardBody>
-                        <BeerCardFooter>
-                          <BeerNameText>{item.name}</BeerNameText>
-                          <HStack>
-                            <BeerNameText>{item.origin_country}</BeerNameText>
-                            <BeerCategoryTag bg="orange.200">
-                              <BeerCategoryTagLabel>
-                                {item.category?.name}
-                              </BeerCategoryTagLabel>
-                            </BeerCategoryTag>
-                          </HStack>
-                        </BeerCardFooter>
-                      </BeerCard>
-                    );
-                  })}
-              </HStack>
-            </>
+            <LoggedInBeersList
+              userName={userInfo?.username}
+              topBeersList={topBeersList}
+            />
           ) : (
-            <>
-              <Text textColor="black.100" textStyle={"h2_bold"}>
-                🔥 인기맥주 TOP10 🔥
-              </Text>
-
-              <SimpleGrid columns={2} spacing={"16px"}>
-                {topBeersList &&
-                  topBeersList.map((item) => {
-                    return (
-                      <BeerCard key={item.id} mt={1} w="full">
-                        <BeerCardBody w="full" h="full" position={"relative"}>
-                          <Box position="relative">
-                            {item.image_url && (
-                              <Image
-                                src={item.image_url}
-                                alt={item.name}
-                                width="175px"
-                                height="175px"
-                                objectFit="cover"
-                              />
-                            )}
-                          </Box>
-                        </BeerCardBody>
-                        <BeerCardFooter>
-                          <BeerNameText>{item.name}</BeerNameText>
-                          <HStack>
-                            <BeerNameText>{item.origin_country}</BeerNameText>
-                            <BeerCategoryTag>
-                              <BeerCategoryTagLabel>
-                                {item.category?.name}
-                              </BeerCategoryTagLabel>
-                            </BeerCategoryTag>
-                          </HStack>
-                        </BeerCardFooter>
-                      </BeerCard>
-                    );
-                  })}
-              </SimpleGrid>
-            </>
+            <CommonBeersList topBeersList={topBeersList} />
           )}
         </Box>
       </Container>
