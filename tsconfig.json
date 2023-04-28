@@ -17,8 +17,10 @@
     "baseUrl": "./src",
     "paths": {
       "@components/*": ["components/*"],
+      "@mock/*": ["mock/*"],
       "@constant/*": ["constant/*"],
-      "@types/*": ["types/*"]
+      "@types/*": ["types/*"],
+      "@interface/*": ["interface/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

@@ -1,8 +1,7 @@
 import {Box, Container, HStack, SimpleGrid, Text} from "@chakra-ui/react";
 import Image from "next/image";
-import {useRecoilState} from "recoil";
+import {SignUpType} from "../../../interface/types";
 import {BeerResponseType} from "../../../typedef/server/beer";
-import {userInfoState} from "../../store/atom";
 import {
   BeerCard,
   BeerCardBody,
@@ -15,16 +14,17 @@ import {BlankHeader} from "../shared/Headers/BlankHeader";
 import SearchInputHome from "./SearchInputHome";
 import {WelcomeTextContent} from "./WelcomeText";
 
-const HomeTemplate = () => {
-  const [userInfo] = useRecoilState(userInfoState);
-  // const {top10Beers} = useGetPopularBeers();
-
-  const top10Beers = [mockData, mockData, mockData, mockData, mockData];
-
-  const {name, origin_country, image_url, category} = mockData;
+interface HomeTemplateProps {
+  userInfo?: SignUpType;
+  topBeersList?: BeerResponseType[];
+}
+const HomeTemplate: React.FC<HomeTemplateProps> = ({
+  userInfo,
+  topBeersList,
+}) => {
   return (
     <Box w="full" h="full" bg="gray.100" overflowY="scroll">
-      <Container p={"0px"} bg="white" maxW="450px">
+      <Container p={"0px"} bg="white" maxW="450px" h="full">
         <Box p="64px 24px 24px" pt="64px">
           <BlankHeader />
           {/* TODO: v2 alarm feature */}
@@ -42,16 +42,16 @@ const HomeTemplate = () => {
                 🔥 인기맥주 TOP10 🔥
               </Text>
               <HStack overflowX={"auto"} w="full" gap={"12px"}>
-                {top10Beers &&
-                  top10Beers.map((item) => {
+                {topBeersList &&
+                  topBeersList.map((item) => {
                     return (
                       <BeerCard key={item.id} mt={1}>
                         <BeerCardBody>
                           <Box position="relative">
-                            {image_url && (
+                            {item.image_url && (
                               <Image
-                                src={image_url}
-                                alt={name}
+                                src={item.image_url}
+                                alt={item.name}
                                 width="124px"
                                 height="128px"
                                 objectFit="cover"
@@ -60,12 +60,12 @@ const HomeTemplate = () => {
                           </Box>
                         </BeerCardBody>
                         <BeerCardFooter>
-                          <BeerNameText>{name}</BeerNameText>
+                          <BeerNameText>{item.name}</BeerNameText>
                           <HStack>
-                            <BeerNameText>{origin_country}</BeerNameText>
+                            <BeerNameText>{item.origin_country}</BeerNameText>
                             <BeerCategoryTag>
                               <BeerCategoryTagLabel>
-                                {category?.name}
+                                {item.category?.name}
                               </BeerCategoryTagLabel>
                             </BeerCategoryTag>
                           </HStack>
@@ -87,16 +87,16 @@ const HomeTemplate = () => {
                 님께 추천해요 🍻
               </Text>
               <HStack overflowX={"auto"} w="full" gap={"12px"}>
-                {top10Beers &&
-                  top10Beers.map((item) => {
+                {topBeersList &&
+                  topBeersList.map((item) => {
                     return (
                       <BeerCard key={item.id} mt={1} borderColor={"orange.200"}>
                         <BeerCardBody>
                           <Box position="relative">
-                            {image_url && (
+                            {item.image_url && (
                               <Image
-                                src={image_url}
-                                alt={name}
+                                src={item.image_url}
+                                alt={item.name}
                                 width="124px"
                                 height="128px"
                                 objectFit="cover"
@@ -105,12 +105,12 @@ const HomeTemplate = () => {
                           </Box>
                         </BeerCardBody>
                         <BeerCardFooter>
-                          <BeerNameText>{name}</BeerNameText>
+                          <BeerNameText>{item.name}</BeerNameText>
                           <HStack>
-                            <BeerNameText>{origin_country}</BeerNameText>
+                            <BeerNameText>{item.origin_country}</BeerNameText>
                             <BeerCategoryTag bg="orange.200">
                               <BeerCategoryTagLabel>
-                                {category?.name}
+                                {item.category?.name}
                               </BeerCategoryTagLabel>
                             </BeerCategoryTag>
                           </HStack>
@@ -127,16 +127,16 @@ const HomeTemplate = () => {
               </Text>
 
               <SimpleGrid columns={2} spacing={"16px"}>
-                {top10Beers &&
-                  top10Beers.map((item) => {
+                {topBeersList &&
+                  topBeersList.map((item) => {
                     return (
                       <BeerCard key={item.id} mt={1} w="full">
                         <BeerCardBody w="full" h="full" position={"relative"}>
                           <Box position="relative">
-                            {image_url && (
+                            {item.image_url && (
                               <Image
-                                src={image_url}
-                                alt={name}
+                                src={item.image_url}
+                                alt={item.name}
                                 width="175px"
                                 height="175px"
                                 objectFit="cover"
@@ -145,12 +145,12 @@ const HomeTemplate = () => {
                           </Box>
                         </BeerCardBody>
                         <BeerCardFooter>
-                          <BeerNameText>{name}</BeerNameText>
+                          <BeerNameText>{item.name}</BeerNameText>
                           <HStack>
-                            <BeerNameText>{origin_country}</BeerNameText>
+                            <BeerNameText>{item.origin_country}</BeerNameText>
                             <BeerCategoryTag>
                               <BeerCategoryTagLabel>
-                                {category?.name}
+                                {item.category?.name}
                               </BeerCategoryTagLabel>
                             </BeerCategoryTag>
                           </HStack>
