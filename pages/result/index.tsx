@@ -54,9 +54,10 @@ const SearchResultPage = () => {
     setIsFilterListOpen(!isFilterListOpen);
   };
 
-  const handleClickBeerCard = useCallback(
+  const onClick = useCallback(
     (id: number, name: string) => {
-      router.push(`/result/details?id=${id}&name=${name}`);
+      const url = generateBeerDetailUrl(id, name);
+      router.push(url);
     },
     [router]
   );
@@ -144,7 +145,7 @@ const SearchResultPage = () => {
                     key={beerItems.id}
                     mt={1}
                     w="full"
-                    onClick={() => handleClickBeerCard(id, name)}
+                    onClick={() => onClick(id, name)}
                   >
                     <BeerCardBody w="full" h="full" position={"relative"}>
                       <Box position="relative">
