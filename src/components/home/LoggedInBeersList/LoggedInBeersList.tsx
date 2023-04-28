@@ -10,7 +10,7 @@ import {
 import React, {useCallback} from "react";
 import {BeerResponseType} from "../../../../typedef/server/beer";
 import {useRouter} from "next/router";
-import {generateBeerDetailUrl} from "@utils/url";
+import {generateBeerDetailUrl} from "@/../utils/url";
 
 interface LoggedInBeersListProps {
   topBeersList?: BeerResponseType[];

@@ -25,6 +25,7 @@ import {
   BeerNameText,
 } from "../../src/components/shared/Card/BeerCardItem";
 import {LeftBackTitle} from "../../src/components/shared/Headers/LeftBackTitle";
+import {generateBeerDetailUrl} from "@/../utils/url";
 
 const SearchResultPage = () => {
   const router = useRouter();
