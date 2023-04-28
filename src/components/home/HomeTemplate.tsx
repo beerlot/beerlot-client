@@ -1,20 +1,29 @@
 import {Box, Container} from "@chakra-ui/react";
+import {useEffect} from "react";
+import {useTopBeersQuery} from "../../../hooks/useTopBeersQuery";
 import {SignUpType} from "../../../interface/types";
 import {BeerResponseType} from "../../../typedef/server/beer";
 import {BlankHeader} from "../shared/Headers/BlankHeader";
+import {CommonBeersList} from "./CommonBeersList/CommonBeersList";
+import {LoggedInBeersList} from "./LoggedInBeersList/LoggedInBeersList";
 import SearchInputHome from "./SearchInputHome";
 import {WelcomeTextContent} from "./WelcomeText";
-import {LoggedInBeersList} from "./LoggedInBeersList/LoggedInBeersList";
-import {CommonBeersList} from "./CommonBeersList/CommonBeersList";
 
 interface HomeTemplateProps {
   userInfo?: SignUpType;
-  topBeersList?: BeerResponseType[];
 }
-const HomeTemplate: React.FC<HomeTemplateProps> = ({
-  userInfo,
-  topBeersList,
-}) => {
+const HomeTemplate: React.FC<HomeTemplateProps> = ({userInfo}) => {
+  const topBeersQuery = useTopBeersQuery({
+    onSuccess: async () => {},
+    onError: (error) => {
+      console.error("error", error);
+    },
+  });
+
+  useEffect(() => {
+    topBeersQuery.refetch();
+  }, []);
+
   return (
     <Box w="full" h="full" bg="gray.100" overflowY="scroll">
       <Container p={"0px"} bg="white" maxW="450px" h="full">
@@ -32,10 +41,10 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({
           {userInfo ? (
             <LoggedInBeersList
               userName={userInfo?.username}
-              topBeersList={topBeersList}
+              topBeersList={topBeersQuery.data}
             />
           ) : (
-            <CommonBeersList topBeersList={topBeersList} />
+            <CommonBeersList topBeersList={topBeersQuery.data} />
           )}
         </Box>
       </Container>

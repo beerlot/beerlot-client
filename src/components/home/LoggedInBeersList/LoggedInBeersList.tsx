@@ -1,7 +1,4 @@
-import {Box, HStack, Text} from "@chakra-ui/react";
-import Image from "next/image";
-import React from "react";
-import {BeerResponseType} from "../../../../typedef/server/beer";
+import {Box, Image as ChakraImage, HStack, Text} from "@chakra-ui/react";
 import {
   BeerCard,
   BeerCardBody,
@@ -10,6 +7,8 @@ import {
   BeerCategoryTagLabel,
   BeerNameText,
 } from "@components/shared/Card/BeerCardItem";
+import React from "react";
+import {BeerResponseType} from "../../../../typedef/server/beer";
 
 interface LoggedInBeersListProps {
   topBeersList?: BeerResponseType[];
@@ -32,7 +31,7 @@ const LoggedInBeersList: React.FC<LoggedInBeersListProps> = ({
                 <BeerCardBody>
                   <Box position="relative">
                     {item.image_url && (
-                      <Image
+                      <ChakraImage
                         src={item.image_url}
                         alt={item.name}
                         width="124px"
@@ -72,7 +71,7 @@ const LoggedInBeersList: React.FC<LoggedInBeersListProps> = ({
                 <BeerCardBody>
                   <Box position="relative">
                     {item.image_url && (
-                      <Image
+                      <ChakraImage
                         src={item.image_url}
                         alt={item.name}
                         width="124px"

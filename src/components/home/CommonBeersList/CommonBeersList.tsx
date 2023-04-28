@@ -1,7 +1,10 @@
-import {Box, HStack, SimpleGrid, Text} from "@chakra-ui/react";
-import Image from "next/image";
-import React from "react";
-import {BeerResponseType} from "../../../../typedef/server/beer";
+import {
+  Box,
+  Image as ChakraImage,
+  HStack,
+  SimpleGrid,
+  Text,
+} from "@chakra-ui/react";
 import {
   BeerCard,
   BeerCardBody,
@@ -10,6 +13,8 @@ import {
   BeerCategoryTagLabel,
   BeerNameText,
 } from "@components/shared/Card/BeerCardItem";
+import React from "react";
+import {BeerResponseType} from "../../../../typedef/server/beer";
 
 interface CommonBeersListProps {
   topBeersList?: BeerResponseType[];
@@ -29,7 +34,7 @@ const CommonBeersList: React.FC<CommonBeersListProps> = ({topBeersList}) => {
                 <BeerCardBody w="full" h="full" position={"relative"}>
                   <Box position="relative">
                     {item.image_url && (
-                      <Image
+                      <ChakraImage
                         src={item.image_url}
                         alt={item.name}
                         width="175px"
