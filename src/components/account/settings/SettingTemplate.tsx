@@ -1,5 +1,4 @@
 import {Box, useDisclosure, VStack} from "@chakra-ui/react";
-import Cookies from "js-cookie";
 import {useRouter} from "next/router";
 import {useRecoilState} from "recoil";
 import {userInfoState} from "../../../store/atom";
@@ -67,7 +66,6 @@ export const SettingsTemplate = () => {
             onClick: () => {
               console.log("logout clicked");
               router.push("/");
-              Cookies.remove("beerlot-oauth-auth-request");
             },
           }}
         />

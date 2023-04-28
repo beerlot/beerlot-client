@@ -198,3 +198,5 @@ export const MIN_MAX_BEER_VOLUME_SLIDER = [
   MIN_BEER_VOLUME_SLIDER,
   MAX_BEER_VOLUME_SLIDER,
 ];
+
+export const COOKIE_NAME = "next-auth.session-token";

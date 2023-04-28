@@ -3,6 +3,7 @@ import {GetServerSideProps} from "next";
 import {useRouter} from "next/router";
 import {SectionButton} from "../../../src/components/account/settings/SectionButton";
 import {LeftBackRandom} from "../../../src/components/shared/Headers/LeftBackRandom";
+import {COOKIE_NAME} from "@/../interface/static";
 
 const Info = () => {
   const router = useRouter();
@@ -66,7 +67,7 @@ export const InfoSettingSection = [
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const cookies = context.req.headers.cookie;
 
-  if (!cookies || !cookies.includes("beerlot-oauth-auth-request")) {
+  if (!cookies || !cookies.includes(COOKIE_NAME)) {
     return {
       redirect: {
         destination: "/login",

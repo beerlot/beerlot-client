@@ -9,6 +9,7 @@ import {
 import {OAUTH_PROVIDER} from "../../../../interface/types";
 import {GoogleLogo, KakaoLogo, NaverLogo} from "../../../../public/svg";
 import {generateSocialLoginUrl, redirectUrl} from "../../../api/auth/api";
+import {signIn} from "next-auth/react";
 
 const SocialButton = () => {
   return (
@@ -17,21 +18,22 @@ const SocialButton = () => {
         console.log(button.href, "href");
         return (
           <Button
-            _hover={{}}
-            _active={{}}
-            as={ChakraLink}
-            href={button.href}
             key={button.ariaLabel}
-            aria-label={button.ariaLabel}
-            border={button.border} // TODO: use them as styleProps
-            width="100%"
-            bg={button.buttonColor}
-            borderRadius={12}
-            justifyContent="space-between"
-            p={"5px"}
-            px={"8px"}
-            alignItems={"center"}
+            // _hover={{}}
+            // _active={{}}
+            // // as={ChakraLink}
+            // // href={button.href}
+            // aria-label={button.ariaLabel}
+            // border={button.border} // TODO: use them as styleProps
+            // width="100%"
+            // bg={button.buttonColor}
+            // borderRadius={12}
+            // justifyContent="space-between"
+            // p={"5px"}
+            // px={"8px"}
+            // alignItems={"center"}
             cursor="pointer"
+            onClick={button.onClick}
           >
             <Icon as={button.icon} w={"36px"} h={"36px"} />
             <Text textStyle={"h2"} textColor={button.textColor}>
@@ -87,6 +89,20 @@ export const socialButton = [
     textColor: "black",
     border: "#dddddd 1px solid", // TODO: use Chakra theme
     href: generateSocialLoginUrl(OAUTH_PROVIDER.GOOGLE),
+  },
+  {
+    provider: OAUTH_PROVIDER.GOOGLE,
+    // ariaLabel: "google login",
+    // icon: GoogleLogo,
+    onClick: () => {
+      console.log("logg in clicked");
+      signIn();
+    },
+    label: "github으로 계속하기",
+    // buttonColor: "white.100",
+    // textColor: "black",
+    // border: "#dddddd 1px solid", // TODO: use Chakra theme
+    // href: generateSocialLoginUrl(OAUTH_PROVIDER.GOOGLE),
   },
 ];
 

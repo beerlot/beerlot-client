@@ -3,6 +3,9 @@ import {GetServerSideProps} from "next";
 import {useEffect} from "react";
 import {getMyAccountApi} from "../../src/api/auth/api";
 import AccountsTemplate from "../../src/components/account/AccountsTemplate";
+import {getServerSession} from "next-auth";
+import {authOptions} from "../api/auth/[...nextauth]";
+import {COOKIE_NAME} from "@/../interface/static";
 
 const AccountPage = () => {
   useEffect(() => {
@@ -23,7 +26,7 @@ export default AccountPage;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const cookies = context.req.headers.cookie;
 
-  if (!cookies || !cookies.includes("beerlot-oauth-auth-request")) {
+  if (!cookies || !cookies.includes(COOKIE_NAME)) {
     return {
       redirect: {
         destination: "/login",
