@@ -19,7 +19,7 @@ export const useAllReviewsQuery = (
 };
 
 export type AllReviewsQueryParams = {
-  beerId: number;
+  // beerId: number;
   page?: number;
   size?: number;
   sort?: ReviewSortEnum;

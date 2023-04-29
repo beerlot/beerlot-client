@@ -2,6 +2,7 @@ import {Avatar, Box, Center, Flex, IconButton, Text} from "@chakra-ui/react";
 import Image from "next/image";
 import {EditNote, TrashBin} from "../../../public/svg";
 import ThumbsUpButton from "../shared/ThumbsUpButton";
+import {getLeftTime} from "@/../utils/time";
 
 interface FollowingTabPanelItemProps {
   isRow: boolean;
@@ -50,8 +51,7 @@ const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
               |
             </Text>
             <Text textStyle="h3" color="gray.300">
-              {/* TODO: time 분기 처리 */}
-              {postingTime}
+              {getLeftTime("2023-04-29T15:31:05.202+00:00")}
             </Text>
           </Box>
           {!isEditable && (

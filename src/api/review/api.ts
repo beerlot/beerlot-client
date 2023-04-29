@@ -5,12 +5,11 @@ import {AllReviewsQueryParams} from "@/../hooks/useReviewQuery";
 // 맥주 1개에 대한 리뷰 리스트 get
 export const fetchAllBeersApi = async (queryParam: AllReviewsQueryParams) => {
   const {
-    beerId,
     page = 1,
     size = 10,
     sort = ReviewSortEnum.RecentlyUpdated,
   } = queryParam;
-  const res = await axios.get(`/api/v1/beers/${beerId}/reviews`, {
+  const res = await axios.get(`/api/v1/reviews`, {
     params: {
       page,
       size,
