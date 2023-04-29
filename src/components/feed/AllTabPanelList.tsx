@@ -22,7 +22,6 @@ export const AllTabPanelList = () => {
 
   useEffect(() => {
     allReviewsQuery.refetch();
-    console.log("allReviewsQuery", allReviewsQuery.data);
   }, []);
 
   const handleSetSelectedReviews = useCallback(
@@ -48,7 +47,7 @@ export const AllTabPanelList = () => {
             nickname={feed.member.username}
             postingTime={feed.updated_at}
             beerName={"MOCK_BEER_NAME"}
-            ratingNumber={feed.rate}
+            rate={feed.rate}
             imageSrc={feed.image_url}
             postText={feed.content}
             thumbsUpNumber={feed.like_count}

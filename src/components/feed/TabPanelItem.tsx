@@ -3,13 +3,14 @@ import Image from "next/image";
 import {EditNote, TrashBin} from "../../../public/svg";
 import ThumbsUpButton from "../shared/ThumbsUpButton";
 import {getLeftTime} from "@/../utils/time";
+import {Rating} from "../shared/Rating";
 
 interface FollowingTabPanelItemProps {
   isRow: boolean;
   nickname: string;
   postingTime: string;
   beerName: string;
-  ratingNumber: number;
+  rate: number;
   imageSrc?: string;
   postText: string;
   thumbsUpNumber: number;
@@ -21,7 +22,7 @@ const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
   nickname,
   postingTime,
   beerName,
-  ratingNumber,
+  rate,
   imageSrc,
   postText,
   thumbsUpNumber,
@@ -51,7 +52,7 @@ const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
               |
             </Text>
             <Text textStyle="h3" color="gray.300">
-              {getLeftTime("2023-04-29T15:31:05.202+00:00")}
+              {getLeftTime(postingTime)}
             </Text>
           </Box>
           {!isEditable && (
@@ -61,7 +62,13 @@ const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
           )}
 
           <Box className="ratingInfo" my={"2px"}>
-            <Text fontSize={"17px"}>{ratingNumber}점</Text>
+            <Rating
+              starSize={16}
+              rate={Math.round(rate)}
+              styleProps={{
+                gap: "0px",
+              }}
+            />
           </Box>
           {isRow && (
             <Box display="flex" my={"2px"} flexDirection="row">
