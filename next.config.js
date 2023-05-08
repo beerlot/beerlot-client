@@ -27,9 +27,19 @@ module.exports = {
           "https://beerlot-core-api-lopbi5pmwq-du.a.run.app/api/v1/policies/:path*",
       },
       {
-        source: "/api/v1/auth/:path*",
+        source: "/api/v1/auth/signup",
         destination:
-          "https://beerlot-core-api-lopbi5pmwq-du.a.run.app/api/v1/auth/:path*",
+          "https://beerlot-core-api-lopbi5pmwq-du.a.run.app/api/v1/auth/signup",
+      },
+      {
+        source: "/api/v1/auth/authorize/:path*",
+        destination:
+          "https://beerlot-core-api-lopbi5pmwq-du.a.run.app/api/v1/auth/authorize/:path*",
+      },
+      {
+        source: "/api/v1/auth/refresh",
+        destination:
+          "https://beerlot-core-api-lopbi5pmwq-du.a.run.app/api/v1/auth/refresh",
       },
       {
         source: "/:path*",
