@@ -12,8 +12,8 @@ import {
   TagLabelProps,
   Text,
   TextProps,
+  Image as ChakraImage,
 } from "@chakra-ui/react";
-import Image from "next/image";
 import React from "react";
 import {BeerResponseType} from "../../../../typedef/server/beer";
 interface BeerCardItemProps extends CardProps {
@@ -29,7 +29,7 @@ export const BeerCardItem: React.FC<BeerCardItemProps> = ({
   return (
     <BeerCard {...props}>
       <BeerCardBody>
-        {image_url && <Image src={image_url} alt={name} />}
+        {image_url && <ChakraImage src={image_url} alt={name} />}
       </BeerCardBody>
       <BeerCardFooter>
         <BeerNameText>{name}</BeerNameText>

@@ -5,8 +5,8 @@ import {
   Flex,
   HStack,
   SimpleGrid,
+  Image as ChakraImage,
 } from "@chakra-ui/react";
-import Image from "next/image";
 import {useRouter} from "next/router";
 import {useCallback, useEffect, useState} from "react";
 import {MOCK_CATEGORY_FILTER_LIST} from "../../interface/static";
@@ -151,7 +151,7 @@ const SearchResultPage = () => {
                     <BeerCardBody w="full" h="full" position={"relative"}>
                       <Box position="relative">
                         {image_url && (
-                          <Image
+                          <ChakraImage
                             src={image_url}
                             alt={name}
                             width="175px"
