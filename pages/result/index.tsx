@@ -26,6 +26,7 @@ import {
 } from "../../src/components/shared/Card/BeerCardItem";
 import {LeftBackTitle} from "../../src/components/shared/Headers/LeftBackTitle";
 import {generateBeerDetailUrl} from "@/../utils/url";
+import {CommonBeerImage} from "@/components/shared/CommonBeerImage/CommonBeerImage";
 
 const SearchResultPage = () => {
   const router = useRouter();
@@ -151,7 +152,7 @@ const SearchResultPage = () => {
                     <BeerCardBody w="full" h="full" position={"relative"}>
                       <Box position="relative">
                         {image_url && (
-                          <ChakraImage
+                          <CommonBeerImage
                             src={image_url}
                             alt={name}
                             width="175px"

@@ -26,6 +26,7 @@ import {
 } from "../../shared/Card/BeerCardItem";
 
 import FloatingButton from "../../shared/FloatingButton";
+import {CommonBeerImage} from "@/components/shared/CommonBeerImage/CommonBeerImage";
 
 interface BeerCardsProps extends StackProps {
   nickName: string;
@@ -138,7 +139,7 @@ const BeerCards: React.FC<BeerCardsProps> = ({nickName, ...props}) => {
               >
                 <Box position="relative" borderRadius={6}>
                   {item.image_url && (
-                    <ChakraImage
+                    <CommonBeerImage
                       src={item.image_url}
                       alt={item.name}
                       width="175px"
