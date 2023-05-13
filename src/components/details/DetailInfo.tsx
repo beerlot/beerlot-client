@@ -104,6 +104,7 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
               w="40px"
               h="40px"
               cursor="pointer"
+              aria-label="like button"
             />
           </HStack>
         </HStack>

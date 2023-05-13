@@ -54,6 +54,7 @@ const BeerCard: React.FC<BeerCardProps> = ({
         <Box position="absolute" right="0px" top="0px">
           <LikeButton
             isLiked={isLiked}
+            aria-label="like button"
             onClick={handleClick}
             position="absolute"
             top="12px"

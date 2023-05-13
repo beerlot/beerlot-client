@@ -45,6 +45,7 @@ export const LeftBackBeerNameRightHeart: React.FC<
           isClicked ? "none" : "drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5))"
         }
         color={isClicked ? "orange.300" : "#ffffff"}
+        aria-label="like button"
       />
     </Flex>
   );

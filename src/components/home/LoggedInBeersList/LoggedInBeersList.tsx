@@ -49,7 +49,7 @@ const LoggedInBeersList: React.FC<LoggedInBeersListProps> = ({
                 onClick={() => onClick(item?.id, item.name)}
               >
                 <Box id={"like button"} pos={"absolute"} right={4} top={4}>
-                  <LikeButton isLiked={true} />
+                  <LikeButton isLiked={true} aria-label="like button" />
                 </Box>
 
                 <BeerCardBody>
