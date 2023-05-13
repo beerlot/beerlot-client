@@ -1,3 +1,5 @@
+import {generateBeerDetailUrl} from "@/../utils/url";
+import {CommonBeerImage} from "@/components/shared/CommonBeerImage/CommonBeerImage";
 import {
   Box,
   Circle,
@@ -5,14 +7,12 @@ import {
   Flex,
   HStack,
   SimpleGrid,
-  Image as ChakraImage,
 } from "@chakra-ui/react";
 import {useRouter} from "next/router";
 import {useCallback, useEffect, useState} from "react";
 import {MOCK_CATEGORY_FILTER_LIST} from "../../interface/static";
 import {CategoryFilterListType, CategoryTitle} from "../../interface/types";
 import {EmptyFilter, WhiteFilter} from "../../public/svg";
-import {getBeersWithKeywordApi} from "../../src/api/beers/api";
 import {mockData} from "../../src/components/home/HomeTemplate";
 import {SearchFilterList} from "../../src/components/result/filter/search-filter-list/SearchFilterList";
 import SearchInput from "../../src/components/search/SearchInput";
@@ -25,8 +25,6 @@ import {
   BeerNameText,
 } from "../../src/components/shared/Card/BeerCardItem";
 import {LeftBackTitle} from "../../src/components/shared/Headers/LeftBackTitle";
-import {generateBeerDetailUrl} from "@/../utils/url";
-import {CommonBeerImage} from "@/components/shared/CommonBeerImage/CommonBeerImage";
 
 const SearchResultPage = () => {
   const router = useRouter();
@@ -37,10 +35,10 @@ const SearchResultPage = () => {
     CategoryFilterListType[]
   >([]);
   const [beers, setBeers] = useState([]);
-  useEffect(() => console.log("beers", beers), [beers]);
+
   const allKeywordAsync = useCallback(async (keyword: string) => {
-    const res = await getBeersWithKeywordApi({keyword});
-    setBeers(res?.data.contents);
+    // const res = await fetchBeersApi();
+    // setBeers(res?.data.contents);
   }, []);
 
   useEffect(() => {
