@@ -88,7 +88,7 @@ export const ReviewModal = () => {
   };
 
   const postReview = useCallback(async () => {
-    const result = await await postReviewWithBeerIdApi(1, {
+    const result = await postReviewWithBeerIdApi(1, {
       content: reviewInputValue,
       rate: reviewInfo.rate,
       // image_url: reviewInfo.imgUrl,
