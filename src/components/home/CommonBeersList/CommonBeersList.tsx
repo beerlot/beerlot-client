@@ -24,21 +24,21 @@ const CommonBeersList: React.FC<CommonBeersListProps> = ({topBeersList}) => {
   const likeBeerMutation = useBeerLikeMutation();
   const likeBeer = useCallback(
     async (beerId: number) => {
-      try {
-        await likeBeerMutation.mutateAsync(
-          {beerId},
-          {
-            onSuccess: () => {
-              setIsLikeBeer(true);
-            },
-          }
-        );
-      } catch (error) {
-        console.error(error);
-        // trigger error toast
-      }
+      await likeBeerMutation.mutateAsync(
+        {beerId},
+        {
+          onSuccess: () => {
+            setIsLikeBeer(true);
+          },
+          onError: ({response}) => {
+            if (response.status === 403) {
+              router.push("/login");
+            }
+          },
+        }
+      );
     },
-    [likeBeerMutation]
+    [likeBeerMutation, router]
   );
 
   const dislikeBeer = useCallback((beerId: number) => {
