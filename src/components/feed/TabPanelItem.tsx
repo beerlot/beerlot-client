@@ -49,6 +49,7 @@ const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
     postText.length > maxPostLength,
     isExpanded
   );
+
   return (
     <Box p={"12px"} bg="white">
       <Box
@@ -94,28 +95,24 @@ const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
 
           {/* review post texts */}
           {isRow && (
-            <Box display="flex" my={"2px"} flexDirection="row">
-              <Text textStyle="h3" as="span">
-                {postEllipsisStatus === "normal" ||
-                postEllipsisStatus === "expanded"
-                  ? postText
-                  : postText.slice(0, 35)}
+            <Box display="inline" my={"2px"} flexDirection="row">
+              <Text textStyle="h3" display="inline">
+                {postEllipsisStatus === "shorten"
+                  ? postText.slice(0, 35)
+                  : postText}
+                {postEllipsisStatus === "shorten" ? "..." : ""}
               </Text>
-              <Text as="span">
-                {postEllipsisStatus === "normal" ||
-                postEllipsisStatus === "expanded"
-                  ? ""
-                  : "..."}
-              </Text>
-
-              <Button
-                color="gray.200"
+              <Text
+                as={"button"}
+                textStyle="h3"
                 onClick={handleToggleElipsis}
-                w="fit-content"
-                display={postEllipsisStatus === "normal" ? "none" : "inline"}
+                textColor={"gray.200"}
+                display={
+                  postEllipsisStatus === "normal" ? "none" : "inline-block"
+                }
               >
                 {isExpanded ? "숨기기" : "더보기"}
-              </Button>
+              </Text>
             </Box>
           )}
         </Box>
@@ -169,8 +166,8 @@ const MAX_TEXT_LENGTH_OF_REVIEW = 35;
 const chooseTextDisplay = (
   expandable: boolean,
   isExpanded: boolean
-): "expanded" | "hidden" | "normal" => {
+): "expanded" | "shorten" | "normal" => {
   if (!expandable) return "normal";
   if (isExpanded) return "expanded";
-  return "hidden";
+  return "shorten";
 };
