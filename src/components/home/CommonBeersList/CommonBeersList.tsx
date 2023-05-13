@@ -1,10 +1,7 @@
-import {
-  Box,
-  Image as ChakraImage,
-  HStack,
-  SimpleGrid,
-  Text,
-} from "@chakra-ui/react";
+import {generateBeerDetailUrl} from "@/../utils/url";
+import {CommonBeerImage} from "@/components/shared/CommonBeerImage/CommonBeerImage";
+import {LikeButton} from "@/components/shared/LikeButton";
+import {Box, HStack, SimpleGrid, Text} from "@chakra-ui/react";
 import {
   BeerCard,
   BeerCardBody,
@@ -13,18 +10,18 @@ import {
   BeerCategoryTagLabel,
   BeerNameText,
 } from "@components/shared/Card/BeerCardItem";
+import {useRouter} from "next/router";
 import React, {useCallback} from "react";
 import {BeerResponseType} from "../../../../typedef/server/beer";
-import {useRouter} from "next/router";
-import {generateBeerDetailUrl} from "@/../utils/url";
-import {CommonBeerImage} from "@/components/shared/CommonBeerImage/CommonBeerImage";
+import {useLikeBeer} from "@/../hooks/useLikeBeer";
 
 interface CommonBeersListProps {
   topBeersList?: BeerResponseType[];
 }
 const CommonBeersList: React.FC<CommonBeersListProps> = ({topBeersList}) => {
   const router = useRouter();
-  const onClick = useCallback(
+  const {isLikedBeer, likeBeer, dislikeBeer} = useLikeBeer();
+  const onClickCard = useCallback(
     (id?: number, name?: string) => {
       if (!id || !name) return; //TODO: add toast
 
@@ -32,6 +29,17 @@ const CommonBeersList: React.FC<CommonBeersListProps> = ({topBeersList}) => {
       router.push(url);
     },
     [router]
+  );
+  const handleClickLike = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      if (isLikedBeer) {
+        dislikeBeer();
+      } else {
+        likeBeer();
+      }
+      e.stopPropagation();
+    },
+    [dislikeBeer, isLikedBeer, likeBeer]
   );
 
   return (
@@ -48,7 +56,7 @@ const CommonBeersList: React.FC<CommonBeersListProps> = ({topBeersList}) => {
                 key={item.id}
                 mt={1}
                 w="full"
-                onClick={() => onClick(item?.id, item.name)}
+                onClick={() => onClickCard(item?.id, item.name)}
               >
                 <BeerCardBody w="full" h="full" position={"relative"}>
                   <Box position="relative">
@@ -61,6 +69,14 @@ const CommonBeersList: React.FC<CommonBeersListProps> = ({topBeersList}) => {
                         objectFit="cover"
                       />
                     )}
+                  </Box>
+                  <Box position="absolute" top={0} right={0}>
+                    <LikeButton
+                      isLiked={true}
+                      onClick={handleClickLike}
+                      h={7}
+                      aria-label="like button"
+                    />
                   </Box>
                 </BeerCardBody>
                 <BeerCardFooter>

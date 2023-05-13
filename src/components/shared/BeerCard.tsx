@@ -53,7 +53,7 @@ const BeerCard: React.FC<BeerCardProps> = ({
       {isLikable && (
         <Box position="absolute" right="0px" top="0px">
           <LikeButton
-            isClicked={isLiked}
+            isLiked={isLiked}
             onClick={handleClick}
             position="absolute"
             top="12px"

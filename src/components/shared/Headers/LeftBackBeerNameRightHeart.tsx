@@ -38,7 +38,7 @@ export const LeftBackBeerNameRightHeart: React.FC<
       </Text>
       <LikeButton
         onClick={handleClick}
-        isClicked={isClicked}
+        isLiked={isClicked}
         w="27px"
         h="29px"
         filter={
