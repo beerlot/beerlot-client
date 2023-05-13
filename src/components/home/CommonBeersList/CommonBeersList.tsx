@@ -11,17 +11,41 @@ import {
   BeerNameText,
 } from "@components/shared/Card/BeerCardItem";
 import {useRouter} from "next/router";
-import React, {useCallback} from "react";
+import React, {useCallback, useState} from "react";
 import {BeerResponseType} from "../../../../typedef/server/beer";
-import {useLikeBeer} from "@/../hooks/useLikeBeer";
+import {useBeerLikeMutation} from "@/../hooks/query/useBeerLikeMutation";
 
 interface CommonBeersListProps {
   topBeersList?: BeerResponseType[];
 }
 const CommonBeersList: React.FC<CommonBeersListProps> = ({topBeersList}) => {
   const router = useRouter();
-  const {isLikedBeer, likeBeer, dislikeBeer} = useLikeBeer();
-  const onClickCard = useCallback(
+
+  const likeBeerMutation = useBeerLikeMutation();
+  const likeBeer = useCallback(
+    async (beerId: number) => {
+      try {
+        await likeBeerMutation.mutateAsync(
+          {beerId},
+          {
+            onSuccess: () => {
+              setIsLikeBeer(true);
+            },
+          }
+        );
+      } catch (error) {
+        console.error(error);
+        // trigger error toast
+      }
+    },
+    [likeBeerMutation]
+  );
+
+  const dislikeBeer = useCallback((beerId: number) => {
+    console.log("beerId", beerId);
+  }, []);
+
+  const handleClickCard = useCallback(
     (id?: number, name?: string) => {
       if (!id || !name) return; //TODO: add toast
 
@@ -30,14 +54,17 @@ const CommonBeersList: React.FC<CommonBeersListProps> = ({topBeersList}) => {
     },
     [router]
   );
+
+  const [isLikedBeer, setIsLikeBeer] = useState(false);
   const handleClickLike = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      if (isLikedBeer) {
-        dislikeBeer();
-      } else {
-        likeBeer();
-      }
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, beerId?: number) => {
       e.stopPropagation();
+      if (beerId === undefined) return;
+      if (isLikedBeer) {
+        dislikeBeer(beerId);
+      } else {
+        likeBeer(beerId);
+      }
     },
     [dislikeBeer, isLikedBeer, likeBeer]
   );
@@ -56,7 +83,7 @@ const CommonBeersList: React.FC<CommonBeersListProps> = ({topBeersList}) => {
                 key={item.id}
                 mt={1}
                 w="full"
-                onClick={() => onClickCard(item?.id, item.name)}
+                onClick={() => handleClickCard(item?.id, item.name)}
               >
                 <BeerCardBody w="full" h="full" position={"relative"}>
                   <Box position="relative">
@@ -73,7 +100,7 @@ const CommonBeersList: React.FC<CommonBeersListProps> = ({topBeersList}) => {
                   <Box position="absolute" top={0} right={0}>
                     <LikeButton
                       isLiked={true}
-                      onClick={handleClickLike}
+                      onClick={(e) => handleClickLike(e, item.id)}
                       h={7}
                       aria-label="like button"
                     />
