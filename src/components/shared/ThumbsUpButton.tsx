@@ -1,5 +1,5 @@
-import {ThumbsUpIcon, ThumbsUpOrangeIcon} from "@/../public/svg";
-import {Button, ButtonProps, Icon, Text} from "@chakra-ui/react";
+import { ThumbsUpIcon, ThumbsUpOrangeIcon } from "@/../public/svg";
+import { Button, ButtonProps, Icon, Text } from "@chakra-ui/react";
 import React from "react";
 
 interface ThumbsUpButtonProps extends ButtonProps {
@@ -12,7 +12,6 @@ const ThumbsUpButton: React.FC<ThumbsUpButtonProps> = ({
   isLiked = false,
   ...props
 }) => {
-  console.log("isLiked", isLiked);
   return (
     <Button
       h={"auto"}
@@ -23,7 +22,7 @@ const ThumbsUpButton: React.FC<ThumbsUpButtonProps> = ({
       borderColor={isLiked ? "orange.200" : "gray.200"}
       border={"1px solid"}
       borderRadius="30px"
-      _hover={{bg: "white"}}
+      _hover={{ bg: "white" }}
       {...props}
     >
       {/* TODO : selected 될 때 orange 처리, gray (hover?) 없애기 */}
