@@ -10,7 +10,7 @@ import { useQueryClient } from "react-query";
 import { EditNote, TrashBin } from "../../../public/svg";
 import { CommonBeerImage } from "../shared/CommonBeerImage/CommonBeerImage";
 import { Rating } from "../shared/Rating";
-import ThumbsUpButton from "../shared/ThumbsUpButton";
+import { ThumbsUpButton } from "../shared/ThumbsUpButton";
 interface FollowingTabPanelItemProps {
   reviewId: number;
   nickname: string;
