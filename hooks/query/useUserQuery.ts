@@ -87,7 +87,7 @@ export const useUserLikedReviewsQuery = (
   return useQuery({
     queryKey: ["userLikedReviews", accessToken],
     queryFn: () => getUserLikedReviewsApi(accessToken),
-    enabled: false,
+    enabled: !!accessToken,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     ...options,
