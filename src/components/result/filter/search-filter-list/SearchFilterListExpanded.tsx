@@ -5,6 +5,7 @@ import {
   MOCK_CATEGORY_FILTER_LIST,
 } from "../../../../../interface/static";
 import {
+  BeerSortEnum,
   CategoryFilterListType,
   CategoryTitle,
 } from "../../../../../interface/types";
@@ -31,10 +32,45 @@ export const SearchFilterListExpanded: React.FC<
     MIN_MAX_BEER_VOLUME_SLIDER[0],
     MIN_MAX_BEER_VOLUME_SLIDER[1],
   ]);
+  const sortTags = {
+    좋아요순: BeerSortEnum.MostLikes,
+    별점순: BeerSortEnum.HighRate,
+    리뷰많은순: BeerSortEnum.MostReviews,
+  };
+  const selectedSort = selectedFilters.find(
+    (filter) => filter.title === CategoryTitle.SORT_CRITERIA
+  );
+
   return (
     <Box>
+      <SearchFilterRowWrapper>
+        <SearchFilterTag
+          title={"정렬 기준"}
+          selectedFilters={selectedFilters}
+          isFilterListOpen={isFilterListOpen}
+          flexShrink={0}
+        />
+        <SearchFilterRowOptionsWrapper>
+          {Object.keys(sortTags).map((tag) => {
+            const key = tag as keyof typeof sortTags;
+            const isSelected = selectedSort?.tags.includes(sortTags[key]);
+            return (
+              <SearchFilterRowOption
+                key={key}
+                textColor={isSelected ? "black.100" : "gray.200"}
+                textStyle={isSelected ? "h4_bold" : "h4"}
+                onClick={() => {
+                  onClickTag(CategoryTitle.SORT_CRITERIA, sortTags[key]);
+                }}
+              >
+                {key}
+              </SearchFilterRowOption>
+            );
+          })}
+        </SearchFilterRowOptionsWrapper>
+      </SearchFilterRowWrapper>
       {MOCK_CATEGORY_FILTER_LIST.map((filterObj) => {
-        const { title, tags, isRange } = filterObj;
+        const { title, tags } = filterObj;
         return (
           <SearchFilterRowWrapper key={title}>
             <SearchFilterTag
@@ -44,38 +80,43 @@ export const SearchFilterListExpanded: React.FC<
               flexShrink={0}
             />
             <SearchFilterRowOptionsWrapper>
-              {isRange ? (
-                <SearchFilterRangeRow
-                  beerVolume={beerVolume}
-                  onChange={setBeerVolume}
-                />
-              ) : (
-                <>
-                  {tags.map((tag: string) => {
-                    const isSelected = checkSelectedFilter(
-                      selectedFilters,
-                      title,
-                      tag
-                    );
-                    return (
-                      <SearchFilterRowOption
-                        key={tag}
-                        textColor={isSelected ? "black.100" : "gray.200"}
-                        textStyle={isSelected ? "h4_bold" : "h4"}
-                        onClick={() => {
-                          onClickTag(title, tag);
-                        }}
-                      >
-                        {tag}
-                      </SearchFilterRowOption>
-                    );
-                  })}
-                </>
-              )}
+              {tags.map((tag: string) => {
+                const isSelected = checkSelectedFilter(
+                  selectedFilters,
+                  title,
+                  tag
+                );
+                return (
+                  <SearchFilterRowOption
+                    key={tag}
+                    textColor={isSelected ? "black.100" : "gray.200"}
+                    textStyle={isSelected ? "h4_bold" : "h4"}
+                    onClick={() => {
+                      onClickTag(title, tag);
+                    }}
+                  >
+                    {tag}
+                  </SearchFilterRowOption>
+                );
+              })}
             </SearchFilterRowOptionsWrapper>
           </SearchFilterRowWrapper>
         );
       })}
+      <SearchFilterRowWrapper>
+        <SearchFilterTag
+          title={"도수"}
+          selectedFilters={selectedFilters}
+          isFilterListOpen={isFilterListOpen}
+          flexShrink={0}
+        />
+        <SearchFilterRowOptionsWrapper>
+          <SearchFilterRangeRow
+            beerVolume={beerVolume}
+            onChange={setBeerVolume}
+          />
+        </SearchFilterRowOptionsWrapper>
+      </SearchFilterRowWrapper>
     </Box>
   );
 };

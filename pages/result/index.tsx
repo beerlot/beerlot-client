@@ -27,6 +27,7 @@ import {
 } from "../../src/components/shared/Card/BeerCardItem";
 import { LeftBackTitle } from "../../src/components/shared/Headers/LeftBackTitle";
 import { useFetcBeerSearchCategoriesQuery } from "../../hooks/query/useFilterQuery";
+import { BeerSortType } from "../../types/common";
 
 const SearchResultPage = () => {
   const router = useRouter();
@@ -36,17 +37,20 @@ const SearchResultPage = () => {
 
   const [value, setValue] = useState<string>("");
   // TODO: refactor filter into 1 object data
-
-  const [sort, setSort] = useState<string>(CategoryTitle.SORT_CRITERIA);
-
   const [selectedFilters, setSelectedFilter] = useState<
     CategoryFilterListType[]
   >([
     {
-      tags: ["좋아요"],
+      tags: [BeerSortType.MOST_LIKES],
       title: CategoryTitle.SORT_CRITERIA,
     },
   ]);
+  const _selectedSort = selectedFilters.find(
+    (filter) => filter.title === CategoryTitle.SORT_CRITERIA
+  )?.tags;
+  const selectedSort = _selectedSort
+    ? (_selectedSort[0] as BeerSortType)
+    : BeerSortType.MOST_LIKES;
   const { data, refetch } = useFetcBeerSearchCategoriesQuery();
 
   useEffect(() => {
@@ -55,11 +59,12 @@ const SearchResultPage = () => {
 
   const SearchBeerQuery = useBeersQuery({
     keyword: typeof query === "string" ? query : "",
+    sort: selectedSort,
   });
 
   useEffect(() => {
     SearchBeerQuery.refetch();
-  }, []);
+  }, [selectedFilters]);
 
   const clearValue = () => {
     setValue("");
@@ -81,11 +86,9 @@ const SearchResultPage = () => {
   );
   const handleClickTag = (targetTitle: CategoryTitle, targetTag: string) => {
     const isSingleMode = targetTitle === CategoryTitle.SORT_CRITERIA;
-
     const selectedObjList = selectedFilters.find(
       (item) => item.title === targetTitle
     );
-
     if (selectedObjList === undefined) {
       setSelectedFilter([
         ...selectedFilters,
@@ -102,7 +105,6 @@ const SearchResultPage = () => {
         }
         return obj;
       });
-
       setSelectedFilter(newSelectedFilter);
 
       return;
