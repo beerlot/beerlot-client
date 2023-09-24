@@ -158,7 +158,6 @@ const SearchResultPage = () => {
 
           <SearchFilterList
             selectedFilters={selectedFilters}
-            filterList={MOCK_CATEGORY_FILTER_LIST}
             isFilterListOpen={isFilterListOpen}
             onClickToggle={handleClickToggle}
             onClickTag={handleClickTag}

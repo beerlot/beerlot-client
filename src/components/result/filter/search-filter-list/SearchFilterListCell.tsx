@@ -1,7 +1,12 @@
 import { HStack, StackProps, Text, TextProps } from "@chakra-ui/react";
 import React from "react";
-import { MIN_MAX_BEER_VOLUME_SLIDER } from "../../../../../interface/static";
+import {
+  MIN_MAX_BEER_VOLUME_SLIDER,
+  MOCK_CATEGORY_FILTER_LIST,
+} from "../../../../../interface/static";
 import { VolumeSlider } from "../../../shared/Filters/VolumeSlider";
+import { SearchFilterTag } from "../SearchFilterTag/SearchFilterTag";
+import { CategoryFilterListType } from "../../../../../interface/types";
 
 export const SearchFilterRowWrapper: React.FC<StackProps> = ({ children }) => {
   return (
@@ -73,5 +78,31 @@ export const SearchFilterRowOption: React.FC<TextProps> = ({
     <Text flexShrink={0} cursor="pointer" {...props}>
       {children}
     </Text>
+  );
+};
+interface BeerSearchCategoriesForClosedFilterProps {
+  isFilterListOpen: boolean;
+  selectedFilters: CategoryFilterListType[];
+  onClickToggle: () => void;
+}
+
+export const BeerSearchCategoriesForClosedFilter: React.FC<
+  BeerSearchCategoriesForClosedFilterProps
+> = ({ isFilterListOpen, selectedFilters, onClickToggle }) => {
+  return (
+    <HStack>
+      {MOCK_CATEGORY_FILTER_LIST.map((filterObj) => {
+        const { title } = filterObj;
+        return (
+          <SearchFilterTag
+            key={title}
+            title={title}
+            selectedFilters={selectedFilters}
+            onClick={onClickToggle}
+            isFilterListOpen={isFilterListOpen}
+          />
+        );
+      })}
+    </HStack>
   );
 };
