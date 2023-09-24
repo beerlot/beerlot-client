@@ -35,7 +35,12 @@ const SearchResultPage = () => {
   const [value, setValue] = useState<string>("");
   const [selectedFilters, setSelectedFilter] = useState<
     CategoryFilterListType[]
-  >([]);
+  >([
+    {
+      tags: ["좋아요"],
+      title: CategoryTitle.SORT_CRITERIA,
+    },
+  ]);
   const { data, refetch } = useFetcBeerSearchCategoriesQuery();
 
   useEffect(() => {
@@ -68,7 +73,6 @@ const SearchResultPage = () => {
     },
     [router]
   );
-
   const handleClickTag = (targetTitle: CategoryTitle, targetTag: string) => {
     const isSingleMode = targetTitle === CategoryTitle.SORT_CRITERIA;
 

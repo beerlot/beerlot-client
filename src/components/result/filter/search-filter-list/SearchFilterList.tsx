@@ -1,13 +1,13 @@
-import {Box, HStack, Text} from "@chakra-ui/react";
-import React, {useState} from "react";
-import {MIN_MAX_BEER_VOLUME_SLIDER} from "../../../../../interface/static";
+import { Box, HStack, Text } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { MIN_MAX_BEER_VOLUME_SLIDER } from "../../../../../interface/static";
 import {
   CategoryFilterListType,
   CategoryTitle,
 } from "../../../../../interface/types";
-import {checkSelectedFilter} from "../../../../../service/filter";
-import {VolumeSlider} from "../../../shared/Filters/VolumeSlider";
-import {SearchFilterTag} from "../SearchFilterTag/SearchFilterTag";
+import { checkSelectedFilter } from "../../../../../service/filter";
+import { VolumeSlider } from "../../../shared/Filters/VolumeSlider";
+import { SearchFilterTag } from "../SearchFilterTag/SearchFilterTag";
 
 interface SearchFilterListProps {
   isFilterListOpen: boolean;
@@ -33,7 +33,7 @@ export const SearchFilterList: React.FC<SearchFilterListProps> = ({
       {isFilterListOpen ? (
         <Box>
           {filterList.map((filterObj) => {
-            const {title, tags, isRange} = filterObj;
+            const { title, tags, isRange } = filterObj;
             return (
               <HStack
                 w="full"
@@ -112,7 +112,7 @@ export const SearchFilterList: React.FC<SearchFilterListProps> = ({
       ) : (
         <HStack>
           {filterList.map((filterObj) => {
-            const {title} = filterObj;
+            const { title } = filterObj;
             return (
               <SearchFilterTag
                 key={title}
