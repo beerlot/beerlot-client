@@ -1,4 +1,4 @@
-import { Box, HStack, Text } from "@chakra-ui/react";
+import { Box, HStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { MIN_MAX_BEER_VOLUME_SLIDER } from "../../../../../interface/static";
 import {
@@ -6,8 +6,13 @@ import {
   CategoryTitle,
 } from "../../../../../interface/types";
 import { checkSelectedFilter } from "../../../../../service/filter";
-import { VolumeSlider } from "../../../shared/Filters/VolumeSlider";
 import { SearchFilterTag } from "../SearchFilterTag/SearchFilterTag";
+import {
+  SearchFilterRangeRow,
+  SearchFilterRowOption,
+  SearchFilterRowOptionsWrapper,
+  SearchFilterRowWrapper,
+} from "./SearchFilterListCell";
 
 interface SearchFilterListProps {
   isFilterListOpen: boolean;
@@ -35,77 +40,44 @@ export const SearchFilterList: React.FC<SearchFilterListProps> = ({
           {filterList.map((filterObj) => {
             const { title, tags, isRange } = filterObj;
             return (
-              <HStack
-                w="full"
-                key={title}
-                py="5px"
-                borderBottom={"1px solid"}
-                borderBottomColor="gray.200"
-              >
+              <SearchFilterRowWrapper key={title}>
                 <SearchFilterTag
                   title={title}
                   selectedFilters={selectedFilters}
                   isFilterListOpen={isFilterListOpen}
                   flexShrink={0}
                 />
-                <HStack
-                  w="full"
-                  gap={isRange ? "4px" : "15px"}
-                  overflowX={"scroll"}
-                  sx={{
-                    "::-webkit-scrollbar": {
-                      display: "none",
-                    },
-                  }}
-                >
+                <SearchFilterRowOptionsWrapper>
                   {isRange ? (
-                    <>
-                      <Text mr="4px" textStyle={"h4"} textColor="gray.300">
-                        {beerVolume[0]}%
-                      </Text>
-                      <VolumeSlider
-                        min={MIN_MAX_BEER_VOLUME_SLIDER[0]}
-                        max={MIN_MAX_BEER_VOLUME_SLIDER[1]}
-                        value={beerVolume}
-                        onChange={setBeerVolume}
-                        colorScheme="blue"
-                        w="full"
-                        trackColor="gray.200"
-                      />
-                      <Text mr="4px" textStyle={"h4"} textColor="gray.300">
-                        {beerVolume[1]}%
-                      </Text>
-                    </>
+                    <SearchFilterRangeRow
+                      beerVolume={beerVolume}
+                      onChange={setBeerVolume}
+                    />
                   ) : (
                     <>
                       {tags.map((tag: string) => {
+                        const isSelected = checkSelectedFilter(
+                          selectedFilters,
+                          title,
+                          tag
+                        );
                         return (
-                          <Text
-                            flexShrink={0}
+                          <SearchFilterRowOption
                             key={tag}
-                            cursor="pointer"
-                            textColor={
-                              checkSelectedFilter(selectedFilters, title, tag)
-                                ? "black.100"
-                                : "gray.200"
-                            }
-                            textStyle={
-                              checkSelectedFilter(selectedFilters, title, tag)
-                                ? "h4_bold"
-                                : "h4"
-                            }
+                            textColor={isSelected ? "black.100" : "gray.200"}
+                            textStyle={isSelected ? "h4_bold" : "h4"}
                             onClick={() => {
                               onClickTag(title, tag);
                             }}
                           >
                             {tag}
-                          </Text>
+                          </SearchFilterRowOption>
                         );
                       })}
                     </>
                   )}
-                </HStack>
-              </HStack>
+                </SearchFilterRowOptionsWrapper>
+              </SearchFilterRowWrapper>
             );
           })}
         </Box>

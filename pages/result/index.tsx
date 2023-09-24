@@ -31,8 +31,14 @@ import { useFetcBeerSearchCategoriesQuery } from "../../hooks/query/useFilterQue
 const SearchResultPage = () => {
   const router = useRouter();
   const { query } = router.query;
+
   const [isFilterListOpen, setIsFilterListOpen] = useState<boolean>(true);
+
   const [value, setValue] = useState<string>("");
+  // TODO: refactor filter into 1 object data
+
+  const [sort, setSort] = useState<string>(CategoryTitle.SORT_CRITERIA);
+
   const [selectedFilters, setSelectedFilter] = useState<
     CategoryFilterListType[]
   >([
