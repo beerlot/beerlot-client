@@ -49,9 +49,18 @@ const SearchResultPage = () => {
     ? (_selectedSort[0] as BeerSortType)
     : BeerSortType.MOST_LIKES;
 
+  const _selectedBeerTypes = selectedFilters.find(
+    (filter) => filter.title === CategoryTitle.BEER_TYPE
+  )?.tags;
+
+  const selectedBeerTypes = _selectedBeerTypes
+    ? (_selectedBeerTypes as number[])
+    : [];
+
   const SearchBeerQuery = useBeersQuery({
     keyword: typeof query === "string" ? query : "",
     sort: selectedSort,
+    categories: selectedBeerTypes,
   });
 
   useEffect(() => {
