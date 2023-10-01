@@ -83,8 +83,8 @@ export const MOCK_CATEGORY_FILTER_LIST = [
 ];
 export const MOCK_CATEGORY_FILTER_TITLE = [
   CategoryTitle.SORT_CRITERIA,
-  CategoryTitle.BEER_TYPE,
   CategoryTitle.BEER_COUNTRY,
+  CategoryTitle.BEER_TYPE,
   CategoryTitle.BEER_DEGREE,
 ];
 

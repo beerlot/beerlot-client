@@ -2,12 +2,11 @@ import { HStack, StackProps, Text, TextProps } from "@chakra-ui/react";
 import React from "react";
 import {
   MIN_MAX_BEER_VOLUME_SLIDER,
-  MOCK_CATEGORY_FILTER_LIST,
   MOCK_CATEGORY_FILTER_TITLE,
 } from "../../../../../interface/static";
+import { CategoryFilterListType } from "../../../../../interface/types";
 import { VolumeSlider } from "../../../shared/Filters/VolumeSlider";
 import { SearchFilterTag } from "../SearchFilterTag/SearchFilterTag";
-import { CategoryFilterListType } from "../../../../../interface/types";
 
 export const SearchFilterRowWrapper: React.FC<StackProps> = ({ children }) => {
   return (

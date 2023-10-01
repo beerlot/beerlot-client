@@ -1,6 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { MIN_MAX_BEER_VOLUME_SLIDER } from "../../../../../interface/static";
+import React from "react";
 import {
   CategoryFilterListType,
   CategoryTitle,
