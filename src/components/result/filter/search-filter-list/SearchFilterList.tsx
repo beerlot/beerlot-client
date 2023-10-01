@@ -12,6 +12,8 @@ interface SearchFilterListProps {
   selectedFilters: CategoryFilterListType[];
   onClickToggle: () => void;
   onClickTag: (targetTitle: CategoryTitle, targetTag: string | number) => void;
+  beerVolume: number[];
+  onChangeBeerVolume: (value: number[]) => void;
 }
 
 export const SearchFilterList: React.FC<SearchFilterListProps> = ({
@@ -19,6 +21,8 @@ export const SearchFilterList: React.FC<SearchFilterListProps> = ({
   selectedFilters,
   onClickToggle,
   onClickTag,
+  beerVolume,
+  onChangeBeerVolume,
 }) => {
   return (
     <Box>
@@ -27,12 +31,15 @@ export const SearchFilterList: React.FC<SearchFilterListProps> = ({
           selectedFilters={selectedFilters}
           isFilterListOpen={isFilterListOpen}
           onClickTag={onClickTag}
+          beerVolume={beerVolume}
+          onChangeBeerVolume={onChangeBeerVolume}
         />
       ) : (
         <BeerSearchCategoriesForClosedFilter
           selectedFilters={selectedFilters}
           onClickToggle={onClickToggle}
           isFilterListOpen={isFilterListOpen}
+          beerVolume={beerVolume}
         />
       )}
     </Box>

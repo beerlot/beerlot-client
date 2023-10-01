@@ -27,6 +27,7 @@ import {
 import { LeftBackTitle } from "../../src/components/shared/Headers/LeftBackTitle";
 import { BeerSortType } from "../../types/common";
 import { EmptyFilteredResult } from "@/components/result/EmptyFilteredResult";
+import { MIN_MAX_BEER_VOLUME_SLIDER } from "../../interface/static";
 
 const SearchResultPage = () => {
   const router = useRouter();
@@ -63,7 +64,13 @@ const SearchResultPage = () => {
     sort: selectedSort,
     categories: selectedBeerTypes,
   });
-
+  const [beerVolume, setBeerVolume] = useState<number[]>([
+    MIN_MAX_BEER_VOLUME_SLIDER[0],
+    MIN_MAX_BEER_VOLUME_SLIDER[1],
+  ]);
+  const handleChangeBeerVolume = (value: number[]) => {
+    setBeerVolume(value);
+  };
   useEffect(() => {
     SearchBeerQuery.refetch();
   }, [selectedFilters]);
@@ -169,6 +176,8 @@ const SearchResultPage = () => {
             isFilterListOpen={isFilterListOpen}
             onClickToggle={handleClickToggle}
             onClickTag={handleClickTag}
+            beerVolume={beerVolume}
+            onChangeBeerVolume={handleChangeBeerVolume}
           />
 
           {SearchBeerQuery.data ? (
