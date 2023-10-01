@@ -105,8 +105,9 @@ export const BeerSearchCategoriesForClosedFilter: React.FC<
             onClick={onClickToggle}
             isFilterListOpen={isFilterListOpen}
             isSelected={
-              title === CategoryTitle.BEER_DEGREE &&
-              isBeerVolumeWithinRange(beerVolume)
+              title === CategoryTitle.BEER_DEGREE
+                ? isBeerVolumeWithinRange(beerVolume)
+                : undefined
             }
           />
         );
