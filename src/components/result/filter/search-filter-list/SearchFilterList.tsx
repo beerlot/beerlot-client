@@ -30,7 +30,6 @@ export const SearchFilterList: React.FC<SearchFilterListProps> = ({
           onClickTag={onClickTag}
         />
       ) : (
-        // TODO: fix bug that when not opened, it should display all the categories
         <BeerSearchCategoriesForClosedFilter
           selectedFilters={selectedFilters}
           onClickToggle={onClickToggle}

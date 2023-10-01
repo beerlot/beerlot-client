@@ -3,6 +3,7 @@ import React from "react";
 import {
   MIN_MAX_BEER_VOLUME_SLIDER,
   MOCK_CATEGORY_FILTER_LIST,
+  MOCK_CATEGORY_FILTER_TITLE,
 } from "../../../../../interface/static";
 import { VolumeSlider } from "../../../shared/Filters/VolumeSlider";
 import { SearchFilterTag } from "../SearchFilterTag/SearchFilterTag";
@@ -91,8 +92,7 @@ export const BeerSearchCategoriesForClosedFilter: React.FC<
 > = ({ isFilterListOpen, selectedFilters, onClickToggle }) => {
   return (
     <HStack>
-      {MOCK_CATEGORY_FILTER_LIST.map((filterObj) => {
-        const { title } = filterObj;
+      {MOCK_CATEGORY_FILTER_TITLE.map((title) => {
         return (
           <SearchFilterTag
             key={title}

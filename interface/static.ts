@@ -81,6 +81,12 @@ export const MOCK_CATEGORY_FILTER_LIST = [
   // },
   { title: CategoryTitle.BEER_COUNTRY, tags: ["독일", "미국", "일본"] },
 ];
+export const MOCK_CATEGORY_FILTER_TITLE = [
+  CategoryTitle.SORT_CRITERIA,
+  CategoryTitle.BEER_TYPE,
+  CategoryTitle.BEER_COUNTRY,
+  CategoryTitle.BEER_DEGREE,
+];
 
 export const textMain = "#000000";
 
