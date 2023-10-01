@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Center, Flex, Text } from "@chakra-ui/react";
+import { Box, Center, Link, Text } from "@chakra-ui/react";
+import { BEERLOT_EMAIL } from "../../../interface/static";
 
 export const EmptyFilteredResult = () => {
   return (
@@ -28,9 +29,14 @@ export const EmptyFilteredResult = () => {
             가 없나요?
             <br />
           </Text>
-          <Text textStyle="h3_bold" as={"span"} color={"orange.300"}>
+          <Link
+            href={`mailto:?subject=${BEERLOT_EMAIL}`}
+            textStyle="h3_bold"
+            as={"span"}
+            color={"orange.300"}
+          >
             👉 맥주 제보하기 👈
-          </Text>
+          </Link>
         </Text>
       </Box>
     </Center>
