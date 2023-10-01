@@ -26,6 +26,7 @@ import {
 } from "../../src/components/shared/Card/BeerCardItem";
 import { LeftBackTitle } from "../../src/components/shared/Headers/LeftBackTitle";
 import { BeerSortType } from "../../types/common";
+import { EmptyFilteredResult } from "@/components/result/EmptyFilteredResult";
 
 const SearchResultPage = () => {
   const router = useRouter();
@@ -169,45 +170,50 @@ const SearchResultPage = () => {
             onClickToggle={handleClickToggle}
             onClickTag={handleClickTag}
           />
-          <SimpleGrid columns={2} spacing={"16px"} mt={"8px"}>
-            {SearchBeerQuery.data?.contents?.map((beerItems: any) => {
-              const { id, name, origin_country, image_url, category } =
-                beerItems;
-              return (
-                <BeerCard
-                  key={beerItems.id}
-                  mt={1}
-                  w="full"
-                  onClick={() => handleClickCard(id, name)}
-                >
-                  <BeerCardBody w="full" h="full" position={"relative"}>
-                    <Box position="relative">
-                      {image_url && (
-                        <CommonBeerImage
-                          src={image_url}
-                          alt={name}
-                          width="175px"
-                          height="175px"
-                          objectFit="cover"
-                        />
-                      )}
-                    </Box>
-                  </BeerCardBody>
-                  <BeerCardFooter>
-                    <BeerNameText>{name}</BeerNameText>
-                    <HStack>
-                      <BeerCountryText country={origin_country} />
-                      <BeerCategoryTag>
-                        <BeerCategoryTagLabel>
-                          {category?.name}
-                        </BeerCategoryTagLabel>
-                      </BeerCategoryTag>
-                    </HStack>
-                  </BeerCardFooter>
-                </BeerCard>
-              );
-            })}
-          </SimpleGrid>
+
+          {SearchBeerQuery.data ? (
+            <SimpleGrid columns={2} spacing={"16px"} mt={"8px"}>
+              {SearchBeerQuery.data?.contents?.map((beerItems: any) => {
+                const { id, name, origin_country, image_url, category } =
+                  beerItems;
+                return (
+                  <BeerCard
+                    key={beerItems.id}
+                    mt={1}
+                    w="full"
+                    onClick={() => handleClickCard(id, name)}
+                  >
+                    <BeerCardBody w="full" h="full" position={"relative"}>
+                      <Box position="relative">
+                        {image_url && (
+                          <CommonBeerImage
+                            src={image_url}
+                            alt={name}
+                            width="175px"
+                            height="175px"
+                            objectFit="cover"
+                          />
+                        )}
+                      </Box>
+                    </BeerCardBody>
+                    <BeerCardFooter>
+                      <BeerNameText>{name}</BeerNameText>
+                      <HStack>
+                        <BeerCountryText country={origin_country} />
+                        <BeerCategoryTag>
+                          <BeerCategoryTagLabel>
+                            {category?.name}
+                          </BeerCategoryTagLabel>
+                        </BeerCategoryTag>
+                      </HStack>
+                    </BeerCardFooter>
+                  </BeerCard>
+                );
+              })}
+            </SimpleGrid>
+          ) : (
+            <EmptyFilteredResult />
+          )}
           <Box h="64px" />
         </Box>
       </Container>
