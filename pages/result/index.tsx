@@ -58,12 +58,6 @@ const SearchResultPage = () => {
   const selectedBeerTypes = _selectedBeerTypes
     ? (_selectedBeerTypes as number[])
     : [];
-
-  const SearchBeerQuery = useBeersQuery({
-    keyword: typeof query === "string" ? query : "",
-    sort: selectedSort,
-    categories: selectedBeerTypes,
-  });
   const [beerVolume, setBeerVolume] = useState<number[]>([
     MIN_MAX_BEER_VOLUME_SLIDER[0],
     MIN_MAX_BEER_VOLUME_SLIDER[1],
@@ -71,9 +65,17 @@ const SearchResultPage = () => {
   const handleChangeBeerVolume = (value: number[]) => {
     setBeerVolume(value);
   };
+  const SearchBeerQuery = useBeersQuery({
+    keyword: typeof query === "string" ? query : "",
+    sort: selectedSort,
+    categories: selectedBeerTypes,
+    volume_min: beerVolume[0],
+    volume_max: beerVolume[1],
+  });
+
   useEffect(() => {
     SearchBeerQuery.refetch();
-  }, [selectedFilters]);
+  }, [selectedFilters, beerVolume]);
 
   const clearValue = () => {
     setValue("");
