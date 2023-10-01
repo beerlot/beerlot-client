@@ -73,11 +73,11 @@ export const ALL_FEED_MOCK = [
   },
 ];
 
-export const MOCK_CATEGORY_FILTER_LIST: CategoryFilterListType[] = [
-  {
-    title: CategoryTitle.BEER_TYPE,
-    tags: ["IPA", "필스너", "스타우트"],
-  },
+export const MOCK_CATEGORY_FILTER_LIST: Type[] = [
+  // {
+  //   title: CategoryTitle.BEER_TYPE,
+  //   tags: ["IPA", "필스너", "스타우트"],
+  // },
   { title: CategoryTitle.BEER_COUNTRY, tags: ["독일", "미국", "일본"] },
 ];
 

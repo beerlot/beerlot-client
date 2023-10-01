@@ -11,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { MOCK_CATEGORY_FILTER_LIST } from "../../interface/static";
 import { CategoryFilterListType, CategoryTitle } from "../../interface/types";
 import { EmptyFilter, WhiteFilter } from "../../public/svg";
 import { SearchFilterList } from "../../src/components/result/filter/search-filter-list/SearchFilterList";
@@ -26,7 +25,6 @@ import {
   BeerNameText,
 } from "../../src/components/shared/Card/BeerCardItem";
 import { LeftBackTitle } from "../../src/components/shared/Headers/LeftBackTitle";
-import { useFetcBeerSearchCategoriesQuery } from "../../hooks/query/useFilterQuery";
 import { BeerSortType } from "../../types/common";
 
 const SearchResultPage = () => {
@@ -34,7 +32,6 @@ const SearchResultPage = () => {
   const { query } = router.query;
 
   const [isFilterListOpen, setIsFilterListOpen] = useState<boolean>(true);
-
   const [value, setValue] = useState<string>("");
   // TODO: refactor filter into 1 object data
   const [selectedFilters, setSelectedFilter] = useState<
@@ -51,11 +48,6 @@ const SearchResultPage = () => {
   const selectedSort = _selectedSort
     ? (_selectedSort[0] as BeerSortType)
     : BeerSortType.MOST_LIKES;
-  const { data, refetch } = useFetcBeerSearchCategoriesQuery();
-
-  useEffect(() => {
-    refetch();
-  }, [refetch]);
 
   const SearchBeerQuery = useBeersQuery({
     keyword: typeof query === "string" ? query : "",
@@ -84,11 +76,15 @@ const SearchResultPage = () => {
     },
     [router]
   );
-  const handleClickTag = (targetTitle: CategoryTitle, targetTag: string) => {
+  const handleClickTag = (
+    targetTitle: CategoryTitle,
+    targetTag: string | number
+  ) => {
     const isSingleMode = targetTitle === CategoryTitle.SORT_CRITERIA;
     const selectedObjList = selectedFilters.find(
       (item) => item.title === targetTitle
     );
+
     if (selectedObjList === undefined) {
       setSelectedFilter([
         ...selectedFilters,
