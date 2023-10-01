@@ -1,11 +1,8 @@
+import { isBeerVolumeWithinRange } from "@/components/home/LoggedInBeersList/beer.service";
 import { Box } from "@chakra-ui/react";
 import React from "react";
 import { useFetcBeerSearchCategoriesQuery } from "../../../../../hooks/query/useFilterQuery";
-import {
-  MAX_BEER_VOLUME_SLIDER,
-  MIN_BEER_VOLUME_SLIDER,
-  MOCK_CATEGORY_FILTER_LIST,
-} from "../../../../../interface/static";
+import { MOCK_CATEGORY_FILTER_LIST } from "../../../../../interface/static";
 import {
   BeerSortEnum,
   CategoryFilterListType,
@@ -19,7 +16,6 @@ import {
   SearchFilterRowOptionsWrapper,
   SearchFilterRowWrapper,
 } from "./SearchFilterListCell";
-import { isBeerVolumeWithinRange } from "@/components/home/LoggedInBeersList/beer.service";
 
 interface SearchFilterListExpandedProps {
   isFilterListOpen: boolean;

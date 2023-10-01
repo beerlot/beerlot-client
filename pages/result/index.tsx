@@ -58,10 +58,9 @@ const SearchResultPage = () => {
   const selectedBeerTypes = _selectedBeerTypes
     ? (_selectedBeerTypes as number[])
     : [];
-  const [beerVolume, setBeerVolume] = useState<number[]>([
-    MIN_MAX_BEER_VOLUME_SLIDER[0],
-    MIN_MAX_BEER_VOLUME_SLIDER[1],
-  ]);
+  const [beerVolume, setBeerVolume] = useState<number[]>(
+    MIN_MAX_BEER_VOLUME_SLIDER
+  );
   const handleChangeBeerVolume = (value: number[]) => {
     setBeerVolume(value);
   };
