@@ -10,10 +10,7 @@ import { CommonBeersList } from "./CommonBeersList/CommonBeersList";
 import { LoggedInBeersList } from "./LoggedInBeersList/LoggedInBeersList";
 import SearchInputHome from "./SearchInputHome";
 import { WelcomeTextContent } from "./WelcomeText";
-import {
-  BeerResponseType,
-  SingelBeerFetchResponseType,
-} from "@/../typedef/server/beer";
+import { BeerResponseType } from "@/../typedef/server/beer";
 import Cookies from "js-cookie";
 import { useQueries } from "react-query";
 import { fetchSingleBeerInfoApi } from "@/api/beers/api";
@@ -36,7 +33,7 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({ username }) => {
   const recommendedBeersId =
     recommendBeers?.id && recommendBeers.id.length > 0
       ? recommendBeers.id
-      : [1];
+      : [1, 2];
 
   // Fetch data for each beer ID
   const recommendedBeersData = useQueries(
@@ -51,7 +48,9 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({ username }) => {
       refetchOnWindowFocus: false,
       enabled: !!beerId,
     }))
-  ).map((query) => query.data);
+  ).map((query, index) => {
+    return { id: recommendedBeersId[index], ...query.data };
+  });
 
   useEffect(() => {
     topBeersQuery.refetch();
@@ -75,9 +74,10 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({ username }) => {
             <LoggedInBeersList
               userName={username}
               topBeersList={topBeersQuery.data}
+              recommendedBeerList={recommendedBeersData}
             />
           ) : (
-            <CommonBeersList topBeersList={topBeersQuery.data} />
+            <CommonBeersList beersList={topBeersQuery.data} />
           )}
         </Box>
       </Container>

@@ -16,8 +16,7 @@ export interface BeerReviewsQueryParams {
   size?: number;
   sort?: ReviewSortEnum;
 }
-export interface SingelBeerFetchResponseType
-  extends Omit<BeerResponseType, "id"> {}
+export type SingelBeerFetchResponseType = BeerResponseType;
 
 export type RecommendedBeersResponse = {
   id: number[];
