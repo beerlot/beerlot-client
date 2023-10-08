@@ -1,4 +1,4 @@
-import {ReviewSortEnum} from "@/../interface/types";
+import { ReviewSortEnum } from "@/../interface/types";
 
 export interface BeerResponseType {
   id?: number;
@@ -16,3 +16,9 @@ export interface BeerReviewsQueryParams {
   size?: number;
   sort?: ReviewSortEnum;
 }
+export interface SingelBeerFetchResponseType
+  extends Omit<BeerResponseType, "id"> {}
+
+export type RecommendedBeersResponse = {
+  id: number[];
+};
