@@ -6,7 +6,6 @@ import { BeerReviewsQueryParams } from "@/../typedef/server/beer";
 import axios from "axios";
 import {
   LANGUAGE_TYPE,
-  ReviewPostparamType,
   ReviewSortEnum,
   UpdatedReviewInfo,
 } from "../../../interface/types";

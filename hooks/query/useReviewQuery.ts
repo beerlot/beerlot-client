@@ -29,6 +29,7 @@ import { BeerReviewsResponse } from "../../types/review/review";
 
 export const allReviewsQueryKey = () => ["allReviews"];
 export const ReviewQueryKey = () => ["review"];
+
 export const useAllReviewsQuery = (
   queryParam: AllReviewsQueryParams,
   options?: UseQueryOptions<any, FailureResponse>
