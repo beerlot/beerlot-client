@@ -25,6 +25,7 @@ import {
 } from "../../interface/types";
 import { useMutation } from "react-query";
 import { BeerReviewsQueryParams } from "@/../typedef/server/beer";
+import { BeerReviewsResponse } from "../../types/review/review";
 
 export const allReviewsQueryKey = () => ["allReviews"];
 export const ReviewQueryKey = () => ["review"];
@@ -202,7 +203,7 @@ export const beerReviewsQueryKey = (beerId: number) => ["beerReviews", beerId];
 
 export const useBeerReviewsQuery = (
   queryParams: BeerReviewsQueryParams,
-  options?: UseQueryOptions<any, FailureResponse>
+  options?: UseQueryOptions<BeerReviewsResponse, FailureResponse>
 ) => {
   return useQuery({
     queryKey: beerReviewsQueryKey(queryParams.beerId),
