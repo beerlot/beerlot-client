@@ -11,16 +11,19 @@ import {
   BeerCategoryTagLabel,
   BeerCountryText,
   BeerNameText,
-} from "../../src/components/shared/Card/BeerCardItem";
-import { BeerResponseType } from "../../typedef/server/beer";
-import { generateBeerDetailUrl } from "../../utils/url";
+} from "../shared/Card/BeerCardItem";
+import { BeerResponseType } from "../../../typedef/server/beer";
+import { generateBeerDetailUrl } from "../../../utils/url";
 
 interface SearchResultProps {
   loading: boolean;
   beers?: BeerResponseType[];
 }
 
-const SearchResult: React.FC<SearchResultProps> = ({ loading, beers }) => {
+export const SearchResult: React.FC<SearchResultProps> = ({
+  loading,
+  beers,
+}) => {
   const router = useRouter();
 
   const handleClickCard = (id: number, name: string) => {
@@ -77,5 +80,3 @@ const SearchResult: React.FC<SearchResultProps> = ({ loading, beers }) => {
     </SimpleGrid>
   );
 };
-
-export default SearchResult;
