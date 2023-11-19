@@ -26,7 +26,7 @@ interface FollowingTabPanelItemProps {
   onDelete?: () => void;
   imageSrc?: string;
   maxPostLength?: number;
-  token: string;
+  token?: string;
 }
 
 const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
