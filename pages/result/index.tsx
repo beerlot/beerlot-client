@@ -9,7 +9,7 @@ import { SearchFilterList } from "../../src/components/result/filter/search-filt
 import SearchInput from "../../src/components/search/SearchInput";
 import { LeftBackTitle } from "../../src/components/shared/Headers/LeftBackTitle";
 import { BeerSortType } from "../../types/common";
-import { SearchResult } from "./SearchResult";
+import SearchResult from "./SearchResult";
 
 const SearchResultPage = () => {
   const router = useRouter();

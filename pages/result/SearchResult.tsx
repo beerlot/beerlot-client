@@ -20,10 +20,7 @@ interface SearchResultProps {
   beers?: BeerResponseType[];
 }
 
-export const SearchResult: React.FC<SearchResultProps> = ({
-  loading,
-  beers,
-}) => {
+const SearchResult: React.FC<SearchResultProps> = ({ loading, beers }) => {
   const router = useRouter();
 
   const handleClickCard = (id: number, name: string) => {
@@ -80,3 +77,5 @@ export const SearchResult: React.FC<SearchResultProps> = ({
     </SimpleGrid>
   );
 };
+
+export default SearchResult;
