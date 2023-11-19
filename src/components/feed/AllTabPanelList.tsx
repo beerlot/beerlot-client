@@ -5,7 +5,7 @@ import {
 import { useUserLikedReviewsQuery } from "@/../hooks/query/useUserQuery";
 import { Flex } from "@chakra-ui/react";
 import Cookies from "js-cookie";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MOCK_FEED_FILTER_LIST } from "../../../interface/static";
 import { ReviewSortEnum } from "../../../interface/types";
 import { FeedFilter } from "./FeedFilter/FeedFilter";
@@ -24,6 +24,9 @@ export const AllTabPanelList = () => {
   const handleSelectTag = async (tag: ReviewSortEnum) => {
     setSelectedTag(tag);
   };
+  useEffect(() => {
+    allReviewsQuery.refetch();
+  }, [selectedTag]);
 
   return (
     <Flex flexDirection="column" gap={"10px"}>
