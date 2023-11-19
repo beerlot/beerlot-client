@@ -23,7 +23,6 @@ const CommonBeersList: React.FC<CommonBeersListProps> = ({
   beersList,
   loading,
 }) => {
-  console.log({ loading });
   const router = useRouter();
 
   const clickHeart = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
