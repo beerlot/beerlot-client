@@ -73,7 +73,10 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({ username }) => {
               recommendedBeerList={recommendedBeersData}
             />
           ) : (
-            <CommonBeersList beersList={topBeersQuery.data} />
+            <CommonBeersList
+              beersList={topBeersQuery.data}
+              loading={topBeersQuery.isFetching || topBeersQuery.isLoading}
+            />
           )}
         </Box>
       </Container>
