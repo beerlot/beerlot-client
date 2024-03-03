@@ -47,15 +47,10 @@ export const fetchTopBeersApi = async (): Promise<any> => {
   const language: LANGUAGE_TYPE = LANGUAGE_TYPE.KR;
 
   try {
-    try {
-      client = client || (await googleAuth.getIdTokenClient(targetAudience));
-    } catch (err) {
-      console.error("GoogleAuth.getIdTokenClient Error: ", err);
-      throw new Error("Google Authentication Failed");
-    }
+    client = client || (await googleAuth.getIdTokenClient(targetAudience));
 
     const res = await client.request({
-      url: `/api/v1/beers/top`,
+      url: `${url}api/v1/beers/top`,
       params: {
         language,
       },
