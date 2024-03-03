@@ -8,7 +8,6 @@ module.exports = {
       },
     ];
   },
-  distDir: "build",
   webpack: (config, { isServer }) => {
     config.module.rules.push({
       test: /\.svg$/,

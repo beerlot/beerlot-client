@@ -5,9 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 8080",
-    "lint": "next lint",
-    "deploy": "yarn build && glcoud app deploy"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.17",
