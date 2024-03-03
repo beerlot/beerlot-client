@@ -1,9 +1,8 @@
 import { BeerFilterRequestType } from "@/types/api";
 import axios from "axios";
-import { GoogleAuth, OAuth2Client } from "google-auth-library";
-import { LANGUAGE_TYPE } from "../../../interface/types";
-import { SingelBeerFetchResponseType } from "../../../typedef/server/beer";
+import { CategoryType, LANGUAGE_TYPE } from "../../../interface/types";
 import { BeerSortType } from "../../../types/common";
+import { SingelBeerFetchResponseType } from "../../../typedef/server/beer";
 
 export const getNewAccessTokenWithRefreshToken = async () => {
   const res = await axios.get("/api/v1/auth/refresh");
@@ -37,31 +36,30 @@ export const fetchBeersApi = async (params: BeerFilterRequestType) => {
   return res.data;
 };
 
-const url = "https://beerlot-core-api-lopbi5pmwq-du.a.run.app/";
-const targetAudience = "https://beerlot-core-api-lopbi5pmwq-du.a.run.app/";
+const { GoogleAuth } = require("google-auth-library");
 
-const googleAuth: GoogleAuth = new GoogleAuth();
-let client: OAuth2Client | null = null;
+async function getIdTokenFromMetadataServer() {
+  const googleAuth = new GoogleAuth();
+  const targetAudience =
+    "https://beerlot-client.vercel.app/api/v1/beers/top?language=KR";
 
-export const fetchTopBeersApi = async (): Promise<any> => {
+  const client = await googleAuth.getIdTokenClient(targetAudience);
+  console.log("client", client);
+  const res = await client.idTokenProvider.fetchIdToken(targetAudience);
+  console.log("Generated ID token.", res);
+  return res;
+}
+
+export const fetchTopBeersApi = async () => {
   const language: LANGUAGE_TYPE = LANGUAGE_TYPE.KR;
-
-  try {
-    client = client || (await googleAuth.getIdTokenClient(targetAudience));
-
-    const res = await client.request({
-      url: `${url}api/v1/beers/top`,
-      params: {
-        language,
-      },
-    });
-
-    console.info(res.data);
-    return res.data;
-  } catch (err) {
-    console.error(err);
-    return Promise.reject(err);
-  }
+  const test = await getIdTokenFromMetadataServer();
+  console.log("test", test);
+  const res = await axios.get("/api/v1/beers/top", {
+    params: {
+      language: language,
+    },
+  });
+  return res.data;
 };
 
 export const fetchSingleBeerInfoApi = async ({
