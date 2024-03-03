@@ -13,7 +13,7 @@ const REACT_APP_GA_TRACKING_ID = "G-TTNFK5BWQG";
 
 const gaTrackingId = REACT_APP_GA_TRACKING_ID;
 ReactGA.initialize(gaTrackingId, { debug: true });
-ReactGA.pageview(window.location.pathname);
+ReactGA.pageview("test beerlot GA");
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const queryClient = new QueryClient();
