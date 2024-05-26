@@ -41,7 +41,10 @@ export const SearchResult: React.FC<SearchResultProps> = ({
 
   const accessToken = Cookies.get("beerlot-oauth-auth-request") ?? "";
 
-  const userBeersQuery = useUserLikedBeersQuery(accessToken);
+  const userBeersQuery = useUserLikedBeersQuery(accessToken, undefined, {
+    enabled: !!accessToken,
+  });
+
   const likedBeersList = userBeersQuery?.data?.contents;
   const likedBeerIds = useMemo(
     () => likedBeersList?.map((item: BeerResponseType) => item.id),
@@ -118,7 +121,9 @@ export const SearchResult: React.FC<SearchResultProps> = ({
               </Box>
               <Box position="absolute" top={0} right={0}>
                 <LikeButton
-                  isLiked={likedBeerIds?.includes(id) ?? false}
+                  isLiked={
+                    accessToken ? likedBeerIds?.includes(id) ?? false : false
+                  }
                   onClick={(e) => handleClickLike(e, id)}
                   w={8}
                   h={7}
