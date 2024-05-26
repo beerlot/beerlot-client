@@ -8,7 +8,7 @@ export const FeedTemplate = () => {
 
   return (
     <Box w="full" h="100vh" bg="gray.100" overflowY={"auto"}>
-      <Container p={0} bg="white" maxW="450px" h={"full"} maxH={"100vh"}>
+      <Container p={0} bg="white" maxW="450px" h={"full"}>
         <CenteredTitle />
         {/* v2에서 알람 추가 */}
         {/* <TitleRightBellHeader /> */}
