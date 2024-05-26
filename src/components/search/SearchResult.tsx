@@ -69,8 +69,8 @@ export const SearchResult: React.FC<SearchResultProps> = ({
       router.push("/login");
       return;
     }
-    console.log(likedBeerIds, id);
     const isLikedBeer = likedBeerIds?.includes(id) ?? false;
+    console.log("isLikedBeer: ", isLikedBeer);
     if (!isLikedBeer) {
       likeBeerMutation.mutate({ beerId: id, accessToken });
     } else {
@@ -118,7 +118,7 @@ export const SearchResult: React.FC<SearchResultProps> = ({
               </Box>
               <Box position="absolute" top={0} right={0}>
                 <LikeButton
-                  isLiked={false}
+                  isLiked={likedBeerIds?.includes(id) ?? false}
                   onClick={(e) => handleClickLike(e, id)}
                   w={8}
                   h={7}
