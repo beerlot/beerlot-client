@@ -48,8 +48,6 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
     setReviewInputValue(e.target.value);
   };
 
-  const [placeInputValue, setPlaceInputValue] = useState("");
-
   const handleClickLeftButton = () => {
     // TODO: reset everything and add null type
     setReviewInfo({
@@ -58,7 +56,6 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
       place: null,
     });
     onClose();
-    clearInput();
     setReviewInputValue("");
     CloseReviewDrawer.onClose();
   };
@@ -87,12 +84,6 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
     setReviewInfo(newBeerReview);
   };
 
-  const handleChangePlace = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setPlaceInputValue(event.target.value);
-
-  const clearInput = () => {
-    setPlaceInputValue("");
-  };
   const createReviewMutation = useCreateReviewMutation(
     beerId ?? 0,
     accessToken,
@@ -102,6 +93,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
       },
     }
   );
+
   const updatedReviewInfo = {
     rate: reviewInfo.rate,
     buy_from: reviewInfo?.place ?? "",
@@ -141,7 +133,6 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
       rate: 0,
       place: null,
     });
-    clearInput();
     setReviewInputValue("");
   };
 
@@ -168,14 +159,11 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
             reviewInfo={reviewInfo}
             onNext={() => setStep(1)}
             handleChangeRate={handleChangeRate}
-            clearInput={clearInput}
             handleClickPlaceTag={handleClickPlaceTag}
-            placeInputValue={placeInputValue}
             handleInputChange={handleInputChange}
             reviewInputValue={reviewInputValue}
             handleClickComplete={handleClickComplete}
             isCompleted={isCompleted}
-            handleChangePlace={handleChangePlace}
           />
         )}
 

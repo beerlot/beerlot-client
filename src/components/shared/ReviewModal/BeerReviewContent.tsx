@@ -8,26 +8,24 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { LeftCloseRandom } from "../Headers/LeftCloseRandom";
 import BeerNameSection from "./BeerNameSection";
 import { BeerPurchaseSection } from "./BeerPurchaseSection";
 import { BeerRatingSection } from "./BeerRatingSection";
 import { BeerReviewTextSection } from "./BeerReviewTextSection";
+import { useState } from "react";
 
 interface BeerReviewContentProps extends ModalContentProps {
   onClose: () => void;
   reviewInfo: any;
   onNext: () => void;
   handleChangeRate: (rate: number) => void;
-  clearInput: () => void;
   handleClickPlaceTag: (place: string | null) => void;
-  placeInputValue: string;
   handleInputChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   reviewInputValue: string;
   handleClickComplete: () => void;
   isCompleted: boolean;
-  handleChangePlace: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const BeerReviewContent: React.FC<BeerReviewContentProps> = ({
@@ -35,18 +33,30 @@ export const BeerReviewContent: React.FC<BeerReviewContentProps> = ({
   reviewInfo,
   onNext,
   handleChangeRate,
-  clearInput,
   handleClickPlaceTag,
-  placeInputValue,
   handleInputChange,
   reviewInputValue,
   handleClickComplete,
   isCompleted,
-  handleChangePlace,
   ...props
 }) => {
+  const [placeInputValue, setPlaceInputValue] = useState("");
+
+  const handleChangePlace = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setPlaceInputValue(event.target.value);
+
+  const clearInput = () => {
+    setPlaceInputValue("");
+  };
+
+  useEffect(() => {
+    return () => {
+      clearInput();
+    };
+  }, []);
+
   return (
-    <ModalContent px="20px" pb="40px" maxW="452px" bg="white">
+    <ModalContent px="20px" pb="40px" maxW="452px" bg="white" {...props}>
       <ModalHeader pt="46px">
         <LeftCloseRandom onClose={onClose} title="글쓰기" />
       </ModalHeader>
