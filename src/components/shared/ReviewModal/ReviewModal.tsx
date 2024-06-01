@@ -61,7 +61,6 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
     existingReviewInfo?.review ?? ""
   );
   const [beerId, setBeerId] = useState<number | null>(null);
-  const router = useRouter();
   const allReviewsQuery = useAllReviewsQuery({
     sort: MOCK_FEED_FILTER_LIST[0].tags[0],
   });
@@ -86,14 +85,6 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
 
   const handleClickRightButton = () => {
     CloseReviewDrawer.onClose();
-  };
-
-  const handleCreateReview = () => {
-    if (!accessToken) {
-      router.push("/login");
-      return;
-    }
-    onOpen();
   };
 
   const handleClickBack = () => {
@@ -176,20 +167,6 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
 
   return (
     <Box>
-      <Button
-        onClick={handleCreateReview}
-        w="70px"
-        h="70px"
-        pos="fixed"
-        borderRadius="full"
-        bg="orange.300"
-        bottom={100}
-        right={"10vw"}
-        _hover={{}}
-      >
-        {/* TODO: should be replaced */}
-        <EditPencil />
-      </Button>
       <ReviewCancelDrawer
         isOpen={CloseReviewDrawer.isOpen}
         onClose={CloseReviewDrawer.onClose}
