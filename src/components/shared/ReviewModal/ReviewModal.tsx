@@ -4,32 +4,13 @@ import {
   useReviewUpdateMutation,
 } from "@/../hooks/query/useReviewQuery";
 import { MOCK_FEED_FILTER_LIST } from "@/../interface/static";
-import {
-  Box,
-  Button,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalProps,
-  Text,
-  VStack,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Box, Modal, ModalProps, useDisclosure } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import React, { ChangeEvent, useState } from "react";
 import { ReviewInfoType } from "../../../../interface/types";
-import { EditPencil } from "../../../../public/svg";
-import { LeftCloseRandom } from "../Headers/LeftCloseRandom";
-import BeerNameSection from "./BeerNameSection";
-import { BeerPurchaseSection } from "./BeerPurchaseSection";
-import { BeerRatingSection } from "./BeerRatingSection";
-import { BeerReviewTextSection } from "./BeerReviewTextSection";
+import { BeerReviewContent } from "./BeerReviewContent";
 import { BeerSearchContent } from "./BeerSearchContent";
 import { ReviewCancelDrawer } from "./ReviewCancelDrawer";
-import BeerInfo from "@/components/account/beer-info/BeerInfo";
-import { useRouter } from "next/router";
 
 interface ReviewModalProps {
   existingReviewInfo?: ReviewInfoType;
@@ -43,7 +24,6 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
   existingReviewInfo,
   reviewId,
   isOpen,
-  onOpen,
   onClose,
 }) => {
   const [reviewInfo, setReviewInfo] = useState<ReviewInfoType>({
@@ -53,7 +33,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
     review: existingReviewInfo?.review ?? "",
     image_url: existingReviewInfo?.image_url ?? [""],
   });
-  const isCompleted = !!reviewInfo.beerName && !!reviewInfo.rate; // should contain rating stars as well
+  const isCompleted = !!reviewInfo.beerName && !!reviewInfo.rate;
   const accessToken = Cookies.get("beerlot-oauth-auth-request") ?? "";
   const CloseReviewDrawer = useDisclosure();
   const [step, setStep] = useState(0);
@@ -183,64 +163,22 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
         trapFocus={false}
       >
         {step === 0 && (
-          <ModalContent px="20px" pb="40px" maxW="452px" bg="white">
-            <ModalHeader pt="46px">
-              <LeftCloseRandom
-                onClose={CloseReviewDrawer.onOpen}
-                title="글쓰기"
-              />
-            </ModalHeader>
-            <ModalBody p={0} pt="10px">
-              <VStack
-                gap="20px"
-                justifyContent="flex-start"
-                alignItems={"flex-start"}
-              >
-                {/* beer name */}
-                <BeerNameSection
-                  reviewInfo={reviewInfo}
-                  onClick={() => setStep(1)}
-                />
-
-                {/* rating */}
-                <BeerRatingSection
-                  handleChangeRate={handleChangeRate}
-                  rate={reviewInfo.rate}
-                />
-
-                {/* purchase */}
-                <BeerPurchaseSection
-                  reviewInfo={reviewInfo}
-                  handleChangePlace={handleChangePlace}
-                  clearInput={clearInput}
-                  handleClickPlaceTag={handleClickPlaceTag}
-                  placeInputValue={placeInputValue}
-                />
-
-                {/* review text and images */}
-                <BeerReviewTextSection
-                  onChangeInput={handleInputChange}
-                  input={reviewInputValue}
-                />
-              </VStack>
-            </ModalBody>
-            <ModalFooter px={0}>
-              <Button
-                onClick={handleClickComplete}
-                w="full"
-                bg={isCompleted ? "blue.100" : "gray.200"}
-                boxShadow={
-                  isCompleted ? "0px 8px 16px rgba(0, 0, 0, 0.3)" : "initial"
-                }
-                borderRadius="10px"
-              >
-                <Text color="white.100" textStyle="h2">
-                  작성 완료
-                </Text>
-              </Button>
-            </ModalFooter>
-          </ModalContent>
+          <BeerReviewContent
+            onClose={onClose}
+            reviewInfo={reviewInfo}
+            onNext={() => setStep(1)}
+            handleChangeRate={handleChangeRate}
+            clearInput={clearInput}
+            handleClickPlaceTag={handleClickPlaceTag}
+            placeInputValue={placeInputValue}
+            handleInputChange={handleInputChange}
+            reviewInputValue={reviewInputValue}
+            handleClickComplete={handleClickComplete}
+            isCompleted={isCompleted}
+            handleChangePlace={handleChangePlace}
+          />
         )}
+
         {step === 1 && (
           <BeerSearchContent
             maxW="450px"
