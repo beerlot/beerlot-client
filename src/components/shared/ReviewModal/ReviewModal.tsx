@@ -13,7 +13,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { ReviewInfoType } from "../../../../interface/types";
 import { BeerReviewContent } from "./BeerReviewContent";
 import { BeerSearchContent } from "./BeerSearchContent";
-import { ReviewExitConfirmationDrawer } from "./ReviewCancelDrawer";
+import { ReviewExitConfirmationDrawer } from "./ReviewExitConfirmationDrawer";
 
 interface ReviewModalProps {
   existingReviewInfo?: ReviewInfoType;
