@@ -1,31 +1,40 @@
 import {
-  useAllReviewsQuery,
   useCreateReviewMutation,
   useReviewUpdateMutation,
 } from "@/../hooks/query/useReviewQuery";
-import { MOCK_FEED_FILTER_LIST } from "@/../interface/static";
-import { Box, Modal, ModalProps, useDisclosure } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalContent,
+  ModalProps,
+  useDisclosure,
+} from "@chakra-ui/react";
 import Cookies from "js-cookie";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { ReviewInfoType } from "../../../../interface/types";
 import { BeerReviewContent } from "./BeerReviewContent";
 import { BeerSearchContent } from "./BeerSearchContent";
-import { ReviewCancelDrawer } from "./ReviewCancelDrawer";
+import { ReviewExitConfirmationDrawer } from "./ReviewCancelDrawer";
 
 interface ReviewModalProps {
   existingReviewInfo?: ReviewInfoType;
   reviewId?: number | null;
-  isOpen: ModalProps["isOpen"];
-  onClose: ModalProps["onClose"];
-  onOpen: () => void;
+  isModalOpen: ModalProps["isOpen"];
+  onCloseModal: ModalProps["onClose"];
 }
 
 export const ReviewModal: React.FC<ReviewModalProps> = ({
   existingReviewInfo,
   reviewId,
-  isOpen,
-  onClose,
+  isModalOpen,
+  onCloseModal,
 }) => {
+  const {
+    onClose: onCloseReviewDrawer,
+    onOpen: onOpenReviewDrawer,
+    isOpen: isOpenReviewDrawer,
+  } = useDisclosure();
+
+  const accessToken = Cookies.get("beerlot-oauth-auth-request") ?? "";
   const [reviewInfo, setReviewInfo] = useState<ReviewInfoType>({
     beerName: existingReviewInfo?.beerName ?? null,
     rate: existingReviewInfo?.rate ?? 0,
@@ -33,39 +42,30 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
     review: existingReviewInfo?.review ?? "",
     image_url: existingReviewInfo?.image_url ?? [""],
   });
+
   const isCompleted = !!reviewInfo.beerName && !!reviewInfo.rate;
-  const accessToken = Cookies.get("beerlot-oauth-auth-request") ?? "";
-  const CloseReviewDrawer = useDisclosure();
+
   const [step, setStep] = useState(0);
   const [reviewInputValue, setReviewInputValue] = useState(
     existingReviewInfo?.review ?? ""
   );
   const [beerId, setBeerId] = useState<number | null>(null);
-  const allReviewsQuery = useAllReviewsQuery({
-    sort: MOCK_FEED_FILTER_LIST[0].tags[0],
-  });
+
+  useEffect(() => {
+    return () => {
+      setReviewInfo({
+        beerName: null,
+        rate: 0,
+        place: null,
+      });
+      setStep(0);
+      onCloseModal();
+      setReviewInputValue("");
+    };
+  }, [onCloseModal]);
+
   const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setReviewInputValue(e.target.value);
-  };
-
-  const handleClickLeftButton = () => {
-    // TODO: reset everything and add null type
-    setReviewInfo({
-      beerName: null,
-      rate: 0,
-      place: null,
-    });
-    onClose();
-    setReviewInputValue("");
-    CloseReviewDrawer.onClose();
-  };
-
-  const handleClickRightButton = () => {
-    CloseReviewDrawer.onClose();
-  };
-
-  const handleClickBack = () => {
-    setStep(step - 1);
   };
 
   const handleChangeBeerName = (name: string, id: number) => {
@@ -86,12 +86,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
 
   const createReviewMutation = useCreateReviewMutation(
     beerId ?? 0,
-    accessToken,
-    {
-      onSuccess: () => {
-        allReviewsQuery.refetch();
-      },
-    }
+    accessToken
   );
 
   const updatedReviewInfo = {
@@ -99,18 +94,14 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
     buy_from: reviewInfo?.place ?? "",
     content: reviewInputValue,
     image_url:
+      // TODO: update to real data
       "https://fastly.picsum.photos/id/923/200/300.jpg?hmac=eiYSYaG7v46VlrE38Amrg33bd2FzVjaCsQrLMdekyAU",
   };
 
   const updateReview = useReviewUpdateMutation(
     reviewId ?? 0,
     accessToken,
-    updatedReviewInfo,
-    {
-      onSuccess: () => {
-        allReviewsQuery.refetch();
-      },
-    }
+    updatedReviewInfo
   );
 
   const handleClickComplete = () => {
@@ -127,54 +118,47 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
       createReviewMutation.mutate(newReviewInfo);
     }
 
-    onClose();
-    setReviewInfo({
-      beerName: null,
-      rate: 0,
-      place: null,
-    });
-    setReviewInputValue("");
+    onCloseModal();
   };
 
   return (
-    <Box>
-      <ReviewCancelDrawer
-        isOpen={CloseReviewDrawer.isOpen}
-        onClose={CloseReviewDrawer.onClose}
-        onClickLeftButton={handleClickLeftButton}
-        onClickRightButton={handleClickRightButton}
-      />
-      <Modal
-        onClose={onClose}
-        size={"full"}
-        isOpen={isOpen}
-        autoFocus={false}
-        initialFocusRef={undefined}
-        finalFocusRef={undefined}
-        trapFocus={false}
-      >
-        {step === 0 && (
-          <BeerReviewContent
-            onClose={onClose}
-            reviewInfo={reviewInfo}
-            onNext={() => setStep(1)}
-            handleChangeRate={handleChangeRate}
-            handleClickPlaceTag={handleClickPlaceTag}
-            handleInputChange={handleInputChange}
-            reviewInputValue={reviewInputValue}
-            handleClickComplete={handleClickComplete}
-            isCompleted={isCompleted}
-          />
-        )}
+    <>
+      <Modal onClose={onCloseModal} size={"full"} isOpen={isModalOpen}>
+        <ModalContent px="20px" pb="40px" maxW="450px" bg="white">
+          {step === 0 && (
+            <BeerReviewContent
+              onOpenDrawer={onOpenReviewDrawer}
+              reviewInfo={reviewInfo}
+              onNext={() => setStep(1)}
+              handleChangeRate={handleChangeRate}
+              handleClickPlaceTag={handleClickPlaceTag}
+              handleInputChange={handleInputChange}
+              reviewInputValue={reviewInputValue}
+              handleClickComplete={handleClickComplete}
+              isCompleted={isCompleted}
+            />
+          )}
 
-        {step === 1 && (
-          <BeerSearchContent
-            maxW="450px"
-            onClickBack={handleClickBack}
-            onChangeBeerName={handleChangeBeerName}
-          />
-        )}
+          {step === 1 && (
+            <BeerSearchContent
+              onClickBack={() => {
+                setStep(step - 1);
+              }}
+              onChangeBeerName={handleChangeBeerName}
+            />
+          )}
+        </ModalContent>
       </Modal>
-    </Box>
+
+      <ReviewExitConfirmationDrawer
+        isOpen={isOpenReviewDrawer}
+        onClose={onCloseReviewDrawer}
+        onClickLeftButton={() => {
+          onCloseReviewDrawer();
+          onCloseModal();
+        }}
+        onClickRightButton={onCloseReviewDrawer}
+      />
+    </>
   );
 };

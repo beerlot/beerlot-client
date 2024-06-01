@@ -32,7 +32,7 @@ export const FeedTemplate = () => {
         <FeedTabList />
 
         <ReviewModalTriggerButton onClick={handleOpenReviewModal} />
-        <ReviewModal isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
+        <ReviewModal isModalOpen={isOpen} onCloseModal={onClose} />
       </Container>
     </Box>
   );

@@ -1,23 +1,21 @@
 import {
   Button,
   ModalBody,
-  ModalContent,
   ModalContentProps,
   ModalFooter,
   ModalHeader,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { LeftCloseRandom } from "../Headers/LeftCloseRandom";
 import BeerNameSection from "./BeerNameSection";
 import { BeerPurchaseSection } from "./BeerPurchaseSection";
 import { BeerRatingSection } from "./BeerRatingSection";
 import { BeerReviewTextSection } from "./BeerReviewTextSection";
-import { useState } from "react";
 
 interface BeerReviewContentProps extends ModalContentProps {
-  onClose: () => void;
+  onOpenDrawer: () => void;
   reviewInfo: any;
   onNext: () => void;
   handleChangeRate: (rate: number) => void;
@@ -29,7 +27,7 @@ interface BeerReviewContentProps extends ModalContentProps {
 }
 
 export const BeerReviewContent: React.FC<BeerReviewContentProps> = ({
-  onClose,
+  onOpenDrawer,
   reviewInfo,
   onNext,
   handleChangeRate,
@@ -56,9 +54,9 @@ export const BeerReviewContent: React.FC<BeerReviewContentProps> = ({
   }, []);
 
   return (
-    <ModalContent px="20px" pb="40px" maxW="452px" bg="white" {...props}>
+    <>
       <ModalHeader pt="46px">
-        <LeftCloseRandom onClose={onClose} title="글쓰기" />
+        <LeftCloseRandom onClose={onOpenDrawer} title="글쓰기" />
       </ModalHeader>
       <ModalBody p={0} pt="10px">
         <VStack
@@ -106,6 +104,6 @@ export const BeerReviewContent: React.FC<BeerReviewContentProps> = ({
           </Text>
         </Button>
       </ModalFooter>
-    </ModalContent>
+    </>
   );
 };
