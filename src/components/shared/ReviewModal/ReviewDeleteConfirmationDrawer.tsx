@@ -18,6 +18,9 @@ const ReviewDeleteConfirmationDrawer: React.FC<
       bodyTextStyle={{
         textAlign: "center",
       }}
+      headerTextStyle={{
+        p: 0,
+      }}
       onClose={onClose}
       isOpen={isOpen}
       boxStyle={{
