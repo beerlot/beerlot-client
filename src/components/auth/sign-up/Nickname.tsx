@@ -26,7 +26,7 @@ const Nickname: React.FC<NicknameProps> = ({ onNext, setUserInfo }) => {
       setIsDuplicated(data.taken);
     },
     onError: () => {
-      setIsDuplicated(true);
+      setIsDuplicated(false);
     },
   });
 
