@@ -6,7 +6,7 @@ import {
   getNicknameHelperText,
 } from "../../../../service/input";
 import FloatingButton from "../../shared/FloatingButton";
-import NicknameInput from "../../shared/NicknameInput";
+import CommonValidationInput from "../../shared/CommonValidationInput";
 import { useCheckUsernameMutation } from "../../../../hooks/mutations/useUserMutation";
 import { useInput } from "../../../../hooks/useNicknameInput";
 
@@ -65,7 +65,7 @@ const Nickname: React.FC<NicknameProps> = ({ onNext, setUserInfo }) => {
         _hover={{}}
       />
 
-      <NicknameInput
+      <CommonValidationInput
         input={input}
         isValid={isValid}
         onChange={handleChange}

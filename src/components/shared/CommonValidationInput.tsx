@@ -6,7 +6,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-interface NicknameInputProps {
+interface Props {
   input: string | null;
   label?: string;
   isValid?: boolean | null;
@@ -18,10 +18,10 @@ interface NicknameInputProps {
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
-const NicknameInput: React.FC<NicknameInputProps> = ({
+const CommonValidationInput: React.FC<Props> = ({
   label = "닉네임",
   isValid = null,
-  isTouched = false,
+  isTouched,
   guideText = "",
   placeholder = "",
   input = "닉네임은 9자 이내로 만들 수 있어요!",
@@ -62,7 +62,7 @@ const NicknameInput: React.FC<NicknameInputProps> = ({
         <FormHelperText
           marginTop={1}
           textStyle="h4"
-          textColor={isValid ? "orange.200" : "red.100"}
+          textColor={!isTouched ? "orange.200" : "red.100"}
         >
           {guideText}
         </FormHelperText>
@@ -71,4 +71,4 @@ const NicknameInput: React.FC<NicknameInputProps> = ({
   );
 };
 
-export default NicknameInput;
+export default CommonValidationInput;

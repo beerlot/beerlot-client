@@ -1,16 +1,12 @@
 import { useEditUserInfoMutation } from "@/../hooks/query/useUserQuery";
 import LeftXTitleRightComplete from "@/components/shared/Headers/LeftXTitleRightComplete";
+import { useNicknameHandler } from "@/hooks/nickname/useNicknameHandler";
 import { StackProps, VStack } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
-import { useCheckUsernameMutation } from "../../../../../hooks/mutations/useUserMutation";
-import { useInput } from "../../../../../hooks/useNicknameInput";
-import {
-  getBioHelperText,
-  isValidOrOriginalBio,
-} from "../../../../../service/input";
-import NicknameInput from "../../../shared/NicknameInput";
+import { MAX_BIO_LENGTH, useBioHandler } from "@/hooks/bio/useBioHandler";
+import CommonValidationInput from "../../../shared/CommonValidationInput";
 import ProfileAvatar from "../../../shared/ProfileAvatar";
 
 interface ProfileEditContentProps extends StackProps {
@@ -27,48 +23,14 @@ export const ProfileEditContent: React.FC<ProfileEditContentProps> = ({
   const accessToken = Cookies.get("beerlot-oauth-auth-request") ?? "";
   const router = useRouter();
 
-  /**
-   * nickname
-   */
-  const [usernameInput, setUsernameInput] = useState<string>(username);
-  const [isUsernameTaken, setIsUsernameTaken] = useState<boolean>(false);
-  const [isTouched, setIsTouched] = useState<boolean>(false);
+  const {
+    usernameInput,
+    validNickname,
+    onChangeUsername,
+    usernameGuideText,
+    isUsernameTouched,
+  } = useNicknameHandler(username);
 
-  const onChangeUsername = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    if (!isTouched) setIsTouched(true);
-    setUsernameInput(e.target.value);
-    handleCheckUsername(e.target.value);
-  };
-
-  const handleCheckUsername = (newUsername: string) => {
-    if (newUsername === username) return;
-    checkUsernameTaken(usernameInput);
-  };
-
-  const { mutate: checkUsernameTaken } = useCheckUsernameMutation({
-    onSuccess: (data) => {
-      setIsUsernameTaken(data.taken);
-    },
-  });
-
-  const validNickname =
-    !isTouched ||
-    (usernameInput.length > 0 && !isUsernameTaken && usernameInput.length <= 9);
-
-  const guideText = () => {
-    if (!isTouched) return "";
-
-    if (usernameInput.length > 9) {
-      return "닉네임은 9자 이내로 만들 수 있어요!";
-    }
-    if (usernameInput.length === 0) {
-      return "닉네임을 정해주세요!";
-    }
-    if (isUsernameTaken) {
-      return "이미 사용 중인 닉네임이에요 :(";
-    }
-    return "사용할 수 있는 닉네임이에요 :)";
-  };
   /**
    * image
    */
@@ -86,12 +48,9 @@ export const ProfileEditContent: React.FC<ProfileEditContentProps> = ({
     };
   };
 
-  /**
-   * bio
-   */
-  const { input: bioInput, onChange: onBioChange } = useInput({
-    initialInputState: statusMessage ?? "",
-  });
+  /** bio */
+  const { bioInput, onChangeBio, validBio, bioGuidText, hasTouchedBio } =
+    useBioHandler(statusMessage);
 
   /**
    * onSubmit
@@ -109,10 +68,8 @@ export const ProfileEditContent: React.FC<ProfileEditContentProps> = ({
       image_url: imgFile,
     });
   };
-  const validBio = isValidOrOriginalBio(bioInput, statusMessage ?? ""); // null means not changed;
 
-  const isChangeCompleted =
-    validNickname !== false && validBio !== false && isUsernameTaken;
+  const isChangeCompleted = validNickname && validBio !== false;
 
   return (
     <>
@@ -156,21 +113,21 @@ export const ProfileEditContent: React.FC<ProfileEditContentProps> = ({
           </form>
         </VStack>
         <VStack gap="px" w="100%">
-          <NicknameInput
+          <CommonValidationInput
             input={usernameInput}
             isValid={validNickname}
-            isTouched={isTouched}
+            isTouched={isUsernameTouched}
             onChange={onChangeUsername}
-            guideText={guideText()}
+            guideText={usernameGuideText}
           />
-          <NicknameInput
+          <CommonValidationInput
             label="소개"
-            maxLength={25}
             placeholder="소개는 25자까지 입력이 가능해요!"
             input={bioInput}
+            isTouched={hasTouchedBio}
             isValid={validBio}
-            onChange={onBioChange}
-            guideText={getBioHelperText(bioInput)}
+            onChange={onChangeBio}
+            guideText={bioGuidText}
           />
         </VStack>
       </VStack>
