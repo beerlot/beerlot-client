@@ -10,7 +10,7 @@ interface NicknameInputProps {
   input: string | null;
   label?: string;
   isValid?: boolean | null;
-  isDuplicated?: boolean;
+  isTouched?: boolean;
   guideText?: string;
   placeholder?: string;
   maxLength?: number;
@@ -21,7 +21,7 @@ interface NicknameInputProps {
 const NicknameInput: React.FC<NicknameInputProps> = ({
   label = "닉네임",
   isValid = null,
-  isDuplicated = false,
+  isTouched = false,
   guideText = "",
   placeholder = "",
   input = "닉네임은 9자 이내로 만들 수 있어요!",
@@ -29,18 +29,11 @@ const NicknameInput: React.FC<NicknameInputProps> = ({
   onBlur,
   maxLength,
 }) => {
-  console.log("isDuplicated from NicknameInput component", isDuplicated);
   return (
     <FormControl>
       <FormLabel
         textStyle="h3"
-        textColor={
-          isValid === null
-            ? "gray.300"
-            : isValid && !isDuplicated
-            ? "orange.200"
-            : "red.100"
-        }
+        textColor={!isTouched ? "gray.300" : isValid ? "orange.200" : "red.100"}
       >
         {label}
       </FormLabel>
@@ -58,11 +51,7 @@ const NicknameInput: React.FC<NicknameInputProps> = ({
         border="none"
         borderBottom="1px solid"
         borderBottomColor={
-          isValid === null
-            ? "gray.300"
-            : isValid && !isDuplicated
-            ? "orange.200"
-            : "red.100"
+          !isTouched ? "gray.300" : isValid ? "orange.200" : "red.100"
         }
         onBlur={onBlur}
         _focusVisible={{}}
@@ -73,9 +62,9 @@ const NicknameInput: React.FC<NicknameInputProps> = ({
         <FormHelperText
           marginTop={1}
           textStyle="h4"
-          textColor={isValid && !isDuplicated ? "orange.200" : "red.100"}
+          textColor={isValid ? "orange.200" : "red.100"}
         >
-          {isDuplicated ? "이미 사용 중인 닉네임이에요 :(" : guideText}
+          {guideText}
         </FormHelperText>
       )}
     </FormControl>

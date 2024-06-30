@@ -1,6 +1,5 @@
 import { Box, Checkbox, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react";
-import useInput from "../../../../hooks/useNicknameInput";
 import { SignUpType } from "../../../../interface/types";
 import {
   checkIsValidNickname,
@@ -9,6 +8,7 @@ import {
 import FloatingButton from "../../shared/FloatingButton";
 import NicknameInput from "../../shared/NicknameInput";
 import { useCheckUsernameMutation } from "../../../../hooks/mutations/useUserMutation";
+import { useInput } from "../../../../hooks/useNicknameInput";
 
 interface NicknameProps {
   setUserInfo: (key: keyof SignUpType, value: string) => void;
@@ -68,7 +68,6 @@ const Nickname: React.FC<NicknameProps> = ({ onNext, setUserInfo }) => {
       <NicknameInput
         input={input}
         isValid={isValid}
-        isDuplicated={isDuplicated}
         onChange={handleChange}
         guideText={getNicknameHelperText(input)}
       />
