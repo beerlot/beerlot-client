@@ -25,7 +25,6 @@ const BeerReviews: React.FC<BeerReviewsProps> = ({
 
   const handleEdit = useCallback(
     (reviewId: number) => {
-      console.log("reviewId", reviewId);
       setSelectedReviewId(reviewId);
       onOpen();
     },

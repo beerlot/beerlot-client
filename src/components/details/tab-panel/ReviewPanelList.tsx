@@ -19,6 +19,7 @@ import { roundToDecimal } from "@/../utils/number";
 import { UserReview } from "./UserReview";
 import { useBeerReviewsQuery } from "../../../../hooks/reviews/useBeer";
 import { FollowingTabPanelItem } from "@/components/feed/TabPanelItem";
+import { ReviewTypeV2 } from "../../../../typedef/review";
 
 interface ReviewPanelListProps {
   rate: number;
@@ -120,7 +121,7 @@ const EmptyReviewsList = () => {
   );
 };
 interface ReviewsListProps {
-  reviews: ReviewResult[];
+  reviews: ReviewTypeV2[];
 }
 
 const ReviewsList: React.FC<ReviewsListProps> = ({ reviews }) => {

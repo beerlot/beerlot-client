@@ -118,7 +118,7 @@ export const BeerPurchaseSection: React.FC<BeerPurchaseSectionProps> = ({
             icon={<CrossXBlack />}
             _hover={{}}
             _active={{}}
-            onClick={() => handleClickPlaceTag(undefined)}
+            onClick={() => handleClickPlaceTag("")}
           />
         )}
       </HStack>

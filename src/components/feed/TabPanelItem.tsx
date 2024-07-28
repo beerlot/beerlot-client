@@ -25,7 +25,7 @@ interface FollowingTabPanelItemProps {
   isEditable?: boolean;
   onEdit?: () => void;
   onDelete?: () => void;
-  imageSrc?: string;
+  imageSrc?: string[];
   maxContentLength?: number;
 }
 
