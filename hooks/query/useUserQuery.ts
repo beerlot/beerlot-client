@@ -1,5 +1,8 @@
 import { Member, MemberReviewsRequest } from "@/../types/member/request";
-import { AllBeersQueryParamsV2, MemberTypePatchV2 } from "@/api/review/typedef";
+import {
+  AllBeersQueryParamsV2,
+  MemberTypeRequestUpdateV2,
+} from "@/api/review/typedef";
 import {
   fetchUserLikedReviews,
   getUserLikedBeersApi,
@@ -34,10 +37,10 @@ export const useUserInfoQuery = (
 
 export const useEditUserInfoMutation = (
   accessToken: string,
-  options?: MutationOptions<Member, FailureResponse, MemberTypePatchV2>
+  options?: MutationOptions<Member, FailureResponse, MemberTypeRequestUpdateV2>
 ) => {
   return useMutation({
-    mutationFn: (updatedInfo: MemberTypePatchV2) =>
+    mutationFn: (updatedInfo: MemberTypeRequestUpdateV2) =>
       updateUserInfoApi(accessToken, updatedInfo),
     ...options,
   });

@@ -2,7 +2,10 @@ import { LanguageType, ReviewSortType } from "@/../types/common";
 import { MemberReviewsRequest } from "@/../types/member/request";
 import axios from "axios";
 import { BeerSortEnum, OAUTH_PROVIDER } from "../../../interface/types";
-import { AllBeersQueryParamsV2, MemberTypePatchV2 } from "../review/typedef";
+import {
+  AllBeersQueryParamsV2,
+  MemberTypeRequestUpdateV2,
+} from "../review/typedef";
 
 const redirectUrl = "https://beerlot.info";
 
@@ -17,7 +20,7 @@ export const getUsersInfoApi = async (accessToken: string) => {
 
 export const updateUserInfoApi = async (
   accessToken: string,
-  updatedInfo: MemberTypePatchV2
+  updatedInfo: MemberTypeRequestUpdateV2
 ) => {
   const res = await axios.put("/api/v1/members/me", updatedInfo, {
     headers: {

@@ -1,8 +1,8 @@
-import { SignupRequestType } from "@/../hooks/query/useReviewQuery";
 import axios from "axios";
+import { MemberRequest } from "../../../types/member/request";
 
 export const signupApi = async (
-  queryParam: SignupRequestType,
+  queryParam: MemberRequest,
   accessToken: string
 ) => {
   const { username, status_message, image_url, agreed_policies } = queryParam;

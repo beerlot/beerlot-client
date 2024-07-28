@@ -52,7 +52,7 @@ export type MemberTypeV2 = {
   username_updated_at: string;
 };
 
-export type MemberTypePatchV2 = Pick<
+export type MemberTypeRequestUpdateV2 = Pick<
   MemberTypeV2,
   "status_message" | "username" | "image_url"
 >;
