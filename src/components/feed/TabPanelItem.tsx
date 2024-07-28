@@ -49,6 +49,7 @@ const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
   const accessToken = Cookies.get("beerlot-oauth-auth-request") ?? "";
   const queryClient = useQueryClient();
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
   const handleToggleElipsis = () => {
     setIsExpanded(!isExpanded);
   };

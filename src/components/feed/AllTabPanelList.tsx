@@ -26,19 +26,19 @@ export const AllTabPanelList = () => {
   return (
     <Flex flexDirection="column" gap={"10px"} pb={"64px"}>
       <FeedFilter selectedTag={selectedTag} onClickTag={handleSelectTag} />
-      {allReviewsQuery?.data?.map((post: any) => {
+      {allReviewsQuery?.data?.map((review: any) => {
         return (
           <FollowingTabPanelItem
-            key={post.id}
-            isLiked={likedReviewsListQuery.data?.includes(post.id)}
-            reviewId={Number(post.id)}
-            postText={post.content}
-            nickname={post.member.username}
-            postingTime={post.updated_at}
-            beerName={post.beer.name}
-            rate={post.rate}
-            imageSrc={post.image_url}
-            thumbsUpNumber={post.like_count}
+            key={review.id}
+            isLiked={likedReviewsListQuery.data?.includes(review.id) ?? false}
+            reviewId={Number(review.id)}
+            postText={review.content}
+            nickname={review.member.username}
+            postingTime={review.updated_at}
+            beerName={review.beer.name}
+            rate={review.rate}
+            imageSrc={review.image_url}
+            thumbsUpNumber={review.like_count}
             isEditable={false}
             token={accessToken}
           />
