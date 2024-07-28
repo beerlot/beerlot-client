@@ -9,10 +9,10 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { CrossXBlack, WhiteCross } from "../../../../public/svg";
-import { ReviewTypeV2 } from "@/api/review/typedef";
+import { CreateReviewRequestTypeV2 } from "@/api/review/typedef";
 
 interface BeerPurchaseSectionProps {
-  reviewInfo: ReviewTypeV2;
+  reviewInfo: CreateReviewRequestTypeV2;
   handleChangePlace: (e: React.ChangeEvent<HTMLInputElement>) => void;
   clearInput: () => void;
   handleClickPlaceTag: (place: string | null) => void;

@@ -8,14 +8,14 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { BeerReviewContent } from "./BeerReviewContent";
 import { BeerSearchContent } from "./BeerSearchContent";
 import { ReviewExitConfirmationDrawer } from "./ReviewExitConfirmationDrawer";
-import { ReviewTypeV2 } from "@/api/review/typedef";
+import { CreateReviewRequestTypeV2 } from "@/api/review/typedef";
 
 interface ReviewModalProps {
   isModalOpen: ModalProps["isOpen"];
   onCloseModal: ModalProps["onClose"];
   onComplete: (beerId: number | null) => void;
-  onChangeReviewInfo: (data: ReviewTypeV2) => void;
-  reviewInfo: ReviewTypeV2;
+  onChangeReviewInfo: (data: CreateReviewRequestTypeV2) => void;
+  reviewInfo: CreateReviewRequestTypeV2;
 }
 
 export const ReviewModal: React.FC<ReviewModalProps> = ({
