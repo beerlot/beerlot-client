@@ -1,30 +1,27 @@
 import { POLICY_LABEL } from "@/../interface/server/types/Auth";
+import { BeerReviewsQueryParams } from "@/../typedef/server/beer";
 import {
   createReviewApi,
   deleteReviewApi,
-  dislikeReviewApi,
   fetchAllReviewsApi,
   fetchBeerReviewsApi,
   getSingleReviewApi,
-  likeReviewApi,
   updateReviewApi,
 } from "@/api/review/api";
+import { dislikeReviewApi, likeReviewApi } from "@/api/review/like";
 import {
   UseMutationOptions,
   UseMutationResult,
   UseQueryOptions,
+  useMutation,
   useQuery,
 } from "react-query";
 import { DefaultResponse, FailureResponse } from "types/api";
 import {
   BeerSortEnum,
-  ReviewInfoType,
-  ReviewPostparamType,
   ReviewSortEnum,
   UpdatedReviewInfo,
 } from "../../interface/types";
-import { useMutation } from "react-query";
-import { BeerReviewsQueryParams } from "@/../typedef/server/beer";
 import { BeerReviewsResponse } from "../../types/review/review";
 
 export const allReviewsQueryKey = () => ["allReviews"];

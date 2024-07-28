@@ -1,5 +1,4 @@
 import { FailureResponse } from "@/types/api";
-import { dislikeBeerApi, likeBeerApi } from "api/beers/api";
 import { UseMutationOptions, useMutation } from "react-query";
 
 export const useBeerLikeMutation = (
