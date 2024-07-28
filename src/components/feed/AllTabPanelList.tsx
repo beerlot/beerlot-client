@@ -14,7 +14,6 @@ export const AllTabPanelList = () => {
   const [selectedTag, setSelectedTag] = useState<ReviewSortEnum>(
     MOCK_FEED_FILTER_LIST[0].tags[0]
   );
-
   const allReviewsQuery = useAllReviewsQuery({
     sort: selectedTag,
   });
@@ -30,7 +29,7 @@ export const AllTabPanelList = () => {
         return (
           <FollowingTabPanelItem
             key={review.id}
-            isLiked={likedReviewsListQuery.data?.includes(review.id) ?? false}
+            isLiked={likedReviewsListQuery.data?.includes(review.id)}
             reviewId={Number(review.id)}
             postText={review.content}
             nickname={review.member.username}
