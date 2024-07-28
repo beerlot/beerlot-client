@@ -1,11 +1,10 @@
-import { CreateReviewRequestType } from "@/../hooks/query/useReviewQuery";
-import { BeerReviewsQueryParams } from "@/../typedef/server/beer";
 import axios from "axios";
 import { ReviewSortEnum } from "../../../interface/types";
+import { BeerReviewQueryParamsV2, CreateReviewRequestTypeV2 } from "./typedef";
 
 export const createReviewApi = async (
   beerId: number,
-  data: CreateReviewRequestType,
+  data: CreateReviewRequestTypeV2,
   accessToken: string
 ) => {
   const url = `/api/v1/beers/${beerId}/reviews`;
@@ -20,7 +19,7 @@ export const createReviewApi = async (
 };
 
 export const fetchBeerReviewsApi = async (
-  queryParams: BeerReviewsQueryParams
+  queryParams: BeerReviewQueryParamsV2
 ) => {
   const {
     beerId,
@@ -37,5 +36,5 @@ export const fetchBeerReviewsApi = async (
     },
   });
 
-  return res.data;
+  return res.data.contents;
 };

@@ -1,3 +1,5 @@
+import { UpdateReviewRequestTypeV2 } from "@/api/review/typedef";
+
 export type AllKeyboardEvent = React.KeyboardEvent | KeyboardEvent;
 
 // export interface CategoryFilterListType {
@@ -85,12 +87,8 @@ export type ErrorResponse = {
   timestamp: string;
 };
 
-export interface ReviewInfoType {
-  beerName: string | null;
-  rate: number;
-  buy_from?: string[] | null;
-  content?: string | null;
-  image_url?: string[] | null;
+export interface ReviewInfoType extends UpdateReviewRequestTypeV2 {
+  beerName?: string;
 }
 
 export type UpdatedReviewInfo = Omit<ReviewInfoType, "beerName">;

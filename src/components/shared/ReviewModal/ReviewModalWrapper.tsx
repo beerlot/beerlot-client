@@ -1,5 +1,4 @@
 import {
-  useCreateReviewMutation,
   useReviewQuery,
   useReviewUpdateMutation,
 } from "@/../hooks/query/useReviewQuery";
@@ -9,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import { ReviewInfoType } from "../../../../interface/types";
 import { BeerlotLoading } from "../Loading";
 import { ReviewModal } from "./ReviewModal";
+import { useCreateReviewMutation } from "../../../../hooks/reviews/beer/useBeer";
 
 interface ReviewModalWrapperProps {
   reviewId?: number | null;
@@ -27,12 +27,7 @@ export const ReviewModalWrapper: React.FC<ReviewModalWrapperProps> = ({
   const { isLoading: _isLoading, isFetching, isRefetching } = reviewQuery;
   const isLoading = _isLoading || isFetching || isRefetching;
   const existingReviewData = reviewQuery.data;
-  const [reviewInfo, setReviewInfo] = useState<ReviewInfoType>({
-    beerName: null,
-    rate: 0,
-    buy_from: null,
-    content: "",
-  });
+  const [reviewInfo, setReviewInfo] = useState<ReviewInfoType>({});
 
   useEffect(() => {
     if (existingReviewData) {

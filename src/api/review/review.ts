@@ -1,12 +1,7 @@
-import { AllReviewsQueryParams } from "@/../hooks/query/useReviewQuery";
 import axios from "axios";
-import {
-  LANGUAGE_TYPE,
-  ReviewSortEnum,
-  UpdatedReviewInfo,
-} from "../../../interface/types";
+import { LANGUAGE_TYPE, ReviewSortEnum } from "../../../interface/types";
+import { AllBeersQueryParamsV2, UpdateReviewRequestTypeV2 } from "./typedef";
 
-// 리뷰 1개 delete
 export const deleteReviewApi = async (
   reviewId: number,
   accessToken: string
@@ -17,11 +12,11 @@ export const deleteReviewApi = async (
       Authorization: `Bearer ${accessToken}`,
     },
   };
-  const response = await axios.delete(url, config);
-  return response.data;
+  const res = await axios.delete(url, config);
+  return res.data;
 };
 
-export const fetchAllReviewsApi = async (queryParam: AllReviewsQueryParams) => {
+export const fetchAllReviewsApi = async (queryParam: AllBeersQueryParamsV2) => {
   const {
     page = 1,
     size = 10,
@@ -42,7 +37,7 @@ export const fetchAllReviewsApi = async (queryParam: AllReviewsQueryParams) => {
 export const updateReviewApi = async (
   reviewId: number,
   accessToken: string,
-  newContent: UpdatedReviewInfo
+  newContent: UpdateReviewRequestTypeV2
 ) => {
   const config = {
     headers: { Authorization: `Bearer ${accessToken}` },
@@ -55,7 +50,6 @@ export const updateReviewApi = async (
   return res.data;
 };
 
-// get one review by ID
 export const getSingleReviewApi = async (reviewId?: number | null) => {
   if (reviewId === null || reviewId === undefined) {
     throw new Error("Review ID cannot be null.");

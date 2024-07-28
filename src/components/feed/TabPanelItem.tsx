@@ -1,18 +1,18 @@
 import { getLeftTime } from "@/../utils/time";
 import { Avatar, Box, Center, Flex, IconButton, Text } from "@chakra-ui/react";
 import Cookies from "js-cookie";
-import { useCallback, useState } from "react";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import { useQueryClient } from "react-query";
+import { userLikedReviewsQueryKey } from "../../../hooks/query/useUserQuery";
+import {
+  useReviewDislikeMutation,
+  useReviewLikeMutation,
+} from "../../../hooks/reviews/like/useLike";
 import { EditNote, TrashBin } from "../../../public/svg";
 import { CommonBeerImage } from "../shared/CommonBeerImage/CommonBeerImage";
 import { Rating } from "../shared/Rating";
 import { ThumbsUpButton } from "../shared/ThumbsUpButton";
-import { useRouter } from "next/router";
-import {
-  useReviewDislikeMutation,
-  useReviewLikeMutation,
-} from "../../../hooks/reviews/like/useMutation";
-import { userLikedReviewsQueryKey } from "../../../hooks/query/useUserQuery";
 interface FollowingTabPanelItemProps {
   reviewId: number;
   nickname: string;
