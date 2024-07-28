@@ -2,9 +2,10 @@ import { Box, Container, useDisclosure } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { CenteredTitle } from "../shared/Headers/CenteredTitle";
-import { ReviewModalTriggerButton } from "../shared/ReviewModal/ReviewModalTriggerButton";
-import { ReviewModalWrapper } from "../shared/ReviewModal/ReviewModalWrapper";
+
 import { FeedTabList } from "./FeedTabList";
+import { ReviewModalTriggerButton } from "../shared/ReviewModal/ReviewModalWrapper/ReviewModalTriggerButton";
+import { ReviewModalWrapper } from "../shared/ReviewModal/ReviewModalWrapper/ReviewModalWrapper";
 
 export const FeedTemplate = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

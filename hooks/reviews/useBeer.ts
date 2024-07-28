@@ -34,7 +34,9 @@ export const useCreateReviewMutation = (
     }: {
       beerId: number;
       data: CreateReviewRequestTypeV2;
-    }) => createReviewApi(beerId, data, accessToken),
+    }) => {
+      return createReviewApi(beerId, data, accessToken);
+    },
     ...options,
   });
 };

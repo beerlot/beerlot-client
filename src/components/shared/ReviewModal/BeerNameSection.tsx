@@ -3,14 +3,13 @@ import { RightArrow } from "../CustomIcons/customIcons";
 import { CreateReviewRequestTypeV2 } from "../../../../typedef/review";
 
 interface BeerNameSectionProps extends FlexProps {
-  reviewInfo: CreateReviewRequestTypeV2;
+  beerName: string;
 }
 
 const BeerNameSection: React.FC<BeerNameSectionProps> = ({
-  reviewInfo,
+  beerName,
   ...props
 }) => {
-  const beerName = "";
   return (
     <Flex
       p="10px"

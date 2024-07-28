@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from "@chakra-ui/react";
-import { EditPencil } from "../../../../public/svg";
+import { EditPencil } from "../../../../../public/svg";
 
 interface ReviewModalTriggerButtonProps extends ButtonProps {}
 

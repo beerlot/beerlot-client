@@ -1,12 +1,12 @@
 import { useUserLikedReviewsQuery } from "@/../hooks/query/useUserQuery";
 import { MemberReviewResponse } from "@/../types/member/response";
 import { ReviewDeleteConfirmationDrawer } from "@/components/shared/ReviewModal/ReviewDeleteConfirmationDrawer";
-import { ReviewModalWrapper } from "@/components/shared/ReviewModal/ReviewModalWrapper";
 import { Flex, useDisclosure } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import { useCallback, useState } from "react";
 import { useReviewDeleteMutation } from "../../../../hooks/reviews/useReview";
 import { FollowingTabPanelItem } from "@/components/feed/TabPanelItem";
+import { ReviewModalWrapper } from "@/components/shared/ReviewModal/ReviewModalWrapper/ReviewModalWrapper";
 
 interface BeerReviewsProps {
   userReviews: MemberReviewResponse[];
