@@ -7,6 +7,7 @@ import { ReviewSortEnum } from "../../../interface/types";
 import { FeedFilter } from "./FeedFilter/FeedFilter";
 import { useAllReviewsQuery } from "../../../hooks/reviews/useReview";
 import { FollowingTabPanelItem } from "./TabPanelItem";
+import { ReviewTypeV2 } from "../../../typedef/review";
 
 export const AllTabPanelList = () => {
   const accessToken = Cookies.get("beerlot-oauth-auth-request") ?? "";
@@ -25,7 +26,7 @@ export const AllTabPanelList = () => {
   return (
     <Flex flexDirection="column" gap={"10px"} pb={"64px"}>
       <FeedFilter selectedTag={selectedTag} onClickTag={handleSelectTag} />
-      {allReviewsQuery?.data?.map((review: any) => {
+      {allReviewsQuery?.data?.map((review: ReviewTypeV2) => {
         return (
           <FollowingTabPanelItem
             key={review.id}
