@@ -1,12 +1,12 @@
 import { signupApi } from "@/api/auth/api";
+import { SignupRequestType } from "@/api/review/typedef";
 import { UseQueryOptions, useQuery } from "react-query";
 import { DefaultResponse, FailureResponse } from "types/api";
-import { MemberRequest } from "../../types/member/request";
 
 export const signupQueryKey = () => ["signup"];
 
 export const useSignupQuery = (
-  queryParam: MemberRequest,
+  queryParam: SignupRequestType,
   accessToken: string,
   options?: UseQueryOptions<DefaultResponse, FailureResponse>
 ) => {

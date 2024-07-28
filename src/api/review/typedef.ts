@@ -1,4 +1,5 @@
 import { LANGUAGE_TYPE, ReviewSortEnum } from "../../../interface/types";
+import { POLICY_LABEL } from "../../../types/common";
 
 export type ReviewTypeV2 = {
   id: number;
@@ -56,3 +57,15 @@ export type MemberTypeRequestUpdateV2 = Pick<
   MemberTypeV2,
   "status_message" | "username" | "image_url"
 >;
+
+export type MemberCreateRequestV2Type = MemberTypeRequestUpdateV2 & {
+  agreed_policies: POLICY_LABEL[];
+};
+
+/** legacy */
+export type SignupRequestType = {
+  username?: string;
+  status_message?: string;
+  image_url?: string;
+  agreed_policies?: POLICY_LABEL[];
+};
