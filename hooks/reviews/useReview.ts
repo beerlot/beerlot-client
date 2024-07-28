@@ -4,11 +4,7 @@ import {
   getSingleReviewApi,
   updateReviewApi,
 } from "@/api/review/review";
-import {
-  AllBeersQueryParamsV2,
-  ReviewTypeV2,
-  UpdateReviewRequestTypeV2,
-} from "@/api/review/typedef";
+
 import {
   UseMutationOptions,
   UseQueryOptions,
@@ -16,6 +12,11 @@ import {
   useQuery,
 } from "react-query";
 import { FailureResponseV2 } from "types/api";
+import {
+  AllBeersQueryParamsV2,
+  ReviewTypeV2,
+  UpdateReviewRequestTypeV2,
+} from "../../typedef/review";
 
 export const allReviewsQueryKey = () => ["allReviews"];
 export const singleReviewQueryKey = () => ["singleReview"];
