@@ -27,8 +27,7 @@ export const AllTabPanelList = () => {
   return (
     <Flex flexDirection="column" gap={"10px"} pb={"64px"}>
       <FeedFilter selectedTag={selectedTag} onClickTag={handleSelectTag} />
-      {/* ALL_FEED_MOCK을 prop으로 받아서 AllTabPanelList랑 공유하기 */}
-      {allReviewsQuery?.data?.map((post: ReviewTypeV2) => {
+      {allReviewsQuery?.data?.map((post: any) => {
         return (
           <FollowingTabPanelItem
             key={post.id}
