@@ -24,7 +24,6 @@ export type CreateReviewRequestTypeV2 = Pick<
 >;
 export type CreateReviewResponseTypeV2 = void;
 
-/** update */
 export type UpdateReviewRequestTypeV2 = Partial<CreateReviewRequestTypeV2> & {
   content: string;
   rate: number;
@@ -45,7 +44,6 @@ export type AllBeersQueryParamsV2 = {
 };
 
 /** member */
-
 export type MemberTypeV2 = {
   id: number;
   username: string;
@@ -53,6 +51,7 @@ export type MemberTypeV2 = {
   status_message: string;
   username_updated_at: string;
 };
+
 export type MemberTypePatchV2 = Pick<
   MemberTypeV2,
   "status_message" | "username" | "image_url"
