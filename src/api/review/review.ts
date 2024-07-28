@@ -31,7 +31,7 @@ export const fetchAllReviewsApi = async (queryParam: AllBeersQueryParamsV2) => {
       language,
     },
   });
-  return res.data;
+  return res.data.contents;
 };
 
 export const updateReviewApi = async (
