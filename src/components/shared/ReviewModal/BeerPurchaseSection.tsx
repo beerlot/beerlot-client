@@ -8,11 +8,11 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { ReviewInfoType } from "../../../../interface/types";
 import { CrossXBlack, WhiteCross } from "../../../../public/svg";
+import { ReviewTypeV2 } from "@/api/review/typedef";
 
 interface BeerPurchaseSectionProps {
-  reviewInfo: ReviewInfoType;
+  reviewInfo: ReviewTypeV2;
   handleChangePlace: (e: React.ChangeEvent<HTMLInputElement>) => void;
   clearInput: () => void;
   handleClickPlaceTag: (place: string | null) => void;
