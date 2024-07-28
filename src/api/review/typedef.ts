@@ -13,14 +13,6 @@ export type ReviewTypeV2 = {
   beer: BeerTypeV2;
 };
 
-export type MemberTypeV2 = {
-  id: number;
-  username: string;
-  image_url: string;
-  status_message: string;
-  username_updated_at: string;
-};
-
 export type BeerTypeV2 = {
   id: number;
   name: string;
@@ -51,3 +43,17 @@ export type AllBeersQueryParamsV2 = {
   sort?: ReviewSortEnum;
   language?: LANGUAGE_TYPE;
 };
+
+/** member */
+
+export type MemberTypeV2 = {
+  id: number;
+  username: string;
+  image_url: string;
+  status_message: string;
+  username_updated_at: string;
+};
+export type MemberTypePatchV2 = Pick<
+  MemberTypeV2,
+  "status_message" | "username" | "image_url"
+>;
