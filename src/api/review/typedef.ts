@@ -33,7 +33,10 @@ export type CreateReviewRequestTypeV2 = Pick<
 export type CreateReviewResponseTypeV2 = void;
 
 /** update */
-export type UpdateReviewRequestTypeV2 = Partial<CreateReviewRequestTypeV2>;
+export type UpdateReviewRequestTypeV2 = Partial<CreateReviewRequestTypeV2> & {
+  content: string;
+  rate: number;
+};
 
 export type BeerReviewQueryParamsV2 = {
   beerId: number;
@@ -43,8 +46,8 @@ export type BeerReviewQueryParamsV2 = {
 };
 
 export type AllBeersQueryParamsV2 = {
-  page: number;
-  size: number;
-  sort: ReviewSortEnum;
-  language: LANGUAGE_TYPE;
+  page?: number;
+  size?: number;
+  sort?: ReviewSortEnum;
+  language?: LANGUAGE_TYPE;
 };

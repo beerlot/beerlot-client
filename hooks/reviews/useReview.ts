@@ -11,7 +11,6 @@ import {
 } from "@/api/review/typedef";
 import {
   UseMutationOptions,
-  UseMutationResult,
   UseQueryOptions,
   useMutation,
   useQuery,
@@ -58,19 +57,19 @@ export const useReviewQuery = (
 };
 
 export const useReviewDeleteMutation = (
-  reviewId: number,
   accessToken: string,
-  options?: UseMutationOptions<void, FailureResponseV2>
+  options?: UseMutationOptions<void, FailureResponseV2, number>
 ) => {
-  return useMutation({
-    mutationFn: () => deleteReviewApi(reviewId, accessToken),
+  return useMutation<void, FailureResponseV2, number>({
+    mutationFn: (reviewId: number) => {
+      return deleteReviewApi(reviewId, accessToken);
+    },
     ...options,
   });
 };
-
 export const useAllReviewsQuery = (
   queryParam: AllBeersQueryParamsV2,
-  options?: UseQueryOptions<ReviewTypeV2, FailureResponseV2>
+  options?: UseQueryOptions<ReviewTypeV2[], FailureResponseV2>
 ) => {
   return useQuery({
     queryKey: allReviewsQueryKey(),

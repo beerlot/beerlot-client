@@ -43,7 +43,7 @@ export const beerReviewsQueryKey = (beerId: number) => ["beerReviews", beerId];
 
 export const useBeerReviewsQuery = (
   queryParams: BeerReviewQueryParamsV2,
-  options?: UseQueryOptions<ReviewTypeV2, FailureResponseV2>
+  options?: UseQueryOptions<ReviewTypeV2[], FailureResponseV2>
 ) => {
   return useQuery({
     queryKey: beerReviewsQueryKey(queryParams.beerId),

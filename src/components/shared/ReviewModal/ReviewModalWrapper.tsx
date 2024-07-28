@@ -1,14 +1,14 @@
-import {
-  useReviewQuery,
-  useReviewUpdateMutation,
-} from "@/../hooks/query/useReviewQuery";
+import { CreateReviewRequestTypeV2 } from "@/api/review/typedef";
 import { Center, Modal, ModalContent, ModalProps } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
-import { ReviewInfoType } from "../../../../interface/types";
+import { useCreateReviewMutation } from "../../../../hooks/reviews/useBeer";
+import {
+  useReviewQuery,
+  useReviewUpdateMutation,
+} from "../../../../hooks/reviews/useReview";
 import { BeerlotLoading } from "../Loading";
 import { ReviewModal } from "./ReviewModal";
-import { useCreateReviewMutation } from "../../../../hooks/reviews/beer/useBeer";
 
 interface ReviewModalWrapperProps {
   reviewId?: number | null;
@@ -27,15 +27,20 @@ export const ReviewModalWrapper: React.FC<ReviewModalWrapperProps> = ({
   const { isLoading: _isLoading, isFetching, isRefetching } = reviewQuery;
   const isLoading = _isLoading || isFetching || isRefetching;
   const existingReviewData = reviewQuery.data;
-  const [reviewInfo, setReviewInfo] = useState<ReviewInfoType>({});
+  const [reviewInfo, setReviewInfo] = useState<CreateReviewRequestTypeV2>({
+    content: "",
+    image_url: "",
+    buy_from: "",
+    rate: 5,
+  });
 
   useEffect(() => {
     if (existingReviewData) {
       setReviewInfo({
-        beerName: existingReviewData.beerName,
         rate: existingReviewData.rate,
         content: existingReviewData.content,
         image_url: existingReviewData.image_url,
+        buy_from: existingReviewData.buy_from,
       });
     }
   }, [existingReviewData]);

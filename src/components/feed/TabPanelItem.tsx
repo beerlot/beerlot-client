@@ -8,7 +8,7 @@ import { userLikedReviewsQueryKey } from "../../../hooks/query/useUserQuery";
 import {
   useReviewDislikeMutation,
   useReviewLikeMutation,
-} from "../../../hooks/reviews/like/useLike";
+} from "../../../hooks/reviews/useLike";
 import { EditNote, TrashBin } from "../../../public/svg";
 import { CommonBeerImage } from "../shared/CommonBeerImage/CommonBeerImage";
 import { Rating } from "../shared/Rating";
