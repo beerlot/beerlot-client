@@ -1,10 +1,8 @@
 import { POLICY_LABEL } from "@/../interface/server/types/Auth";
 import { BeerReviewsQueryParams } from "@/../typedef/server/beer";
 import {
-  createReviewApi,
   deleteReviewApi,
   fetchAllReviewsApi,
-  fetchBeerReviewsApi,
   getSingleReviewApi,
   updateReviewApi,
 } from "@/api/review/api";
@@ -23,6 +21,7 @@ import {
   UpdatedReviewInfo,
 } from "../../interface/types";
 import { BeerReviewsResponse } from "../../types/review/review";
+import { createReviewApi, fetchBeerReviewsApi } from "@/api/review/beer";
 
 export const allReviewsQueryKey = () => ["allReviews"];
 export const ReviewQueryKey = () => ["review"];
