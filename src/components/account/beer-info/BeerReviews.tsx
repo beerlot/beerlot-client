@@ -5,8 +5,8 @@ import { ReviewModalWrapper } from "@/components/shared/ReviewModal/ReviewModalW
 import { Flex, useDisclosure } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import { useCallback, useState } from "react";
-import FollowingTabPanelItem from "../../feed/TabPanelItem";
 import { useReviewDeleteMutation } from "../../../../hooks/reviews/useReview";
+import { FollowingTabPanelItem } from "@/components/feed/TabPanelItem";
 
 interface BeerReviewsProps {
   userReviews: MemberReviewResponse[];
@@ -63,15 +63,14 @@ const BeerReviews: React.FC<BeerReviewsProps> = ({
               reviewId={Number(feed.id)}
               isLiked={likedReviewsListQuery.data?.includes(feed.id)}
               nickname={feed.beer.name}
-              postingTime={feed.updated_at}
+              reviewTime={feed.updated_at}
               rate={feed.rate}
               imageSrc={feed.image_url}
-              postText={feed.content}
-              thumbsUpNumber={feed.like_count}
+              content={feed.content}
+              likedCount={feed.like_count}
               isEditable={true}
               onDelete={onOpenDeleteConfirmation}
               onEdit={() => handleEdit(feed.id)}
-              token={accessToken}
             />
             <ReviewDeleteConfirmationDrawer
               isOpen={isOpenDeleteConfirmation}
