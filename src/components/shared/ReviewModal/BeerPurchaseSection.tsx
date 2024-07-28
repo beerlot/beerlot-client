@@ -9,7 +9,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { CrossXBlack, WhiteCross } from "../../../../public/svg";
-import { CreateReviewRequestTypeV2 } from "@/api/review/typedef";
+import { CreateReviewRequestTypeV2 } from "../../../../typedef/review";
 
 interface BeerPurchaseSectionProps {
   reviewInfo: CreateReviewRequestTypeV2;

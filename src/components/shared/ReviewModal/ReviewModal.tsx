@@ -8,7 +8,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { BeerReviewContent } from "./BeerReviewContent";
 import { BeerSearchContent } from "./BeerSearchContent";
 import { ReviewExitConfirmationDrawer } from "./ReviewExitConfirmationDrawer";
-import { CreateReviewRequestTypeV2 } from "@/api/review/typedef";
+import { CreateReviewRequestTypeV2 } from "../../../../typedef/review";
 
 interface ReviewModalProps {
   isModalOpen: ModalProps["isOpen"];

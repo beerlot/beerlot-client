@@ -1,5 +1,5 @@
-import { LANGUAGE_TYPE, ReviewSortEnum } from "../../../interface/types";
-import { POLICY_LABEL } from "../../../types/common";
+import { LANGUAGE_TYPE, ReviewSortEnum } from "../interface/types";
+import { POLICY_LABEL } from "../types/common";
 
 export type ReviewTypeV2 = {
   id: number;

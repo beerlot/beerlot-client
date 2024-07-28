@@ -1,4 +1,3 @@
-import { CreateReviewRequestTypeV2 } from "@/api/review/typedef";
 import { Center, Modal, ModalContent, ModalProps } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
@@ -9,6 +8,7 @@ import {
 } from "../../../../hooks/reviews/useReview";
 import { BeerlotLoading } from "../Loading";
 import { ReviewModal } from "./ReviewModal";
+import { CreateReviewRequestTypeV2 } from "../../../../typedef/review";
 
 interface ReviewModalWrapperProps {
   reviewId?: number | null;

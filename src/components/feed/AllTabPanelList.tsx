@@ -7,7 +7,6 @@ import { ReviewSortEnum } from "../../../interface/types";
 import { FeedFilter } from "./FeedFilter/FeedFilter";
 import FollowingTabPanelItem from "./TabPanelItem";
 import { useAllReviewsQuery } from "../../../hooks/reviews/useReview";
-import { ReviewTypeV2 } from "@/api/review/typedef";
 
 export const AllTabPanelList = () => {
   const accessToken = Cookies.get("beerlot-oauth-auth-request") ?? "";
