@@ -1,7 +1,3 @@
-import {
-  useReviewDislikeMutation,
-  useReviewLikeMutation,
-} from "@/../hooks/query/useReviewQuery";
 import { getLeftTime } from "@/../utils/time";
 import { Avatar, Box, Center, Flex, IconButton, Text } from "@chakra-ui/react";
 import Cookies from "js-cookie";
@@ -12,6 +8,11 @@ import { CommonBeerImage } from "../shared/CommonBeerImage/CommonBeerImage";
 import { Rating } from "../shared/Rating";
 import { ThumbsUpButton } from "../shared/ThumbsUpButton";
 import { useRouter } from "next/router";
+import {
+  useReviewDislikeMutation,
+  useReviewLikeMutation,
+} from "../../../hooks/reviews/like/useMutation";
+import { userLikedReviewsQueryKey } from "../../../hooks/query/useUserQuery";
 interface FollowingTabPanelItemProps {
   reviewId: number;
   nickname: string;
@@ -59,8 +60,7 @@ const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
 
   const reviewLikeMutation = useReviewLikeMutation(reviewId, accessToken, {
     onSuccess: () => {
-      console.log("onSuccess like button");
-      queryClient.invalidateQueries(["userLikedReviews"]);
+      queryClient.invalidateQueries(userLikedReviewsQueryKey());
     },
   });
 
@@ -69,8 +69,7 @@ const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
     accessToken,
     {
       onSuccess: () => {
-        console.log("onSuccess dislike button");
-        queryClient.invalidateQueries(["userLikedReviews"]);
+        queryClient.invalidateQueries(userLikedReviewsQueryKey());
       },
     }
   );

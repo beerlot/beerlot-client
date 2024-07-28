@@ -1,21 +1,5 @@
 import { POLICY_LABEL } from "@/../interface/server/types/Auth";
 import { BeerReviewsQueryParams } from "@/../typedef/server/beer";
-
-import { dislikeReviewApi, likeReviewApi } from "@/api/review/like";
-import {
-  UseMutationOptions,
-  UseMutationResult,
-  UseQueryOptions,
-  useMutation,
-  useQuery,
-} from "react-query";
-import { DefaultResponse, FailureResponse } from "types/api";
-import {
-  BeerSortEnum,
-  ReviewSortEnum,
-  UpdatedReviewInfo,
-} from "../../interface/types";
-import { BeerReviewsResponse } from "../../types/review/review";
 import { createReviewApi, fetchBeerReviewsApi } from "@/api/review/beer";
 import {
   deleteReviewApi,
@@ -23,6 +7,20 @@ import {
   getSingleReviewApi,
   updateReviewApi,
 } from "@/api/review/review";
+import {
+  UseMutationOptions,
+  UseMutationResult,
+  UseQueryOptions,
+  useMutation,
+  useQuery,
+} from "react-query";
+import { FailureResponse } from "types/api";
+import {
+  BeerSortEnum,
+  ReviewSortEnum,
+  UpdatedReviewInfo,
+} from "../../interface/types";
+import { BeerReviewsResponse } from "../../types/review/review";
 
 export const allReviewsQueryKey = () => ["allReviews"];
 export const ReviewQueryKey = () => ["review"];
@@ -77,31 +75,6 @@ export const useDeleteReviewMutation = (
     (reviewId: number) => deleteReviewApi(reviewId, accessToken),
     options
   );
-};
-
-export const reviewLikeKey = () => ["reviewLike"];
-export const reviewDislikeKey = () => ["reviewDisike"];
-
-export const useReviewLikeMutation = (
-  reviewId: number,
-  accessToken: string,
-  options?: UseMutationOptions<any, FailureResponse>
-) => {
-  return useMutation({
-    mutationFn: () => likeReviewApi(reviewId, accessToken),
-    ...options,
-  });
-};
-
-export const useReviewDislikeMutation = (
-  reviewId: number,
-  accessToken: string,
-  options?: UseMutationOptions<DefaultResponse, FailureResponse>
-) => {
-  return useMutation({
-    mutationFn: () => dislikeReviewApi(reviewId, accessToken),
-    ...options,
-  });
 };
 
 export const useReviewQuery = (

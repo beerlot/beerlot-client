@@ -19,6 +19,7 @@ export const getUserInfoQueryKey = () => ["getUserInfo"];
 export const putUserInfoQueryKey = () => ["putUserInfo"];
 export const userReviewsQueryKey = () => ["userReviews"];
 export const userBeersQueryKey = () => ["userBeers"];
+export const userLikedReviewsQueryKey = () => ["userLikedReviews"];
 
 export const useUserInfoQuery = (
   accessToken: string,
@@ -73,7 +74,7 @@ export const useUserLikedReviewsQuery = (
   options?: UseQueryOptions<number[], FailureResponse>
 ) => {
   return useQuery({
-    queryKey: ["userLikedReviews"],
+    queryKey: userLikedReviewsQueryKey(),
     queryFn: () => fetchUserLikedReviews(accessToken),
     enabled: !!accessToken,
     refetchOnMount: false,
