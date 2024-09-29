@@ -1,45 +1,46 @@
-import { Member, MemberReviewsRequest } from "../../types/member/request";
+import { MemberReviewsRequest } from '../../types/member/request'
 import {
   fetchUserLikedReviews,
   getUserLikedBeersApi,
   getUserReviewsApi,
   getUsersInfoApi,
   updateUserInfoApi,
-} from "@/api/user/api";
+} from '@/api/user/api'
 import {
   MutationOptions,
   UseQueryOptions,
   useMutation,
   useQuery,
-} from "react-query";
-import { FailureResponse as FailureResponseV2 } from "types/api";
+} from 'react-query'
+import { FailureResponse as FailureResponseV2 } from 'types/api'
 import {
   AllBeersQueryParamsV2,
   MemberTypeRequestUpdateV2,
-} from "../../types/review";
+} from '../../types/review'
+import { MemberType } from '../../types/server/member/response'
 
-export const getUserInfoQueryKey = () => ["getUserInfo"];
-export const putUserInfoQueryKey = () => ["putUserInfo"];
-export const userReviewsQueryKey = () => ["userReviews"];
-export const userBeersQueryKey = () => ["userBeers"];
-export const userLikedReviewsQueryKey = () => ["userLikedReviews"];
+export const getUserInfoQueryKey = () => ['getUserInfo']
+export const putUserInfoQueryKey = () => ['putUserInfo']
+export const userReviewsQueryKey = () => ['userReviews']
+export const userBeersQueryKey = () => ['userBeers']
+export const userLikedReviewsQueryKey = () => ['userLikedReviews']
 
 export const useUserInfoQuery = (
   accessToken: string,
-  options?: UseQueryOptions<Member, FailureResponseV2>
+  options?: UseQueryOptions<MemberType, FailureResponseV2>
 ) => {
   return useQuery({
     queryKey: getUserInfoQueryKey(),
     queryFn: () => getUsersInfoApi(accessToken),
     enabled: !!accessToken,
     ...options,
-  });
-};
+  })
+}
 
 export const useEditUserInfoMutation = (
   accessToken: string,
   options?: MutationOptions<
-    Member,
+    MemberType,
     FailureResponseV2,
     MemberTypeRequestUpdateV2
   >
@@ -48,8 +49,8 @@ export const useEditUserInfoMutation = (
     mutationFn: (updatedInfo: MemberTypeRequestUpdateV2) =>
       updateUserInfoApi(accessToken, updatedInfo),
     ...options,
-  });
-};
+  })
+}
 
 export const useUserReviewsQuery = (
   accessToken: string,
@@ -60,8 +61,8 @@ export const useUserReviewsQuery = (
     queryKey: userReviewsQueryKey(),
     queryFn: () => getUserReviewsApi(accessToken, queryParam),
     ...options,
-  });
-};
+  })
+}
 
 export const useUserLikedBeersQuery = (
   accessToken: string,
@@ -75,8 +76,8 @@ export const useUserLikedBeersQuery = (
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     ...options,
-  });
-};
+  })
+}
 
 export const useUserLikedReviewsQuery = (
   accessToken: string,
@@ -89,5 +90,5 @@ export const useUserLikedReviewsQuery = (
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     ...options,
-  });
-};
+  })
+}

@@ -33,10 +33,6 @@ type BeerDetail = {
 
 export type SingelBeerFetchResponseType = BeerDetail
 
-export type RecommendedBeersResponse = {
-  id: number[]
-}
-
 export type BeersResponseType = {
   contents: BeerType[]
   pageRequest: PageRequest

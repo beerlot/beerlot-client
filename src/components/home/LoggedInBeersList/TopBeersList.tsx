@@ -2,7 +2,7 @@ import {
   useBeerDislikeMutation,
   useBeerLikeMutation,
 } from '@/../hooks/query/useBeerLikeMutation'
-import { BeerResponseType } from '../../../../types/server/beer'
+import { BeerResponseType } from '../../../../types/beer'
 import { generateBeerDetailUrl } from '@/../utils/url'
 import { CommonBeerImage } from '@/components/shared/CommonBeerImage/CommonBeerImage'
 import { LikeButton } from '@/components/shared/LikeButton'

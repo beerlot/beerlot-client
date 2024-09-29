@@ -12,7 +12,7 @@ import {
   BeerCountryText,
   BeerNameText,
 } from "../shared/Card/BeerCardItem";
-import { BeerResponseType } from "../../../types/server/beer";
+import { BeerResponseType } from "../../../types/beer";
 import { generateBeerDetailUrl } from "../../../utils/url";
 import { BeerlotLoading } from "../shared/Loading";
 import { LikeButton } from "../shared/LikeButton";

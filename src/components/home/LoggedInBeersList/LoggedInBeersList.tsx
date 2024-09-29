@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import {
   BeerResponseType,
   SingelBeerFetchResponseType,
-} from "../../../../types/server/beer";
+} from "../../../../types/beer";
 import RecommendedBeersList from "./RecommendedBeersList";
 import TopBeersList from "./TopBeersList";
 import Cookies from "js-cookie";
