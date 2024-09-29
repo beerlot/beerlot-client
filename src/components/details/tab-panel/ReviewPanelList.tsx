@@ -16,7 +16,7 @@ import { FollowingTabPanelItem } from '@/components/feed/TabPanelItem'
 import { useBeerReviewsQuery } from '../../../../hooks/reviews/useBeer'
 import { MOCK_FEED_FILTER_LIST } from '../../../../interface/static'
 import { ReviewSortEnum } from '../../../../interface/types'
-import { ReviewTypeV2 } from '../../../../typedef/review'
+import { ReviewTypeV2 } from '../../../../types/review'
 import { BeerInfoHStack } from './BasicPanelList'
 import { UserReview } from './UserReview'
 

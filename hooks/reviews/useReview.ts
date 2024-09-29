@@ -18,7 +18,7 @@ import {
   AllBeersQueryParamsV2,
   ReviewTypeV2,
   UpdateReviewRequestTypeV2,
-} from '../../typedef/review'
+} from '../../types/review'
 import { ReviewSortEnum } from '../../interface/types'
 import { fetchMyReviewsApi } from '@/api/beers/api'
 import { myReviewsQueryKey } from '../query/useBeerQuery'

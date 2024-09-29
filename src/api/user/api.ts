@@ -1,11 +1,11 @@
-import { LanguageType, ReviewSortType } from "../../../typedef/common";
-import { MemberReviewsRequest } from "../../../typedef/member/request";
+import { LanguageType, ReviewSortType } from "../../../types/common";
+import { MemberReviewsRequest } from "../../../types/member/request";
 import axios from "axios";
 import { BeerSortEnum, OAUTH_PROVIDER } from "../../../interface/types";
 import {
   AllBeersQueryParamsV2,
   MemberTypeRequestUpdateV2,
-} from "../../../typedef/review";
+} from "../../../types/review";
 
 const redirectUrl = "https://beerlot.info";
 

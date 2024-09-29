@@ -13,8 +13,8 @@ import {
   RecommendedBeersResponse,
   SingelBeerFetchResponseType,
   TopBeersType,
-} from '../../typedef/server/beer'
-import { ReviewTypeV2 } from '../../typedef/review'
+} from '../../types/server/beer'
+import { ReviewTypeV2 } from '../../types/review'
 
 export const topBeersQueryKey = () => ['topBeers']
 export const myReviewsQueryKey = (beerId: number) => [`myReviews`, beerId]

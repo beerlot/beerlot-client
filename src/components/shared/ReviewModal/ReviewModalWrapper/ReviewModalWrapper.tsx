@@ -5,7 +5,7 @@ import { useCreateReviewMutation } from "../../../../../hooks/reviews/useBeer";
 import {
   BeerTypeV2,
   CreateReviewRequestTypeV2,
-} from "../../../../../typedef/review";
+} from "../../../../../types/review";
 import { ReviewModal } from "../ReviewModal";
 import { useAllReviewsQuery } from "../../../../../hooks/reviews/useReview";
 import { MOCK_FEED_FILTER_LIST } from "../../../../../interface/static";

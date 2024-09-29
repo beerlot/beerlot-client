@@ -3,7 +3,7 @@ import { ReviewSortEnum } from "../../../interface/types";
 import {
   BeerReviewQueryParamsV2,
   CreateReviewRequestTypeV2,
-} from "../../../typedef/review";
+} from "../../../types/review";
 
 export const createReviewApi = async (
   beerId: number,

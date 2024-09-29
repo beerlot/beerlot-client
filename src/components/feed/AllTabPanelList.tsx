@@ -7,7 +7,7 @@ import { ReviewSortEnum } from '../../../interface/types'
 import { FeedFilter } from './FeedFilter/FeedFilter'
 import { useAllReviewsInfiniteQuery } from '../../../hooks/reviews/useReview'
 import { FollowingTabPanelItem } from './TabPanelItem'
-import { ReviewTypeV2 } from '../../../typedef/review'
+import { ReviewTypeV2 } from '../../../types/review'
 import { InfiniteScrollWrapper } from '@components/shared/InfiniteScrollWrapper'
 
 export const AllTabPanelList = () => {

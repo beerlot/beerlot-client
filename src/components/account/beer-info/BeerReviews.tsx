@@ -1,5 +1,5 @@
 import { useUserLikedReviewsQuery } from '@/../hooks/query/useUserQuery'
-import { MemberReviewResponse } from '../../../../typedef/member/response'
+import { MemberReviewResponse } from '../../../../types/member/response'
 import { FollowingTabPanelItem } from '@/components/feed/TabPanelItem'
 import { ReviewDeleteConfirmationDrawer } from '@/components/shared/ReviewModal/ReviewDeleteConfirmationDrawer'
 import { ExistingReviewModalWrapper } from '@/components/shared/ReviewModal/ReviewModalWrapper/ExistingReviewModalWrapper'

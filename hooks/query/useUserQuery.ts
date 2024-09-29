@@ -1,4 +1,4 @@
-import { Member, MemberReviewsRequest } from "../../typedef/member/request";
+import { Member, MemberReviewsRequest } from "../../types/member/request";
 import {
   fetchUserLikedReviews,
   getUserLikedBeersApi,
@@ -16,7 +16,7 @@ import { FailureResponse as FailureResponseV2 } from "types/api";
 import {
   AllBeersQueryParamsV2,
   MemberTypeRequestUpdateV2,
-} from "../../typedef/review";
+} from "../../types/review";
 
 export const getUserInfoQueryKey = () => ["getUserInfo"];
 export const putUserInfoQueryKey = () => ["putUserInfo"];

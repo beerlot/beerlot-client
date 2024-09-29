@@ -1,4 +1,4 @@
-import { BeerSortType } from "../../typedef/common";
+import { BeerSortType } from "../../types/common";
 
 // legacy
 export interface FailureResponse {

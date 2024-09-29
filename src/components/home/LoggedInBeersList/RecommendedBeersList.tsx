@@ -1,7 +1,7 @@
 import {
   BeerResponseType,
   SingelBeerFetchResponseType,
-} from '@/../typedef/server/beer'
+} from '../../../../types/server/beer'
 import React, { useCallback, useEffect, useMemo } from 'react'
 import { CommonBeerImage } from '@/components/shared/CommonBeerImage/CommonBeerImage'
 import {

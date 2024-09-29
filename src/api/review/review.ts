@@ -3,7 +3,7 @@ import { LANGUAGE_TYPE, ReviewSortEnum } from '../../../interface/types'
 import {
   AllBeersQueryParamsV2,
   UpdateReviewRequestTypeV2,
-} from '../../../typedef/review'
+} from '../../../types/review'
 
 export const deleteReviewApi = async (
   reviewId: number,

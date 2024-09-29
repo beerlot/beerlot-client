@@ -1,8 +1,8 @@
 import { BeerFilterRequestType } from '@/types/api'
 import axios from 'axios'
 import { CategoryType, LANGUAGE_TYPE } from '../../../interface/types'
-import { BeerSortType } from '../../../typedef/common'
-import { SingelBeerFetchResponseType } from '../../../typedef/server/beer'
+import { BeerSortType } from '../../../types/common'
+import { SingelBeerFetchResponseType } from '../../../types/server/beer'
 
 export const getNewAccessTokenWithRefreshToken = async () => {
   const res = await axios.get('/api/v1/auth/refresh')

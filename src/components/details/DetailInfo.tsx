@@ -7,7 +7,7 @@ import {
   useBeerLikeMutation,
 } from "../../../hooks/query/useBeerLikeMutation";
 import { useUserLikedBeersQuery } from "../../../hooks/query/useUserQuery";
-import { BeerResponseType } from "../../../typedef/server/beer";
+import { BeerResponseType } from "../../../types/server/beer";
 import { CommonBeerImage } from "../shared/CommonBeerImage/CommonBeerImage";
 import { LeftBackBeerNameRightHeart } from "../shared/Headers/LeftBackBeerNameRightHeart";
 import { LeftBackTitle } from "../shared/Headers/LeftBackTitle";

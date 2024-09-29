@@ -5,7 +5,7 @@ import { POLICY_LABEL } from '../../../../interface/server/types/Auth'
 
 import { useSignupQuery } from '@/../hooks/query/useAuthQuery'
 import { useBeersQuery } from '../../../../hooks/query/useBeerQuery'
-import { BeerSortType } from '../../../../typedef/common'
+import { BeerSortType } from '../../../../types/common'
 import FloatingButton from '../../shared/FloatingButton'
 import { UserNameSection } from '@components/auth/sign-up/UserNameSection'
 import { RecommendBeerCard } from '@components/auth/sign-up/RecommendBeerCard'
