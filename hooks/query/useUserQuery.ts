@@ -1,4 +1,3 @@
-import { MemberReviewsRequest } from '../../types/member/request'
 import {
   fetchUserLikedReviews,
   getUserLikedBeersApi,
@@ -11,6 +10,8 @@ import {
   UseQueryOptions,
   useMutation,
   useQuery,
+  UseInfiniteQueryOptions,
+  useInfiniteQuery,
 } from 'react-query'
 import { FailureResponse as FailureResponseV2 } from 'types/api'
 import {
@@ -18,10 +19,17 @@ import {
   MemberTypeRequestUpdateV2,
 } from '../../types/review'
 import { MemberType } from '../../types/server/member/response'
+import { PaginatedResponseType } from '../../types/server/pagination/response'
+import { MemberReviewType } from '../../types/server/review/response'
+import { BeerSortType, LanguageType, ReviewSortType } from '../../types/common'
+
+import {
+  BeerPaginatedRequest,
+  ReviewPaginatedRequest,
+} from '../../types/server/pagination/request'
+import { BeerType } from '../../types/server/beer/response'
 
 export const getUserInfoQueryKey = () => ['getUserInfo']
-export const putUserInfoQueryKey = () => ['putUserInfo']
-export const userReviewsQueryKey = () => ['userReviews']
 export const userBeersQueryKey = () => ['userBeers']
 export const userLikedReviewsQueryKey = () => ['userLikedReviews']
 
@@ -54,25 +62,52 @@ export const useEditUserInfoMutation = (
 
 export const useUserReviewsQuery = (
   accessToken: string,
-  queryParam?: MemberReviewsRequest,
-  options?: UseQueryOptions<any, FailureResponseV2>
+  queryParam?: ReviewPaginatedRequest,
+  options?: UseInfiniteQueryOptions<
+    PaginatedResponseType<MemberReviewType>,
+    FailureResponseV2,
+    ReviewPaginatedRequest
+  >
 ) => {
-  return useQuery({
-    queryKey: userReviewsQueryKey(),
-    queryFn: () => getUserReviewsApi(accessToken, queryParam),
+  return useInfiniteQuery({
+    queryKey: ['userReviews', queryParam],
+    queryFn: ({ pageParam = 1 }) =>
+      getUserReviewsApi(accessToken, {
+        page: pageParam ?? 1,
+        size: queryParam?.size ?? 10,
+        sort: queryParam?.sort ?? ReviewSortType.RECENTLY_UPDATED,
+        language: queryParam?.language ?? LanguageType.KR,
+      }),
+    getNextPageParam: (lastPage, pages) => {
+      return lastPage.nextPage
+    },
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
     ...options,
   })
 }
 
 export const useUserLikedBeersQuery = (
   accessToken: string,
-  queryParam?: AllBeersQueryParamsV2,
-  options?: UseQueryOptions<any, FailureResponseV2>
+  queryParam?: BeerPaginatedRequest,
+  options?: UseInfiniteQueryOptions<
+    PaginatedResponseType<BeerType>,
+    FailureResponseV2,
+    BeerPaginatedRequest
+  >
 ) => {
-  return useQuery({
-    queryKey: userBeersQueryKey(),
-    queryFn: () => getUserLikedBeersApi(accessToken, queryParam),
-    enabled: !!accessToken,
+  return useInfiniteQuery({
+    queryKey: ['userLikedBeers', queryParam],
+    queryFn: ({ pageParam = 1 }) =>
+      getUserLikedBeersApi(accessToken, {
+        page: pageParam ?? 1,
+        size: queryParam?.size ?? 10,
+        sort: queryParam?.sort ?? BeerSortType.MOST_LIKES,
+        language: queryParam?.language ?? LanguageType.KR,
+      }),
+    getNextPageParam: (lastPage, pages) => {
+      return lastPage.nextPage
+    },
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     ...options,

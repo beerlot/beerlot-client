@@ -6,3 +6,7 @@ export interface MemberType {
   status_message?: string
   username_updated_at?: string
 }
+
+export interface CheckUsernameResponse {
+  taken: string
+}
