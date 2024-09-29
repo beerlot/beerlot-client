@@ -1,4 +1,4 @@
-import { PageRequest } from "../../typedef/server/beer";
+import { PageRequest } from "../server/beer";
 
 export interface ReviewResult {
   id: number;
