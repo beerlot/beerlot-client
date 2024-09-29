@@ -8,7 +8,7 @@ import { EmptyFilter, WhiteFilter } from "../../public/svg";
 import { SearchFilterList } from "../../src/components/result/filter/search-filter-list/SearchFilterList";
 import SearchInput from "../../src/components/search/SearchInput";
 import { LeftBackTitle } from "../../src/components/shared/Headers/LeftBackTitle";
-import { BeerSortType } from "../../types/common";
+import { BeerSortType } from "../../typedef/common";
 import { SearchResult } from "@/components/search/SearchResult";
 
 const SearchResultPage = () => {

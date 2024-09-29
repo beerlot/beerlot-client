@@ -1,4 +1,4 @@
-import { Member, MemberReviewsRequest } from "@/../types/member/request";
+import { Member, MemberReviewsRequest } from "../../typedef/member/request";
 import {
   fetchUserLikedReviews,
   getUserLikedBeersApi,

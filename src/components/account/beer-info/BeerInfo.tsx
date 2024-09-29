@@ -12,7 +12,7 @@ import {
 import Cookies from 'js-cookie'
 import BeerReviews from './BeerReviews'
 import { LikedBeers } from './LikedBeers'
-import { MemberReviewResponse } from '../../../../types/member/response'
+import { MemberReviewResponse } from '../../../../typedef/member/response'
 
 const BeerInfo = () => {
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
