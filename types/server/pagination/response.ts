@@ -1,8 +1,7 @@
 export interface PaginatedResponseType<T> {
   contents?: T[]
-  page?: number
   nextPage?: number
-  totalPages?: number
+  page?: number
   pageRequest?: {
     page?: number
     size?: number
@@ -13,6 +12,7 @@ export interface PaginatedResponseType<T> {
     offset?: number
   }
   totalElements?: number
+  totalPages?: number
 }
 
 enum SortDirectionEnum {

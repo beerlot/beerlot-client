@@ -21,3 +21,9 @@ export interface BeerType {
   category?: BeerCategoryType
   created_at?: string
 }
+
+export interface CategoryType {
+  id: number
+  name: string
+  children: string[]
+}

@@ -1,10 +1,7 @@
 import { LanguageType, ReviewSortType } from '../../../types/common'
 import axios from 'axios'
 import { BeerSortEnum, OAUTH_PROVIDER } from '../../../interface/types'
-import {
-  AllBeersQueryParamsV2,
-  MemberTypeRequestUpdateV2,
-} from '../../../types/review'
+import { MemberTypeRequestUpdateV2 } from '../../../types/review'
 
 import {
   BeerPaginatedRequest,

@@ -1,4 +1,3 @@
-import { LANGUAGE_TYPE, ReviewSortEnum } from '../interface/types'
 import { POLICY_LABEL } from './common'
 
 export type ReviewTypeV2 = {
@@ -34,13 +33,6 @@ export type BeerReviewQueryParamsV2 = {
   page?: number
   size?: number
   sort?: string
-}
-
-export type AllBeersQueryParamsV2 = {
-  page?: number
-  size?: number
-  sort?: ReviewSortEnum
-  language?: LANGUAGE_TYPE
 }
 
 export type MemberTypeV2 = {

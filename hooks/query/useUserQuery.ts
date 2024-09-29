@@ -14,10 +14,7 @@ import {
   useInfiniteQuery,
 } from 'react-query'
 import { FailureResponse as FailureResponseV2 } from 'types/api'
-import {
-  AllBeersQueryParamsV2,
-  MemberTypeRequestUpdateV2,
-} from '../../types/review'
+import { MemberTypeRequestUpdateV2 } from '../../types/review'
 import { MemberType } from '../../types/server/member/response'
 import { PaginatedResponseType } from '../../types/server/pagination/response'
 import { MemberReviewType } from '../../types/server/review/response'

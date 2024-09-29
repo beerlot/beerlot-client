@@ -1,51 +1,26 @@
-import { dislikeBeerApi, likeBeerApi } from "@/api/beers/api";
-import { FailureResponse } from "@/types/api";
-import { UseMutationOptions, useMutation } from "react-query";
+import { dislikeBeerApi, likeBeerApi } from '@/api/beers/api'
+import { FailureResponseV2 } from '@/types/api'
+import { useMutation, UseMutationOptions } from 'react-query'
+import { BeerLikeRequestType } from '../../types/server/beer/request'
 
 export const useBeerLikeMutation = (
-  options?: UseMutationOptions<
-    any,
-    FailureResponse,
-    { beerId: number; accessToken: string }
-  >
+  beerId: number,
+  accessToken: string,
+  options?: UseMutationOptions<void, FailureResponseV2, BeerLikeRequestType>
 ) => {
-  const mutationFn = async ({
-    beerId,
-    accessToken,
-  }: {
-    beerId: number;
-    accessToken: string;
-  }) => {
-    const res = await likeBeerApi(beerId, accessToken);
-    return res;
-  };
-  return useMutation<
-    any,
-    FailureResponse,
-    { beerId: number; accessToken: string }
-  >(mutationFn, options);
-};
+  return useMutation({
+    mutationFn: () => likeBeerApi(beerId, accessToken),
+    ...options,
+  })
+}
 
 export const useBeerDislikeMutation = (
-  options?: UseMutationOptions<
-    any,
-    FailureResponse,
-    { beerId: number; accessToken: string }
-  >
+  beerId: number,
+  accessToken: string,
+  options?: UseMutationOptions<void, FailureResponseV2, BeerLikeRequestType>
 ) => {
-  const mutationFn = async ({
-    beerId,
-    accessToken,
-  }: {
-    beerId: number;
-    accessToken: string;
-  }) => {
-    const res = await dislikeBeerApi(beerId, accessToken);
-    return res;
-  };
-  return useMutation<
-    any,
-    FailureResponse,
-    { beerId: number; accessToken: string }
-  >(mutationFn, options);
-};
+  return useMutation({
+    mutationFn: () => dislikeBeerApi(beerId, accessToken),
+    ...options,
+  })
+}
