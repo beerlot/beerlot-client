@@ -1,6 +1,3 @@
-import { ReviewSortEnum } from '@/../interface/types'
-
-// should be incompatible with BeerDetail
 export interface BeerResponseType {
   id?: number
   name?: string
@@ -11,14 +8,7 @@ export interface BeerResponseType {
     name?: string
   }
 }
-export interface BeerReviewsQueryParams {
-  beerId: number
-  page?: number
-  size?: number
-  sort?: ReviewSortEnum
-}
 
-// should be incompatible with BeerResponseType
 type BeerDetail = {
   id: number
   name?: string
@@ -73,15 +63,6 @@ export type PageRequest = {
   size: number
   sort: string
   offset: number
-}
-
-type Response = {
-  contents: BeerType[]
-  pageRequest: PageRequest
-  page: number
-  totalElements: number
-  nextPage?: null
-  totalPages: number
 }
 
 export type TopBeersType = BeerResponseType[]

@@ -7,7 +7,6 @@ export type ReviewTypeV2 = {
   image_url: string
   rate: number
   buy_from: string
-
   like_count: number
   updated_at: string
   member: MemberTypeV2
@@ -44,7 +43,6 @@ export type AllBeersQueryParamsV2 = {
   language?: LANGUAGE_TYPE
 }
 
-/** member */
 export type MemberTypeV2 = {
   id: number
   username: string
@@ -58,7 +56,6 @@ export type MemberTypeRequestUpdateV2 = Pick<
   'status_message' | 'username' | 'image_url'
 >
 
-/** legacy */
 export type SignupRequestType = {
   username?: string
   status_message?: string
