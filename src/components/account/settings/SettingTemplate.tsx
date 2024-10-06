@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import BottomDrawer from '../../shared/BottomDrawer'
 import { LeftBackRandom } from '../../shared/Headers/LeftBackRandom'
 import { SettingSectionList } from '@components/account/settings/SettingSectionList'
+import { useUserInfoQuery } from '../../../../hooks/query/useUserQuery'
 
 export const SettingsTemplate = () => {
   const router = useRouter()
@@ -13,6 +14,13 @@ export const SettingsTemplate = () => {
   }
   const LogoutDrawer = useDisclosure()
   const SignOut = useDisclosure()
+  const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
+  const userQuery = useUserInfoQuery(accessToken ?? '', {
+    enabled: !!accessToken,
+  })
+
+  const isLoaded = userQuery.isSuccess
+  const { email } = userQuery.data ?? {}
 
   const usersSetting = [
     {
@@ -28,13 +36,16 @@ export const SettingsTemplate = () => {
       },
     },
   ]
+
   const handleCanecelLogout = () => {
     LogoutDrawer.onClose()
   }
+
   const handleLogout = () => {
     router.push('/')
     Cookies.remove('beerlot-oauth-auth-request')
   }
+
   const handleCancelSignout = () => {
     SignOut.onClose()
   }
@@ -49,10 +60,8 @@ export const SettingsTemplate = () => {
 
   return (
     <Box h='full'>
-      Box
       <VStack bg='gray.100' h='full'>
         <LeftBackRandom onClick={handleClickBack} title='설정' />
-        {/* LOGOUT drawer */}
         <BottomDrawer
           headerLabel={'로그아웃 하시겠어요?'}
           onClose={LogoutDrawer.onClose}
@@ -62,7 +71,6 @@ export const SettingsTemplate = () => {
           confirmLabel={'로그아웃'}
           onConfirm={handleLogout}
         />
-        {/* SIGNOUT drawer */}
         <BottomDrawer
           headerLabel={'정말 비어랏을 떠나시는 건가요?'}
           onClose={SignOut.onClose}
@@ -76,7 +84,11 @@ export const SettingsTemplate = () => {
           confirmLabel={'아뇨, 더 있을래요'}
           onConfirm={handleCancelSignout}
         />
-        <SettingSectionList usersSetting={usersSetting} />
+        <SettingSectionList
+          usersSetting={usersSetting}
+          email={email ?? ''}
+          isLoaded={isLoaded}
+        />
       </VStack>
     </Box>
   )

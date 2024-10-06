@@ -1,17 +1,29 @@
 import React from 'react'
-import { Box, Flex, VStack } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  VStack,
+  Text,
+  SkeletonText,
+  Skeleton,
+} from '@chakra-ui/react'
 import { SectionButton } from '@components/account/settings/SectionButton'
 
 interface SettingSectionListProps {
   usersSetting: { title: string; onClick: () => void }[]
+  email: string
+  isLoaded?: boolean
 }
+
 export const SettingSectionList: React.FC<SettingSectionListProps> = ({
   usersSetting,
+  email,
+  isLoaded,
 }) => {
   return (
     <VStack
       bg='gray.100'
-      pt='70px'
+      pt='60px'
       w='full'
       h='full'
       gap='10px'
@@ -21,9 +33,18 @@ export const SettingSectionList: React.FC<SettingSectionListProps> = ({
       borderLeftColor={'gray.200'}
     >
       <Flex w='full' flexDir={'column'}>
-        {BeerSettingSection.map(({ title }) => (
-          <SectionButton key={title} title={title} />
-        ))}
+        <SectionButton title={'가입한 계정'}>
+          <Skeleton isLoaded={isLoaded}>
+            <Text
+              textStyle={'h3'}
+              textColor={'gray.400'}
+              wordBreak='break-all'
+              whiteSpace='normal'
+            >
+              {email}
+            </Text>
+          </Skeleton>
+        </SectionButton>
       </Flex>
       <Flex w='full' flexDir={'column'}>
         {NoticeSettingSection.map(({ title, href }) => (
@@ -53,7 +74,6 @@ export const SettingSectionList: React.FC<SettingSectionListProps> = ({
 }
 
 export const BeerSettingSection = [
-  { title: '가입한 계정' },
   // { title: '최애맥주 변경', href: '/account/settings/favoritebeer' },
 ]
 
