@@ -63,10 +63,14 @@ export const useUserReviewsQuery = (
   options?: UseInfiniteQueryOptions<
     PaginatedResponseType<MemberReviewType>,
     FailureResponseV2,
-    ReviewPaginatedRequest
+    PaginatedResponseType<MemberReviewType>
   >
 ) => {
-  return useInfiniteQuery({
+  return useInfiniteQuery<
+    PaginatedResponseType<MemberReviewType>,
+    FailureResponseV2,
+    PaginatedResponseType<MemberReviewType>
+  >({
     queryKey: ['userReviews', queryParam],
     queryFn: ({ pageParam = 1 }) =>
       getUserReviewsApi(accessToken, {
@@ -90,10 +94,14 @@ export const useUserLikedBeersQuery = (
   options?: UseInfiniteQueryOptions<
     PaginatedResponseType<BeerType>,
     FailureResponseV2,
-    BeerPaginatedRequest
+    PaginatedResponseType<BeerType>
   >
 ) => {
-  return useInfiniteQuery({
+  return useInfiniteQuery<
+    PaginatedResponseType<BeerType>,
+    FailureResponseV2,
+    PaginatedResponseType<BeerType>
+  >({
     queryKey: ['userLikedBeers', queryParam],
     queryFn: ({ pageParam = 1 }) =>
       getUserLikedBeersApi(accessToken, {

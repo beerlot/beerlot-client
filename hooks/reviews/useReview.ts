@@ -74,10 +74,14 @@ export const useAllReviewsInfiniteQuery = (
   options?: UseInfiniteQueryOptions<
     PaginatedResponseType<ReviewType[]>,
     FailureResponseV2,
-    ReviewPaginatedRequest
+    PaginatedResponseType<ReviewType[]>
   >
 ) => {
-  return useInfiniteQuery({
+  return useInfiniteQuery<
+    PaginatedResponseType<ReviewType[]>,
+    FailureResponseV2,
+    PaginatedResponseType<ReviewType[]>
+  >({
     queryKey: ['allReviews', queryParam],
     queryFn: ({ pageParam = 1 }) =>
       fetchAllReviewsApi({ ...queryParam, page: pageParam }),

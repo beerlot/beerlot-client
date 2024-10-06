@@ -21,6 +21,7 @@ const BeerReviews = () => {
     sort: ReviewSortType.RECENTLY_UPDATED,
     language: LanguageType.KR,
   })
+
   const [selectedReviewId, setSelectedReviewId] = useState<number | null>(null)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -62,22 +63,22 @@ const BeerReviews = () => {
         handleLoadMore={handleLoadMore}
         isFetching={userReviewQuery.isFetchingNextPage}
       >
-        {userReviewQuery.data?.pages.map((page) =>
-          page.contents.map((feed: MemberReviewType) => (
+        {userReviewQuery.data?.pages?.map((page) =>
+          page.contents?.map((feed) => (
             <>
               <FollowingTabPanelItem
                 key={feed.id}
                 reviewId={Number(feed.id)}
-                isLiked={likedReviewsListQuery.data?.includes(feed.id)}
-                nickname={feed.beer.name}
-                reviewTime={feed.updated_at}
-                rate={feed.rate}
+                isLiked={likedReviewsListQuery.data?.includes(feed.id ?? 0)}
+                nickname={feed?.beer?.name ?? ''}
+                reviewTime={feed.updated_at ?? ''}
+                rate={feed.rate ?? 0}
                 imageSrc={feed.image_url}
-                content={feed.content}
-                likedCount={feed.like_count}
+                content={feed.content ?? ''}
+                likedCount={feed.like_count ?? 0}
                 isEditable={true}
                 onDelete={onOpenDeleteConfirmation}
-                onEdit={() => handleEdit(feed.id)}
+                onEdit={() => handleEdit(feed.id ?? 0)}
               />
               <ReviewDeleteConfirmationDrawer
                 isOpen={isOpenDeleteConfirmation}
@@ -86,7 +87,7 @@ const BeerReviews = () => {
                   onCloseDeleteConfirmation()
                 }}
                 onClickRightButton={() => {
-                  handleDelete(feed.id)
+                  handleDelete(feed.id ?? 0)
                   onCloseDeleteConfirmation()
                 }}
               />
