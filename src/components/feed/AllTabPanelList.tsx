@@ -23,8 +23,6 @@ export const AllTabPanelList = () => {
     language: LanguageType.KR,
   })
 
-  console.log('allReviewsQuery', allReviewsQuery)
-
   const handleSelectTag = async (tag: ReviewSortType) => {
     setSelectedTag(tag)
   }
@@ -44,21 +42,24 @@ export const AllTabPanelList = () => {
       >
         {/* Map through all pages of reviews */}
         {allReviewsQuery.data?.pages.map((page) =>
-          page.contents.map((review: ReviewTypeV2) => (
-            <FollowingTabPanelItem
-              key={review.id}
-              isLiked={likedReviewsListQuery.data?.includes(review.id)}
-              reviewId={Number(review.id)}
-              content={review.content}
-              nickname={review.member.username}
-              reviewTime={review.updated_at}
-              beerName={review.beer.name}
-              rate={review.rate}
-              imageSrc={review.image_url}
-              likedCount={review.like_count}
-              isEditable={false}
-            />
-          ))
+          page.contents?.map((review) => {
+            console.log('review', review)
+            return (
+              <FollowingTabPanelItem
+                key={review.id}
+                isLiked={likedReviewsListQuery.data?.includes(review.id ?? 0)}
+                reviewId={Number(review.id)}
+                content={review.content ?? ''}
+                nickname={review.member?.username ?? ''}
+                reviewTime={review.updated_at ?? ''}
+                beerName={review.beer?.name ?? ''}
+                rate={review.rate ?? 0}
+                imageSrc={review.image_url}
+                likedCount={review.like_count ?? 0}
+                isEditable={false}
+              />
+            )
+          })
         )}
       </InfiniteScrollWrapper>
     </Flex>

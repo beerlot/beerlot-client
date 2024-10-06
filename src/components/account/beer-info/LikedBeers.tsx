@@ -32,13 +32,13 @@ const LikedBeers = () => {
         .filter((id): id is number => id !== undefined)
     ) ?? []
 
-  const likeBeerMutation = useBeerLikeMutation({
+  const likeBeerMutation = useBeerLikeMutation(accessToken, {
     onSuccess: () => {
       userBeersQuery.refetch()
     },
   })
 
-  const dislikeBeerMutation = useBeerDislikeMutation({
+  const dislikeBeerMutation = useBeerDislikeMutation(accessToken, {
     onSuccess: () => {
       userBeersQuery.refetch()
     },
@@ -62,6 +62,7 @@ const LikedBeers = () => {
     },
     [router]
   )
+
   const handleClickLike = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id?: number) => {
       e.stopPropagation()
@@ -69,9 +70,9 @@ const LikedBeers = () => {
 
       const isLiked = likedBeerIds?.includes(id)
       if (!isLiked) {
-        likeBeerMutation.mutate({ beerId: id, accessToken })
+        likeBeerMutation.mutate(id)
       } else {
-        dislikeBeerMutation.mutate({ beerId: id, accessToken })
+        dislikeBeerMutation.mutate(id)
       }
     },
     [accessToken, dislikeBeerMutation, likeBeerMutation, likedBeerIds]

@@ -72,15 +72,15 @@ export const useReviewDeleteMutation = (
 export const useAllReviewsInfiniteQuery = (
   queryParam: ReviewPaginatedRequest,
   options?: UseInfiniteQueryOptions<
-    PaginatedResponseType<ReviewType[]>,
+    PaginatedResponseType<ReviewType>,
     FailureResponseV2,
-    PaginatedResponseType<ReviewType[]>
+    PaginatedResponseType<ReviewType>
   >
 ) => {
   return useInfiniteQuery<
-    PaginatedResponseType<ReviewType[]>,
+    PaginatedResponseType<ReviewType>,
     FailureResponseV2,
-    PaginatedResponseType<ReviewType[]>
+    PaginatedResponseType<ReviewType>
   >({
     queryKey: ['allReviews', queryParam],
     queryFn: ({ pageParam = 1 }) =>
