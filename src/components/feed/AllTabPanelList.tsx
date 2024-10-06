@@ -43,7 +43,6 @@ export const AllTabPanelList = () => {
         {/* Map through all pages of reviews */}
         {allReviewsQuery.data?.pages.map((page) =>
           page.contents?.map((review) => {
-            console.log('review', review)
             return (
               <FollowingTabPanelItem
                 key={review.id}
