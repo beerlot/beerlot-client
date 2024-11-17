@@ -29,7 +29,7 @@ export const RecommendBeerCard = ({
   item: BeerType
 }) => {
   const [localLiked, setLocalLiked] = useState(false)
-  const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
+  const accessToken = Cookies.get('beerlot-oauth-auth-guest') ?? ''
 
   const likeBeerMutation = useBeerLikeMutation(accessToken)
   const dislikeBeerMutation = useBeerDislikeMutation(accessToken)
