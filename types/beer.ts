@@ -28,7 +28,7 @@ type BeerDetail = {
   buy_from?: string[]
   like_count?: number
   review_count?: number
-  rate?: number
+  rate?: number | 'NaN'
 }
 
 export type SingelBeerFetchResponseType = BeerDetail

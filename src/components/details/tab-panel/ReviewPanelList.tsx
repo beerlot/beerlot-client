@@ -20,7 +20,7 @@ import { UserReview } from './UserReview'
 import { ReviewSortType } from '../../../../types/common'
 
 interface ReviewPanelListProps {
-  rate: number
+  rate: number | '-'
   beerId: number
   buyFrom: string[]
 }
@@ -48,8 +48,6 @@ export const ReviewPanelList: React.FC<ReviewPanelListProps> = ({
     setSelectedTag(tag)
   }
 
-  const rateToUse = roundToDecimal(rate)
-
   return (
     <Container px={5} py='20px' bg='yellow.100'>
       <VStack gap='10px' alignItems={'start'}>
@@ -74,13 +72,13 @@ export const ReviewPanelList: React.FC<ReviewPanelListProps> = ({
             <Rating
               starSize={23}
               buttonSize={'xs'}
-              _rate={rateToUse}
+              _rate={rate === '-' ? 0 : roundToDecimal(rate)}
               styleProps={{
                 gap: '0px',
               }}
             />
             <Text textStyle={'h3'} textColor='black.100'>
-              {rateToUse}
+              {rate === '-' ? '-' : roundToDecimal(rate)}
             </Text>
             <Text textStyle={'h3'} textColor='gray.300'>
               {' '}

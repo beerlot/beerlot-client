@@ -21,7 +21,7 @@ interface DetailInfoProps {
   country: string
   beerImg: string
   beerId: number
-  rate: number
+  rate: number | '-'
 }
 
 export const DetailInfo: React.FC<DetailInfoProps> = ({
@@ -34,7 +34,7 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
   rate,
 }) => {
   const [didPassStar, setDidPassStar] = useState(false)
-  const rateToUse = roundToDecimal(rate)
+  const rateToUse = rate === '-' ? 0 : roundToDecimal(rate)
   const toastId = 'test-toast'
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
   const userBeersQuery = useUserLikedBeersQuery(accessToken)

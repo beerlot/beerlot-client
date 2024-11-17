@@ -21,7 +21,7 @@ export const DetailTemplate = () => {
               country={beerInfo?.origin_country ?? ''}
               beerImg={beerInfo?.image_url ?? ''}
               beerId={beerInfo?.id}
-              rate={beerInfo.rate ?? 0}
+              rate={beerInfo.rate === 'NaN' ? '-' : (beerInfo.rate ?? 0)}
             />
           )}
           {beerInfo && (
@@ -33,7 +33,7 @@ export const DetailTemplate = () => {
               suitableGlass={'suitableGlass'}
               desc={beerInfo?.description ?? ''}
               buyFrom={beerInfo?.buy_from ?? []}
-              rate={beerInfo?.rate ?? 0}
+              rate={beerInfo.rate === 'NaN' ? '-' : (beerInfo.rate ?? 0)}
             />
           )}
         </VStack>

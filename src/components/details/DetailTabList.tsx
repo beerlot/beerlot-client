@@ -19,7 +19,7 @@ interface DetailTabListProps {
   suitableGlass: string
   desc: string
   buyFrom: string[]
-  rate: number
+  rate: number | '-'
 }
 
 export const DetailTabList: React.FC<DetailTabListProps> = ({
