@@ -5,16 +5,29 @@ import {
   fetchSingleBeerInfoApi,
   fetchTopBeersApi,
 } from 'api/beers/api'
-import { UseQueryOptions, useInfiniteQuery, useQuery } from 'react-query'
-import { BeerFilterRequestType, FailureResponse } from 'types/api'
+import {
+  UseQueryOptions,
+  useInfiniteQuery,
+  useQuery,
+  UseInfiniteQueryOptions,
+} from 'react-query'
+import {
+  BeerFilterRequestType,
+  FailureResponse,
+  FailureResponseV2,
+} from 'types/api'
 import { LANGUAGE_TYPE } from '../../interface/types'
 import {
   BeersResponseType,
+  BeerType,
   SingelBeerFetchResponseType,
   TopBeersType,
 } from '../../types/beer'
-import { ReviewTypeV2 } from '../../types/review'
 import { RecommendedBeersResponse } from '../../types/server/beer/response'
+import { ReviewPaginatedRequest } from '../../types/server/pagination/request'
+import { PaginatedResponseType } from '../../types/server/pagination/response'
+import { ReviewType } from '../../types/server/review/response'
+import { fetchAllReviewsApi } from '@/api/review/review'
 
 export const topBeersQueryKey = () => ['topBeers']
 export const myReviewsQueryKey = (beerId: number) => [`myReviews`, beerId]
@@ -42,6 +55,31 @@ export const useBeersQuery = (
     queryKey: ['beers', queryParam.keyword],
     queryFn: () => fetchBeersApi(queryParam),
     enabled: false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    ...options,
+  })
+}
+
+export const useBeersInfiniteQuery = (
+  queryParam: BeerFilterRequestType,
+  options?: UseInfiniteQueryOptions<
+    PaginatedResponseType<BeerType>,
+    FailureResponse,
+    PaginatedResponseType<BeerType>
+  >
+) => {
+  return useInfiniteQuery<
+    PaginatedResponseType<BeerType>,
+    FailureResponse,
+    PaginatedResponseType<BeerType>
+  >({
+    queryKey: ['allReviews', queryParam],
+    queryFn: ({ pageParam = 1 }) =>
+      fetchBeersApi({ ...queryParam, page: pageParam }),
+    getNextPageParam: (lastPage, pages) => {
+      return lastPage.nextPage
+    },
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     ...options,

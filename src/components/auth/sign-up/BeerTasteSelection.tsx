@@ -1,14 +1,25 @@
-import { Flex, SimpleGrid, StackProps, Text, VStack } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  SimpleGrid,
+  StackProps,
+  Text,
+  VStack,
+} from '@chakra-ui/react'
 import Cookies from 'js-cookie'
 import React, { useEffect } from 'react'
 import { POLICY_LABEL } from '../../../../interface/server/types/Auth'
 
 import { useSignupQuery } from '@/../hooks/query/useAuthQuery'
-import { useBeersQuery } from '../../../../hooks/query/useBeerQuery'
+import {
+  useBeersQuery,
+  useBeersInfiniteQuery,
+} from '../../../../hooks/query/useBeerQuery'
 import { BeerSortType } from '../../../../types/common'
 import FloatingButton from '../../shared/FloatingButton'
 import { UserNameSection } from '@components/auth/sign-up/UserNameSection'
 import { RecommendBeerCard } from '@components/auth/sign-up/RecommendBeerCard'
+import { InfiniteScrollWrapper } from '@components/shared/InfiniteScrollWrapper'
 
 const FAVORITE_BEER_MIN_COUNTER = 5
 
@@ -38,6 +49,7 @@ const BeerTasteSelection: React.FC<BeerTasteSelectionProps> = ({
   }
 
   const accessToken = Cookies.get('beerlot-oauth-auth-guest') ?? ''
+
   const signupQuery = useSignupQuery(signupInfo, accessToken, {
     onSuccess: () => {
       Cookies.set('beerlot-oauth-auth-request', accessToken)
@@ -51,13 +63,15 @@ const BeerTasteSelection: React.FC<BeerTasteSelectionProps> = ({
     signupQuery.refetch()
   }
 
-  const SearchBeerQuery = useBeersQuery({
+  const topBeerQuery = useBeersInfiniteQuery({
     sort: BeerSortType.MOST_LIKES,
   })
 
-  useEffect(() => {
-    SearchBeerQuery.refetch()
-  }, [])
+  const handleLoadMore = () => {
+    if (topBeerQuery.hasNextPage && !topBeerQuery.isFetchingNextPage) {
+      topBeerQuery.fetchNextPage()
+    }
+  }
 
   return (
     <Flex
@@ -78,19 +92,29 @@ const BeerTasteSelection: React.FC<BeerTasteSelectionProps> = ({
         고른 맥주를 바탕으로 취향 분석 후, 맥주를 추천해드릴게요 :)
       </Text>
 
-      <SimpleGrid columns={3} spacingX='10px' spacingY={6} pb={6}>
-        {SearchBeerQuery.data?.contents?.map((item) => {
-          const isSelected = item.id ? selectedBeers?.includes(item.id) : false
-          return (
-            <RecommendBeerCard
-              key={item.id}
-              onClick={() => updateSelectedBeers(item.id)}
-              selected={isSelected}
-              item={item}
-            />
-          )
-        })}
-      </SimpleGrid>
+      <InfiniteScrollWrapper
+        handleLoadMore={handleLoadMore}
+        isFetching={topBeerQuery.isFetchingNextPage}
+      >
+        <SimpleGrid columns={3} spacingX='10px' spacingY={6} pb={6}>
+          {topBeerQuery.data?.pages.map((page) =>
+            page.contents?.map((item) => {
+              const isSelected = item.id
+                ? selectedBeers?.includes(item.id)
+                : false
+              return (
+                <RecommendBeerCard
+                  key={item.id}
+                  onClick={() => updateSelectedBeers(item.id)}
+                  selected={isSelected}
+                  item={item}
+                />
+              )
+            })
+          )}
+        </SimpleGrid>
+      </InfiniteScrollWrapper>
+
       <FloatingButton
         pos='sticky'
         w='full'
