@@ -5,12 +5,13 @@ import {
   ModalProps,
   useDisclosure,
 } from '@chakra-ui/react'
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { BeerTypeV2, CreateReviewRequestTypeV2 } from '../../../../types/review'
 import { BeerlotLoading } from '../Loading'
 import { BeerReviewContent } from './BeerReviewContent'
 import { BeerSearchContent } from './BeerSearchContent'
 import { ReviewExitConfirmationDrawer } from './ReviewExitConfirmationDrawer'
+import { initialReviewInfo } from '@components/shared/ReviewModal/ReviewModalWrapper/ReviewModalWrapper'
 
 interface ReviewModalProps {
   reviewInfo?: CreateReviewRequestTypeV2
@@ -18,7 +19,7 @@ interface ReviewModalProps {
   onCloseModal: ModalProps['onClose']
   onComplete: (beerId: number) => void
   onChangeReviewInfo: (data?: CreateReviewRequestTypeV2) => void
-  onUpdateBeerInfo?: (data: BeerTypeV2) => void
+  onUpdateBeerInfo?: (data?: BeerTypeV2) => void
   beerInfo?: BeerTypeV2
 }
 
@@ -64,6 +65,14 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
     if (!reviewInfo) return
     onChangeReviewInfo({ ...reviewInfo, [key]: value })
   }
+
+  useEffect(() => {
+    return () => {
+      setStep(0)
+      onChangeReviewInfo(initialReviewInfo)
+      onUpdateBeerInfo?.(undefined)
+    }
+  }, [])
 
   return (
     <>

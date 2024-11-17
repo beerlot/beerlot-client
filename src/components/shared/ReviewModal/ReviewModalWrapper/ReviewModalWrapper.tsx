@@ -15,10 +15,12 @@ import { useAllReviewsInfiniteQuery } from '../../../../../hooks/reviews/useRevi
 interface ReviewModalWrapperProps {
   isModalOpen: ModalProps['isOpen']
   onCloseModal: ModalProps['onClose']
+  targetBeerInfo?: BeerTypeV2
 }
 
 export const ReviewModalWrapper: React.FC<ReviewModalWrapperProps> = ({
   isModalOpen,
+  targetBeerInfo,
   onCloseModal,
 }) => {
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
@@ -31,15 +33,12 @@ export const ReviewModalWrapper: React.FC<ReviewModalWrapperProps> = ({
   })
   const showErrorToast = useErrorToast()
   const { mutate: createReview } = useCreateReviewMutation(accessToken)
-  const [beerInfo, setBeerInfo] = useState<BeerTypeV2 | undefined>()
+  const [beerInfo, setBeerInfo] = useState<BeerTypeV2 | undefined>(
+    targetBeerInfo
+  )
   const [reviewInfo, setReviewInfo] = useState<
     CreateReviewRequestTypeV2 | undefined
-  >({
-    content: '',
-    image_url: '',
-    buy_from: '',
-    rate: 0,
-  })
+  >(initialReviewInfo)
 
   const handleComplete = (beerId: number) => {
     if (beerId === null) return
@@ -64,14 +63,25 @@ export const ReviewModalWrapper: React.FC<ReviewModalWrapperProps> = ({
   }
 
   return (
-    <ReviewModal
-      isModalOpen={isModalOpen}
-      onCloseModal={onCloseModal}
-      onComplete={handleComplete}
-      onChangeReviewInfo={setReviewInfo}
-      reviewInfo={reviewInfo}
-      beerInfo={beerInfo}
-      onUpdateBeerInfo={setBeerInfo}
-    />
+    <>
+      {isModalOpen && (
+        <ReviewModal
+          isModalOpen={isModalOpen}
+          onCloseModal={onCloseModal}
+          onComplete={handleComplete}
+          onChangeReviewInfo={setReviewInfo}
+          reviewInfo={reviewInfo}
+          beerInfo={beerInfo}
+          onUpdateBeerInfo={setBeerInfo}
+        />
+      )}
+    </>
   )
+}
+
+export const initialReviewInfo: CreateReviewRequestTypeV2 = {
+  content: '',
+  image_url: '',
+  buy_from: '',
+  rate: 0,
 }

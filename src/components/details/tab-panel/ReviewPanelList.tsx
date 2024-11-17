@@ -23,12 +23,14 @@ interface ReviewPanelListProps {
   rate: number | '-'
   beerId: number
   buyFrom: string[]
+  beerName: string
 }
 
 export const ReviewPanelList: React.FC<ReviewPanelListProps> = ({
   beerId,
   rate,
   buyFrom,
+  beerName,
 }) => {
   const [selectedTag, setSelectedTag] = useState<ReviewSortType>(
     MOCK_FEED_FILTER_LIST[0].tags[0]
@@ -52,7 +54,7 @@ export const ReviewPanelList: React.FC<ReviewPanelListProps> = ({
     <Container px={5} py='20px' bg='yellow.100'>
       <VStack gap='10px' alignItems={'start'}>
         <ReviewCountDisplay reviewLength={reviews?.length ?? 0} />
-        <UserReview beerId={beerId} />
+        <UserReview beerId={beerId} beerName={beerName} />
         <Text textStyle={'h2_bold'} mt={10}>
           모든 리뷰
         </Text>

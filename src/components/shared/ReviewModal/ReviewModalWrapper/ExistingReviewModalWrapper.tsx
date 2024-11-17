@@ -31,13 +31,6 @@ export const ExistingReviewModalWrapper: React.FC<
     CreateReviewRequestTypeV2 | undefined
   >()
 
-  console.log('reviewInfo', reviewInfo)
-
-  const handleCloseModal = () => {
-    onCloseModal()
-    setReviewInfo(undefined)
-  }
-
   useEffect(() => {
     if (existingReviewData) {
       setReviewInfo({
@@ -60,7 +53,7 @@ export const ExistingReviewModalWrapper: React.FC<
         {
           onSuccess: () => {
             userReviewQuery.refetch()
-            handleCloseModal()
+            onCloseModal()
           },
         }
       )
@@ -70,7 +63,7 @@ export const ExistingReviewModalWrapper: React.FC<
   return (
     <ReviewModal
       isModalOpen={isModalOpen}
-      onCloseModal={handleCloseModal}
+      onCloseModal={onCloseModal}
       onComplete={handleComplete}
       onChangeReviewInfo={setReviewInfo}
       reviewInfo={reviewInfo}

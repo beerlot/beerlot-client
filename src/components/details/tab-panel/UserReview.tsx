@@ -7,8 +7,9 @@ import { FollowingTabPanelItem } from '@components/feed/TabPanelItem'
 
 interface UserReviewProps {
   beerId: number
+  beerName: string
 }
-export const UserReview: React.FC<UserReviewProps> = ({ beerId }) => {
+export const UserReview: React.FC<UserReviewProps> = ({ beerId, beerName }) => {
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
   const router = useRouter()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -30,7 +31,14 @@ export const UserReview: React.FC<UserReviewProps> = ({ beerId }) => {
   return (
     <>
       <Text textStyle={'h2_bold'}>내가 쓴 리뷰</Text>
-      <ReviewModalWrapper isModalOpen={isOpen} onCloseModal={onClose} />
+      <ReviewModalWrapper
+        isModalOpen={isOpen}
+        onCloseModal={onClose}
+        targetBeerInfo={{
+          id: beerId,
+          name: beerName,
+        }}
+      />
 
       {review !== undefined ? (
         <>

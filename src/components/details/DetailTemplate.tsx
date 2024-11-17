@@ -27,6 +27,7 @@ export const DetailTemplate = () => {
           {beerInfo && (
             <DetailTabList
               id={beerInfo.id}
+              beerName={beerInfo?.name ?? ''}
               city={beerInfo?.origin_country ?? ''}
               brewary={beerInfo.brewery ?? ''}
               calories={beerInfo.calorie ?? 0}

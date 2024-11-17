@@ -14,6 +14,7 @@ import { ReviewPanelList } from './tab-panel/ReviewPanelList'
 interface DetailTabListProps {
   id: number
   city: string
+  beerName: string
   brewary: string
   calories: number
   suitableGlass: string
@@ -24,6 +25,7 @@ interface DetailTabListProps {
 
 export const DetailTabList: React.FC<DetailTabListProps> = ({
   id,
+  beerName,
   city,
   brewary,
   calories,
@@ -65,10 +67,20 @@ export const DetailTabList: React.FC<DetailTabListProps> = ({
               suitableGlass={suitableGlass}
               desc={desc}
             />
-            <ReviewPanelList rate={rate} beerId={id} buyFrom={buyFrom} />
+            <ReviewPanelList
+              rate={rate}
+              beerName={beerName}
+              beerId={id}
+              buyFrom={buyFrom}
+            />
           </TabPanel>
           <TabPanel p={0}>
-            <ReviewPanelList rate={rate} beerId={id} buyFrom={buyFrom} />
+            <ReviewPanelList
+              rate={rate}
+              beerName={beerName}
+              beerId={id}
+              buyFrom={buyFrom}
+            />
           </TabPanel>
         </TabPanels>
       </Tabs>
