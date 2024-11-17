@@ -75,7 +75,7 @@ export const UploadedReviewImages: React.FC<UploadedReviewImagesProps> = ({
           gap='10px'
           mt='0px'
           isLoading={isLoading}
-          disabled={imageUrl.length >= ReviewStatic.numberOfMaxAttachedFile}
+          isDisabled={imageUrl.length >= ReviewStatic.numberOfMaxAttachedFile}
           _notFirst={{ marginInlineStart: '0px', marginTop: '0px' }}
         >
           <OrangeCamera />
