@@ -47,6 +47,7 @@ export const UserReview: React.FC<UserReviewProps> = ({ beerId, beerName }) => {
               key={review.id}
               reviewId={review.id ?? 0}
               nickname={review.member?.username ?? ''}
+              memberImage={review.member?.image_url ?? ''}
               reviewTime={review.updated_at ?? ''}
               beerName={review.beer?.name ?? ''}
               rate={review.rate ?? 0}

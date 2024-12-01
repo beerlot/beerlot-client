@@ -34,7 +34,7 @@ interface FollowingTabPanelItemProps {
   onEdit?: () => void
   onDelete?: () => void
   imageSrc?: string
-  memberImage?: string | null
+  memberImage: string | null
   maxContentLength?: number
 }
 

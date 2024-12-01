@@ -1,4 +1,5 @@
 import {
+  useUserInfoQuery,
   useUserLikedReviewsQuery,
   useUserReviewsQuery,
 } from '@/../hooks/query/useUserQuery'
@@ -7,7 +8,7 @@ import { ReviewDeleteConfirmationDrawer } from '@/components/shared/ReviewModal/
 import { ExistingReviewModalWrapper } from '@/components/shared/ReviewModal/ReviewModalWrapper/ExistingReviewModalWrapper'
 import { Flex, useDisclosure } from '@chakra-ui/react'
 import Cookies from 'js-cookie'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useReviewDeleteMutation } from '../../../../hooks/reviews/useReview'
 import { MemberReviewType } from '../../../../types/server/review/response'
 import { InfiniteScrollWrapper } from '@components/shared/InfiniteScrollWrapper'
@@ -21,7 +22,8 @@ const BeerReviews = () => {
     sort: ReviewSortType.RECENTLY_UPDATED,
     language: LanguageType.KR,
   })
-
+  const userQuery = useUserInfoQuery(accessToken ?? '')
+  const { image_url = '' } = userQuery?.data ?? {}
   const [selectedReviewId, setSelectedReviewId] = useState<number | null>(null)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -74,6 +76,7 @@ const BeerReviews = () => {
                 reviewTime={feed.updated_at ?? ''}
                 rate={feed.rate ?? 0}
                 imageSrc={feed.image_url}
+                memberImage={image_url}
                 content={feed.content ?? ''}
                 likedCount={feed.like_count ?? 0}
                 isEditable={true}

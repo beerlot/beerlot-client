@@ -135,6 +135,7 @@ const ReviewsList: React.FC<ReviewsListProps> = ({ reviews }) => {
               reviewTime={review.updated_at}
               beerName={review.beer?.name}
               rate={review.rate}
+              memberImage={review.member.image_url}
               imageSrc={review.image_url}
               content={review.content}
               likedCount={review.like_count}
