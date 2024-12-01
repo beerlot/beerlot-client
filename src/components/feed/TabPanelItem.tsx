@@ -1,5 +1,13 @@
 import { getLeftTime } from '@/../utils/time'
-import { Avatar, Box, Center, Flex, IconButton, Text } from '@chakra-ui/react'
+import {
+  Avatar,
+  Box,
+  Center,
+  Flex,
+  IconButton,
+  Image,
+  Text,
+} from '@chakra-ui/react'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -26,6 +34,7 @@ interface FollowingTabPanelItemProps {
   onEdit?: () => void
   onDelete?: () => void
   imageSrc?: string
+  memberImage?: string | null
   maxContentLength?: number
 }
 
@@ -41,6 +50,7 @@ export const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
   onDelete,
   onEdit,
   likedCount,
+  memberImage = '',
   isEditable = false,
   maxContentLength = MAX_TEXT_LENGTH_OF_REVIEW,
 }) => {
@@ -91,8 +101,19 @@ export const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
       <Box display='flex' justifyContent='space-between' gap={1}>
         <Box flex={1}>
           <Flex gap={'4px'}>
-            <Avatar w={'26px'} h={'26px'} />
+            {!memberImage ? (
+              <Avatar width={26} height={26} />
+            ) : (
+              <Image
+                borderRadius={'50%'}
+                width={26}
+                height={26}
+                src={memberImage}
+                alt={nickname}
+              />
+            )}
             {nickname && <Text textStyle='h2_bold'>{nickname}</Text>}
+
             <Text textStyle='h3' color='gray.300'>
               | {getLeftTime(reviewTime)}
             </Text>
