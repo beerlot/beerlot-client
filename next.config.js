@@ -8,6 +8,16 @@ module.exports = {
       },
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: '/privacy',
+        destination:
+          'https://beerlot.notion.site/f4dfd6c17dca44d8b6e53e2443eaa0b3',
+        permanent: true,
+      },
+    ]
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
