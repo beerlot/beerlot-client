@@ -49,7 +49,7 @@ const Info = () => {
                     title={content.title}
                     href={content.href}
                     style={{ marginTop: 0 }}
-                    isExternal={content.isExternal}
+                    isExternal={content?.isExternal}
                   />
                 ))}
                 <Box
@@ -79,8 +79,7 @@ export const InfoSettingSection = [
   },
   {
     title: '개인정보 처리방침',
-    href: 'https://beerlot.notion.site/f4dfd6c17dca44d8b6e53e2443eaa0b3',
-    isExternal: true,
+    href: '/privacy',
   },
 ]
 

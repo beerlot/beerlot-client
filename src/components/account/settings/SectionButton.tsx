@@ -19,7 +19,7 @@ interface SectionButtonProps extends StackProps {
 export const SectionButton: React.FC<SectionButtonProps> = ({
   title,
   href,
-  isExternal,
+  isExternal = false,
   children,
   ...props
 }) => {
