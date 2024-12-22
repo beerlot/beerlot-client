@@ -79,7 +79,7 @@ export const InfoSettingSection = [
   },
   {
     title: '개인정보 처리방침',
-    href: '/privacy',
+    href: '/privacy-policy',
   },
 ]
 
