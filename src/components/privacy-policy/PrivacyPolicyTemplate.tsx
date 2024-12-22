@@ -200,7 +200,7 @@ export const PrivacyPolicyTemplate: React.FC<
             개인정보가 불필요하게 되었을 때에는 지체없이 해당 개인정보를
             파기합니다.
           </Text>
-          <Text as='h5' textStyle='h5_bold' mb={2}>
+          <Text as='h5' textStyle='h4_bold' mb={2}>
             파기절차
           </Text>
           <Text textStyle='h4' mb={4}>
@@ -211,7 +211,7 @@ export const PrivacyPolicyTemplate: React.FC<
             <br />② 별도 DB로 옮겨진 개인정보는 법률에 의한 경우가 아니고서는
             다른 목적으로 이용되지 않습니다.
           </Text>
-          <Text as='h5' textStyle='h5_bold' mb={2}>
+          <Text as='h5' textStyle='h4_bold' mb={2}>
             파기방법
           </Text>
           <Text textStyle='h4' mb={4}>
