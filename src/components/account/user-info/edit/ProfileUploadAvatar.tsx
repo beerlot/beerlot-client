@@ -3,6 +3,8 @@ import Cookies from 'js-cookie'
 import { useRef } from 'react'
 import { useUploadMediaMutation } from '../../../../../hooks/mutations/useUploadMediaMutation'
 import ProfileAvatar from '../../../shared/ProfileAvatar'
+import { MAX_FILE_SIZE_TO_UPLOAD } from '@components/shared/ReviewModal/UploadedReviewImages'
+import { useErrorToast } from '@/hooks/shared/useErrorToast'
 
 interface ProfileUploadAvatarProps {
   imageUrl: string
@@ -14,6 +16,7 @@ export const ProfileUploadAvatar: React.FC<ProfileUploadAvatarProps> = ({
   setImageUrl,
 }) => {
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
+  const { createErrorToast } = useErrorToast()
 
   const { mutate, isLoading } = useUploadMediaMutation({
     onSuccess: (data: { urls: string[] }) => {
@@ -30,6 +33,10 @@ export const ProfileUploadAvatar: React.FC<ProfileUploadAvatarProps> = ({
   const handleChangeProfileImage = async () => {
     if (!imgRef || !imgRef.current || !imgRef.current.files) return
     const file = imgRef.current.files[0]
+    if (file.size > MAX_FILE_SIZE_TO_UPLOAD) {
+      createErrorToast('1MB 이하의 파일만 업로드 가능합니다.')
+      return
+    }
     const reader = new FileReader()
     reader.readAsDataURL(file)
     const formData = new FormData()

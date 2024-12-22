@@ -132,4 +132,4 @@ export const UploadedReviewImages: React.FC<UploadedReviewImagesProps> = ({
   )
 }
 
-const MAX_FILE_SIZE_TO_UPLOAD = 1 * 1024 * 1024 // 1mb
+export const MAX_FILE_SIZE_TO_UPLOAD = 1 * 1024 * 1024 // 1mb
