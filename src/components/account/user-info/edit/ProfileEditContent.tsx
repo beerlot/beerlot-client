@@ -26,7 +26,7 @@ export const ProfileEditContent: React.FC<ProfileEditContentProps> = ({
 }) => {
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
   const router = useRouter()
-  const showErrorToast = useErrorToast()
+  const { showErrorToast } = useErrorToast()
   const nextChangeDate = usernameUpdatedAt
     ? dayjs(usernameUpdatedAt).add(30, 'day').format('YYYY-MM-DD')
     : null

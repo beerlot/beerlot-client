@@ -31,7 +31,7 @@ export const ReviewModalWrapper: React.FC<ReviewModalWrapperProps> = ({
     sort: selectedTag ?? ReviewSortType.RECENTLY_UPDATED,
     language: LanguageType.KR,
   })
-  const showErrorToast = useErrorToast()
+  const { showErrorToast } = useErrorToast()
   const { mutate: createReview } = useCreateReviewMutation(accessToken)
   const [beerInfo, setBeerInfo] = useState<BeerTypeV2 | undefined>(
     targetBeerInfo

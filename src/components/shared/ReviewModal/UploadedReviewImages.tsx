@@ -25,7 +25,7 @@ export const UploadedReviewImages: React.FC<UploadedReviewImagesProps> = ({
   setImageUrl,
 }) => {
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
-  const showErrorToast = useErrorToast()
+  const { showErrorToast, createErrorToast } = useErrorToast()
   const handleDelete = () => {
     setImageUrl('')
   }
@@ -47,6 +47,10 @@ export const UploadedReviewImages: React.FC<UploadedReviewImagesProps> = ({
   const handleChangeImage = async () => {
     if (!imgRef || !imgRef.current || !imgRef.current.files) return
     const file = imgRef.current.files[0]
+    if (file.size > MAX_FILE_SIZE_TO_UPLOAD) {
+      createErrorToast('1MB 이하의 파일만 업로드 가능합니다.')
+      return
+    }
     const reader = new FileReader()
     reader.readAsDataURL(file)
     const formData = new FormData()
@@ -127,3 +131,5 @@ export const UploadedReviewImages: React.FC<UploadedReviewImagesProps> = ({
     </>
   )
 }
+
+const MAX_FILE_SIZE_TO_UPLOAD = 1 * 1024 * 1024 // 1mb
