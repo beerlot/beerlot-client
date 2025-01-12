@@ -14,6 +14,7 @@ import { CommonBeersList } from './CommonBeersList/CommonBeersList'
 import { LoggedInBeersList } from './LoggedInBeersList/LoggedInBeersList'
 import SearchInputHome from './SearchInputHome'
 import { WelcomeTextContent } from './WelcomeText'
+import { Footer } from '@components/shared/Footer'
 
 interface HomeTemplateProps {
   username?: string
@@ -86,6 +87,8 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({ username }) => {
             />
           )}
         </Box>
+        <Footer />
+        <Box h={10} />
       </Container>
     </Box>
   )

@@ -101,9 +101,13 @@ export const theme = extendTheme({
     },
     h4_bold: {
       fontWeight: '700',
-      lineHeight: '19px',
+      lineHeight: '18px',
       fontSize: '12px',
-      letterSpacing: '0.01px',
+    },
+    h4_regular: {
+      fontWeight: '400',
+      lineHeight: '18px',
+      fontSize: '12px',
     },
     body: {
       fontWeight: '400',

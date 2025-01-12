@@ -70,19 +70,21 @@ const Info = () => {
 }
 
 export default Info
+export const TERMS_OF_SERVICE_URL =
+  'https://beerlot.notion.site/beerlot/86d12e8ce1ee4ec1baaa71587c28aae9'
+export const PRIVACY_POLICY_URL = '/privacy-policy'
 
 export const InfoSettingSection = [
   {
     title: '비어랏 이용약관',
-    href: 'https://beerlot.notion.site/beerlot/86d12e8ce1ee4ec1baaa71587c28aae9',
+    href: TERMS_OF_SERVICE_URL,
     isExternal: true,
   },
   {
     title: '개인정보 처리방침',
-    href: '/privacy-policy',
+    href: PRIVACY_POLICY_URL,
   },
 ]
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const cookies = context.req.headers.cookie
 
