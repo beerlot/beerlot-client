@@ -419,12 +419,12 @@ const BeerlotLinkSemanticTag = () => {
     <>
       &lt; 비어랏 &gt; (
       <Link
-        href='https://beerlot.info/'
+        href='https://beerlot.site/'
         isExternal
         textColor={'gray.300'}
         textDecoration={'underline'}
       >
-        &apos;https://beerlot.info/&apos;
+        &apos;https://beerlot.site/&apos;
       </Link>{' '}
       이하 &apos;비어랏(BeerLot)&apos;)
     </>

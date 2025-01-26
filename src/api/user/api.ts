@@ -8,7 +8,7 @@ import {
   ReviewPaginatedRequest,
 } from '../../../types/server/pagination/request'
 
-const redirectUrl = 'https://beerlot.info'
+const redirectUrl = 'https://beerlot.site'
 
 export const getUsersInfoApi = async (accessToken: string) => {
   const res = await axios.get('/api/v1/members/me', {
