@@ -53,9 +53,12 @@ const BeerReviews = () => {
     onClose: onCloseDeleteConfirmation,
   } = useDisclosure()
 
+  const lastPage = userReviewQuery.data?.pages[userReviewQuery.data.pages.length - 1];
+  const shouldLoadMore = lastPage && lastPage.contents && lastPage.contents.length > 0
+ 
   const handleLoadMore = () => {
-    if (userReviewQuery.hasNextPage && !userReviewQuery.isFetchingNextPage) {
-      userReviewQuery.fetchNextPage()
+    if (userReviewQuery.hasNextPage && !userReviewQuery.isFetchingNextPage && shouldLoadMore) {
+      userReviewQuery.fetchNextPage();
     }
   }
 
@@ -64,6 +67,7 @@ const BeerReviews = () => {
       <InfiniteScrollWrapper
         handleLoadMore={handleLoadMore}
         isFetching={userReviewQuery.isFetchingNextPage}
+        needToFetch={shouldLoadMore}
       >
         {userReviewQuery.data?.pages?.map((page) =>
           page.contents?.map((feed) => (

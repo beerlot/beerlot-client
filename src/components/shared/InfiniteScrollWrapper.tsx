@@ -11,7 +11,7 @@ interface InfiniteScrollWrapperProps {
 export const InfiniteScrollWrapper: React.FC<InfiniteScrollWrapperProps> = ({
   handleLoadMore,
   isFetching,
-  needToFetch = false,
+  needToFetch = true,
   children,
 }) => {
   const loadMoreRef = useRef<HTMLDivElement | null>(null)
