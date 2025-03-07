@@ -5,11 +5,13 @@ interface InfiniteScrollWrapperProps {
   handleLoadMore: () => void
   isFetching: boolean
   children: React.ReactNode
+  needToFetch?: boolean; 
 }
 
 export const InfiniteScrollWrapper: React.FC<InfiniteScrollWrapperProps> = ({
   handleLoadMore,
   isFetching,
+  needToFetch = false,
   children,
 }) => {
   const loadMoreRef = useRef<HTMLDivElement | null>(null)
@@ -35,7 +37,7 @@ export const InfiniteScrollWrapper: React.FC<InfiniteScrollWrapperProps> = ({
   return (
     <>
       {children}
-      {isFetching && (
+      {isFetching && needToFetch && (
         <Center py={2}>
           <Spinner />
         </Center>
