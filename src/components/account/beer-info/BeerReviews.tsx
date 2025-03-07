@@ -67,6 +67,7 @@ const BeerReviews = () => {
       <InfiniteScrollWrapper
         handleLoadMore={handleLoadMore}
         isFetching={userReviewQuery.isFetchingNextPage}
+        // TODO: add empty UI
         needToFetch={shouldLoadMore}
       >
         {userReviewQuery.data?.pages?.map((page) =>
