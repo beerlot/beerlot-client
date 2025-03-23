@@ -29,10 +29,7 @@ export const ReviewPanelList: React.FC<ReviewPanelListProps> = ({
     MOCK_FEED_FILTER_LIST[0].tags[0]
   )
 
-  const { data, refetch } = useBeerReviewsQuery(
-    { beerId, sort: selectedTag },
-    { enabled: false }
-  )
+  const { data, refetch } = useBeerReviewsQuery({ beerId, sort: selectedTag })
   const reviews = data
 
   useEffect(() => {
@@ -47,7 +44,11 @@ export const ReviewPanelList: React.FC<ReviewPanelListProps> = ({
     <Container px={5} py='20px' bg='yellow.100'>
       <VStack gap='10px' alignItems={'start'}>
         <ReviewCountDisplay reviewLength={reviews?.length ?? 0} />
-        <UserReview beerId={beerId} beerName={beerName} />
+        <UserReview
+          beerId={beerId}
+          beerName={beerName}
+          refetchReviews={refetch}
+        />
         <Text textStyle={'h2_bold'} mt={10}>
           모든 리뷰
         </Text>

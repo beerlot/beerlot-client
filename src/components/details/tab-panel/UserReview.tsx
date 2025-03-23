@@ -11,9 +11,14 @@ import { beerReviewsQueryKey } from '../../../../hooks/reviews/useBeer'
 interface UserReviewProps {
   beerId: number
   beerName: string
+  refetchReviews: () => void
 }
 
-export const UserReview: React.FC<UserReviewProps> = ({ beerId, beerName }) => {
+export const UserReview: React.FC<UserReviewProps> = ({
+  beerId,
+  beerName,
+  refetchReviews,
+}) => {
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
   const router = useRouter()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -30,7 +35,7 @@ export const UserReview: React.FC<UserReviewProps> = ({ beerId, beerName }) => {
   const { data: review } = useMyReviewsQuery(beerId, accessToken)
   const handleSuccess = () => {
     queryClient.invalidateQueries(myReviewsQueryKey(beerId))
-    queryClient.invalidateQueries(beerReviewsQueryKey(beerId))
+    refetchReviews()
   }
 
   return (
