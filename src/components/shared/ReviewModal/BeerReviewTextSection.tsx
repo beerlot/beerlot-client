@@ -11,6 +11,9 @@ export const BeerReviewTextSection: React.FC<BeerReviewTextSectionProps> = ({
   onChangeInput,
   input,
 }) => {
+  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    onChangeInput(event.target.value)
+  }
   return (
     <VStack p='10px' w='full' alignItems={'flex-start'} gap='10px'>
       <Box>
@@ -35,7 +38,7 @@ export const BeerReviewTextSection: React.FC<BeerReviewTextSectionProps> = ({
           h='full'
           p='0px'
           value={input}
-          onChange={onChangeInput}
+          onChange={handleChange}
           _placeholder={{
             textStyle: 'h3',
             textColor: 'gray.200',

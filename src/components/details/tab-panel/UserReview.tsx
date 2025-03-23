@@ -6,6 +6,7 @@ import { useMyReviewsQuery } from '../../../../hooks/reviews/useReview'
 import { FollowingTabPanelItem } from '@components/feed/TabPanelItem'
 import { useQueryClient } from 'react-query'
 import { myReviewsQueryKey } from '../../../../hooks/query/useBeerQuery'
+import { beerReviewsQueryKey } from '../../../../hooks/reviews/useBeer'
 
 interface UserReviewProps {
   beerId: number
@@ -28,6 +29,7 @@ export const UserReview: React.FC<UserReviewProps> = ({ beerId, beerName }) => {
   const { data: review } = useMyReviewsQuery(beerId, accessToken)
   const handleSuccess = () => {
     queryClient.invalidateQueries(myReviewsQueryKey(beerId))
+    beerReviewsQueryKey(beerId)
   }
   console.log('review', review)
 
