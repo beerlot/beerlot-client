@@ -32,6 +32,12 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
   onCloseModal,
   onComplete,
 }) => {
+  console.log(
+    'onChangeReviewInfo',
+    !!onChangeReviewInfo,
+    'onUpdateBeerInfo',
+    !!onUpdateBeerInfo
+  )
   const isBeerEditable = !!onUpdateBeerInfo
   const [step, setStep] = useState(0)
   const {

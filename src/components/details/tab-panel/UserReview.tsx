@@ -22,11 +22,8 @@ export const UserReview: React.FC<UserReviewProps> = ({ beerId, beerName }) => {
     }
   }
 
-  const {
-    data: review,
-    isLoading,
-    error,
-  } = useMyReviewsQuery(beerId, accessToken)
+  const { data: review } = useMyReviewsQuery(beerId, accessToken)
+  console.log('review', review)
 
   return (
     <>
@@ -41,23 +38,21 @@ export const UserReview: React.FC<UserReviewProps> = ({ beerId, beerName }) => {
       />
 
       {review !== undefined ? (
-        <>
-          <Box w={'full'} p={0}>
-            <FollowingTabPanelItem
-              key={review.id}
-              reviewId={review.id ?? 0}
-              nickname={review.member?.username ?? ''}
-              memberImage={review.member?.image_url ?? ''}
-              reviewTime={review.updated_at ?? ''}
-              beerName={review.beer?.name ?? ''}
-              rate={review.rate ?? 0}
-              imageSrc={review.image_url}
-              content={review.content ?? ''}
-              likedCount={review.like_count ?? 0}
-              isEditable={false}
-            />
-          </Box>
-        </>
+        <Box w={'full'} p={0}>
+          <FollowingTabPanelItem
+            key={review.id}
+            reviewId={review.id ?? 0}
+            nickname={review.member?.username ?? ''}
+            memberImage={review.member?.image_url ?? ''}
+            reviewTime={review.updated_at ?? ''}
+            beerName={review.beer?.name ?? ''}
+            rate={review.rate ?? 0}
+            imageSrc={review.image_url}
+            content={review.content ?? ''}
+            likedCount={review.like_count ?? 0}
+            isEditable={false}
+          />
+        </Box>
       ) : (
         <Flex
           w='full'
