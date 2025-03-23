@@ -16,12 +16,14 @@ interface ReviewModalWrapperProps {
   isModalOpen: ModalProps['isOpen']
   onCloseModal: ModalProps['onClose']
   targetBeerInfo?: BeerTypeV2
+  onSuccess?: () => void
 }
 
 export const ReviewModalWrapper: React.FC<ReviewModalWrapperProps> = ({
   isModalOpen,
   targetBeerInfo,
   onCloseModal,
+  onSuccess,
 }) => {
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
   const selectedTag: ReviewSortType = MOCK_FEED_FILTER_LIST[0].tags[0]
@@ -50,6 +52,7 @@ export const ReviewModalWrapper: React.FC<ReviewModalWrapperProps> = ({
       },
       {
         onSuccess: () => {
+          onSuccess?.()
           allReviewsQuery.refetch()
           onCloseModal()
         },

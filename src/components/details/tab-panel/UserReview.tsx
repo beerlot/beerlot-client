@@ -4,6 +4,8 @@ import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import { useMyReviewsQuery } from '../../../../hooks/reviews/useReview'
 import { FollowingTabPanelItem } from '@components/feed/TabPanelItem'
+import { useQueryClient } from 'react-query'
+import { myReviewsQueryKey } from '../../../../hooks/query/useBeerQuery'
 
 interface UserReviewProps {
   beerId: number
@@ -13,6 +15,7 @@ export const UserReview: React.FC<UserReviewProps> = ({ beerId, beerName }) => {
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
   const router = useRouter()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const queryClient = useQueryClient()
 
   const handleButtonClick = () => {
     if (!accessToken) {
@@ -23,6 +26,9 @@ export const UserReview: React.FC<UserReviewProps> = ({ beerId, beerName }) => {
   }
 
   const { data: review } = useMyReviewsQuery(beerId, accessToken)
+  const handleSuccess = () => {
+    queryClient.invalidateQueries(myReviewsQueryKey(beerId))
+  }
   console.log('review', review)
 
   return (
@@ -35,6 +41,7 @@ export const UserReview: React.FC<UserReviewProps> = ({ beerId, beerName }) => {
           id: beerId,
           name: beerName,
         }}
+        onSuccess={handleSuccess}
       />
 
       {review !== undefined ? (
