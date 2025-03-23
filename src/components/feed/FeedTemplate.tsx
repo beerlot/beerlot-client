@@ -5,12 +5,22 @@ import { CenteredTitle } from '../shared/Headers/CenteredTitle'
 
 import { FeedTabList } from './FeedTabList'
 import { ReviewModalTriggerButton } from '../shared/ReviewModal/ReviewModalWrapper/ReviewModalTriggerButton'
-import { ReviewModalWrapper } from '../shared/ReviewModal/ReviewModalWrapper/ReviewModalWrapper'
+import { ReviewModalWrapper } from '../shared/ReviewModal/ReviewModal/ReviewModalWrapper'
+import { useAllReviewsInfiniteQuery } from '../../../hooks/reviews/useReview'
+import { LanguageType, ReviewSortType } from '../../../types/common'
+import { MOCK_FEED_FILTER_LIST } from '../../../interface/static'
 
 export const FeedTemplate = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
   const router = useRouter()
+  const selectedTag: ReviewSortType = MOCK_FEED_FILTER_LIST[0].tags[0]
+  const { refetch: invalidateReviews } = useAllReviewsInfiniteQuery({
+    page: 1,
+    size: 10,
+    sort: selectedTag ?? ReviewSortType.RECENTLY_UPDATED,
+    language: LanguageType.KR,
+  })
 
   const handleOpenReviewModal = () => {
     if (!accessToken) {
@@ -27,7 +37,11 @@ export const FeedTemplate = () => {
         <FeedTabList />
 
         <ReviewModalTriggerButton onClick={handleOpenReviewModal} />
-        <ReviewModalWrapper isModalOpen={isOpen} onCloseModal={onClose} />
+        <ReviewModalWrapper
+          isModalOpen={isOpen}
+          onCloseModal={onClose}
+          onSuccess={invalidateReviews}
+        />
       </Container>
     </Box>
   )

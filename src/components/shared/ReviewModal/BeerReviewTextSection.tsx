@@ -3,7 +3,7 @@ import { ChangeEvent } from 'react'
 import { ReviewStatic } from '../../../../interface/static'
 
 interface BeerReviewTextSectionProps {
-  onChangeInput: (e: ChangeEvent<HTMLTextAreaElement>) => void
+  onChangeInput: (input: string) => void
   input: string
 }
 
@@ -35,7 +35,7 @@ export const BeerReviewTextSection: React.FC<BeerReviewTextSectionProps> = ({
           h='full'
           p='0px'
           value={input}
-          onChange={onChangeInput}
+          onChange={() => onChangeInput(input)}
           _placeholder={{
             textStyle: 'h3',
             textColor: 'gray.200',

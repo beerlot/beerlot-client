@@ -7,19 +7,24 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import { LeftBackRandom } from '../Headers/LeftBackRandom'
+import { BeerTypeV2 } from '../../../../types/review'
 
 interface BeerSearchContentProps extends ModalContentProps {
   onBack: () => void
-  onChangeBeerName: (name: string, id: number) => void
+  onChangeBeerName: (beerInfo: BeerTypeV2) => void
 }
 
 export const BeerSearchContent: React.FC<BeerSearchContentProps> = ({
   onBack,
   onChangeBeerName,
 }) => {
+
   const handleClick = (name: string, id: number) => {
     onBack()
-    onChangeBeerName(name, id)
+    onChangeBeerName({
+      name: name,
+      id: id,
+    })
   }
 
   return (
