@@ -3,7 +3,7 @@ import { ChangeEvent } from 'react'
 import { ReviewStatic } from '../../../../interface/static'
 
 interface BeerReviewTextSectionProps {
-  onChangeInput: (e: ChangeEvent<HTMLTextAreaElement>) => void
+  onChangeInput: (input: string) => void
   input: string
 }
 

@@ -1,5 +1,4 @@
-import { useUserReviewsQuery } from '@/../hooks/query/useUserQuery'
-import { ModalProps } from '@chakra-ui/react'
+import { Center, ModalProps } from '@chakra-ui/react'
 import Cookies from 'js-cookie'
 import React, { useEffect, useState } from 'react'
 import {
@@ -10,7 +9,9 @@ import {
   BeerTypeV2,
   CreateReviewRequestTypeV2,
 } from '../../../../../types/review'
-import { ReviewModal } from '../ReviewModal'
+import { ExistingReviewModal } from '@components/shared/ReviewModal/ExistingReviewModal/ExistingReviewModal'
+import { useQueryClient } from 'react-query'
+import { BeerlotLoading } from '@components/shared/Loading'
 
 interface ExistingReviewModalWrapperProps {
   reviewId?: number | null
@@ -21,15 +22,12 @@ interface ExistingReviewModalWrapperProps {
 export const ExistingReviewModalWrapper: React.FC<
   ExistingReviewModalWrapperProps
 > = ({ reviewId, isModalOpen, onCloseModal }) => {
+  const queryClient = useQueryClient()
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
-  const reviewQuery = useReviewQuery(reviewId)
+  const { data: existingReviewData } = useReviewQuery(reviewId)
 
-  const userReviewQuery = useUserReviewsQuery(accessToken)
-  const existingReviewData = reviewQuery.data
-  const [beerInfo, setBeerInfo] = useState<BeerTypeV2 | undefined>()
-  const [reviewInfo, setReviewInfo] = useState<
-    CreateReviewRequestTypeV2 | undefined
-  >()
+  const [beerInfo, setBeerInfo] = useState<BeerTypeV2>()
+  const [reviewInfo, setReviewInfo] = useState<CreateReviewRequestTypeV2>()
 
   useEffect(() => {
     if (existingReviewData) {
@@ -45,29 +43,35 @@ export const ExistingReviewModalWrapper: React.FC<
 
   const { mutate: updateReview } = useReviewUpdateMutation(accessToken)
 
-  const handleComplete = (beerId: number) => {
-    if (!reviewInfo) return
-    if (reviewId !== undefined && reviewId !== null) {
-      updateReview(
-        { reviewId, newContent: reviewInfo },
-        {
-          onSuccess: () => {
-            userReviewQuery.refetch()
-            onCloseModal()
-          },
-        }
-      )
-    }
+  const handleComplete = () => {
+    if (reviewId === undefined || reviewId === null || !reviewInfo) return
+    updateReview(
+      { reviewId, newContent: reviewInfo },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries(['userReviews'])
+          onCloseModal()
+        },
+      }
+    )
+  }
+
+  if (!reviewInfo || !beerInfo) {
+    return (
+      <Center h={'100vh'}>
+        <BeerlotLoading />
+      </Center>
+    )
   }
 
   return (
-    <ReviewModal
+    <ExistingReviewModal
       isModalOpen={isModalOpen}
       onCloseModal={onCloseModal}
       onComplete={handleComplete}
-      onChangeReviewInfo={setReviewInfo}
-      reviewInfo={reviewInfo}
-      beerInfo={beerInfo}
+      onChangeReview={setReviewInfo}
+      review={reviewInfo}
+      beer={beerInfo}
     />
   )
 }

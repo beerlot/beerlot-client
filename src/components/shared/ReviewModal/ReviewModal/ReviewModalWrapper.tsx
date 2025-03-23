@@ -1,16 +1,13 @@
 import { ModalProps } from '@chakra-ui/react'
 import Cookies from 'js-cookie'
-import React, { useState } from 'react'
+import React from 'react'
 import { useCreateReviewMutation } from '../../../../../hooks/reviews/useBeer'
 import {
   BeerTypeV2,
   CreateReviewRequestTypeV2,
 } from '../../../../../types/review'
-import { ReviewModal } from '../ReviewModal'
-import { MOCK_FEED_FILTER_LIST } from '../../../../../interface/static'
 import { useErrorToast } from '@/hooks/shared/useErrorToast'
-import { LanguageType, ReviewSortType } from '../../../../../types/common'
-import { useAllReviewsInfiniteQuery } from '../../../../../hooks/reviews/useReview'
+import { ReviewModal } from '@components/shared/ReviewModal/ReviewModal/ReviewModal'
 
 interface ReviewModalWrapperProps {
   isModalOpen: ModalProps['isOpen']
@@ -26,23 +23,13 @@ export const ReviewModalWrapper: React.FC<ReviewModalWrapperProps> = ({
   onSuccess,
 }) => {
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
-  const selectedTag: ReviewSortType = MOCK_FEED_FILTER_LIST[0].tags[0]
-  const allReviewsQuery = useAllReviewsInfiniteQuery({
-    page: 1,
-    size: 10,
-    sort: selectedTag ?? ReviewSortType.RECENTLY_UPDATED,
-    language: LanguageType.KR,
-  })
   const { showErrorToast } = useErrorToast()
   const { mutate: createReview } = useCreateReviewMutation(accessToken)
-  const [beerInfo, setBeerInfo] = useState<BeerTypeV2 | undefined>(
-    targetBeerInfo
-  )
-  const [reviewInfo, setReviewInfo] = useState<
-    CreateReviewRequestTypeV2 | undefined
-  >(initialReviewInfo)
 
-  const handleComplete = (beerId: number) => {
+  const handleComplete = (
+    beerId: number,
+    reviewInfo: CreateReviewRequestTypeV2
+  ) => {
     if (beerId === null) return
     if (!reviewInfo) return
     createReview(
@@ -53,7 +40,6 @@ export const ReviewModalWrapper: React.FC<ReviewModalWrapperProps> = ({
       {
         onSuccess: () => {
           onSuccess?.()
-          allReviewsQuery.refetch()
           onCloseModal()
         },
         onError: (error) => {
@@ -72,10 +58,7 @@ export const ReviewModalWrapper: React.FC<ReviewModalWrapperProps> = ({
           isModalOpen={isModalOpen}
           onCloseModal={onCloseModal}
           onComplete={handleComplete}
-          onChangeReviewInfo={setReviewInfo}
-          reviewInfo={reviewInfo}
-          beerInfo={beerInfo}
-          onUpdateBeerInfo={setBeerInfo}
+          beerInfo={targetBeerInfo}
         />
       )}
     </>
