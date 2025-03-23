@@ -5,7 +5,7 @@ import {
 } from '@/../hooks/query/useUserQuery'
 import { FollowingTabPanelItem } from '@/components/feed/TabPanelItem'
 import { ReviewDeleteConfirmationDrawer } from '@/components/shared/ReviewModal/ReviewDeleteConfirmationDrawer'
-import { ExistingReviewModalWrapper } from '@/components/shared/ReviewModal/ReviewModalWrapper/ExistingReviewModalWrapper'
+import { ExistingReviewModalWrapper } from '@components/shared/ReviewModal/ExistingReviewModal/ExistingReviewModalWrapper'
 import { Flex, useDisclosure } from '@chakra-ui/react'
 import Cookies from 'js-cookie'
 import { useCallback, useEffect, useState } from 'react'
@@ -24,18 +24,14 @@ const BeerReviews = () => {
   })
   const userQuery = useUserInfoQuery(accessToken ?? '')
   const { image_url = '' } = userQuery?.data ?? {}
-  const [selectedReviewId, setSelectedReviewId] = useState<number | null>(null)
-
   const { isOpen, onOpen, onClose } = useDisclosure()
   const likedReviewsListQuery = useUserLikedReviewsQuery(accessToken)
+  const [selectedReviewId, setSelectedReviewId] = useState<number | null>(null)
 
-  const handleEdit = useCallback(
-    (reviewId: number) => {
-      setSelectedReviewId(reviewId)
-      onOpen()
-    },
-    [onOpen]
-  )
+  const handleEdit = (reviewId: number) => {
+    setSelectedReviewId(reviewId)
+    onOpen()
+  }
 
   const deleteReviewMutation = useReviewDeleteMutation(accessToken, {
     onSuccess: () => {
@@ -53,12 +49,18 @@ const BeerReviews = () => {
     onClose: onCloseDeleteConfirmation,
   } = useDisclosure()
 
-  const lastPage = userReviewQuery.data?.pages[userReviewQuery.data.pages.length - 1];
-  const shouldLoadMore = lastPage && lastPage.contents && lastPage.contents.length > 0
- 
+  const lastPage =
+    userReviewQuery.data?.pages[userReviewQuery.data.pages.length - 1]
+  const shouldLoadMore =
+    lastPage && lastPage.contents && lastPage.contents.length > 0
+
   const handleLoadMore = () => {
-    if (userReviewQuery.hasNextPage && !userReviewQuery.isFetchingNextPage && shouldLoadMore) {
-      userReviewQuery.fetchNextPage();
+    if (
+      userReviewQuery.hasNextPage &&
+      !userReviewQuery.isFetchingNextPage &&
+      shouldLoadMore
+    ) {
+      userReviewQuery.fetchNextPage()
     }
   }
 
@@ -104,11 +106,13 @@ const BeerReviews = () => {
         )}
       </InfiniteScrollWrapper>
 
-      <ExistingReviewModalWrapper
-        reviewId={selectedReviewId}
-        isModalOpen={isOpen}
-        onCloseModal={onClose}
-      />
+      {isOpen && (
+        <ExistingReviewModalWrapper
+          reviewId={selectedReviewId}
+          isModalOpen={isOpen}
+          onCloseModal={onClose}
+        />
+      )}
     </Flex>
   )
 }

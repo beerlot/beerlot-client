@@ -1,4 +1,4 @@
-import { ReviewModalWrapper } from '@/components/shared/ReviewModal/ReviewModalWrapper/ReviewModalWrapper'
+import { ReviewModalWrapper } from '@components/shared/ReviewModal/ReviewModal/ReviewModalWrapper'
 import { Box, Button, Flex, Text, useDisclosure } from '@chakra-ui/react'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
@@ -11,6 +11,7 @@ interface UserReviewProps {
   beerId: number
   beerName: string
 }
+
 export const UserReview: React.FC<UserReviewProps> = ({ beerId, beerName }) => {
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
   const router = useRouter()
@@ -29,7 +30,6 @@ export const UserReview: React.FC<UserReviewProps> = ({ beerId, beerName }) => {
   const handleSuccess = () => {
     queryClient.invalidateQueries(myReviewsQueryKey(beerId))
   }
-  console.log('review', review)
 
   return (
     <>

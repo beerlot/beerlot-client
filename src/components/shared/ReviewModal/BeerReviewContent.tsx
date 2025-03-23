@@ -7,7 +7,7 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
-import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
 import { CreateReviewRequestTypeV2 } from '../../../../types/review'
 import { LeftCloseRandom } from '../Headers/LeftCloseRandom'
 import BeerNameSection from './BeerNameSection'
@@ -17,25 +17,23 @@ import { BeerReviewTextSection } from './BeerReviewTextSection'
 import { UploadedReviewImages } from './UploadedReviewImages'
 
 interface BeerReviewContentProps extends ModalContentProps {
-  onOpenDrawer: () => void
-  reviewInfo: CreateReviewRequestTypeV2
-  onNext?: () => void
-  beerName: string
-  onInputChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
-  onComplete: () => void
   isCompleted: boolean
+  reviewInfo: CreateReviewRequestTypeV2
+  beerName?: string
+  onNext?: () => void
+  onOpenDrawer: () => void
+  onComplete: () => void
   onChangeReviewInfo: (key: string, value: string | number | string[]) => void
 }
 
 export const BeerReviewContent: React.FC<BeerReviewContentProps> = ({
-  onOpenDrawer,
+  isCompleted,
+  beerName = '',
   reviewInfo,
   onNext,
-  beerName,
-  onInputChange,
+  onOpenDrawer,
   onComplete,
   onChangeReviewInfo,
-  isCompleted,
 }) => {
   const handleRate = (rate: number) => {
     onChangeReviewInfo('rate', rate)
@@ -49,6 +47,10 @@ export const BeerReviewContent: React.FC<BeerReviewContentProps> = ({
     onChangeReviewInfo('image_url', imageUrl)
   }
 
+  const handleChangeInput = (input: string) => {
+    onChangeReviewInfo('content', input)
+  }
+
   return (
     <>
       <ModalHeader pt='46px'>
@@ -60,25 +62,20 @@ export const BeerReviewContent: React.FC<BeerReviewContentProps> = ({
           justifyContent='flex-start'
           alignItems={'flex-start'}
         >
-          {/* beer name */}
           <BeerNameSection beerName={beerName} onClick={onNext} />
 
-          {/* rating */}
           <BeerRatingSection onRate={handleRate} rate={reviewInfo.rate} />
 
-          {/* purchase */}
           <BeerPurchaseSection
             currentPlace={reviewInfo.buy_from}
             handleChangePlaceTag={handleChangePlaceTag}
           />
 
-          {/* review text  */}
           <BeerReviewTextSection
-            onChangeInput={onInputChange}
+            onChangeInput={handleChangeInput}
             input={reviewInfo.content}
           />
 
-          {/* uploaded images */}
           <UploadedReviewImages
             setImageUrl={handleImage}
             imageUrl={reviewInfo.image_url}
