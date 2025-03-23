@@ -27,6 +27,7 @@ const BeerReviews = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const likedReviewsListQuery = useUserLikedReviewsQuery(accessToken)
   const [selectedReviewId, setSelectedReviewId] = useState<number | null>(null)
+  const [deleteReviewId, setDeleteReviewId] = useState<number | null>(null)
 
   const handleEdit = (reviewId: number) => {
     setSelectedReviewId(reviewId)
@@ -39,7 +40,8 @@ const BeerReviews = () => {
     },
   })
 
-  const handleDelete = (reviewId: number) => {
+  const handleDelete = (reviewId?: number) => {
+    if (reviewId === undefined) return
     deleteReviewMutation.mutate(reviewId)
   }
 
@@ -64,6 +66,13 @@ const BeerReviews = () => {
     }
   }
 
+  useEffect(() => {
+    return () => {
+      setSelectedReviewId(null)
+      setDeleteReviewId(null) // 클린업 함수에서 deleteReviewId 초기화
+    }
+  }, [])
+
   return (
     <Flex flexDirection='column' gap={'10px'} h='full'>
       <InfiniteScrollWrapper
@@ -73,36 +82,40 @@ const BeerReviews = () => {
         needToFetch={shouldLoadMore}
       >
         {userReviewQuery.data?.pages?.map((page) =>
-          page.contents?.map((feed) => (
-            <>
-              <FollowingTabPanelItem
-                key={feed.id}
-                reviewId={Number(feed.id)}
-                isLiked={likedReviewsListQuery.data?.includes(feed.id ?? 0)}
-                nickname={feed?.beer?.name ?? ''}
-                reviewTime={feed.updated_at ?? ''}
-                rate={feed.rate ?? 0}
-                imageSrc={feed.image_url}
-                memberImage={image_url}
-                content={feed.content ?? ''}
-                likedCount={feed.like_count ?? 0}
-                isEditable={true}
-                onDelete={onOpenDeleteConfirmation}
-                onEdit={() => handleEdit(feed.id ?? 0)}
-              />
-              <ReviewDeleteConfirmationDrawer
-                isOpen={isOpenDeleteConfirmation}
-                onClose={onCloseDeleteConfirmation}
-                onClickLeftButton={() => {
-                  onCloseDeleteConfirmation()
-                }}
-                onClickRightButton={() => {
-                  handleDelete(feed.id ?? 0)
-                  onCloseDeleteConfirmation()
-                }}
-              />
-            </>
-          ))
+          page.contents?.map((feed) => {
+            return (
+              <div key={feed.id}>
+                <FollowingTabPanelItem
+                  reviewId={Number(feed.id)}
+                  isLiked={likedReviewsListQuery.data?.includes(feed.id ?? 0)}
+                  nickname={feed?.beer?.name ?? ''}
+                  reviewTime={feed.updated_at ?? ''}
+                  rate={feed.rate ?? 0}
+                  imageSrc={feed.image_url}
+                  memberImage={image_url}
+                  content={feed.content ?? ''}
+                  likedCount={feed.like_count ?? 0}
+                  isEditable={true}
+                  onDelete={() => {
+                    setDeleteReviewId(feed.id ?? 0)
+                    onOpenDeleteConfirmation()
+                  }}
+                  onEdit={() => handleEdit(feed.id ?? 0)}
+                />
+                <ReviewDeleteConfirmationDrawer
+                  isOpen={isOpenDeleteConfirmation}
+                  onClose={onCloseDeleteConfirmation}
+                  onClickLeftButton={() => {
+                    onCloseDeleteConfirmation()
+                  }}
+                  onClickRightButton={() => {
+                    handleDelete(deleteReviewId ?? 0)
+                    onCloseDeleteConfirmation()
+                  }}
+                />
+              </div>
+            )
+          })
         )}
       </InfiniteScrollWrapper>
 
