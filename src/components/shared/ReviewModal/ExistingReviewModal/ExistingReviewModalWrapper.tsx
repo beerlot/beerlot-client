@@ -34,7 +34,7 @@ export const ExistingReviewModalWrapper: React.FC<
       setReviewInfo({
         rate: existingReviewData.rate ?? 0,
         content: existingReviewData.content ?? '',
-        image_url: existingReviewData.image_url ?? [],
+        image_url: existingReviewData.image_url ?? '',
         buy_from: existingReviewData.buy_from ?? '',
       })
       setBeerInfo(existingReviewData.beer)
