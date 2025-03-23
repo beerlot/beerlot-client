@@ -72,7 +72,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
       onChangeReviewInfo(initialReviewInfo)
       onUpdateBeerInfo?.(undefined)
     }
-  }, [])
+  }, [onChangeReviewInfo, onUpdateBeerInfo])
 
   return (
     <>

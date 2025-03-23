@@ -1,23 +1,16 @@
-import {
-  Box,
-  Center,
-  Container,
-  Flex,
-  HStack,
-  Text,
-  VStack,
-} from '@chakra-ui/react'
+import { Container, HStack, Text, VStack } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { Rating } from '../../shared/Rating'
 import { roundToDecimal } from '@/../utils/number'
 import { FeedFilter } from '@/components/feed/FeedFilter/FeedFilter'
-import { FollowingTabPanelItem } from '@/components/feed/TabPanelItem'
 import { useBeerReviewsQuery } from '../../../../hooks/reviews/useBeer'
 import { MOCK_FEED_FILTER_LIST } from '../../../../interface/static'
-import { ReviewTypeV2 } from '../../../../types/review'
 import { BeerInfoHStack } from './BasicPanelList'
 import { UserReview } from './UserReview'
 import { ReviewSortType } from '../../../../types/common'
+import { EmptyReviewsList } from '@components/details/tab-panel/EmptyReviewsList'
+import { ReviewCountDisplay } from '@components/details/tab-panel/ReviewCounter'
+import { ReviewsList } from '@components/details/tab-panel/ReviewsList'
 
 interface ReviewPanelListProps {
   rate: number | '-'
@@ -97,71 +90,5 @@ export const ReviewPanelList: React.FC<ReviewPanelListProps> = ({
         <EmptyReviewsList />
       )}
     </Container>
-  )
-}
-
-const EmptyReviewsList = () => {
-  return (
-    <Center
-      gap={2}
-      borderRadius={8}
-      bg={'white'}
-      flexDir={'column'}
-      py={5}
-      mt={6}
-      mx={5}
-    >
-      <Text textStyle={'h2_bold'}>아직 작성된 리뷰가 없어요😢</Text>
-      <Text textStyle={'h3'} textColor={'gray.300'}>
-        첫번째 리뷰의 주인공이 되어주실래요?
-      </Text>
-    </Center>
-  )
-}
-interface ReviewsListProps {
-  reviews: ReviewTypeV2[]
-}
-
-const ReviewsList: React.FC<ReviewsListProps> = ({ reviews }) => {
-  return (
-    <Flex flexDir={'column'} gap='10px'>
-      {reviews?.map((review) => {
-        return (
-          <>
-            <FollowingTabPanelItem
-              key={review.id}
-              reviewId={review.id}
-              nickname={review.member.username}
-              reviewTime={review.updated_at}
-              beerName={review.beer?.name}
-              rate={review.rate}
-              memberImage={review.member.image_url}
-              imageSrc={review.image_url}
-              content={review.content}
-              likedCount={review.like_count}
-              isEditable={false}
-            />
-          </>
-        )
-      })}
-    </Flex>
-  )
-}
-interface ReviewCountDisplayProps {
-  reviewLength: number
-}
-
-const ReviewCountDisplay: React.FC<ReviewCountDisplayProps> = ({
-  reviewLength,
-}) => {
-  return (
-    <Box>
-      <Text textColor='black.100' as='span' textStyle={'h2_bold'}>
-        리뷰{' '}
-      </Text>
-      <Text textColor='orange.200' as='span' textStyle={'h2_bold'}>
-        {reviewLength}
-      </Text>
-    </Box>
   )
 }
