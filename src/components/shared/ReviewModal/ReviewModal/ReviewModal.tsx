@@ -89,7 +89,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
               onOpenDrawer={onOpenConfirmDrawer}
               onComplete={handleComplete}
               onChangeReviewInfo={handleChangeReviewInfo}
-              beerName={beerInfo?.name ?? ''}
+              beerName={localBeerInfo?.name ?? ''}
             />
           )}
 

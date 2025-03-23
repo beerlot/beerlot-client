@@ -30,7 +30,7 @@ export const UserReview: React.FC<UserReviewProps> = ({ beerId, beerName }) => {
   const { data: review } = useMyReviewsQuery(beerId, accessToken)
   const handleSuccess = () => {
     queryClient.invalidateQueries(myReviewsQueryKey(beerId))
-    beerReviewsQueryKey(beerId)
+    queryClient.invalidateQueries(beerReviewsQueryKey(beerId))
   }
 
   return (
