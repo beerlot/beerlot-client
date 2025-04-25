@@ -105,6 +105,7 @@ export const useMyReviewsQuery = (
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     enabled: !!beerId && !!accessToken,
+    retry: false,
     ...options,
   })
 }
