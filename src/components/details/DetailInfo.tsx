@@ -37,12 +37,10 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
   const rateToUse = rate === '-' ? 0 : roundToDecimal(rate)
   const toastId = 'test-toast'
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
-  const userBeersQuery = useUserLikedBeersQuery(accessToken)
+  const userBeersQuery = useUserLikedBeersQuery(accessToken, undefined, {
+    enabled: !!accessToken,
+  })
   const router = useRouter()
-
-  useEffect(() => {
-    userBeersQuery.refetch()
-  }, [])
 
   const likedBeerIds =
     userBeersQuery.data?.pages.flatMap((page) =>
@@ -131,6 +129,7 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
           <Text textStyle='h1'>{beerName}</Text>
           <HStack gap='20px'>
             <LikeButton
+              isControlled={true}
               isLiked={isLikedBeer}
               onClick={handleClickLike}
               w='40px'
