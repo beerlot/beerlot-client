@@ -51,7 +51,6 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({ username }) => {
       isLoading: query.isLoading,
     }
   })
-  console.log('recommendedBeersData', recommendedBeersData)
   const recommendedBeerListLoading = recommendedBeersData.some(
     (query) => query.isLoading
   )
