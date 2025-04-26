@@ -1,6 +1,6 @@
 import { EmptyHeart, FullHeart } from '@/../public/svg'
 import { IconButton, IconButtonProps } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface LikeButtonProps extends IconButtonProps {
   isLiked: boolean
@@ -11,10 +11,14 @@ interface LikeButtonProps extends IconButtonProps {
 export const LikeButton: React.FC<LikeButtonProps> = ({
   isLiked,
   onClick,
-  isControlled,
+  isControlled = false,
   ...props
 }) => {
   const [localLiked, setLocalLiked] = useState(isLiked)
+
+  useEffect(() => {
+    setLocalLiked(isLiked)
+  }, [isLiked])
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (!isControlled) {
@@ -24,6 +28,7 @@ export const LikeButton: React.FC<LikeButtonProps> = ({
   }
 
   const displayLiked = isControlled ? isLiked : localLiked
+
   return (
     <IconButton
       w='fit-content'

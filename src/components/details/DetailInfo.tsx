@@ -129,7 +129,6 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
           <Text textStyle='h1'>{beerName}</Text>
           <HStack gap='20px'>
             <LikeButton
-              isControlled={true}
               isLiked={isLikedBeer}
               onClick={handleClickLike}
               w='40px'
