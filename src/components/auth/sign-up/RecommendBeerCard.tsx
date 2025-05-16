@@ -69,7 +69,7 @@ export const RecommendBeerCard = ({
               alt={item.name}
               width='175px'
               height='120px'
-              objectFit='cover'
+              objectFit='contain'
               style={{ borderRadius: '6px' }}
             />
           )}

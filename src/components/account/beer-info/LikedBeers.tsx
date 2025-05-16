@@ -94,9 +94,8 @@ const LikedBeers = () => {
                   <CommonBeerImage
                     src={item.image_url}
                     alt={item.name}
-                    width='full'
-                    height='full'
-                    objectFit='cover'
+                    width='175px'
+                    height='175px'
                   />
                 )}
               </Box>

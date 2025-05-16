@@ -31,7 +31,7 @@ export const BeerCardItem: React.FC<BeerCardItemProps> = ({
   return (
     <BeerCard {...props}>
       <BeerCardBody>
-        {image_url && <CommonBeerImage src={image_url} alt={name} />}
+        {image_url && <CommonBeerImage src={image_url} alt={name} width='124px' height='128px' />}
       </BeerCardBody>
       <BeerCardFooter>
         <BeerNameText>{name}</BeerNameText>

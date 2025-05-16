@@ -158,8 +158,8 @@ export const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
         <Box borderRadius={'6px'}>
           {imageSrc && (
             <CommonBeerImage
-              width={'100px'}
-              height={'100px'}
+              width='100px'
+              height='100px'
               alt='beer photo'
               src={imageSrc}
             />

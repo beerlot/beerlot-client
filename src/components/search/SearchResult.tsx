@@ -114,7 +114,6 @@ export const SearchResult: React.FC<SearchResultProps> = ({
                     alt={name}
                     width='175px'
                     height='175px'
-                    objectFit='cover'
                   />
                 )}
               </Box>

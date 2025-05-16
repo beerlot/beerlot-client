@@ -116,7 +116,8 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
       {/* image  */}
       <Center pt='72px' w='full' px='24px'>
         <CommonBeerImage
-          boxSize='320px'
+          width='320px'
+          height='320px'
           src={beerImg}
           alt={`${beerName} image`}
           borderRadius='6px'

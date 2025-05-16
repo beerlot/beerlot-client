@@ -137,7 +137,6 @@ const RecommendedBeersList: React.FC<RecommendedBeersListProps> = ({
                         alt={beer.name}
                         width='124px'
                         height='128px'
-                        objectFit='cover'
                       />
                     )}
                   </Box>

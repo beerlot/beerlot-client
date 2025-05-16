@@ -130,7 +130,6 @@ const TopBeersList: React.FC<TopBeersListProps> = ({
                         alt={item.name}
                         width='124px'
                         height='128px'
-                        objectFit='cover'
                       />
                     )}
                   </Box>
