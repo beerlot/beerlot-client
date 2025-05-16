@@ -1,5 +1,5 @@
 import { EmptyHeart, FullHeart } from '@/../public/svg'
-import { IconButton, IconButtonProps } from '@chakra-ui/react'
+import { IconButton, IconButtonProps, Skeleton } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 
 interface LikeButtonProps extends IconButtonProps {
@@ -34,8 +34,9 @@ export const LikeButton: React.FC<LikeButtonProps> = ({
       w='fit-content'
       minW='initial'
       onClick={handleClick}
-      icon={displayLiked ? <FullHeart /> : <EmptyHeart />}
-      cursor='pointer'
+      icon={
+        displayLiked ? <FullHeart /> : <EmptyHeart />
+      }
       fontSize={'28px'}
       _hover={{}}
       _active={{}}

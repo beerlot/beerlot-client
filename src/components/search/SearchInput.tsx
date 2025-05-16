@@ -51,6 +51,15 @@ const SearchInput: React.FC<SearchInputProps> = ({
         autoFocus={autoFocus}
         onFocus={onFocus}
         _hover={{}}
+        fontSize='16px'
+        style={{
+          fontSize: '16px',
+          transform: 'scale(1)',
+          WebkitTextSizeAdjust: '100%',
+          WebkitAppearance: 'none',
+          WebkitTapHighlightColor: 'transparent',
+          minHeight: 'initial',
+        }}
       />
       <InputLeftElement h='full'>
         <SearchGlass />

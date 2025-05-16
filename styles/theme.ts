@@ -1,13 +1,9 @@
 import { extendTheme } from '@chakra-ui/react'
 
 export const theme = extendTheme({
-  components: {
-    Button: {
-      baseStyle: {
-        p: 0,
-        m: 0,
-      },
-    },
+  config: {
+    initialColorMode: 'light',
+    useSystemColorMode: false,
   },
   styles: {
     global: {
@@ -17,9 +13,30 @@ export const theme = extendTheme({
         bg: '#ffffff',
         height: '100vh',
         font: 'roboto',
+        color: '#000000',
       },
       '#__next': {
         h: '100%',
+      },
+    },
+  },
+  components: {
+    Button: {
+      baseStyle: {
+        p: 0,
+        m: 0,
+        bg: '#ffffff',
+        color: '#000000',
+      },
+    },
+    Text: {
+      baseStyle: {
+        color: '#000000',
+      },
+    },
+    Heading: {
+      baseStyle: {
+        color: '#000000',
       },
     },
   },
