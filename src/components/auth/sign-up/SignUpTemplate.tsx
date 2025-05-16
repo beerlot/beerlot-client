@@ -35,8 +35,8 @@ const SignUpTemplate = () => {
   return (
     <Box w='full' h='100vh' bg='gray.100'>
       <Container h='full' bg='white' p={0} maxW='450px' pos={'relative'}>
-        <Flex w={'full'} h={'full'} flexDirection='column'>
-          <Box flex={1} overflowY='auto' className='hide-scrollbar'>
+        <Flex w={'full'} h={'full'} flexDirection='column' pos={'relative'}>
+          <Box flex={1} overflowY='auto' className='hide-scrollbar' pb={'80px'}>
             <Box pt={10}>
               <LeftBackCompleteCircles step={step} />
 
