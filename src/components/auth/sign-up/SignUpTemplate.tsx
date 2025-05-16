@@ -35,25 +35,29 @@ const SignUpTemplate = () => {
   return (
     <Box w='full' h='100vh' bg='gray.100'>
       <Container h='full' bg='white' p={0} maxW='450px' pos={'relative'}>
-        <Flex w={'full'} h={'full'} pt={10} pb={'64px'} flexDirection='column'>
-          <LeftBackCompleteCircles step={step} />
+        <Flex w={'full'} h={'full'} flexDirection='column'>
+          <Box flex={1} overflowY='auto' className='hide-scrollbar'>
+            <Box pt={10}>
+              <LeftBackCompleteCircles step={step} />
 
-          {step === StepEnum.NICKNAME && (
-            <Nickname setUserInfo={updateUserInfo} onNext={handleNext} />
-          )}
+              {step === StepEnum.NICKNAME && (
+                <Nickname setUserInfo={updateUserInfo} onNext={handleNext} />
+              )}
 
-          {step === StepEnum.BEERS && (
-            <BeerTasteSelection
-              username={userInfo.username}
-              selectedBeers={selectedBeers}
-              updateSelectedBeers={updateSelectedBeers}
-              onNext={handleNext}
-            />
-          )}
+              {step === StepEnum.BEERS && (
+                <BeerTasteSelection
+                  username={userInfo.username}
+                  selectedBeers={selectedBeers}
+                  updateSelectedBeers={updateSelectedBeers}
+                  onNext={handleNext}
+                />
+              )}
 
-          {step === StepEnum.COMPLETE && (
-            <CompleteTemplate userInfo={userInfo} />
-          )}
+              {step === StepEnum.COMPLETE && (
+                <CompleteTemplate userInfo={userInfo} />
+              )}
+            </Box>
+          </Box>
         </Flex>
       </Container>
     </Box>

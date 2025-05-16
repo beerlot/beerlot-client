@@ -65,6 +65,12 @@ const Nickname: React.FC<NicknameProps> = ({ onNext, setUserInfo }) => {
         onCheckItem={setCheckedItems}
       />
       <FloatingButton
+        pos='fixed'
+        bottom='0'
+        left='50%'
+        transform='translateX(-50%)'
+        maxW='450px'
+        w='full'
         onClick={handleClick}
         disabled={!isReadyForNextStep}
         text='다음으로'

@@ -48,7 +48,11 @@ const CompleteTemplate: React.FC<CompleteTemplateProps> = ({ userInfo }) => {
         </Text>
       </Center>
       <FloatingButton
-        pos='sticky'
+        pos='fixed'
+        bottom='0'
+        left='50%'
+        transform='translateX(-50%)'
+        maxW='450px'
         w='full'
         text='비어랏 시작하기!'
         onClick={handleClickComplete}
