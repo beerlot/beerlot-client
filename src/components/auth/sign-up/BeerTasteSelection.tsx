@@ -116,8 +116,6 @@ const BeerTasteSelection: React.FC<BeerTasteSelectionProps> = ({
       </InfiniteScrollWrapper>
 
       <FloatingButton
-        pos='sticky'
-        w='full'
         disabled={!isFullfilled}
         text='완료!'
         onClick={handleClickComplete}

@@ -26,10 +26,13 @@ const FloatingButton: React.FC<FloatingButtonProps> = ({
       onClick={onClick}
       isDisabled={disabled}
       boxShadow={boxShadow}
-      pos='absolute'
-      bottom='16px'
-      left='38px'
-      right='35px'
+      pos='fixed'
+      bottom='76px'
+      left='50%'
+      transform='translateX(-50%)'
+      maxW='418px'
+      w='full'
+      px='16px'
       bg={bgColor}
       borderRadius='10px'
       _disabled={{
@@ -39,6 +42,7 @@ const FloatingButton: React.FC<FloatingButtonProps> = ({
       }}
       textColor={textColor}
       py={'10px'}
+      zIndex={100}
       {...props}
     >
       <Text textStyle='h3'>{text}</Text>

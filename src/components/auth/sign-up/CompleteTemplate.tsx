@@ -17,7 +17,7 @@ const CompleteTemplate: React.FC<CompleteTemplateProps> = ({ userInfo }) => {
 
   return (
     <>
-      <Center h={'full'} flexDir='column'>
+      <Center h={'full'} flexDir='column' pt={20}>
         <Icon as={OrangeCheckCircle} w={'80px'} h={'80px'} />
         <Text mt={'24px'} textStyle={'h1'} textColor='black'>
           회원가입 완료!
@@ -48,12 +48,6 @@ const CompleteTemplate: React.FC<CompleteTemplateProps> = ({ userInfo }) => {
         </Text>
       </Center>
       <FloatingButton
-        pos='fixed'
-        bottom='0'
-        left='50%'
-        transform='translateX(-50%)'
-        maxW='450px'
-        w='full'
         text='비어랏 시작하기!'
         onClick={handleClickComplete}
         bgColor={'orange.200'}
