@@ -87,7 +87,6 @@ const CommonBeersList: React.FC<CommonBeersListProps> = ({
                       alt={item.name}
                       width='175px'
                       height='175px'
-                      objectFit='cover'
                     />
                   </Box>
                   {!loading && (
