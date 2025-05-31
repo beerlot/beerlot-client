@@ -34,6 +34,7 @@ const SearchBarTemplate = () => {
           <SearchBarList
             handleClickItem={handleClickItem}
             onKeyPress={handleKeyPress}
+            autoFocus={true}
           />
         </VStack>
       </Container>

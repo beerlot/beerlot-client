@@ -9,11 +9,13 @@ import { SearchResultHandler } from './SearchResultHandler'
 interface SearchBarListProps {
   handleClickItem?: (name: string, id: number) => void
   onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  autoFocus?: boolean
 }
 
 const SearchBarList: React.FC<SearchBarListProps> = ({
   handleClickItem,
   onKeyPress,
+  autoFocus = false,
 }) => {
   const [input, setInput] = useState('')
   const [debouncedInput, setDebouncedInput] = useState('')
@@ -69,6 +71,7 @@ const SearchBarList: React.FC<SearchBarListProps> = ({
         onKeyPress={onKeyPress}
         onChange={handleChange}
         clearValue={clearValue}
+        autoFocus={autoFocus}
       />
       <Flex flexDirection='column' h='full' w='full'>
         <SearchResultHandler
