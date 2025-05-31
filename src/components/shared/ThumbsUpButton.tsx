@@ -49,7 +49,7 @@ export const ThumbsUpButton: React.FC<ThumbsUpButtonProps> = ({
         color={localLiked ? 'orange.200' : 'black.100'}
         mr={0}
       />
-      <Text textStyle={'h3'}>{localNumber}</Text>
+      <Text textStyle={'h3'} color={localLiked ? 'orange.200' : 'black.100'}>{localNumber}</Text>
     </Button>
   )
 }
