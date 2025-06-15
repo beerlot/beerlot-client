@@ -51,7 +51,7 @@ export const AllTabPanelList = () => {
                 content={review.content ?? ''}
                 nickname={review.member?.username ?? ''}
                 memberImage={review.member?.image_url ?? ''}
-                reviewTime={review.updated_at ?? ''}
+                reviewTime={review.created_at ?? ''}
                 beerName={review.beer?.name ?? ''}
                 rate={review.rate ?? 0}
                 imageSrc={review.image_url}

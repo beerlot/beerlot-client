@@ -4,6 +4,7 @@ export interface ReviewResponseType {
   image_url: string
   rate: number
   like_count: number
+  created_at: string
   updated_at: string
   member: {
     id: number

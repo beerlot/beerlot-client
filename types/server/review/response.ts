@@ -7,7 +7,7 @@ export interface ReviewType {
   image_url?: string
   rate?: number
   like_count?: number
-  updated_at?: string
+  created_at?: string
   buy_from?: string
   member?: MemberType
   beer?: BeerShortenType

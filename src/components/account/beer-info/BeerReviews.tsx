@@ -89,7 +89,7 @@ const BeerReviews = () => {
                   reviewId={Number(feed.id)}
                   isLiked={likedReviewsListQuery.data?.includes(feed.id ?? 0)}
                   nickname={feed?.beer?.name ?? ''}
-                  reviewTime={feed.updated_at ?? ''}
+                  reviewTime={feed.created_at ?? ''}
                   rate={feed.rate ?? 0}
                   imageSrc={feed.image_url}
                   memberImage={image_url}

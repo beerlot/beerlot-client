@@ -7,7 +7,7 @@ export type ReviewTypeV2 = {
   rate: number
   buy_from: string
   like_count: number
-  updated_at: string
+  created_at: string
   member: MemberTypeV2
   beer: BeerTypeV2
 }
