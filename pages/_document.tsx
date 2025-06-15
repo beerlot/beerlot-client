@@ -58,6 +58,16 @@ class MyDocument extends Document {
             rel='stylesheet'
           />
           <meta name="google-site-verification" content="QKz0iVRYbRCYxErp4h5sFoAQACcvxIPYU0bXWHD1lUU" />
+          <meta property="og:site_name" content="비어랏" />
+          <meta property="og:title" content="오늘도 수고한 당신, 맥주 한 잔 비어랏!" />
+          <meta property="og:description" content="맥주 검색, 추천, 기록까지 한 번에 – 오늘 마실 맥주, 비어랏에서 골라요." />
+          <meta property="og:url" content="https://beerlot.site/" />
+          <meta property="og:image" content="https://beerlot.site/images/beerlot-preview-default-image.jpg" />
+          <meta property="og:type" content="website" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="오늘도 수고한 당신, 맥주 한 잔 비어랏!" />
+          <meta name="twitter:description" content="맥주 검색, 추천, 기록까지 한 번에 – 오늘 마실 맥주, 비어랏에서 골라요." />
+          <meta name="twitter:image" content="https://beerlot.site/images/beerlot-preview-default-image.jpg" />
         </Head>
         <body>
           <Main />
