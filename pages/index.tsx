@@ -45,10 +45,10 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Beerlot</title>
+        <title>오늘도 수고한 당신, 맥주 한 잔 비어랏!</title>
         <meta
           name='description'
-          content='편의점 맥주 검색, 리뷰, 별점 등을 통해 다양한 편의점 맥주를 즐길 수 있는 웹사이트입니다.'
+          content='맥주 검색, 추천, 기록까지 한 번에 – 오늘 마실 맥주, 비어랏에서 골라요.'
         />
         <meta
           name='keywords'
