@@ -48,17 +48,19 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
           {/* Open Graph / Facebook */}
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://beerlot.site/" />
+          <meta property="og:site_name" content="비어랏" />
           <meta property="og:title" content="오늘도 수고한 당신, 맥주 한 잔 비어랏!" />
           <meta property="og:description" content="맥주 검색, 추천, 기록까지 한 번에 – 오늘 마실 맥주, 비어랏에서 골라요." />
-          <meta property="og:image" content="https://www.beerlot.site/images/beerlot-preview-default-image.jpg" />
-          <meta property="og:site_name" content="비어랏" />
+          <meta property="og:image" content="https://beerlot.site/images/beerlot-preview-default-image.jpg" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
           
           {/* Twitter */}
-          <meta property="twitter:card" content="summary_large_image" />
-          <meta property="twitter:url" content="https://beerlot.site/" />
-          <meta property="twitter:title" content="오늘도 수고한 당신, 맥주 한 잔 비어랏!" />
-          <meta property="twitter:description" content="맥주 검색, 추천, 기록까지 한 번에 – 오늘 마실 맥주, 비어랏에서 골라요." />
-          <meta property="twitter:image" content="https://www.beerlot.site/images/beerlot-preview-default-image.jpg" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:url" content="https://beerlot.site/" />
+          <meta name="twitter:title" content="오늘도 수고한 당신, 맥주 한 잔 비어랏!" />
+          <meta name="twitter:description" content="맥주 검색, 추천, 기록까지 한 번에 – 오늘 마실 맥주, 비어랏에서 골라요." />
+          <meta name="twitter:image" content="https://beerlot.site/images/beerlot-preview-default-image.jpg" />
         </Head>
         <ChakraProvider theme={theme}>
           <ForceLightMode>
