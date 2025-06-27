@@ -18,7 +18,7 @@ export const FeedTemplate = () => {
   const { refetch: invalidateReviews } = useAllReviewsInfiniteQuery({
     page: 1,
     size: 10,
-    sort: selectedTag ?? ReviewSortType.RECENTLY_UPDATED,
+    sort: selectedTag ?? ReviewSortType.RECENTLY_CREATED,
     language: LanguageType.KR,
   })
 

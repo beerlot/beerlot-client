@@ -24,7 +24,7 @@ export const fetchAllReviewsApi = async (
   const {
     page = 1,
     size = 10,
-    sort = ReviewSortType.RECENTLY_UPDATED,
+    sort = ReviewSortType.RECENTLY_CREATED,
   } = queryParam
   const language: LANGUAGE_TYPE = LANGUAGE_TYPE.KR
   const res = await axios.get(`/api/v1/reviews`, {

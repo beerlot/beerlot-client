@@ -19,7 +19,7 @@ const BeerReviews = () => {
   const userReviewQuery = useUserReviewsQuery(accessToken, {
     page: 1,
     size: 10,
-    sort: ReviewSortType.RECENTLY_UPDATED,
+    sort: ReviewSortType.RECENTLY_CREATED,
     language: LanguageType.KR,
   })
   const userQuery = useUserInfoQuery(accessToken ?? '')

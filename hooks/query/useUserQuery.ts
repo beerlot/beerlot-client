@@ -75,7 +75,7 @@ export const useUserReviewsQuery = (
       getUserReviewsApi(accessToken, {
         page: pageParam ?? 1,
         size: queryParam?.size ?? 10,
-        sort: queryParam?.sort ?? ReviewSortType.RECENTLY_UPDATED,
+        sort: queryParam?.sort ?? ReviewSortType.RECENTLY_CREATED,
         language: queryParam?.language ?? LanguageType.KR,
       }),
     getNextPageParam: (lastPage, pages) => {

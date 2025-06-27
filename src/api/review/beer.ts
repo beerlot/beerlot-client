@@ -32,7 +32,7 @@ export const fetchBeerReviewsApi = async (
     beerId,
     page = 1,
     size = 10,
-    sort = ReviewSortType.RECENTLY_UPDATED,
+    sort = ReviewSortType.RECENTLY_CREATED,
   } = queryParams
 
   const res = await axios.get(`/api/v1/beers/${beerId}/reviews`, {

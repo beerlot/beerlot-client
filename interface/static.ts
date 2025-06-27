@@ -11,7 +11,7 @@ export const MOCK_FEED_FILTER_LIST: ReviewCategoryFilterListType[] = [
   {
     title: CategoryTitle.SORT_CRITERIA,
     tags: [
-      ReviewSortType.RECENTLY_UPDATED,
+      ReviewSortType.RECENTLY_CREATED,
       ReviewSortType.HIGH_RATE,
       ReviewSortType.LOW_RATE,
       ReviewSortType.MOST_LIKES,

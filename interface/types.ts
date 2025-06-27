@@ -68,14 +68,14 @@ export enum BeerSortEnum {
 }
 
 export enum ReviewSortLabelEnum {
-  RECENTLY_UPDATED = '최신순',
+  RECENTLY_CREATED = '최신순',
   MOST_LIKES = '좋아요순',
   HIGH_RATE = '별점높은순',
   LOW_RATE = '별점낮은순',
 }
 
 export const ReviewFilterSort = {
-  [ReviewSortType.RECENTLY_UPDATED]: ReviewSortLabelEnum.RECENTLY_UPDATED,
+  [ReviewSortType.RECENTLY_CREATED]: ReviewSortLabelEnum.RECENTLY_CREATED,
   [ReviewSortType.MOST_LIKES]: ReviewSortLabelEnum.MOST_LIKES,
   [ReviewSortType.HIGH_RATE]: ReviewSortLabelEnum.HIGH_RATE,
   [ReviewSortType.LOW_RATE]: ReviewSortLabelEnum.LOW_RATE,
