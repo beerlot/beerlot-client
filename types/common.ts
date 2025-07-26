@@ -4,7 +4,7 @@ export enum POLICY_LABEL {
 }
 
 export enum ReviewSortType {
-  RECENTLY_CREATED = 'RECENTLY_CREATEED', // BE should fix it (mistypo)
+  RECENTLY_CREATED = 'RECENTLY_CREATED', 
   MOST_LIKES = 'MOST_LIKES',
   HIGH_RATE = 'HIGH_RATE',
   LOW_RATE = 'LOW_RATE',
