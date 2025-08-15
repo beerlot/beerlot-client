@@ -4,6 +4,7 @@ import { LeftBackTitle } from '../shared/Headers/LeftBackTitle'
 
 import useKeyboard from '@/../hooks/useKeyboard'
 import { SearchBarList } from '../home/Search/SearchBarList'
+import { Analytics } from '../../utils/analytics'
 
 const SearchBarTemplate = () => {
   const router = useRouter()
@@ -17,6 +18,7 @@ const SearchBarTemplate = () => {
 
   const handleClickItem = (name: string, id?: number) => {
     if (id === undefined) return
+    Analytics.search(name, [name]) // Track search when user clicks on a beer
     router.push(`/result/details?id=${id}&name=${name}`)
   }
 

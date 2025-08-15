@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import CommonValidationInput from '../../../shared/CommonValidationInput'
 import { ProfileUploadAvatar } from './ProfileUploadAvatar'
+import { Analytics } from '../../../../utils/analytics'
 
 interface ProfileEditContentProps extends StackProps {
   existingImageURl: string
@@ -62,6 +63,7 @@ export const ProfileEditContent: React.FC<ProfileEditContentProps> = ({
   })
 
   const handleClickComplete = () => {
+    Analytics.editProfile()
     editUserInfoMutation.mutate({
       username: usernameInput ?? '',
       status_message: bioInput ?? '',

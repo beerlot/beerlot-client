@@ -23,6 +23,7 @@ import {
   useBeerLikeMutation,
 } from '../../../hooks/query/useBeerLikeMutation'
 
+
 interface SearchResultProps {
   loading: boolean
   beers?: BeerResponseType[]

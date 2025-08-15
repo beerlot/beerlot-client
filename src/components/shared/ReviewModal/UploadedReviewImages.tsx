@@ -15,6 +15,7 @@ import { useUploadMediaMutation } from '../../../../hooks/mutations/useUploadMed
 import { ReviewStatic } from '../../../../interface/static'
 import { OrangeCamera } from '../../../../public/svg'
 import { useErrorToast } from '@/hooks/shared/useErrorToast'
+import { Analytics } from '../../../utils/analytics'
 
 interface UploadedReviewImagesProps {
   imageUrl: string
@@ -51,6 +52,7 @@ export const UploadedReviewImages: React.FC<UploadedReviewImagesProps> = ({
       createErrorToast('1MB 이하의 파일만 업로드 가능합니다.')
       return
     }
+    Analytics.clickAddPhoto()
     const reader = new FileReader()
     reader.readAsDataURL(file)
     const formData = new FormData()

@@ -3,12 +3,21 @@ import { useRouter } from 'next/router'
 import { useSingleBeerFetchQuery } from '../../../hooks/query/useBeerQuery'
 import { DetailInfo } from './DetailInfo'
 import { DetailTabList } from './DetailTabList'
+import { Analytics } from '../../utils/analytics'
+import { useEffect } from 'react'
 
 export const DetailTemplate = () => {
   const router = useRouter()
   const { id: beerId } = router.query
   const singleBeerFetch = useSingleBeerFetchQuery(Number(beerId))
   const beerInfo = singleBeerFetch.data
+
+  useEffect(() => {
+    if (beerInfo) {
+      Analytics.viewItem([`${beerInfo.id}:${beerInfo.name}`])
+    }
+  }, [beerInfo])
+
   return (
     <Box w='full' h='full' bg='gray.100' mb={'64px'} overflowY='scroll'>
       <Container p={'0px'} w='full' bg='white' position='relative' maxW='450px'>

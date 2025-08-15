@@ -10,6 +10,7 @@ import SearchInput from '../../src/components/search/SearchInput'
 import { LeftBackTitle } from '../../src/components/shared/Headers/LeftBackTitle'
 import { BeerSortType } from '../../types/common'
 import { SearchResult } from '@/components/search/SearchResult'
+import { Analytics } from '../../src/utils/analytics'
 
 const SearchResultPage = () => {
   const router = useRouter()
@@ -68,6 +69,40 @@ const SearchResultPage = () => {
   useEffect(() => {
     SearchBeerQuery.refetch()
   }, [selectedFilters, beerVolume])
+
+  useEffect(() => {
+    if (typeof query === 'string' && query) {
+      const beerNames = SearchBeerQuery.data?.contents?.map(beer => beer.name) || []
+      Analytics.search(query, beerNames)
+    }
+  }, [query, SearchBeerQuery.data])
+
+  useEffect(() => {
+    // Track filter applications
+    if (SearchBeerQuery.data?.contents) {
+      const beerNames = SearchBeerQuery.data.contents.map(beer => beer.name)
+      
+      // Track sort filter
+      if (selectedSort) {
+        Analytics.viewFilteredItems('sort', selectedSort, beerNames)
+      }
+      
+      // Track beer type filter
+      if (selectedBeerTypes.length > 0) {
+        Analytics.viewFilteredItems('beer_type', selectedBeerTypes.join(','), beerNames)
+      }
+      
+      // Track country filter
+      if (selectedCountries.length > 0) {
+        Analytics.viewFilteredItems('country', selectedCountries.join(','), beerNames)
+      }
+      
+      // Track volume filter
+      if (beerVolume[0] !== MIN_MAX_BEER_VOLUME_SLIDER[0] || beerVolume[1] !== MIN_MAX_BEER_VOLUME_SLIDER[1]) {
+        Analytics.viewFilteredItems('volume', `${beerVolume[0]}-${beerVolume[1]}`, beerNames)
+      }
+    }
+  }, [selectedFilters, beerVolume, SearchBeerQuery.data])
 
   const handleFocus = () => {
     router.push('/search')

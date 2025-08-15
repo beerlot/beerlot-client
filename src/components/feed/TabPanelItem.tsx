@@ -21,6 +21,7 @@ import { EditNote, TrashBin } from '../../../public/svg'
 import { CommonBeerImage } from '../shared/CommonBeerImage/CommonBeerImage'
 import { Rating } from '../shared/Rating'
 import { ThumbsUpButton } from '../shared/ThumbsUpButton'
+import { Analytics } from '../../utils/analytics'
 interface FollowingTabPanelItemProps {
   reviewId: number
   nickname: string
@@ -92,6 +93,7 @@ export const FollowingTabPanelItem: React.FC<FollowingTabPanelItemProps> = ({
     if (isLiked) {
       reviewDislikeMutation.mutate()
     } else {
+      Analytics.likeReview()
       reviewLikeMutation.mutate()
     }
   }

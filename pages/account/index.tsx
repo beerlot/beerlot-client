@@ -1,8 +1,14 @@
 import { Box, Container } from '@chakra-ui/react'
 import { GetServerSideProps } from 'next'
 import AccountsTemplate from '../../src/components/account/AccountsTemplate'
+import { useEffect } from 'react'
+import { Analytics } from '../../src/utils/analytics'
 
 const AccountPage = () => {
+  useEffect(() => {
+    Analytics.viewMypage()
+  }, [])
+
   return (
     <Box w='full' bg='gray.100' pb={'64px'} minH={'100vh'}>
       <Container p={'0px'} maxW='450px' bg='white'>

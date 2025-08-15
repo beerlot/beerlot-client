@@ -15,6 +15,7 @@ import { BeerReviewContent } from '../BeerReviewContent'
 import { BeerSearchContent } from '../BeerSearchContent'
 import { ReviewExitConfirmationDrawer } from '../ReviewExitConfirmationDrawer'
 import { initialReviewInfo } from '@components/shared/ReviewModal/ReviewModal/ReviewModalWrapper'
+import { Analytics } from '../../../../utils/analytics'
 
 interface ReviewModalProps {
   isModalOpen: ModalProps['isOpen']
@@ -57,6 +58,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
   }
 
   const handleChangeBeerName = (beer: BeerTypeV2) => {
+    Analytics.chooseReviewProduct(beer.name)
     setLocalBeerInfo(beer)
   }
 

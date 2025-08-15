@@ -4,6 +4,7 @@ import { OrangeCheckCircle } from '../../../../public/svg'
 import FloatingButton from '../../shared/FloatingButton'
 import { LeftBackCompleteCircles } from '../../shared/Headers/LeftBackCompleteCircles'
 import { SignUpType } from '../../../../interface/types'
+import { Analytics, getCurrentDate } from '../../../utils/analytics'
 
 interface CompleteTemplateProps {
   userInfo: SignUpType
@@ -12,6 +13,8 @@ interface CompleteTemplateProps {
 const CompleteTemplate: React.FC<CompleteTemplateProps> = ({ userInfo }) => {
   const router = useRouter()
   const handleClickComplete = () => {
+    // Track signup completion with current date and method (we'll need to get the method from context)
+    Analytics.signUp(getCurrentDate(), 'social') // Default to social since we don't have the specific method here
     router.push(`/`)
   }
 

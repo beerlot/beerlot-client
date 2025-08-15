@@ -1,8 +1,13 @@
 import { GetServerSideProps } from 'next'
-import React from 'react'
+import React, { useEffect } from 'react'
 import SignUpTemplate from '../../src/components/auth/sign-up/SignUpTemplate'
+import { Analytics } from '../../src/utils/analytics'
 
 const index = () => {
+  useEffect(() => {
+    Analytics.viewSignUp()
+  }, [])
+
   return <SignUpTemplate />
 }
 

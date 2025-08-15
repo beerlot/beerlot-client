@@ -9,8 +9,13 @@ import {
 import { OAUTH_PROVIDER } from '../../../../interface/types'
 import { GoogleLogo, KakaoLogo, NaverLogo } from '../../../../public/svg'
 import { generateSocialLoginUrl } from '../../../api/user/api'
+import { Analytics, getLoginMethod } from '../../../utils/analytics'
 
 const SocialButton = () => {
+  const handleSocialLogin = (provider: string) => {
+    Analytics.login(getLoginMethod(provider))
+  }
+
   return (
     <VStack w={'100%'} gap='10px'>
       {socialButton.map((button) => {
@@ -33,6 +38,7 @@ const SocialButton = () => {
             px={'8px'}
             alignItems={'center'}
             cursor='pointer'
+            onClick={() => handleSocialLogin(button.provider)}
           >
             <Icon as={button.icon} w={'36px'} h={'36px'} />
             <Text textStyle={'h2'} textColor={button.textColor}>

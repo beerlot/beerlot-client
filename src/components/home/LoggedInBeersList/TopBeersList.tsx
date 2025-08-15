@@ -28,6 +28,7 @@ import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import React, { useCallback, useMemo } from 'react'
 import { getFlagByCountryName } from './beer.service'
+import { Analytics } from '../../../utils/analytics'
 
 interface TopBeersListProps {
   onValidateLikedBeersList: () => void
@@ -60,6 +61,7 @@ const TopBeersList: React.FC<TopBeersListProps> = ({
   const handleClickCard = useCallback(
     (id?: number, name?: string) => {
       if (!id || !name) return
+      Analytics.clickMainBestProduct(id, name)
       const url = generateBeerDetailUrl(id, name)
       router.push(url)
     },

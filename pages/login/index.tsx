@@ -1,8 +1,14 @@
 import { Box, Container } from '@chakra-ui/react'
 import { GetServerSideProps } from 'next'
 import { LoginTemplate } from '../../src/components/auth/login/LoginTemplate'
+import { useEffect } from 'react'
+import { Analytics } from '../../src/utils/analytics'
 
 const Login = () => {
+  useEffect(() => {
+    Analytics.viewLogin()
+  }, [])
+
   return (
     <Box w='full' bg='gray.100' h={'100vh'} minH={'100vh'}>
       <Container

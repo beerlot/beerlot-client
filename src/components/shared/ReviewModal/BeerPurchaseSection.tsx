@@ -2,6 +2,7 @@ import { Box, HStack, IconButton, Tag, Text, VStack } from '@chakra-ui/react'
 import { CrossXBlack } from '../../../../public/svg'
 import { PlaceTagOptions } from '@components/shared/ReviewModal/PlaceTagOptions'
 import { EtcPlaceTagOption } from '@components/shared/ReviewModal/EtcPlaceTagOption'
+import { Analytics } from '../../../utils/analytics'
 
 interface BeerPurchaseSectionProps {
   currentPlace: string
@@ -13,6 +14,11 @@ export const BeerPurchaseSection: React.FC<BeerPurchaseSectionProps> = ({
   handleChangePlaceTag,
 }) => {
   const isEtc = !designatedPurchasePlaces.includes(currentPlace)
+
+  const handlePlaceTagChange = (place: string) => {
+    Analytics.clickStore(place)
+    handleChangePlaceTag(place)
+  }
 
   return (
     <VStack p='10px' gap='10px' w='full' alignItems={'flex-start'}>
@@ -44,12 +50,12 @@ export const BeerPurchaseSection: React.FC<BeerPurchaseSectionProps> = ({
                 currentPlace={
                   currentPlace !== '기타' ? currentPlace : undefined
                 }
-                handleChangePlace={handleChangePlaceTag}
+                handleChangePlace={handlePlaceTagChange}
               />
             )}
           </HStack>
         ) : (
-          <PlaceTagOptions onClickPlaceTag={handleChangePlaceTag} />
+          <PlaceTagOptions onClickPlaceTag={handlePlaceTagChange} />
         )}
 
         {currentPlace && (
@@ -61,7 +67,7 @@ export const BeerPurchaseSection: React.FC<BeerPurchaseSectionProps> = ({
             icon={<CrossXBlack />}
             _hover={{}}
             _active={{}}
-            onClick={() => handleChangePlaceTag('')}
+            onClick={() => handlePlaceTagChange('')}
           />
         )}
       </HStack>

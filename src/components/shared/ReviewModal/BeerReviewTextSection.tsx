@@ -1,6 +1,7 @@
 import { Box, Flex, Text, Textarea, VStack } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
 import { ReviewStatic } from '../../../../interface/static'
+import { Analytics } from '../../../utils/analytics'
 
 interface BeerReviewTextSectionProps {
   onChangeInput: (input: string) => void
@@ -12,7 +13,11 @@ export const BeerReviewTextSection: React.FC<BeerReviewTextSectionProps> = ({
   input,
 }) => {
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    onChangeInput(event.target.value)
+    const newValue = event.target.value
+    if (newValue.length > input.length) {
+      Analytics.writeDetail()
+    }
+    onChangeInput(newValue)
   }
   return (
     <VStack p='10px' w='full' alignItems={'flex-start'} gap='10px'>

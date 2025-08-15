@@ -8,6 +8,7 @@ import {
 } from '../../../../../types/review'
 import { useErrorToast } from '@/hooks/shared/useErrorToast'
 import { ReviewModal } from '@components/shared/ReviewModal/ReviewModal/ReviewModal'
+import { Analytics } from '../../../../utils/analytics'
 
 interface ReviewModalWrapperProps {
   isModalOpen: ModalProps['isOpen']
@@ -39,6 +40,7 @@ export const ReviewModalWrapper: React.FC<ReviewModalWrapperProps> = ({
       },
       {
         onSuccess: () => {
+          Analytics.uploadReview()
           onSuccess?.()
           onCloseModal()
         },

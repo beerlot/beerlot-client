@@ -5,6 +5,7 @@ import FloatingButton from '../../shared/FloatingButton'
 import CommonValidationInput from '../../shared/CommonValidationInput'
 import { useNicknameHandler } from '@/hooks/nickname/useNicknameHandler'
 import { ConsentsSection } from '@components/auth/sign-up/ConsentsSection'
+import { Analytics } from '../../../utils/analytics'
 
 interface NicknameProps {
   setUserInfo: (key: keyof SignUpType, value: string) => void
@@ -35,6 +36,7 @@ const Nickname: React.FC<NicknameProps> = ({ onNext, setUserInfo }) => {
       })
       return
     }
+    Analytics.signupNickname()
     setUserInfo('username', usernameInput)
     onNext()
   }

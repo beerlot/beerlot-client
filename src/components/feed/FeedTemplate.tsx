@@ -9,6 +9,8 @@ import { ReviewModalWrapper } from '../shared/ReviewModal/ReviewModal/ReviewModa
 import { useAllReviewsInfiniteQuery } from '../../../hooks/reviews/useReview'
 import { LanguageType, ReviewSortType } from '../../../types/common'
 import { MOCK_FEED_FILTER_LIST } from '../../../interface/static'
+import { Analytics } from '../../utils/analytics'
+import { useEffect } from 'react'
 
 export const FeedTemplate = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -22,11 +24,16 @@ export const FeedTemplate = () => {
     language: LanguageType.KR,
   })
 
+  useEffect(() => {
+    Analytics.viewFeed()
+  }, [])
+
   const handleOpenReviewModal = () => {
     if (!accessToken) {
       router.push('/login')
       return
     }
+    Analytics.clickReviewButton()
     onOpen()
   }
 

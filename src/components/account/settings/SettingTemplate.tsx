@@ -6,6 +6,7 @@ import BottomDrawer from '../../shared/BottomDrawer'
 import { LeftBackRandom } from '../../shared/Headers/LeftBackRandom'
 import { SettingSectionList } from '@components/account/settings/SettingSectionList'
 import { useUserInfoQuery } from '../../../../hooks/query/useUserQuery'
+import { Analytics } from '../../../utils/analytics'
 
 export const SettingsTemplate = () => {
   const router = useRouter()
@@ -42,6 +43,7 @@ export const SettingsTemplate = () => {
   }
 
   const handleLogout = () => {
+    Analytics.logout()
     router.push('/')
     Cookies.remove('beerlot-oauth-auth-request')
   }
@@ -53,6 +55,7 @@ export const SettingsTemplate = () => {
   const handleSignout = () => {
     // TODO: 탈퇴 로직 구현 필요
     console.log('네 떠날래요 클릭됨')
+    Analytics.withdraw()
     handleLogout()
     router.push('/')
     SignOut.onClose()

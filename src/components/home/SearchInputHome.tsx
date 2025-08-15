@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { SEARCH_BAR_PLACEHOLDER } from '../../../interface/static'
 import { SearchGlass } from '../../../public/svg'
+import { Analytics } from '../../utils/analytics'
 
 interface SearchInputHomeProps {
   placeholder?: string
@@ -11,6 +12,7 @@ interface SearchInputHomeProps {
 const SearchInputHome: React.FC<SearchInputHomeProps> = ({ placeholder }) => {
   const router = useRouter()
   const handleFocus = () => {
+    Analytics.clickSearchBar()
     router.push(`/search`)
   }
 

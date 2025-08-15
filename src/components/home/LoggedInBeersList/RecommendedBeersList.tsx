@@ -29,6 +29,7 @@ import {
   useBeerLikeMutation,
 } from '@/../hooks/query/useBeerLikeMutation'
 import { generateBeerDetailUrl } from '@/../utils/url'
+import { Analytics } from '../../../utils/analytics'
 
 interface RecommendedBeersListProps {
   beersList: (SingelBeerFetchResponseType | undefined)[]
@@ -79,6 +80,7 @@ const RecommendedBeersList: React.FC<RecommendedBeersListProps> = ({
   const handleClickCard = useCallback(
     (id?: number, name?: string) => {
       if (!id || !name) return
+      Analytics.clickMainMdProduct(id, name)
       const url = generateBeerDetailUrl(id, name)
       router.push(url)
     },

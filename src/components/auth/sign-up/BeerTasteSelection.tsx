@@ -9,6 +9,7 @@ import {
 import Cookies from 'js-cookie'
 import React, { useEffect } from 'react'
 import { POLICY_LABEL } from '../../../../interface/server/types/Auth'
+import { Analytics } from '../../../utils/analytics'
 
 import { useSignupQuery } from '@/../hooks/query/useAuthQuery'
 import {
@@ -60,6 +61,7 @@ const BeerTasteSelection: React.FC<BeerTasteSelectionProps> = ({
   })
 
   const handleClickComplete = () => {
+    Analytics.signupTaste()
     signupQuery.refetch()
   }
 
