@@ -1,5 +1,4 @@
 import { Box, Container, Flex } from '@chakra-ui/react'
-import { LeftBackCompleteCircles } from '../../shared/Headers/LeftBackCompleteCircles'
 import Nickname from './Nickname'
 import { useState } from 'react'
 import CompleteTemplate from './CompleteTemplate'
@@ -41,8 +40,8 @@ const SignUpTemplate = () => {
     <Box w='full' h='100vh' bg='gray.100'>
       <Container h='full' bg='white' p={0} maxW='450px'>
         <Flex w={'full'} h={'full'} flexDirection='column'>
-          <Box flex={1} overflowY='auto' className='hide-scrollbar' pb={'100px'}>
-            <Box pt={10} pos={'relative'}>
+          <Box flex={1} overflowY='auto' className='hide-scrollbar'>
+            <Box pos={'relative'}>
               <Box
                 pos={'absolute'}
                 top={0}

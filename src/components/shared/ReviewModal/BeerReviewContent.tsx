@@ -9,7 +9,6 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import { CreateReviewRequestTypeV2 } from '../../../../types/review'
-import { LeftCloseRandom } from '../Headers/LeftCloseRandom'
 import BeerNameSection from './BeerNameSection'
 import { BeerPurchaseSection } from './BeerPurchaseSection'
 import { BeerRatingSection } from './BeerRatingSection'
@@ -54,7 +53,6 @@ export const BeerReviewContent: React.FC<BeerReviewContentProps> = ({
   return (
     <>
       <ModalHeader pt='46px'>
-        <LeftCloseRandom onClose={onOpenDrawer} title='글쓰기' />
       </ModalHeader>
       <ModalBody p={0} pt='10px'>
         <VStack

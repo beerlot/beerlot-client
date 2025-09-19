@@ -7,8 +7,8 @@ export const PrivacyPolicyTemplate: React.FC<
   PrivacyPolicyTemplateProps
 > = ({}) => {
   return (
-    <Box w='full' bg='gray.100' pb={'64px'}>
-      <Container py={10} px={6} bg='white' maxW='450px' h={'full'}>
+    <Box w='full' bg='gray.100'>
+      <Container bg='white' maxW='450px' h={'full'}>
         <Box>
           {/* Title */}
           <Text as={'h1'} textStyle={'h1'}>

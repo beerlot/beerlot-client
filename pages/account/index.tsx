@@ -3,6 +3,7 @@ import { GetServerSideProps } from 'next'
 import AccountsTemplate from '../../src/components/account/AccountsTemplate'
 import { useEffect } from 'react'
 import { Analytics } from '../../src/utils/analytics'
+import CommonPageLayout from '../../src/components/shared/CommonPageLayout'
 
 const AccountPage = () => {
   useEffect(() => {
@@ -10,11 +11,13 @@ const AccountPage = () => {
   }, [])
 
   return (
-    <Box w='full' bg='gray.100' pb={'64px'} minH={'100vh'}>
-      <Container p={'0px'} maxW='450px' bg='white'>
-        <AccountsTemplate />
-      </Container>
-    </Box>
+    <CommonPageLayout>
+      <Box w='full' bg='gray.100' pb={'64px'} minH={'100vh'}>
+        <Container p={'0px'} maxW='450px' bg='white'>
+          <AccountsTemplate />
+        </Container>
+      </Box>
+    </CommonPageLayout>
   )
 }
 

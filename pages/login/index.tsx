@@ -3,6 +3,7 @@ import { GetServerSideProps } from 'next'
 import { LoginTemplate } from '../../src/components/auth/login/LoginTemplate'
 import { useEffect } from 'react'
 import { Analytics } from '../../src/utils/analytics'
+import CommonPageLayout from '../../src/components/shared/CommonPageLayout'
 
 const Login = () => {
   useEffect(() => {
@@ -10,20 +11,9 @@ const Login = () => {
   }, [])
 
   return (
-    <Box w='full' bg='gray.100' h={'100vh'} minH={'100vh'}>
-      <Container
-        px={'20px'}
-        pt={'32px'}
-        pb={'12px'}
-        h='full'
-        w='full'
-        bg='white'
-        maxW='450px'
-        position={'relative'}
-      >
-        <LoginTemplate />
-      </Container>
-    </Box>
+    <CommonPageLayout>
+      <LoginTemplate />
+    </CommonPageLayout>
   )
 }
 

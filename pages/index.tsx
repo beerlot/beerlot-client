@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { useUserInfoQuery } from '../hooks/query/useUserQuery'
 import { filterAccessToken } from '../service/auth'
 import HomeTemplate from '../src/components/home/HomeTemplate'
+import CommonPageLayout from '../src/components/shared/CommonPageLayout'
 
 const Home: NextPage = () => {
   const router = useRouter()
@@ -41,7 +42,11 @@ const Home: NextPage = () => {
     }
   }, [cookieAccessToken])
 
-  return <HomeTemplate username={userQuery?.data?.username} />
+  return (
+    <CommonPageLayout>
+      <HomeTemplate username={userQuery?.data?.username} />
+    </CommonPageLayout>
+  )
 }
 
 export default Home

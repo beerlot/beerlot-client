@@ -8,8 +8,6 @@ import {
 } from '../../../hooks/query/useBeerLikeMutation'
 import { useUserLikedBeersQuery } from '../../../hooks/query/useUserQuery'
 import { CommonBeerImage } from '../shared/CommonBeerImage/CommonBeerImage'
-import { LeftBackBeerNameRightHeart } from '../shared/Headers/LeftBackBeerNameRightHeart'
-import { LeftBackTitle } from '../shared/Headers/LeftBackTitle'
 import { LikeButton } from '../shared/LikeButton'
 import { Rating } from '../shared/Rating'
 import { useRouter } from 'next/router'
@@ -108,11 +106,7 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
   return (
     <>
       {/* title */}
-      {didPassStar ? (
-        <LeftBackBeerNameRightHeart beerName={beerName} />
-      ) : (
-        <LeftBackTitle />
-      )}
+     
       {/* image  */}
       <Center pt='72px' w='full' px='24px'>
         <CommonBeerImage

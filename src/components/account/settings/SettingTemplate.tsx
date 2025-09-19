@@ -3,7 +3,6 @@ import { Box, useDisclosure, VStack } from '@chakra-ui/react'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import BottomDrawer from '../../shared/BottomDrawer'
-import { LeftBackRandom } from '../../shared/Headers/LeftBackRandom'
 import { SettingSectionList } from '@components/account/settings/SettingSectionList'
 import { useUserInfoQuery } from '../../../../hooks/query/useUserQuery'
 import { Analytics } from '../../../utils/analytics'
@@ -64,7 +63,6 @@ export const SettingsTemplate = () => {
   return (
     <Box h='full'>
       <VStack bg='gray.100' h='full'>
-        <LeftBackRandom onClick={handleClickBack} title='설정' />
         <BottomDrawer
           headerLabel={'로그아웃 하시겠어요?'}
           onClose={LogoutDrawer.onClose}

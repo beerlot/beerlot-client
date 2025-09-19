@@ -2,7 +2,7 @@ import { Box, Container, Text, VStack } from '@chakra-ui/react'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { SectionButton } from '../../../src/components/account/settings/SectionButton'
-import { LeftBackRandom } from '../../../src/components/shared/Headers/LeftBackRandom'
+import CommonPageLayout from '../../../src/components/shared/CommonPageLayout'
 
 const Info = () => {
   const router = useRouter()
@@ -10,62 +10,47 @@ const Info = () => {
     router.back()
   }
   return (
-    <Box w='full' h='full' bg='gray.100'>
-      <Container
-        p={'0px'}
-        h='full'
-        w='full'
-        bg='white'
-        position='relative'
-        maxW='450px'
-      >
-        <Box h='full'>
-          <VStack bg='gray.100' h='full'>
-            {/* title */}
-            <LeftBackRandom onClick={handleClickBack} title='비어랏 정보' />
-
-            <VStack
-              bg='gray.100'
-              pt='70px'
-              w='full'
-              gap='10px'
-              borderRight={'1px solid'}
-              borderRightColor={'gray.200'}
-              borderLeft={'1px solid'}
-              borderLeftColor={'gray.200'}
-              h='full'
-            >
-              <VStack w='full'>
-                <SectionButton title={'버전'}>
-                  <Text textColor={'gray.300'} textStyle='h2'>
-                    1.0
-                  </Text>
-                </SectionButton>
-              </VStack>
-              <VStack w='full' h='full'>
-                {InfoSettingSection.map((content) => (
-                  <SectionButton
-                    key={content.title}
-                    title={content.title}
-                    href={content.href}
-                    style={{ marginTop: 0 }}
-                    isExternal={content?.isExternal}
-                  />
-                ))}
-                <Box
-                  w='full'
-                  h='full'
-                  bg='white'
-                  style={{
-                    marginTop: 0,
-                  }}
-                />
-              </VStack>
-            </VStack>
+    <CommonPageLayout>
+      <VStack bg='gray.100' h='full'>
+        <VStack
+          bg='gray.100'
+          w='full'
+          gap='10px'
+          borderRight={'1px solid'}
+          borderRightColor={'gray.200'}
+          borderLeft={'1px solid'}
+          borderLeftColor={'gray.200'}
+          h='full'
+        >
+          <VStack w='full'>
+            <SectionButton title={'버전'}>
+              <Text textColor={'gray.300'} textStyle='h2'>
+                1.0
+              </Text>
+            </SectionButton>
           </VStack>
-        </Box>
-      </Container>
-    </Box>
+          <VStack w='full' h='full'>
+            {InfoSettingSection.map((content) => (
+              <SectionButton
+                key={content.title}
+                title={content.title}
+                href={content.href}
+                style={{ marginTop: 0 }}
+                isExternal={content?.isExternal}
+              />
+            ))}
+            <Box
+              w='full'
+              h='full'
+              bg='white'
+              style={{
+                marginTop: 0,
+              }}
+            />
+          </VStack>
+        </VStack>
+      </VStack>
+    </CommonPageLayout>
   )
 }
 

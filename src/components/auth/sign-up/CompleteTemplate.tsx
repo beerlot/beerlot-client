@@ -2,7 +2,6 @@ import { Box, Center, Container, Flex, Icon, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { OrangeCheckCircle } from '../../../../public/svg'
 import FloatingButton from '../../shared/FloatingButton'
-import { LeftBackCompleteCircles } from '../../shared/Headers/LeftBackCompleteCircles'
 import { SignUpType } from '../../../../interface/types'
 import { Analytics, getCurrentDate } from '../../../utils/analytics'
 
@@ -20,7 +19,7 @@ const CompleteTemplate: React.FC<CompleteTemplateProps> = ({ userInfo }) => {
 
   return (
     <>
-      <Center h={'full'} flexDir='column' pt={20}>
+      <Center h={'full'} flexDir='column'>
         <Icon as={OrangeCheckCircle} w={'80px'} h={'80px'} />
         <Text mt={'24px'} textStyle={'h1'} textColor='black'>
           회원가입 완료!

@@ -1,5 +1,4 @@
 import { useEditUserInfoMutation } from '@/../hooks/query/useUserQuery'
-import LeftXTitleRightComplete from '@/components/shared/Headers/LeftXTitleRightComplete'
 import { MAX_BIO_LENGTH, useBioHandler } from '@/hooks/bio/useBioHandler'
 import { useNicknameHandler } from '@/hooks/nickname/useNicknameHandler'
 import { useErrorToast } from '@/hooks/shared/useErrorToast'
@@ -75,12 +74,7 @@ export const ProfileEditContent: React.FC<ProfileEditContentProps> = ({
 
   return (
     <>
-      <LeftXTitleRightComplete
-        title={'프로필 편집'}
-        rightTitleStyleProps={rightTitleStyleProps(isChangeCompleted)}
-        rightTitle={'완료'}
-        onClickRight={handleClickComplete}
-      />
+  
       <VStack px='30px' py='10px' gap='32px' pt='50px'>
         <VStack>
           <ProfileUploadAvatar imageUrl={imageUrl} setImageUrl={setImageUrl} />

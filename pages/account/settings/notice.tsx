@@ -7,64 +7,49 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from '@chakra-ui/react'
-import { LeftBackRandom } from '../../../src/components/shared/Headers/LeftBackRandom'
+import CommonPageLayout from '../../../src/components/shared/CommonPageLayout'
 const Notice = () => {
   const router = useRouter()
   const handleClickBack = () => {
     router.back()
   }
   return (
-    <Box w='full' h='full' bg='gray.100'>
-      <Container
-        p={'0px'}
-        h='full'
-        w='full'
-        bg='white'
-        position='relative'
-        maxW='450px'
-      >
-        {/* title */}
-        <LeftBackRandom
-          onClick={handleClickBack}
-          title='공지사항'
-          borderBottom='none'
-        />
-        <Accordion allowToggle pt='52px'>
-          {NoticeSettingSection.map(({ title, date, content }) => (
-            <AccordionItem key={title}>
-              <AccordionButton
-                py={'8px'}
-                px={'30px'}
-                justifyContent='space-between'
-              >
-                <Box>
-                  <Text textColor={'black.100'} textStyle='h3_bold'>
-                    {title}
+    <CommonPageLayout>
+      <Accordion allowToggle pt='52px'>
+            {NoticeSettingSection.map(({ title, date, content }) => (
+              <AccordionItem key={title}>
+                <AccordionButton
+                  py={'8px'}
+                  px={'30px'}
+                  justifyContent='space-between'
+                >
+                  <Box>
+                    <Text textColor={'black.100'} textStyle='h3_bold'>
+                      {title}
+                    </Text>
+                    <Text
+                      textAlign={'start'}
+                      textColor={'gray.300'}
+                      textStyle='h4'
+                    >
+                      {date}
+                    </Text>
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel
+                  p={'12px 30px 30px'}
+                  borderTop='1px solid'
+                  borderTopColor={'gray.200'}
+                >
+                  <Text textColor={'gray.300'} textStyle='h4'>
+                    {content}
                   </Text>
-                  <Text
-                    textAlign={'start'}
-                    textColor={'gray.300'}
-                    textStyle='h4'
-                  >
-                    {date}
-                  </Text>
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-              <AccordionPanel
-                p={'12px 30px 30px'}
-                borderTop='1px solid'
-                borderTopColor={'gray.200'}
-              >
-                <Text textColor={'gray.300'} textStyle='h4'>
-                  {content}
-                </Text>
-              </AccordionPanel>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </Container>
-    </Box>
+                </AccordionPanel>
+              </AccordionItem>
+            ))}
+          </Accordion>
+    </CommonPageLayout>
   )
 }
 

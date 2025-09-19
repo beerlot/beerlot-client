@@ -6,7 +6,6 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import React from 'react'
-import { LeftBackRandom } from '../Headers/LeftBackRandom'
 import { BeerTypeV2 } from '../../../../types/review'
 
 interface BeerSearchContentProps extends ModalContentProps {
@@ -30,7 +29,6 @@ export const BeerSearchContent: React.FC<BeerSearchContentProps> = ({
   return (
     <>
       <ModalHeader pt='46px'>
-        <LeftBackRandom onClick={onBack} title='맥주 이름' />
       </ModalHeader>
       <ModalBody p='10px 20px' h='full'>
         <VStack

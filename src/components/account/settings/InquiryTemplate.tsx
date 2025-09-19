@@ -1,6 +1,5 @@
 import { Button, Center, Link, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { LeftBackRandom } from '../../shared/Headers/LeftBackRandom'
 import { BEERLOT_EMAIL } from '../../../../interface/static'
 
 export const InquiryTemplate = () => {
@@ -11,7 +10,6 @@ export const InquiryTemplate = () => {
   }
   return (
     <>
-      <LeftBackRandom onClick={handleClickBack} title='문의하기' />
       <Center flexDir={'column'} w='full' h='full'>
         <Text textColor='black.100'>사용하시면서 문의사항이 생겼나요?🧐</Text>
         <Text textColor='gray.300' textAlign={'center'} mt='24px'>
@@ -23,8 +21,6 @@ export const InquiryTemplate = () => {
           mt='24px'
           as={Link}
           href={`mailto:?subject=${BEERLOT_EMAIL}`}
-          py={'10px'}
-          px={'73px'}
           h='fit-content'
           bg='gray.100'
         >

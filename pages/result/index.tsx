@@ -7,10 +7,10 @@ import { CategoryFilterListType, CategoryTitle } from '../../interface/types'
 import { EmptyFilter, WhiteFilter } from '../../public/svg'
 import { SearchFilterList } from '../../src/components/result/filter/search-filter-list/SearchFilterList'
 import SearchInput from '../../src/components/search/SearchInput'
-import { LeftBackTitle } from '../../src/components/shared/Headers/LeftBackTitle'
 import { BeerSortType } from '../../types/common'
 import { SearchResult } from '@/components/search/SearchResult'
 import { Analytics } from '../../src/utils/analytics'
+import CommonPageLayout from '../../src/components/shared/CommonPageLayout'
 
 const SearchResultPage = () => {
   const router = useRouter()
@@ -168,37 +168,38 @@ const SearchResultPage = () => {
   }
 
   return (
-    <Box w='full' h='100vh' bg='gray.100' overflowY='scroll'>
-      <Container p={'0px'} minH={'100vh'} bg='white' maxW='450px'>
-        <LeftBackTitle />
-        <Box p={'68px 24px 24px'} h='full'>
-          <Flex gap='10px' alignItems='center' mb='10px' cursor={'pointer'}>
-            <SearchInput onFocus={handleFocus} autoFocus={false} />
-            <Circle size='31px' bg='blue.100' onClick={handleClickToggle}>
-              {isFilterListOpen ? <WhiteFilter /> : <EmptyFilter />}
-            </Circle>
-          </Flex>
+    <CommonPageLayout>
+      <Box w='full' h='100vh' bg='gray.100' overflowY='scroll'>
+        <Container p={'0px'} minH={'100vh'} bg='white' maxW='450px'>
+          <Box h='full'>
+            <Flex gap='10px' alignItems='center' mb='10px' cursor={'pointer'}>
+              <SearchInput onFocus={handleFocus} autoFocus={false} />
+              <Circle size='31px' bg='blue.100' onClick={handleClickToggle}>
+                {isFilterListOpen ? <WhiteFilter /> : <EmptyFilter />}
+              </Circle>
+            </Flex>
 
-          <SearchFilterList
-            selectedFilters={selectedFilters}
-            isFilterListOpen={isFilterListOpen}
-            onClickToggle={handleClickToggle}
-            onClickTag={handleClickTag}
-            beerVolume={beerVolume}
-            onChangeBeerVolume={handleChangeBeerVolume}
-          />
-
-          <Center>
-            <SearchResult
-              loading={SearchBeerQuery.isLoading || SearchBeerQuery.isFetching}
-              beers={SearchBeerQuery.data?.contents}
+            <SearchFilterList
+              selectedFilters={selectedFilters}
+              isFilterListOpen={isFilterListOpen}
+              onClickToggle={handleClickToggle}
+              onClickTag={handleClickTag}
+              beerVolume={beerVolume}
+              onChangeBeerVolume={handleChangeBeerVolume}
             />
-          </Center>
 
-          <Box h='64px' />
-        </Box>
-      </Container>
-    </Box>
+            <Center>
+              <SearchResult
+                loading={SearchBeerQuery.isLoading || SearchBeerQuery.isFetching}
+                beers={SearchBeerQuery.data?.contents}
+              />
+            </Center>
+
+            <Box h='64px' />
+          </Box>
+        </Container>
+      </Box>
+    </CommonPageLayout>
   )
 }
 

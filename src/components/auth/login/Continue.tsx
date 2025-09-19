@@ -1,9 +1,10 @@
 import { Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 
-const ContinueButton = () => {
+const ContinueButton = ({ onClick }: { onClick: () => void }) => {
   const router = useRouter()
   const handleClick = () => {
+    onClick()
     router.back()
   }
   return (

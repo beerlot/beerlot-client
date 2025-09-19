@@ -1,6 +1,5 @@
 import { Box, Container, VStack } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { LeftBackTitle } from '../shared/Headers/LeftBackTitle'
 
 import useKeyboard from '@/../hooks/useKeyboard'
 import { SearchBarList } from '../home/Search/SearchBarList'
@@ -31,7 +30,7 @@ const SearchBarTemplate = () => {
         maxW='450px'
         minH={'100vh'}
       >
-        <VStack pt='64px'>
+        <VStack>
           <LeftBackTitle />
           <SearchBarList
             handleClickItem={handleClickItem}

@@ -9,7 +9,6 @@ import Cookies from 'js-cookie'
 import { useEffect } from 'react'
 import { useQueries } from 'react-query'
 import { LANGUAGE_TYPE } from '../../../interface/types'
-import { BlankHeader } from '../shared/Headers/BlankHeader'
 import { CommonBeersList } from './CommonBeersList/CommonBeersList'
 import { LoggedInBeersList } from './LoggedInBeersList/LoggedInBeersList'
 import SearchInputHome from './SearchInputHome'
@@ -60,10 +59,9 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({ username }) => {
   }, [])
 
   return (
-    <Box w='full' h='calc(100vh - 57px)' bg='gray.100' overflowY='scroll'>
+    <Box w='full' bg='gray.100' overflowY='scroll'>
       <Container p={'0px'} bg='white' maxW='450px' minH={'100vh'}>
-        <Box p='64px 24px 24px' pt='64px'>
-          <BlankHeader />
+        <Box>
 
           <WelcomeTextContent username={username} />
 

@@ -1,14 +1,20 @@
+'use client'
 import { GetServerSideProps } from 'next'
 import React, { useEffect } from 'react'
 import SignUpTemplate from '../../src/components/auth/sign-up/SignUpTemplate'
 import { Analytics } from '../../src/utils/analytics'
+import CommonPageLayout from '../../src/components/shared/CommonPageLayout'
 
 const index = () => {
   useEffect(() => {
     Analytics.viewSignUp()
   }, [])
 
-  return <SignUpTemplate />
+  return (
+    <CommonPageLayout>
+      <SignUpTemplate />
+    </CommonPageLayout>
+  )
 }
 
 export default index
