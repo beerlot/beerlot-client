@@ -1,4 +1,4 @@
-import { Box, Center } from '@chakra-ui/react'
+import { Box, Center, Flex} from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { LeftCloseRandom } from '../../shared/Headers/LeftCloseRandom'
 import ContinueButton from './Continue'
@@ -13,13 +13,16 @@ const LoginTemplate = () => {
 
   return (
     <Box>
-      <Center pt={'50px'} flexDir='column' gap='106px' px={'24px'}>
+      <Center pt={'12px'} flexDir='column'>
         <LeftCloseRandom onClose={handleClose} title='로그인' />
         <MarketingText />
-        <Center flexDir={'column'} w='full' gap={'20px'}>
+        <Box pt={'48px'} pb={'85px'} w='100%'>
+          <img src='/images/Login_img.png' alt='Login Image'  />
+        </Box>
+        <Flex justifyContent={'center'} flexDir={'column'} w='full' gap={'20px'}>
           <SocialButton />
           <ContinueButton />
-        </Center>
+        </Flex>
       </Center>
     </Box>
   )

@@ -4,7 +4,7 @@ import {
   Icon,
   Link as ChakraLink,
   Text,
-  VStack,
+  Flex,
 } from '@chakra-ui/react'
 import { OAUTH_PROVIDER } from '../../../../interface/types'
 import { GoogleLogo, KakaoLogo, NaverLogo } from '../../../../public/svg'
@@ -17,7 +17,7 @@ const SocialButton = () => {
   }
 
   return (
-    <VStack w={'100%'} gap='10px'>
+    <Flex flexDirection={'column'} w={'100%'} gap='10px'>
       {socialButton.map((button) => {
         return (
           <Button
@@ -31,14 +31,15 @@ const SocialButton = () => {
             aria-label={button.ariaLabel}
             border={button.border} // TODO: use them as styleProps
             width='100%'
+            height='48px'
             bg={button.buttonColor}
             borderRadius={12}
             justifyContent='space-between'
-            p={'5px'}
             px={'8px'}
             alignItems={'center'}
             cursor='pointer'
             onClick={() => handleSocialLogin(button.provider)}
+            mt='0px'
           >
             <Icon as={button.icon} w={'36px'} h={'36px'} />
             <Text textStyle={'h2'} textColor={button.textColor}>
@@ -48,7 +49,7 @@ const SocialButton = () => {
           </Button>
         )
       })}
-    </VStack>
+    </Flex>
   )
 }
 

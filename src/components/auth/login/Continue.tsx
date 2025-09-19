@@ -8,13 +8,13 @@ const ContinueButton = () => {
   }
   return (
     <Text
-      as='u'
       _hover={{
         cursor: 'pointer',
       }}
       onClick={handleClick}
-      color='gray.300'
-      textStyle='h3'
+      color='#61646B'
+      textStyle='h4_bold'
+      textAlign={'center'}
     >
       로그인 없이 계속하기
     </Text>

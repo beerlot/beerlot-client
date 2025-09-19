@@ -12,7 +12,9 @@ const Login = () => {
   return (
     <Box w='full' bg='gray.100' h={'100vh'} minH={'100vh'}>
       <Container
-        p={'0px'}
+        px={'20px'}
+        pt={'32px'}
+        pb={'12px'}
         h='full'
         w='full'
         bg='white'

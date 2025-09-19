@@ -33,7 +33,7 @@ export default CardTitle
 export const PopularTitle = styled.p`
   margin-bottom: 10px;
 
-  font-family: 'Roboto';
+  font-family: 'Pretendard';
   font-weight: 700;
 
   color: rgba(0, 0, 0, 0.8);
@@ -45,7 +45,7 @@ export const TitleContainer = styled.div`
 export const RecommendTitle = styled.p`
   margin-bottom: 10px;
 
-  font-family: 'Roboto';
+  font-family: 'Pretendard';
   font-weight: 700;
 
   color: #fea801;
