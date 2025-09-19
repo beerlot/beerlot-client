@@ -1,3 +1,4 @@
+'use client'
 import { Box, Container } from '@chakra-ui/react'
 import { GetServerSideProps } from 'next'
 import { LoginTemplate } from '../../src/components/auth/login/LoginTemplate'
