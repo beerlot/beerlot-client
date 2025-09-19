@@ -134,6 +134,6 @@ export const theme = extendTheme({
     },
   },
   fonts: {
-    body: `'roboto', sans-serif`,
+    body: `'Pretendard', sans-serif`,
   },
 })
