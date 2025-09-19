@@ -1,9 +1,10 @@
+'use client'
 import { GetServerSideProps } from 'next'
 import React, { useEffect } from 'react'
 import SignUpTemplate from '../../src/components/auth/sign-up/SignUpTemplate'
 import { Analytics } from '../../src/utils/analytics'
 
-const index = () => {
+const SignUpPage = () => {
   useEffect(() => {
     Analytics.viewSignUp()
   }, [])
@@ -11,7 +12,7 @@ const index = () => {
   return <SignUpTemplate />
 }
 
-export default index
+export default SignUpPage
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   if (process.env.NODE_ENV === 'development') {
