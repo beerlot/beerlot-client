@@ -1,64 +1,68 @@
-import { HStack, Link, Text, VStack } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
+import { HStack, Link, Text, VStack, Box, Container } from '@chakra-ui/react'
 import {
-  NavAccountsPath,
-  NavFeedPath,
-  NavHomePath,
-  NavSearchPath,
-} from './CustomIcons/customPath'
+  BottomNavDictionaryIcon,
+  BottomNavFeedIcon,
+  BottomNavHomeIcon,
+  BottomNavProfileIcon,
+  BottomNavSearchIcon,
+} from './CustomIcons/customIcons'
+import { useRouter } from 'next/router'
 
 export const BottomNav = () => {
   const router = useRouter()
   const navMenu = [
-    { title: 'home', displayName: '홈', icon: NavHomePath, url: '/' },
-    {
-      title: 'search',
-      displayName: '검색',
-      icon: NavSearchPath,
-      url: '/result',
-    },
-    { title: 'feed', displayName: '피드', icon: NavFeedPath, url: '/feed' },
-    {
-      title: 'account',
-      displayName: '마이',
-      icon: NavAccountsPath,
-      url: '/login',
-    },
-  ]
+    { key: 'home', label: '홈', icon: BottomNavHomeIcon, url: '/' },
+    { key: 'search', label: '검색', icon: BottomNavSearchIcon, url: '/search' },
+    { key: 'dictionary', label: '대백과', icon: BottomNavDictionaryIcon, url: '/dictionary' },
+    { key: 'feed', label: '피드', icon: BottomNavFeedIcon, url: '/feed' },
+    { key: 'account', label: '마이', icon: BottomNavProfileIcon, url: '/account' },
+  ] as const
 
   return (
-    <HStack
-      w='full'
-      py='10px'
-      px='42px'
-      pos='fixed'
-      bg='white.100'
-      borderTop='0.3px solid'
-      borderTopColor='gray.300'
-      bottom='0px'
-    >
-      {navMenu.map((item) => {
-        const { title, displayName, icon, url } = item
-        const curColor = router.pathname === url ? 'orange.300' : 'gray.300'
-        return (
-          <VStack
-            cursor={'pointer'}
-            key={title}
-            flexGrow={1}
-            gap='1px'
-            href={item.url}
-            as={Link}
-            _hover={{
-              textDecoration: 'none',
-            }}
-          >
-            {icon(curColor)}
-            <Text textStyle='h4' color={curColor}>
-              {displayName}
-            </Text>
-          </VStack>
-        )
-      })}
-    </HStack>
+    <Box w='full' pos='fixed' bottom='0' left='0' right='0' bg='transparent' zIndex={1000}>
+      <Container maxW='450px' p={0}>
+        <HStack
+          w='full'
+          h='64px'
+          py='8px'
+          px='20px'
+          bg='white.100'
+          borderTop='1px solid'
+          borderTopColor='gray.100'
+          borderTopLeftRadius='16px'
+          borderTopRightRadius='16px'
+          boxShadow='0px -4px 6px rgba(34, 34, 34, 0.04)'
+          justifyContent='center'
+          alignItems='flex-start'
+        >
+          {navMenu.map((item) => {
+            const isActive = router.pathname === item.url
+            const iconColor = isActive ? 'black.100' : 'gray.400'
+            const labelColor = isActive ? 'black.100' : 'gray.400'
+            const Icon = item.icon
+            return (
+              <VStack
+                key={item.key}
+                flex='1'
+                py='8px'
+                spacing='2px'
+                as={Link}
+                href={item.url}
+                _hover={{ textDecoration: 'none' }}
+                alignItems='center'
+                justifyContent='flex-start'
+              >
+                <Box color={iconColor} w='24px' h='24px'>
+                  <Icon boxSize='24px' />
+                </Box>
+                <Text marginTop={0} textStyle='h5_medium' color={labelColor} lineHeight='none'>
+                  {item.label}
+                </Text>
+              </VStack>
+            )
+          })}
+        </HStack>
+      </Container>
+    </Box>
   )
 }

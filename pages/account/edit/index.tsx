@@ -6,7 +6,7 @@ import CommonPageLayout from '../../../src/components/shared/CommonPageLayout'
 const EditPage = () => {
   return (
     <CommonPageLayout>
-      <Box w='full' h='full' bg='gray.100' overflowY='scroll'>
+    <Box w='full' h='full' bg='gray.100'>
         <Container
           p={'0px'}
           w='full'

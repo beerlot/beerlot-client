@@ -14,8 +14,8 @@ const CommonPageLayout: React.FC<CommonPageLayoutProps> = ({
   withContentPadding = true,
 }) => {
   return (
-    <Box w='full' h='100vh' bg='gray.100' overflowY='scroll'>
-      <Container p={'0px'} minH={'100vh'} bg='white' maxW='450px' mx='auto'>
+    <Box w='full' minH='100vh' background={'gray.100'}>
+      <Container p={'0px'} minH='100vh' h='full'  bg='white' maxW='450px'  borderLeft='1px solid' borderLeftColor={'gray.100'} borderRight='1px solid' borderRightColor={'gray.100'}>
         {showHeader && <LeftBackTItleRightBell />}
         <Box {...(withContentPadding ? { py: '12px', px: '20px' } : {})}>
           {children}

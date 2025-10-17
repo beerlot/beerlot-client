@@ -22,16 +22,9 @@ const SearchBarTemplate = () => {
   }
 
   return (
-    <Box w='full' h={'100vh'} bg='gray.100' overflowY={'scroll'}>
-      <Container
-        w='full'
-        bg='white'
-        position='relative'
-        maxW='450px'
-        minH={'100vh'}
-      >
-        <VStack>
-          <LeftBackTitle />
+    <Box w='full' bg='gray.100'>
+      <Container w='full' bg='white' position='relative' maxW='450px' p={0}>
+        <VStack spacing={0}>
           <SearchBarList
             handleClickItem={handleClickItem}
             onKeyPress={handleKeyPress}

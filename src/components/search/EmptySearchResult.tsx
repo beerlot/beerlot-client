@@ -1,5 +1,7 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex, Text, VStack, Link } from '@chakra-ui/react'
+import { BeerButton } from '../shared/Buttons/BeerButton'
 import React from 'react'
+import Image from 'next/image'
 
 interface EmptySearchResultProps {
   inputValue: string
@@ -9,52 +11,27 @@ const EmptySearchResult: React.FC<EmptySearchResultProps> = ({
   inputValue,
 }) => {
   return (
-    <Flex
-      w='full'
-      h='full'
-      justifyContent='center'
-      alignItems='center'
-      mt='118px'
-      textStyle='h2_bold'
-      gap='10px'
-      flexDirection='column'
-    >
-      <Box flexDirection='row'>
-        <Text as='span' textStyle='h2_bold'>{`'${inputValue}'`}</Text>
-        <Text as='span' textStyle='h2'>{`에 대한 검색 결과가 없어요🤔`}</Text>
-      </Box>
-      <Box>
-        <Text textStyle='h3' textColor='gray.300'>
-          다른 키워드로 검색해보세요!
-        </Text>
-      </Box>
-      <Box
-        borderRadius='10px'
-        bg='gray.100'
-        py='10px'
-        px='20px'
-        color='white'
-        gap='8px'
-        w='100%'
-        border='1px solid'
-        borderColor='gray.200'
-        display='flex'
-        flexDirection='column'
-      >
-        <Text textStyle='h3' textColor='gray.300' textAlign='center'>
-          💡검색 Tip💡
-        </Text>
-        <Text textStyle='h3' textColor='gray.300'>
-          1. 오타가 있는지 확인해보세요!
-        </Text>
-        <Text textStyle='h3' textColor='gray.300'>
-          2. 영어로 입력했다면 한국어로 바꿔보세요!
-        </Text>
-        <Text textStyle='h3' textColor='gray.300' style={{ textIndent: 12 }}>
-          {`ex) OB라거 > 오비라거`}
-        </Text>
-      </Box>
-    </Flex>
+    <VStack w='full' spacing='20px' alignItems='center' justifyContent='center' py='40px'>
+      <VStack spacing='12px' alignItems='center'>
+        <Box w='80px' h='80px'>
+          <Image src='/images/missing_beer.png' width={80} height={80} alt='empty' />
+        </Box>
+        <VStack spacing='8px'>
+          <Box>
+            <Text textAlign='center' textStyle='h2_bold'>{`‘${inputValue}’`}</Text>
+            <Text textAlign='center' textStyle='h2_regular'>검색 결과가 없어요 🤔</Text>
+          </Box>
+          <Text textAlign='center' textStyle='h3_regular' color='gray.300'>
+            다른 키워드로 검색해보세요!
+            <br />
+            ex) OB라거 {'>'} 오비라거
+          </Text>
+        </VStack>
+      </VStack>
+      <Link href={'mailto:beerlot.site@gmail.com?subject=%EB%A7%A5%EC%A3%BC%20%EC%A0%9C%EB%B3%B4%20%EC%9A%94%EC%B2%AD'} _hover={{ textDecoration: 'none' }}>
+        <BeerButton size='md' variant='primary' label='맥주 제보하기' as='span' />
+      </Link>
+    </VStack>
   )
 }
 

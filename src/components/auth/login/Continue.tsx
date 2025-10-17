@@ -1,5 +1,6 @@
 import { Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
+import BeerButton from '@/components/shared/Buttons/BeerButton'
 
 const ContinueButton = ({ onClick }: { onClick: () => void }) => {
   const router = useRouter()
@@ -8,17 +9,7 @@ const ContinueButton = ({ onClick }: { onClick: () => void }) => {
     router.back()
   }
   return (
-    <Text
-      _hover={{
-        cursor: 'pointer',
-      }}
-      onClick={handleClick}
-      color='#61646B'
-      textStyle='h4_bold'
-      textAlign={'center'}
-    >
-      로그인 없이 계속하기
-    </Text>
+    <BeerButton onClick={handleClick} size='sm' variant='ghost' label='로그인 없이 계속하기' />
   )
 }
 

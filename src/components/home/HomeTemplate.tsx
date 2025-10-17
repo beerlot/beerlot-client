@@ -5,13 +5,14 @@ import {
 } from '@/../hooks/query/useBeerQuery'
 import { fetchSingleBeerInfoApi } from '@/api/beers/api'
 import { Box, Container } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 import { useEffect } from 'react'
 import { useQueries } from 'react-query'
 import { LANGUAGE_TYPE } from '../../../interface/types'
 import { CommonBeersList } from './CommonBeersList/CommonBeersList'
 import { LoggedInBeersList } from './LoggedInBeersList/LoggedInBeersList'
-import SearchInputHome from './SearchInputHome'
+import SearchInput from '@/components/search/SearchInput'
 import { WelcomeTextContent } from './WelcomeText'
 import { Footer } from '@components/shared/Footer'
 
@@ -19,6 +20,7 @@ interface HomeTemplateProps {
   username?: string
 }
 const HomeTemplate: React.FC<HomeTemplateProps> = ({ username }) => {
+  const router = useRouter()
   const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
 
   const topBeersQuery = useTopBeersQuery({})
@@ -59,14 +61,17 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({ username }) => {
   }, [])
 
   return (
-    <Box w='full' bg='gray.100' overflowY='scroll'>
+    <Box w='full' bg='gray.100'>
       <Container p={'0px'} bg='white' maxW='450px' minH={'100vh'}>
         <Box>
 
           <WelcomeTextContent username={username} />
 
           <Box py={'34px'}>
-            <SearchInputHome />
+            <SearchInput
+              onFocus={() => router.push('/search')}
+              readOnly
+            />
           </Box>
 
           {username ? (
@@ -84,7 +89,6 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({ username }) => {
             />
           )}
         </Box>
-        <Footer />
         <Box h={10} />
       </Container>
     </Box>

@@ -60,7 +60,7 @@ const SearchBarList: React.FC<SearchBarListProps> = ({
 
   return (
     <Flex
-      h='full'
+      h='auto'
       w='full'
       direction='column'
       borderRadius='20px'
@@ -72,8 +72,9 @@ const SearchBarList: React.FC<SearchBarListProps> = ({
         onChange={handleChange}
         clearValue={clearValue}
         autoFocus={autoFocus}
+        hasValue={input.length > 0}
       />
-      <Flex flexDirection='column' h='full' w='full'>
+      <Flex flexDirection='column' h='auto' w='full'>
         <SearchResultHandler
           input={debouncedInput}
           username={userQuery.data?.username}

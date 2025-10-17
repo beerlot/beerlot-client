@@ -16,6 +16,7 @@ interface SearchInputProps extends InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   autoFocus?: boolean
   clearValue?: () => void
+  hasValue?: boolean
 }
 
 const SearchInput: React.FC<SearchInputProps> = ({
@@ -24,6 +25,8 @@ const SearchInput: React.FC<SearchInputProps> = ({
   onKeyPress,
   clearValue,
   autoFocus = false,
+  hasValue,
+  ...rest
 }) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const clearInput = () => {
@@ -32,26 +35,31 @@ const SearchInput: React.FC<SearchInputProps> = ({
       clearValue?.()
     }
   }
+  const effectiveHasValue =
+    typeof hasValue === 'boolean'
+      ? hasValue
+      : typeof rest.value === 'string' && (rest.value as string).length > 0 && !!clearValue
 
   return (
-    <InputGroup display='flex' alignItems='center' justifyContent='center'>
+    <InputGroup display='flex' alignItems='center' justifyContent='center' w='full'>
       <Input
         ref={inputRef}
         onKeyPress={onKeyPress}
-        py='20px'
-        px='20px'
+        h='40px'
+        px='12px'
+        pr={effectiveHasValue ? '36px' : '12px'}
         bg='blue.100'
         placeholder={SEARCH_BAR_PLACEHOLDER}
-        size='sm'
         onChange={onChange}
-        borderRadius='20px'
+        borderRadius='32px'
         textColor='white'
         _placeholder={{ color: 'inherit' }}
-        focusBorderColor='inherit'
+        focusBorderColor='transparent'
         autoFocus={autoFocus}
         onFocus={onFocus}
         _hover={{}}
         fontSize='16px'
+        lineHeight='20px'
         style={{
           fontSize: '16px',
           transform: 'scale(1)',
@@ -60,15 +68,32 @@ const SearchInput: React.FC<SearchInputProps> = ({
           WebkitTapHighlightColor: 'transparent',
           minHeight: 'initial',
         }}
+        {...rest}
       />
       <InputLeftElement h='full'>
-        <SearchGlass />
-      </InputLeftElement>
-      <InputRightElement h='full' onClick={clearInput} borderRadius='50%'>
-        <Box w='21px' h='21px' borderRadius='full' bg='blue.200'>
-          <WhiteCross />
+        <Box color='white'>
+          <SearchGlass />
         </Box>
-      </InputRightElement>
+      </InputLeftElement>
+      {effectiveHasValue && (
+        <InputRightElement h='full'>
+          <Box
+            as='button'
+            type='button'
+            aria-label='clear search'
+            onClick={clearInput}
+            w='20px'
+            h='20px'
+            borderRadius='full'
+            bg='blue.200'
+            display='flex'
+            alignItems='center'
+            justifyContent='center'
+          >
+            <WhiteCross />
+          </Box>
+        </InputRightElement>
+      )}
     </InputGroup>
   )
 }

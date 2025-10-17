@@ -169,11 +169,17 @@ const SearchResultPage = () => {
 
   return (
     <CommonPageLayout>
-      <Box w='full' h='100vh' bg='gray.100' overflowY='scroll'>
-        <Container p={'0px'} minH={'100vh'} bg='white' maxW='450px'>
+      <Box w='full' bg='gray.100'>
+        <Container p={'0px'} bg='white' maxW='450px'>
           <Box h='full'>
             <Flex gap='10px' alignItems='center' mb='10px' cursor={'pointer'}>
-              <SearchInput onFocus={handleFocus} autoFocus={false} />
+              <SearchInput
+                onFocus={handleFocus}
+                autoFocus={false}
+                value={typeof query === 'string' ? query : ''}
+                hasValue={typeof query === 'string' && query.length > 0}
+                clearValue={() => router.push('/search')}
+              />
               <Circle size='31px' bg='blue.100' onClick={handleClickToggle}>
                 {isFilterListOpen ? <WhiteFilter /> : <EmptyFilter />}
               </Circle>
@@ -195,7 +201,7 @@ const SearchResultPage = () => {
               />
             </Center>
 
-            <Box h='64px' />
+            <Box />
           </Box>
         </Container>
       </Box>

@@ -15,7 +15,6 @@ export const FeedTabList = () => (
     w='full'
     defaultIndex={1}
     h='full'
-    overflowY={'scroll'}
     isFitted
     bg='yellow.100'
   >

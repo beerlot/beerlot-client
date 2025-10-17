@@ -1,4 +1,4 @@
-import { Box, Container, Flex } from '@chakra-ui/react'
+import { Box, Container, Flex, HStack } from '@chakra-ui/react'
 import Nickname from './Nickname'
 import { useState } from 'react'
 import CompleteTemplate from './CompleteTemplate'
@@ -10,6 +10,19 @@ export enum StepEnum {
   BEERS,
   COMPLETE,
 }
+
+const LeftBackCompleteCircles: React.FC<{ step: StepEnum }> = ({ step }) => {
+  const isFirstActive = step === StepEnum.NICKNAME
+  return (
+    <Flex w='full' h='40px' alignItems='center' justifyContent='center'>
+      <HStack spacing='6px'>
+        <Box bg={isFirstActive ? 'orange.200' : 'gray.200'} w={isFirstActive ? '20px' : '8px'} h='8px' borderRadius='16px' />
+        <Box bg={!isFirstActive ? 'orange.200' : 'gray.200'} w={!isFirstActive ? '20px' : '8px'} h='8px' borderRadius='16px' />
+      </HStack>
+    </Flex>
+  )
+}
+
 const SignUpTemplate = () => {
   const [step, setStep] = useState<StepEnum>(StepEnum.NICKNAME)
   const [userInfo, setUserInfo] = useState<SignUpType>({})
