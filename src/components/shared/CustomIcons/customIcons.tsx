@@ -54,7 +54,7 @@ export const BottomNavDictionaryIcon = createIcon({
   viewBox: '0 0 25 24',
   path: (
     <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12.5 6.67906V18.655M12.5 6.67906C12.5 6.67906 14.7984 5.34473 17.0661 5.34479C18.6759 5.34484 19.9825 6.01715 20.6052 6.40728C20.8625 6.56848 21 6.85577 21 7.15939V16.9042C21 17.6781 20.1273 18.2098 19.3875 17.9822C18.7429 17.7839 17.9444 17.6137 17.0661 17.593C14.8441 17.5407 12.5 18.655 12.5 18.655M12.5 6.67906C12.5 6.67906 10.3296 5.34473 8.09147 5.34473C6.26952 5.34473 4.96644 6.02241 4.36801 6.41186C4.12538 6.56977 4 6.84529 4 7.13478V17.0096C4 17.7595 4.81078 18.2715 5.52475 18.042C6.25768 17.8065 7.17482 17.593 8.09147 17.593C10.136 17.593 12.5 18.655 12.5 18.655" stroke="currentColor" stroke-width="2"/>
+    <path d="M12.5 6.67906V18.655M12.5 6.67906C12.5 6.67906 14.7984 5.34473 17.0661 5.34479C18.6759 5.34484 19.9825 6.01715 20.6052 6.40728C20.8625 6.56848 21 6.85577 21 7.15939V16.9042C21 17.6781 20.1273 18.2098 19.3875 17.9822C18.7429 17.7839 17.9444 17.6137 17.0661 17.593C14.8441 17.5407 12.5 18.655 12.5 18.655M12.5 6.67906C12.5 6.67906 10.3296 5.34473 8.09147 5.34473C6.26952 5.34473 4.96644 6.02241 4.36801 6.41186C4.12538 6.56977 4 6.84529 4 7.13478V17.0096C4 17.7595 4.81078 18.2715 5.52475 18.042C6.25768 17.8065 7.17482 17.593 8.09147 17.593C10.136 17.593 12.5 18.655 12.5 18.655" stroke="currentColor" strokeWidth="2"/>
     </svg>
   ),
 })
@@ -86,15 +86,15 @@ export const BottomNavFeedIcon = createIcon({
   path: (
     <>
      <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="4.5" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="4.5" y="3" width="16" height="18" rx="2" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
       <mask id="path-2-inside-1_3737_17340" fill="white">
       <rect x="7.5" y="5.5" width="10" height="6" rx="1"/>
       </mask>
-      <rect x="7.5" y="5.5" width="10" height="6" rx="1" stroke="currentColor" stroke-width="4" stroke-linejoin="round" mask="url(#path-2-inside-1_3737_17340)"/>
+      <rect x="7.5" y="5.5" width="10" height="6" rx="1" stroke="currentColor" strokeWidth="4" strokeLinejoin="round" mask="url(#path-2-inside-1_3737_17340)"/>
       <mask id="path-3-inside-2_3737_17340" fill="white">
       <rect x="7.5" y="12.5" width="10" height="6" rx="1"/>
       </mask>
-      <rect x="7.5" y="12.5" width="10" height="6" rx="1" stroke="currentColor" stroke-width="4" stroke-linejoin="round" mask="url(#path-3-inside-2_3737_17340)"/>
+      <rect x="7.5" y="12.5" width="10" height="6" rx="1" stroke="currentColor" strokeWidth="4" strokeLinejoin="round" mask="url(#path-3-inside-2_3737_17340)"/>
       </svg>
     </>
   ),
@@ -106,8 +106,8 @@ export const BottomNavSearchIcon = createIcon({
   path: (
     <>
      <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16.5 16L20.5 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="11.5" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+        <path d="M16.5 16L20.5 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        <circle cx="11.5" cy="11" r="7" stroke="currentColor" strokeWidth="2"/>
       </svg>    
     </>
   ),
@@ -118,7 +118,7 @@ export const BottomNavHomeIcon = createIcon({
   viewBox: '0 0 25 24',
   path: (
     <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M11.8857 4.24414C12.2469 3.96327 12.7531 3.96327 13.1143 4.24414L20.1143 9.68945C20.3576 9.87892 20.5 10.1701 20.5 10.4785V19.5C20.5 20.0523 20.0523 20.5 19.5 20.5H15.5C14.9477 20.5 14.5 20.0523 14.5 19.5V15.5C14.5 14.9477 14.0523 14.5 13.5 14.5H11.5C10.9477 14.5 10.5 14.9477 10.5 15.5V19.5C10.5 20.0523 10.0523 20.5 9.5 20.5H5.5C4.94772 20.5 4.5 20.0523 4.5 19.5V10.4785C4.5 10.1701 4.64241 9.87892 4.88574 9.68945L11.8857 4.24414Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M11.8857 4.24414C12.2469 3.96327 12.7531 3.96327 13.1143 4.24414L20.1143 9.68945C20.3576 9.87892 20.5 10.1701 20.5 10.4785V19.5C20.5 20.0523 20.0523 20.5 19.5 20.5H15.5C14.9477 20.5 14.5 20.0523 14.5 19.5V15.5C14.5 14.9477 14.0523 14.5 13.5 14.5H11.5C10.9477 14.5 10.5 14.9477 10.5 15.5V19.5C10.5 20.0523 10.0523 20.5 9.5 20.5H5.5C4.94772 20.5 4.5 20.0523 4.5 19.5V10.4785C4.5 10.1701 4.64241 9.87892 4.88574 9.68945L11.8857 4.24414Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
     </svg>
   ),
 })

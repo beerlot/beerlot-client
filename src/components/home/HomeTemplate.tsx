@@ -68,10 +68,7 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({ username }) => {
           <WelcomeTextContent username={username} />
 
           <Box py={'34px'}>
-            <SearchInput
-              onFocus={() => router.push('/search')}
-              readOnly
-            />
+            <SearchInput onFocus={() => router.push('/search')} isReadOnly />
           </Box>
 
           {username ? (

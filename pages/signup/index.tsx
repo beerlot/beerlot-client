@@ -5,7 +5,7 @@ import SignUpTemplate from '../../src/components/auth/sign-up/SignUpTemplate'
 import { Analytics } from '../../src/utils/analytics'
 import CommonPageLayout from '../../src/components/shared/CommonPageLayout'
 
-const index = () => {
+const SignUpPage = () => {
   useEffect(() => {
     Analytics.viewSignUp()
   }, [])
@@ -17,7 +17,7 @@ const index = () => {
   )
 }
 
-export default index
+export default SignUpPage
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   if (process.env.NODE_ENV === 'development') {
