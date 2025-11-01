@@ -1,4 +1,4 @@
-import { HStack, StackProps, Text, TextProps } from '@chakra-ui/react'
+import { Box, HStack, StackProps, Text, TextProps } from '@chakra-ui/react'
 import React from 'react'
 import {
   MIN_MAX_BEER_VOLUME_SLIDER,
@@ -12,31 +12,55 @@ import { VolumeSlider } from '../../../shared/Filters/VolumeSlider'
 import { SearchFilterTag } from '../SearchFilterTag/SearchFilterTag'
 import { isBeerVolumeWithinRange } from '@/components/home/LoggedInBeersList/beer.service'
 
-export const SearchFilterRowWrapper: React.FC<StackProps> = ({ children }) => {
+export const SearchFilterRowWrapper: React.FC<StackProps> = ({ children, ...props }) => {
   return (
     <HStack
       w='full'
-      py='5px'
+      px='20px'
+      py='4px'
       borderBottom={'1px solid'}
       borderBottomColor='gray.200'
+      alignItems='center'
+      {...props}
     >
       {children}
     </HStack>
   )
 }
 
-export const SearchFilterRowOptionsWrapper: React.FC<StackProps> = ({
+interface OptionsWrapperProps extends StackProps {
+  withRightGradient?: boolean
+}
+
+export const SearchFilterRowOptionsWrapper: React.FC<OptionsWrapperProps> = ({
   children,
+  withRightGradient = false,
+  ...props
 }) => {
   return (
-    <HStack
-      w='full'
-      gap={'4px'}
-      overflowX={'scroll'}
-      className={'hide-scrollbar'}
-    >
-      {children}
-    </HStack>
+    <Box position='relative' flex='1' w='full'>
+      <HStack
+        w='full'
+        gap={'8px'}
+        overflowX={'auto'}
+        className={'hide-scrollbar'}
+        alignItems='center'
+        {...props}
+      >
+        {children}
+      </HStack>
+      {withRightGradient && (
+        <Box
+          position='absolute'
+          right={0}
+          top={0}
+          h='28px'
+          w='14px'
+          bgGradient='linear(to-l, white.100, rgba(255,255,255,0))'
+          pointerEvents='none'
+        />
+      )}
+    </Box>
   )
 }
 
@@ -70,14 +94,34 @@ export const SearchFilterRangeRow: React.FC<SearchFilterRangeRowProps> = ({
   )
 }
 
-export const SearchFilterRowOption: React.FC<TextProps> = ({
+interface RowOptionProps extends TextProps {
+  isSelected?: boolean
+}
+
+export const SearchFilterRowOption: React.FC<RowOptionProps> = ({
   children,
+  isSelected = false,
   ...props
 }) => {
   return (
-    <Text flexShrink={0} cursor='pointer' {...props}>
-      {children}
-    </Text>
+    <Box
+      h='28px'
+      px='8px'
+      borderRadius='99px'
+      display='flex'
+      alignItems='center'
+      justifyContent='center'
+      flexShrink={0}
+      cursor='pointer'
+    >
+      <Text
+        textStyle={isSelected ? 'h5_bold' : 'h5_medium'}
+        color={isSelected ? 'orange.300' : 'gray.400'}
+        {...props}
+      >
+        {children}
+      </Text>
+    </Box>
   )
 }
 interface BeerSearchCategoriesForClosedFilterProps {

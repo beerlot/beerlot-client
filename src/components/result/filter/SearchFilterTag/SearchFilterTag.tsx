@@ -33,7 +33,10 @@ const SearchFilterTag: React.FC<SearchFilterTagProps> = ({
     <Box position='sticky' left={0} bg='white' zIndex={1}>
       <FilterTag
         tagText={title}
-        bg={selected ? 'yellow.300' : 'yellow.200'}
+        bg={'white.100'}
+        color={'black.100'}
+        border={'1px solid'}
+        borderColor={'gray.200'}
         onClick={onClick}
         flexShrink={0}
         {...props}

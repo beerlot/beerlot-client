@@ -53,22 +53,21 @@ export const SearchFilterListExpanded: React.FC<
   )
 
   return (
-    <Box>
+    <Box bg='white.100'>
       <SearchFilterRowWrapper>
         <SearchFilterTag
-          title={'정렬 기준'}
+          title={'정렬기준'}
           selectedFilters={selectedFilters}
           isFilterListOpen={isFilterListOpen}
         />
-        <SearchFilterRowOptionsWrapper>
+        <SearchFilterRowOptionsWrapper withRightGradient>
           {Object.keys(sortTags).map((tag) => {
             const key = tag as keyof typeof sortTags
             const isSelected = selectedSort?.tags.includes(sortTags[key])
             return (
               <SearchFilterRowOption
                 key={key}
-                textColor={isSelected ? 'black.100' : 'gray.200'}
-                textStyle={isSelected ? 'h4_bold' : 'h4'}
+                isSelected={!!isSelected}
                 onClick={() => {
                   onClickTag(CategoryTitle.SORT_CRITERIA, sortTags[key])
                 }}
@@ -80,9 +79,9 @@ export const SearchFilterListExpanded: React.FC<
         </SearchFilterRowOptionsWrapper>
       </SearchFilterRowWrapper>
       <SearchFilterRowWrapper>
-        <SearchFilterRowOptionsWrapper>
+        <SearchFilterRowOptionsWrapper withRightGradient>
           <SearchFilterTag
-            title={CategoryTitle.BEER_TYPE}
+            title={'맥주종류'}
             selectedFilters={selectedFilters}
             isFilterListOpen={isFilterListOpen}
           />
@@ -91,8 +90,7 @@ export const SearchFilterListExpanded: React.FC<
             return (
               <SearchFilterRowOption
                 key={id}
-                textColor={isSelected ? 'black.100' : 'gray.200'}
-                textStyle={isSelected ? 'h4_bold' : 'h4'}
+                isSelected={!!isSelected}
                 onClick={() => {
                   onClickTag(CategoryTitle.BEER_TYPE, id)
                 }}
@@ -104,9 +102,9 @@ export const SearchFilterListExpanded: React.FC<
         </SearchFilterRowOptionsWrapper>
       </SearchFilterRowWrapper>
       <SearchFilterRowWrapper>
-        <SearchFilterRowOptionsWrapper>
+        <SearchFilterRowOptionsWrapper withRightGradient>
           <SearchFilterTag
-            title={CategoryTitle.BEER_COUNTRY}
+            title={'제조국'}
             selectedFilters={selectedFilters}
             isFilterListOpen={isFilterListOpen}
           />
@@ -115,8 +113,7 @@ export const SearchFilterListExpanded: React.FC<
             return (
               <SearchFilterRowOption
                 key={name}
-                textColor={isSelected ? 'black.100' : 'gray.200'}
-                textStyle={isSelected ? 'h4_bold' : 'h4'}
+                isSelected={!!isSelected}
                 onClick={() => {
                   onClickTag(CategoryTitle.BEER_COUNTRY, name)
                 }}
