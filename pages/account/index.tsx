@@ -11,8 +11,8 @@ const AccountPage = () => {
   }, [])
 
   return (
-    <CommonPageLayout>
-      <Box w='full' bg='gray.100' pb={'64px'} minH={'100vh'}>
+    <CommonPageLayout withContentPadding={false}>
+      <Box w='full' bg='gray.100' minH={'100vh'}>
         <Container p={'0px'} maxW='450px' bg='white'>
           <AccountsTemplate />
         </Container>

@@ -10,7 +10,7 @@ const Info = () => {
     router.back()
   }
   return (
-    <CommonPageLayout>
+    <CommonPageLayout withContentPadding={false}>
       <VStack bg='gray.100' h='full'>
         <VStack
           bg='gray.100'

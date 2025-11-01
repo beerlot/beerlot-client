@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Container, Link, List, ListItem, Text } from '@chakra-ui/react'
+import { Box, Link, List, ListItem, Text } from '@chakra-ui/react'
 
 interface PrivacyPolicyTemplateProps {}
 
@@ -7,9 +7,7 @@ export const PrivacyPolicyTemplate: React.FC<
   PrivacyPolicyTemplateProps
 > = ({}) => {
   return (
-    <Box w='full' bg='gray.100'>
-      <Container bg='white' maxW='450px' h={'full'}>
-        <Box>
+    <Box>
           {/* Title */}
           <Text as={'h1'} textStyle={'h1'}>
             비어랏 개인정보 처리방침
@@ -405,8 +403,6 @@ export const PrivacyPolicyTemplate: React.FC<
             이 개인정보처리방침은 2024년 8월 18일부터 적용됩니다.
           </Text>
         </Box>
-      </Container>
-    </Box>
   )
 }
 

@@ -14,8 +14,8 @@ const Notice = () => {
     router.back()
   }
   return (
-    <CommonPageLayout>
-      <Accordion allowToggle pt='52px'>
+    <CommonPageLayout withContentPadding={false}>
+      <Accordion allowToggle>
             {NoticeSettingSection.map(({ title, date, content }) => (
               <AccordionItem key={title}>
                 <AccordionButton

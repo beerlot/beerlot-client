@@ -5,6 +5,7 @@ import { SettingGear } from '../../../public/svg'
 const Tools = () => {
   const router = useRouter()
   const handleClickSettings = () => {
+    console.log('settings gear clicked')
     router.push('/account/settings')
   }
 

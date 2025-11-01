@@ -23,7 +23,6 @@ export const SettingSectionList: React.FC<SettingSectionListProps> = ({
   return (
     <VStack
       bg='gray.100'
-      pt='60px'
       w='full'
       h='full'
       gap='10px'

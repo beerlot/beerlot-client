@@ -19,7 +19,7 @@ export const DetailTemplate = () => {
   }, [beerInfo])
 
   return (
-    <Box w='full' h='full' bg='gray.100' mb={'64px'}>
+    <Box w='full' h='full' bg='gray.100' >
       <Container p={'0px'} w='full' bg='white' position='relative' maxW='450px'>
         <VStack w='full'>
           {beerInfo && (

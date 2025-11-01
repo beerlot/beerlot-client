@@ -49,6 +49,10 @@ class MyDocument extends Document {
             crossOrigin='true'
           />
           <link
+            rel='stylesheet'
+            href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css'
+          />
+          <link
             href='https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;600;700;800&&display=swap'
             rel='stylesheet'
           />

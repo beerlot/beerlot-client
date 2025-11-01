@@ -4,7 +4,7 @@ import CommonPageLayout from '../../../src/components/shared/CommonPageLayout'
 
 const Inquiry = () => {
   return (
-    <CommonPageLayout>
+    <CommonPageLayout withContentPadding={false}>
       <Box w='full' h='full' bg='gray.100'>
         <Container
           p={'0px'}

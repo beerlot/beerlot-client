@@ -34,7 +34,7 @@ export const AllTabPanelList = () => {
   }
 
   return (
-    <Flex flexDirection='column' gap={'10px'} pb={'64px'}>
+    <Flex flexDirection='column' gap={'10px'}>
       <FeedFilter selectedTag={selectedTag} onClickTag={handleSelectTag} />
       <InfiniteScrollWrapper
         handleLoadMore={handleLoadMore}
