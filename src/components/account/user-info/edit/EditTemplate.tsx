@@ -2,11 +2,18 @@ import { useUserInfoQuery } from '@/../hooks/query/useUserQuery'
 import { BeerlotLoading } from '@/components/shared/Loading'
 import Cookies from 'js-cookie'
 import { ProfileEditContent } from './ProfileEditContent'
+import React from 'react'
 
 export const EditTemplate = () => {
-  const accessToken = Cookies.get('beerlot-oauth-auth-request') ?? ''
+  const [isMounted, setIsMounted] = React.useState(false)
+  React.useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  // Avoid reading cookies during SSR to prevent hydration mismatch
+  const accessToken = isMounted ? Cookies.get('beerlot-oauth-auth-request') ?? '' : ''
   const userQuery = useUserInfoQuery(accessToken ?? '', {
-    enabled: !!accessToken,
+    enabled: isMounted && !!accessToken,
   })
 
   const loading = userQuery.isLoading
@@ -18,7 +25,7 @@ export const EditTemplate = () => {
     username_updated_at,
   } = userQuery?.data ?? {}
 
-  if (loading) return <BeerlotLoading />
+  if (!isMounted || loading) return <BeerlotLoading />
 
   return (
     <>

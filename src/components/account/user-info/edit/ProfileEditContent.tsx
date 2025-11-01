@@ -2,7 +2,15 @@ import { useEditUserInfoMutation } from '@/../hooks/query/useUserQuery'
 import { MAX_BIO_LENGTH, useBioHandler } from '@/hooks/bio/useBioHandler'
 import { useNicknameHandler } from '@/hooks/nickname/useNicknameHandler'
 import { useErrorToast } from '@/hooks/shared/useErrorToast'
-import { Box, Container, Flex, StackProps, Text, Tooltip, VStack } from '@chakra-ui/react'
+import {
+  Box,
+  Container,
+  Flex,
+  StackProps,
+  Text,
+  Tooltip,
+  VStack,
+} from '@chakra-ui/react'
 import BeerButton from '@/components/shared/Buttons/BeerButton'
 import dayjs from 'dayjs'
 import Cookies from 'js-cookie'
@@ -78,8 +86,12 @@ export const ProfileEditContent: React.FC<ProfileEditContentProps> = ({
 
   return (
     <>
-  
-    <Flex flexDir='column' h='full' gap={'64px'}justifyContent='space-between'>
+      <Flex
+        flexDir='column'
+        h='full'
+        gap={'64px'}
+        justifyContent='space-between'
+      >
         <VStack>
           <ProfileUploadAvatar imageUrl={imageUrl} setImageUrl={setImageUrl} />
         </VStack>
@@ -103,13 +115,14 @@ export const ProfileEditContent: React.FC<ProfileEditContentProps> = ({
             guideText={bioGuidText}
           />
         </VStack>
-      <BeerButton
-        label='완료'
-        size='lg'
-        variant='primary'
-        isDisabled={!isChangeCompleted}
-        onClick={handleClickComplete}
-      />
+        <BeerButton
+          label='완료'
+          size='lg'
+          variant='primary'
+          isDisabled={!isChangeCompleted}
+          onClick={handleClickComplete}
+        />
       </Flex>
+    </>
   )
 }
