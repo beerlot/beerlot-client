@@ -55,9 +55,6 @@ export const ProfileEditContent: React.FC<ProfileEditContentProps> = ({
   const { bioInput, onChangeBio, validBio, bioGuidText, hasTouchedBio } =
     useBioHandler(statusMessage)
 
-  // tooltip state for permission error
-  const [showPermissionTip, setShowPermissionTip] = useState(false)
-
   // submit
   const editUserInfoMutation = useEditUserInfoMutation(accessToken, {
     onError: (error) => {
