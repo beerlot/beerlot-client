@@ -2,7 +2,8 @@ import { useEditUserInfoMutation } from '@/../hooks/query/useUserQuery'
 import { MAX_BIO_LENGTH, useBioHandler } from '@/hooks/bio/useBioHandler'
 import { useNicknameHandler } from '@/hooks/nickname/useNicknameHandler'
 import { useErrorToast } from '@/hooks/shared/useErrorToast'
-import { StackProps, VStack } from '@chakra-ui/react'
+import { Box, Container, Flex, StackProps, Text, Tooltip, VStack } from '@chakra-ui/react'
+import BeerButton from '@/components/shared/Buttons/BeerButton'
 import dayjs from 'dayjs'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
@@ -46,6 +47,9 @@ export const ProfileEditContent: React.FC<ProfileEditContentProps> = ({
   const { bioInput, onChangeBio, validBio, bioGuidText, hasTouchedBio } =
     useBioHandler(statusMessage)
 
+  // tooltip state for permission error
+  const [showPermissionTip, setShowPermissionTip] = useState(false)
+
   // submit
   const editUserInfoMutation = useEditUserInfoMutation(accessToken, {
     onError: (error) => {
@@ -75,12 +79,13 @@ export const ProfileEditContent: React.FC<ProfileEditContentProps> = ({
   return (
     <>
   
-      <VStack px='30px' py='10px' gap='32px' pt='50px'>
+    <Flex flexDir='column' h='full' gap={'64px'}justifyContent='space-between'>
         <VStack>
           <ProfileUploadAvatar imageUrl={imageUrl} setImageUrl={setImageUrl} />
         </VStack>
-        <VStack gap='px' w='100%'>
+        <VStack gap='16px' w='100%'>
           <CommonValidationInput
+            label='닉네임'
             input={usernameInput}
             isValid={validNickname}
             isTouched={isUsernameTouched}
@@ -98,14 +103,13 @@ export const ProfileEditContent: React.FC<ProfileEditContentProps> = ({
             guideText={bioGuidText}
           />
         </VStack>
-      </VStack>
-    </>
+      <BeerButton
+        label='완료'
+        size='lg'
+        variant='primary'
+        isDisabled={!isChangeCompleted}
+        onClick={handleClickComplete}
+      />
+      </Flex>
   )
-}
-
-const rightTitleStyleProps = (isChangeCompleted: boolean) => {
-  return {
-    isDisabled: !isChangeCompleted,
-    textColor: isChangeCompleted ? 'orange.200' : 'gray.200',
-  }
 }

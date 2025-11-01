@@ -1,7 +1,6 @@
 import {
   FormControl,
   FormHelperText,
-  FormLabel,
   Input,
   Text,
   Flex,
@@ -31,58 +30,44 @@ const CommonValidationInput: React.FC<Props> = ({
   onBlur,
   maxLength,
 }) => {
+  const accentColor = !isTouched ? 'gray.200' : isValid ? 'blue.300' : 'red.100'
+  const borderColor = !isTouched ? 'gray.200' : isValid ? 'blue.300' : 'red.100'
   return (
     <>
       <FormControl>
-        <FormLabel
-          textStyle='h3'
-          textColor={
-            !isTouched ? 'gray.300' : isValid ? 'orange.200' : 'red.100'
-          }
-        >
+        <Text px='8px' textStyle='h5_medium' textColor='gray.300'>
           {label}
-        </FormLabel>
+        </Text>
         <Input
+        mt={1}
+        h={'44px'}
           type='text'
           value={input ?? ''}
           placeholder={placeholder}
-          _placeholder={{
-            textColor: 'gray.200',
-            textStyle: 'h2',
-          }}
+          _placeholder={{ textColor: 'gray.200', textStyle: 'h2' }}
           onChange={onChange}
-          borderRadius='none'
-          px={0}
-          border='none'
-          borderBottom='1px solid'
-          borderBottomColor={
-            !isTouched ? 'gray.300' : isValid ? 'orange.200' : 'red.100'
-          }
           onBlur={onBlur}
-          _focusVisible={{}}
-          _hover={{}}
+          px={4}
+          py={2.5}
+          color='black.100'
+          fontWeight={500}
+          borderRadius='lg'
+          border='1px solid'
+          borderColor={borderColor}
+          bg='white.100'
+          _focusVisible={{ borderColor, boxShadow: 'none' }}
+          _hover={{ borderColor }}
         />
-        <Flex justify='space-between' align={'center'}>
+        <Flex justify='space-between' align={'center'} px='8px'>
           {input !== null && (
-            <FormHelperText
-              marginTop={1}
-              textStyle='h4'
-              textColor={
-                !isTouched ? 'gray.300' : isValid ? 'orange.200' : 'red.100'
-              }
-            >
+            <FormHelperText marginTop={1} textStyle='h5_regular' textColor={accentColor}>
               {guideText}
             </FormHelperText>
           )}
           {maxLength && (
-            <Text
-              textStyle={'h4'}
-              alignSelf={'flex-end'}
-              textColor={!isValid ? 'red.100' : 'gray.300'}
-              style={{
-                marginTop: 0,
-              }}
-            >{`(${input.length ?? 0}/${maxLength})`}</Text>
+            <Text textStyle={'h5_regular'} marginTop={1} alignSelf={'flex-end'} textColor={!isValid ? 'red.100' : 'gray.300'} >
+              {`(${input.length ?? 0}/${maxLength})`}
+            </Text>
           )}
         </Flex>
       </FormControl>

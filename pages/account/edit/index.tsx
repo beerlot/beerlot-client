@@ -1,23 +1,11 @@
 import { EditTemplate } from '@/components/account/user-info/edit/EditTemplate'
-import { Box, Container } from '@chakra-ui/react'
 import { GetServerSideProps } from 'next'
 import CommonPageLayout from '../../../src/components/shared/CommonPageLayout'
 
 const EditPage = () => {
   return (
-    <CommonPageLayout>
-    <Box w='full' h='full' bg='gray.100'>
-        <Container
-          p={'0px'}
-          w='full'
-          h='full'
-          bg='white'
-          position='relative'
-          maxW='450px'
-        >
-          <EditTemplate />
-        </Container>
-      </Box>
+    <CommonPageLayout >
+      <EditTemplate />
     </CommonPageLayout>
   )
 }
