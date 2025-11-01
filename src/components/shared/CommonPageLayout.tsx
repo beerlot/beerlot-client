@@ -20,6 +20,7 @@ const CommonPageLayout: React.FC<CommonPageLayoutProps> = ({
         <Box {...(withContentPadding ? { py: '12px', px: '20px' } : {})} pb={'42px'}>
           {children}
         </Box>
+        <Box h={10} />
       </Container>
     </Box>
   )

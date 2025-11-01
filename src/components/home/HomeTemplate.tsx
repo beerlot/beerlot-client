@@ -86,7 +86,6 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({ username }) => {
             />
           )}
         </Box>
-        <Box h={10} />
       </Container>
     </Box>
   )
