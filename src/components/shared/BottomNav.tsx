@@ -13,7 +13,8 @@ export const BottomNav = () => {
   const navMenu = [
     { key: 'home', label: '홈', icon: BottomNavHomeIcon, url: '/' },
     { key: 'search', label: '검색', icon: BottomNavSearchIcon, url: '/search' },
-    { key: 'dictionary', label: '대백과', icon: BottomNavDictionaryIcon, url: '/dictionary' },
+    // TODO: 대백과 페이지 추가 시 주석 해제
+    // { key: 'dictionary', label: '대백과', icon: BottomNavDictionaryIcon, url: '/dictionary' },
     { key: 'feed', label: '피드', icon: BottomNavFeedIcon, url: '/feed' },
     { key: 'account', label: '마이', icon: BottomNavProfileIcon, url: '/account' },
   ] as const
