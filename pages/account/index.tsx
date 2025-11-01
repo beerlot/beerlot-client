@@ -4,6 +4,7 @@ import AccountsTemplate from '../../src/components/account/AccountsTemplate'
 import { useEffect } from 'react'
 import { Analytics } from '../../src/utils/analytics'
 import CommonPageLayout from '../../src/components/shared/CommonPageLayout'
+import { SettingsIconButton } from '../../src/components/account/SettingsIconButton'
 
 const AccountPage = () => {
   useEffect(() => {
@@ -11,7 +12,7 @@ const AccountPage = () => {
   }, [])
 
   return (
-    <CommonPageLayout withContentPadding={false}>
+    <CommonPageLayout withContentPadding={false} headerRight={<SettingsIconButton />}>
       <Box w='full' bg='gray.100' minH={'100vh'}>
         <Container p={'0px'} maxW='450px' bg='white'>
           <AccountsTemplate />
