@@ -68,7 +68,6 @@ const SignUpTemplate = () => {
   }
 
   return (
-            )}
     <>
       <Header onBack={handleBack} center={<LeftBackCompleteCircles step={step} />}>
         <Box
