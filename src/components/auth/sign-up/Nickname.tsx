@@ -43,11 +43,10 @@ const Nickname: React.FC<NicknameProps> = ({ onNext, setUserInfo }) => {
 
   return (
     <Container
-      pt={'44px'}
+      pt={6}
       w={'full'}
-      h={'full'}
-      px={8}
-      gap={'60px'}
+      px={0}
+      gap={'24px'}
       display={'flex'}
       pos={'relative'}
       flexDir={'column'}
@@ -68,16 +67,14 @@ const Nickname: React.FC<NicknameProps> = ({ onNext, setUserInfo }) => {
       />
       <FloatingButton
         onClick={handleClick}
-        disabled={!isReadyForNextStep}
-        text='다음으로'
-        bgColor={isReadyForNextStep ? 'orange.200' : 'gray.200'}
-        textColor={isReadyForNextStep ? 'white.100' : 'black.100'}
+        isDisabled={!isReadyForNextStep}
+        bgColor={'orange.200'}
         boxShadow={
           isReadyForNextStep ? '0px 8px 16px rgba(0, 0, 0, 0.3)' : 'none'
         }
         isLoading={isCheckingDuplication}
         _hover={{}}
-      />
+      >다음으로</FloatingButton>
     </Container>
   )
 }

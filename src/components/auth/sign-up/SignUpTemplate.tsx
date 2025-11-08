@@ -4,6 +4,8 @@ import { useState } from 'react'
 import CompleteTemplate from './CompleteTemplate'
 import { SignUpType } from '../../../../interface/types'
 import BeerTasteSelection from './BeerTasteSelection'
+import { Header } from '../../shared/Header'
+import { useRouter } from 'next/router'
 
 export enum StepEnum {
   NICKNAME,
@@ -27,6 +29,7 @@ const SignUpTemplate = () => {
   const [step, setStep] = useState<StepEnum>(StepEnum.NICKNAME)
   const [userInfo, setUserInfo] = useState<SignUpType>({})
   const [selectedBeers, setSelectedBeers] = useState<number[]>([])
+  const router = useRouter()
 
   const updateSelectedBeers = (beerId: number) => {
     setSelectedBeers((prev) =>
@@ -41,7 +44,22 @@ const SignUpTemplate = () => {
   }
 
   const handleNext = () => {
-    setStep((prev) => prev + 1)
+    setStep((prev) => {
+      if (prev === StepEnum.NICKNAME) return StepEnum.BEERS
+      if (prev === StepEnum.BEERS) return StepEnum.COMPLETE
+      return StepEnum.COMPLETE
+    })
+  }
+
+  const handleBack = () => {
+    setStep((prev) => {
+      if (prev === StepEnum.NICKNAME) {
+        router.back()
+        return StepEnum.NICKNAME
+      }
+      if (prev === StepEnum.BEERS) return StepEnum.NICKNAME
+      return StepEnum.BEERS
+    })
   }
 
   const handleAdminSkip = () => {
@@ -53,38 +71,32 @@ const SignUpTemplate = () => {
     <Box w='full' h='100vh' bg='gray.100'>
       <Container h='full' bg='white' p={0} maxW='450px'>
         <Flex w={'full'} h={'full'} flexDirection='column'>
+          <Header onBack={handleBack} center={<LeftBackCompleteCircles step={step} />}>
+            <Box
+              w={'32px'}
+              h={'32px'}
+              opacity={0}
+              onClick={handleAdminSkip}
+              cursor={'pointer'}
+            />
+          </Header>
           <Box flex={1} overflowY='auto' className='hide-scrollbar'>
-            <Box pos={'relative'}>
-              <Box
-                pos={'absolute'}
-                top={0}
-                right={0}
-                w={'50px'}
-                h={'50px'}
-                opacity={0}
-                onClick={handleAdminSkip}
-                cursor={'pointer'}
-                zIndex={999}
+            {step === StepEnum.NICKNAME && (
+              <Nickname setUserInfo={updateUserInfo} onNext={handleNext} />
+            )}
+
+            {step === StepEnum.BEERS && (
+              <BeerTasteSelection
+                username={userInfo.username}
+                selectedBeers={selectedBeers}
+                updateSelectedBeers={updateSelectedBeers}
+                onNext={handleNext}
               />
-              <LeftBackCompleteCircles step={step} />
+            )}
 
-              {step === StepEnum.NICKNAME && (
-                <Nickname setUserInfo={updateUserInfo} onNext={handleNext} />
-              )}
-
-              {step === StepEnum.BEERS && (
-                <BeerTasteSelection
-                  username={userInfo.username}
-                  selectedBeers={selectedBeers}
-                  updateSelectedBeers={updateSelectedBeers}
-                  onNext={handleNext}
-                />
-              )}
-
-              {step === StepEnum.COMPLETE && (
-                <CompleteTemplate userInfo={userInfo} />
-              )}
-            </Box>
+            {step === StepEnum.COMPLETE && (
+              <CompleteTemplate userInfo={userInfo} />
+            )}
           </Box>
         </Flex>
       </Container>

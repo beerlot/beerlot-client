@@ -12,10 +12,23 @@ export const ConsentsSection: React.FC<ConsentsSectionProps> = ({
     <Box w='full'>
       <Checkbox
         w='100%'
-        bg='gray.100'
-        borderRadius='5px'
+        h='44px'
+        px='12px'
         py='8px'
-        px='6px'
+        bg='gray.100'
+        borderRadius='8px'
+        spacing='8px'
+        colorScheme='orange'
+        iconColor='white.100'
+        sx={{
+          '& .chakra-checkbox__control': {
+            _checked: {
+              bg: 'orange.200',
+              borderColor: 'orange.200',
+              _hover: { bg: 'orange.200' },
+            },
+          },
+        }}
         isChecked={allChecked}
         onChange={(e) => onCheckItem([e.target.checked, e.target.checked])}
       >
@@ -25,9 +38,20 @@ export const ConsentsSection: React.FC<ConsentsSectionProps> = ({
       </Checkbox>
       <Checkbox
         w='100%'
-        borderRadius='5px'
-        py='8px'
-        px='6px'
+        h='44px'
+        px='12px'
+        spacing='8px'
+        colorScheme='orange'
+        iconColor='white.100'
+        sx={{
+          '& .chakra-checkbox__control': {
+            _checked: {
+              bg: 'orange.200',
+              borderColor: 'orange.200',
+              _hover: { bg: 'orange.200' },
+            },
+          },
+        }}
         isChecked={checkedItems[0]}
         onChange={(e) => onCheckItem([e.target.checked, checkedItems[1]])}
         _hover={{}}
@@ -38,9 +62,20 @@ export const ConsentsSection: React.FC<ConsentsSectionProps> = ({
       </Checkbox>
       <Checkbox
         w='100%'
-        borderRadius='5px'
-        py='8px'
-        px='6px'
+        h='44px'
+        px='12px'
+        spacing='8px'
+        colorScheme='orange'
+        iconColor='white.100'
+        sx={{
+          '& .chakra-checkbox__control': {
+            _checked: {
+              bg: 'orange.200',
+              borderColor: 'orange.200',
+              _hover: { bg: 'orange.200' },
+            },
+          },
+        }}
         isChecked={checkedItems[1]}
         _hover={{}}
         onChange={(e) => onCheckItem([checkedItems[0], e.target.checked])}

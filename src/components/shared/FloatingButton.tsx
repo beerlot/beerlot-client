@@ -1,51 +1,36 @@
 import { Button, ButtonProps, Text } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
 import React from 'react'
 
-interface FloatingButtonProps extends ButtonProps {
-  disabled?: boolean
-  text?: string
-  bgColor?: string
-  textColor?: string
-  boxShadow?: string | undefined
-  onClick: () => void
-}
 
-const FloatingButton: React.FC<FloatingButtonProps> = ({
-  text,
-  disabled = false,
-  bgColor,
-  textColor,
-  boxShadow,
-  onClick,
+const FloatingButton: React.FC<ButtonProps> = ({
+  children, 
   ...props
 }) => {
-  const router = useRouter()
   return (
     <Button
-      onClick={onClick}
-      isDisabled={disabled}
-      boxShadow={boxShadow}
+    _hover={{}}
       pos='fixed'
       bottom='76px'
       left='50%'
       transform='translateX(-50%)'
       maxW='418px'
       w='calc(100% - 32px)'
-      px='16px'
-      bg={bgColor}
-      borderRadius='10px'
+      px='24px'
+      bg={'orange.200'}
+      borderRadius='99px'
       _disabled={{
-        bg: bgColor,
-        textColor: textColor,
         cursor: 'not-allowed',
+        opacity: 1,
+        boxShadow: 'none',
+        bg: 'gray.200',
       }}
-      textColor={textColor}
-      py={'10px'}
+      h='48px'
       zIndex={100}
       {...props}
     >
-      <Text textStyle='h3'>{text}</Text>
+      <Text fontSize='16px' fontWeight='semibold' lineHeight='24px' color={'white.100'}>
+        {children}
+      </Text>
     </Button>
   )
 }

@@ -80,8 +80,8 @@ const BeerTasteSelection: React.FC<BeerTasteSelectionProps> = ({
       flexDir={'column'}
       w='full'
       overflowY='auto'
-      mt={'44px'}
-      px={5}
+      mt={0}
+      px={0}
       className='hide-scrollbar'
       {...props}
     >
@@ -118,13 +118,12 @@ const BeerTasteSelection: React.FC<BeerTasteSelectionProps> = ({
       </InfiniteScrollWrapper>
 
       <FloatingButton
-        disabled={!isFullfilled}
-        text='완료!'
+        isDisabled={!isFullfilled}
         onClick={handleClickComplete}
-        bgColor={isFullfilled ? 'orange.200' : 'gray.200'}
-        textColor={isFullfilled ? 'white.100' : 'black.100'}
+        bgColor={'orange.200'}
+        textColor={'white.100'}
         boxShadow={isFullfilled ? '0px 8px 16px rgba(0, 0, 0, 0.3)' : 'none'}
-      />
+      >완료!</FloatingButton>
     </Flex>
   )
 }

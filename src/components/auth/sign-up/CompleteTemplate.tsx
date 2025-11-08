@@ -50,13 +50,12 @@ const CompleteTemplate: React.FC<CompleteTemplateProps> = ({ userInfo }) => {
         </Text>
       </Center>
       <FloatingButton
-        text='비어랏 시작하기!'
         onClick={handleClickComplete}
         bgColor={'orange.200'}
         textColor={'white.100'}
         _hover={{}}
         boxShadow={'0px 8px 16px rgba(0, 0, 0, 0.3)'}
-      />
+      >비어랏 시작하기!</FloatingButton>
     </>
   )
 }

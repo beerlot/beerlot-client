@@ -11,7 +11,7 @@ const SignUpPage = () => {
   }, [])
 
   return (
-    <CommonPageLayout>
+    <CommonPageLayout showHeader={false}>
       <SignUpTemplate />
     </CommonPageLayout>
   )
