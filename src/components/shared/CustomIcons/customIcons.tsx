@@ -164,6 +164,18 @@ export const OrangeCircleCheck = createIcon({
   viewBox: '0 0 80 80',
 })
 
+export const OrangeCheckCircleIcon = createIcon({
+  displayName: 'OrangeCheckCircleIcon',
+  viewBox: '0 0 64 64',
+  path: (
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="32" cy="32" r="32" fill="#FEA801"/>
+<path d="M17.4685 31.7569L28.292 44.8004L46.5316 24.041" stroke="white" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+
+  ),
+})
+
 export const FullStarIcon = createIcon({
   displayName: 'FullStarIcon',
   viewBox: '0 0 40 40',

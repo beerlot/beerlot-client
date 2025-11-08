@@ -1,4 +1,4 @@
-import { Box, Container, Flex, HStack } from '@chakra-ui/react'
+import { Box, Flex, HStack } from '@chakra-ui/react'
 import Nickname from './Nickname'
 import { useState } from 'react'
 import CompleteTemplate from './CompleteTemplate'
@@ -68,39 +68,35 @@ const SignUpTemplate = () => {
   }
 
   return (
-    <Box w='full' h='100vh' bg='gray.100'>
-      <Container h='full' bg='white' p={0} maxW='450px'>
-        <Flex w={'full'} h={'full'} flexDirection='column'>
-          <Header onBack={handleBack} center={<LeftBackCompleteCircles step={step} />}>
-            <Box
-              w={'32px'}
-              h={'32px'}
-              opacity={0}
-              onClick={handleAdminSkip}
-              cursor={'pointer'}
-            />
-          </Header>
-          <Box flex={1} overflowY='auto' className='hide-scrollbar'>
-            {step === StepEnum.NICKNAME && (
-              <Nickname setUserInfo={updateUserInfo} onNext={handleNext} />
             )}
+    <>
+      <Header onBack={handleBack} center={<LeftBackCompleteCircles step={step} />}>
+        <Box
+          w={'32px'}
+          h={'32px'}
+          opacity={0}
+          onClick={handleAdminSkip}
+          cursor={'pointer'}
+        />
+      </Header>
 
-            {step === StepEnum.BEERS && (
-              <BeerTasteSelection
-                username={userInfo.username}
-                selectedBeers={selectedBeers}
-                updateSelectedBeers={updateSelectedBeers}
-                onNext={handleNext}
-              />
-            )}
+      {step === StepEnum.NICKNAME && (
+        <Nickname setUserInfo={updateUserInfo} onNext={handleNext} />
+      )}
 
-            {step === StepEnum.COMPLETE && (
-              <CompleteTemplate userInfo={userInfo} />
-            )}
-          </Box>
-        </Flex>
-      </Container>
-    </Box>
+        {step === StepEnum.BEERS && (
+          <BeerTasteSelection
+            username={userInfo.username}
+            selectedBeers={selectedBeers}
+            updateSelectedBeers={updateSelectedBeers}
+            onNext={handleNext}
+          />
+        )}
+
+      {step === StepEnum.COMPLETE && (
+        <CompleteTemplate userInfo={userInfo} />
+      )}
+    </>
   )
 }
 
