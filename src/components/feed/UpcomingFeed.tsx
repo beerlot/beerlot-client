@@ -3,7 +3,7 @@ import React from 'react'
 
 export const UpcomingFeed = () => {
   return (
-    <VStack w='full' h='full' gap='10px' pt='48px'>
+    <VStack w='full' h='full' minH='100vh' gap='10px' pt='48px'>
       <Text textAlign={'center'} textColor={'black.100'} textStyle='h2_bold'>
         아직 준비 중인 기능이에요 🛠
       </Text>

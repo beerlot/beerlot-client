@@ -41,7 +41,7 @@ export const Header: React.FC<HeaderProps> = ({
             p={0}
             bg='transparent'
             _focus={{}}
-            icon={<ChevronLeftIcon boxSize={5} />}
+            icon={<ChevronLeftIcon boxSize={6} />}
             aria-label='Back'
             onClick={handleBack}
             variant='ghost'

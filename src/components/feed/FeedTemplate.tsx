@@ -1,7 +1,7 @@
-import { Box, Container, useDisclosure } from '@chakra-ui/react'
+import { useDisclosure } from '@chakra-ui/react'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
-
+import { Box } from '@chakra-ui/react'
 import { FeedTabList } from './FeedTabList'
 import { ReviewModalTriggerButton } from '../shared/ReviewModal/ReviewModalWrapper/ReviewModalTriggerButton'
 import { ReviewModalWrapper } from '../shared/ReviewModal/ReviewModal/ReviewModalWrapper'
@@ -37,17 +37,14 @@ export const FeedTemplate = () => {
   }
 
   return (
-    <Box w='full' minH='100vh' bg='gray.100'>
-      <Container p={0} bg='transparent' maxW='450px' h={'full'} position='relative'>
-        <FeedTabList />
-
-        <ReviewModalTriggerButton onClick={handleOpenReviewModal} />
-        <ReviewModalWrapper
-          isModalOpen={isOpen}
-          onCloseModal={onClose}
-          onSuccess={invalidateReviews}
-        />
-      </Container>
+    <Box>
+      <FeedTabList />
+      <ReviewModalTriggerButton onClick={handleOpenReviewModal} />
+      <ReviewModalWrapper
+        isModalOpen={isOpen}
+        onCloseModal={onClose}
+        onSuccess={invalidateReviews}
+      />
     </Box>
   )
 }
