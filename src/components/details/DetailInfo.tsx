@@ -108,44 +108,50 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
       {/* title */}
      
       {/* image  */}
-      <Center pt='72px' w='full' px='24px'>
+      <Center pt={2} w='full' px='20px'>
         <CommonBeerImage
-          width='320px'
-          height='320px'
+          width='350px'
+          height='350px'
           src={beerImg}
           alt={`${beerName} image`}
           borderRadius='6px'
         />
       </Center>
 
-      <VStack px='24px' py='20px' w='full' alignItems='flex-start' gap='20px'>
-        {/* panel */}
-        <HStack w='full' justifyContent='space-between'>
-          <Text textStyle='h1'>{beerName}</Text>
-          <HStack gap='20px'>
-            <LikeButton
-              isLiked={isLikedBeer}
-              onClick={handleClickLike}
-              w='40px'
-              h='40px'
-              fontSize={'28px'}
-              cursor='pointer'
-              aria-label='like button'
-            />
-          </HStack>
+      <VStack px='20px' py='12px' w='full' alignItems='flex-start' spacing='4px'>
+        {/* panel - title row */}
+        <HStack w='full' justifyContent='space-between' alignItems='center'>
+          <Text textStyle='h1' textColor='black.100'>{beerName}</Text>
+          <LikeButton
+            isLiked={isLikedBeer}
+            onClick={handleClickLike}
+            w='24px'
+            h='24px'
+            fontSize={'20px'}
+            cursor='pointer'
+            aria-label='like button'
+          />
         </HStack>
-        {/* description */}
-        <HStack>
-          <Text textStyle='h2'>
-            {volume} | {category} | {country}
+        {/* description - meta row */}
+        <HStack alignItems='center' spacing='4px'>
+          <Text textStyle='h2_regular' textColor='black.100'>
+            {volume}%
+          </Text>
+          <Box w='2px' h='2px' bg='gray.300' borderRadius='full' />
+          <Text textStyle='h2_medium' textColor='gray.300'>
+            {category}
+          </Text>
+          <Box w='2px' h='2px' bg='gray.300' borderRadius='full' />
+          <Text textStyle='h2_medium' textColor='gray.300'>
+            {country}
           </Text>
         </HStack>
-        <Center w='full'>
+        <Center w='full' pt='20px'>
           <Rating
             _rate={rateToUse}
             starSize={40}
             styleProps={{
-              gap: '20px',
+              gap: '16px',
             }}
           />
         </Center>

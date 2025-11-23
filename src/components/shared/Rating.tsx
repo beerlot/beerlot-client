@@ -7,7 +7,7 @@ import {
   IconButtonProps,
 } from '@chakra-ui/react'
 import React from 'react'
-import { EmptyStarIcon, FullStarIcon } from './CustomIcons/customIcons'
+import { EmptyStarIconV2, StarIconV2 } from './CustomIcons/customIcons'
 
 interface RatingProps {
   starSize?: number
@@ -45,7 +45,7 @@ export const Rating: React.FC<RatingProps> = ({
           return (
             <Icon
               key={star}
-              as={star <= rate ? FullStarIcon : EmptyStarIcon}
+              as={star <= rate ? StarIconV2 : EmptyStarIconV2}
               color={star <= rate ? 'orange.200' : 'gray.200'}
               fontSize={starSize ? `${starSize}px` : undefined}
               sx={{
@@ -75,7 +75,7 @@ export const Rating: React.FC<RatingProps> = ({
               star <= rate ? (
                 <FullStarIcon color={'orange.200'} />
               ) : (
-                <EmptyStarIcon color={'gray.200'} />
+                <EmptyStarIconV2 color={'gray.200'}/>
               )
             }
             onClick={onClick ? () => onClick(star) : undefined}

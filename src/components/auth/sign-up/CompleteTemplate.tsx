@@ -23,15 +23,13 @@ const CompleteTemplate: React.FC<CompleteTemplateProps> = ({ userInfo }) => {
         <Icon as={OrangeCheckCircleIcon} w={'64px'} h={'64px'} />
 
         <VStack spacing={'12px'}>
-          <Text fontSize='20px' lineHeight='28px' fontWeight='bold' textColor='black.100'>
-            회원가입 완료!
-          </Text>
+          <Text textStyle='h1' textColor='black.100'>회원가입 완료!</Text>
           <VStack spacing={'16px'}>
             <VStack spacing={0}>
-              <Text fontSize='16px' lineHeight='20px' textColor='gray.300'>
+              <Text textStyle='h2_regular' textColor='gray.300'>
                 {userInfo?.username}님,
               </Text>
-              <Text fontSize='16px' lineHeight='20px' textColor='gray.300'>
+              <Text textStyle='h2_regular' textColor='gray.300'>
                 비어랏의 회원이 되어주셔서 고마워요 :)
               </Text>
             </VStack>
