@@ -73,7 +73,7 @@ export const Rating: React.FC<RatingProps> = ({
             fontSize={starSize ? `${starSize}px` : undefined}
             icon={
               star <= rate ? (
-                <FullStarIcon color={'orange.200'} />
+                <StarIconV2 color={'orange.200'}  />
               ) : (
                 <EmptyStarIconV2 color={'gray.200'}/>
               )
