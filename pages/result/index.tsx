@@ -169,8 +169,6 @@ const SearchResultPage = () => {
 
   return (
     <CommonPageLayout>
-      <Box w='full' bg='gray.100'>
-        <Container p={'0px'} bg='white' maxW='450px'>
           <Box h='full'>
             <Flex gap='10px' alignItems='center' mb='10px' cursor={'pointer'}>
               <SearchInput
@@ -203,8 +201,6 @@ const SearchResultPage = () => {
 
             <Box />
           </Box>
-        </Container>
-      </Box>
     </CommonPageLayout>
   )
 }

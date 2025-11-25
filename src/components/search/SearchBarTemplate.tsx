@@ -1,4 +1,4 @@
-import { Box, Container, VStack } from '@chakra-ui/react'
+import { Box, VStack } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 
 import useKeyboard from '@/../hooks/useKeyboard'
@@ -22,17 +22,13 @@ const SearchBarTemplate = () => {
   }
 
   return (
-    <Box w='full' bg='gray.100'>
-      <Container w='full' bg='white' position='relative' maxW='450px' p={0}>
-        <VStack spacing={0}>
-          <SearchBarList
-            handleClickItem={handleClickItem}
-            onKeyPress={handleKeyPress}
-            autoFocus={true}
-          />
-        </VStack>
-      </Container>
-    </Box>
+    <VStack spacing={0}>
+      <SearchBarList
+        handleClickItem={handleClickItem}
+        onKeyPress={handleKeyPress}
+        autoFocus={true}
+      />
+    </VStack>
   )
 }
 

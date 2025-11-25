@@ -1,4 +1,4 @@
-import { Box, Container } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { GetServerSideProps } from 'next'
 import AccountsTemplate from '../../src/components/account/AccountsTemplate'
 import { useEffect } from 'react'
@@ -13,11 +13,7 @@ const AccountPage = () => {
 
   return (
     <CommonPageLayout withContentPadding={false} headerRight={<SettingsIconButton />}>
-      <Box w='full' bg='gray.100' minH={'100vh'}>
-        <Container p={'0px'} maxW='450px' bg='white'>
-          <AccountsTemplate />
-        </Container>
-      </Box>
+      <AccountsTemplate />
     </CommonPageLayout>
   )
 }

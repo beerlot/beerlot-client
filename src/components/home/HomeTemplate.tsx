@@ -4,7 +4,7 @@ import {
   useTopBeersQuery,
 } from '@/../hooks/query/useBeerQuery'
 import { fetchSingleBeerInfoApi } from '@/api/beers/api'
-import { Box, Container } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 import { useEffect } from 'react'
@@ -61,8 +61,7 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({ username }) => {
   }, [])
 
   return (
-    <Box w='full' bg='gray.100'>
-      <Container p={'0px'} bg='white' maxW='450px' minH={'100vh'}>
+    <Box>
         <Box>
 
           <WelcomeTextContent username={username} />
@@ -86,7 +85,6 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({ username }) => {
             />
           )}
         </Box>
-      </Container>
     </Box>
   )
 }
